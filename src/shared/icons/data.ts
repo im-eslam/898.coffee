@@ -9,6 +9,13 @@ export const PATHS = {
   close: "M6 6l12 12M18 6L6 18",
   chat: "M4.5 5.5h15a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4.5 3.5V6.5a1 1 0 0 1 1-1z",
   menu: "M4 6h16M4 12h16M4 18h16",
+  search: "M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3",
+  plus: "M12 5v14M5 12h14",
+  minus: "M5 12h14",
+  trash:
+    "M5 7h14M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m3 0-.8 12.1a2 2 0 0 1-2 1.9H7.8a2 2 0 0 1-2-1.9L5 7h14zM10 11v6M14 11v6",
+  sparkle:
+    "M12 3.5l1.2 3.6 3.6 1.2-3.6 1.2L12 13.1l-1.2-3.6-3.6-1.2 3.6-1.2zM18.5 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z",
 } as const;
 
 export const FLIP_IN_RTL = new Set<IconName>(["arrow"]);
