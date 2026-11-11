@@ -37,29 +37,3 @@ export const config = {
     },
   },
 };
-
-const en = {
-  header: {
-    bar: {
-      brandName: "Café",
-      language: {
-        name: "ع",
-        lang: "ar",
-      },
-    },
-  },  
-};
-
-const ar: typeof en = {
-  header: {
-    bar: {
-      brandName: "المقهى",
-      language: {
-        name: "EN",
-        lang: "en",
-      },
-    },
-  },
-};
-
-export const strings: Localized<typeof en> = { en, ar };

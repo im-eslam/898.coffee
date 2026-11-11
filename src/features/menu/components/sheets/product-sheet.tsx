@@ -1,183 +1,216 @@
-// import { useState } from "react";
-// import { Button } from "react-aria-components";
-// import { useLocale, useStrings } from "@/shared/i18n";
-// import { getProductPrice, getSelectedOption, strings, sumAddOns } from "../../strings";
-// import type { Product, ProductRef } from "../../types/menu-models";
-// import { ProductOptions } from "../product-options";
-// import {
-//   Badge,
-//   Chevron,
-//   cx,
-//   focusRing,
-//   Img,
-//   PriceBar,
-//   PriceWithDiscount,
-//   PrimaryButton,
-// } from "../ui";
-// import { BottomSheet } from "./bottom-sheet";
+import { useState } from "react";
+import { Button } from "react-aria-components";
+import type { Locale } from "@/shared/i18n";
+import type { Product, ProductRef } from "../../types/menu-models";
+import { getProductPrice, getProductTotal } from "../../util/pricing";
+import { BaseOptions } from "./Base-options";
+import { Badge } from "../ui/badge";
+import { Chevron } from "../ui/chevron";
+import { Img } from "../ui/img";
+import { MenuButton } from "../ui/menu-button";
+import { Price } from "../ui/price";
+import { BottomSheet } from "./bottom-sheet";
 
-// interface Props {
-//   product: Product;
-//   isOpen: boolean;
-//   onClose: () => void;
-//   onOpenProduct: (productId: string) => void;
-// }
+interface ProductSheetStrings {
+  itemDescription: string;
+  outOfStock: string;
+  oftenOrdered: string;
+  openItem: (name: string) => string;
+  size: string;
+  baristaWay: string;
+  baristaSub: string;
+  addOns: string;
+}
 
-// const styles = {
-//   content: "flex flex-col gap-6",
-//   hero: "relative mx-4",
-//   heroImage: "aspect-square w-full rounded-lg",
-//   heroBadge: "absolute end-2 top-2",
-//   grayscale: "grayscale",
-//   intro: "flex flex-col items-start gap-2 px-4",
-//   title: "text-title font-bold text-balance",
-//   description: "text-small font-medium text-pretty text-navy/65",
-//   related: "flex flex-col gap-2",
-//   relatedTitle: "px-4 text-body font-bold",
-//   relatedRail: "no-scrollbar flex gap-2 overflow-x-auto px-4 pb-1",
-// } as const;
+interface ProductSheetProps {
+  product: Product;
+  strings: ProductSheetStrings;
+  locale: Locale;
+  formatMoney: (value: number, plus?: boolean) => string;
+  isOpen: boolean;
+  onClose: () => void;
+  onOpenProduct: (productId: string) => void;
+}
 
-// export function ProductSheet({
-//   product,
-//   isOpen,
-//   onClose,
-//   onOpenProduct,
-// }: Props) {
-//   const t = useStrings(strings);
-//   const locale = useLocale();
-//   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(
-//     product.pricing.options[0]?.id ?? null
-//   );
-//   const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
+const styles = {
+  content: "flex flex-col gap-6",
+  hero: "relative",
+  heroImage: "aspect-square w-full rounded-lg",
+  heroBadge: "absolute end-2 top-2",
+  grayscale: "grayscale",
+  intro: "flex flex-col items-start gap-2",
+  description: "text-small font-medium text-pretty text-navy/65",
+  related: "flex flex-col gap-2",
+  relatedTitle: "text-body font-bold",
+  relatedRail:
+    "no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:-mx-6 md:px-6",
+} as const;
 
-//   const inStock = product.availability === "in_stock";
-//   const name = product.name[locale];
-//   const description = product.description[locale];
-//   const total =
-//     (getSelectedOption(product.pricing, selectedOptionId)?.final ?? 0) +
-//     sumAddOns(product, selectedAddOnIds);
+export function ProductSheet({
+  product,
+  strings: s,
+  locale,
+  formatMoney,
+  isOpen,
+  onClose,
+  onOpenProduct,
+}: ProductSheetProps) {
+  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(
+    product.pricing.options[0]?.id ?? null
+  );
+  const [selectedAddOnIds, setSelectedAddOnIds] = useState<string[]>([]);
 
-//   // View-only: the footer just shows the price.
-//   const footer = inStock ? (
-//     <PriceBar total={total} />
-//   ) : (
-//     <PrimaryButton isDisabled>{t.outOfStock}</PrimaryButton>
-//   );
+  const inStock = product.availability === "in_stock";
+  const name = product.name[locale];
+  const description = product.description[locale];
+  const total = getProductTotal(product, selectedOptionId, selectedAddOnIds);
 
-//   return (
-//     <BottomSheet
-//       isOpen={isOpen}
-//       label={name}
-//       onClose={onClose}
-//       footer={footer}
-//     >
-//       <div className={styles.content}>
-//         <div className={styles.hero}>
-//           <Img
-//             image={product.image}
-//             alt={name}
-//             className={cx(styles.heroImage, !inStock && styles.grayscale)}
-//           />
-//           {!inStock && (
-//             <span className={styles.heroBadge}>
-//               <Badge kind="outOfStock" />
-//             </span>
-//           )}
-//         </div>
+  const footer = inStock ? (
+    <Price variant="bar" value={total} formatMoney={formatMoney} />
+  ) : (
+    <MenuButton variant="primary" isDisabled>
+      {s.outOfStock}
+    </MenuButton>
+  );
 
-//         <div className={styles.intro}>
-//           {inStock && product.badge && <Badge kind={product.badge} />}
-//           <h2 data-sheet-title className={styles.title}>
-//             {name}
-//           </h2>
-//           {description && <p className={styles.description}>{description}</p>}
-//         </div>
+  return (
+    <BottomSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      footer={footer}
+      strings={{
+        title: name,
+        description: s.itemDescription,
+      }}
+    >
+      <div className={styles.content}>
+        <div className={styles.hero}>
+          <Img
+            image={product.image}
+            alt={name}
+            className={`${styles.heroImage} ${inStock ? "" : styles.grayscale}`}
+          />
+          {!inStock && (
+            <span className={styles.heroBadge}>
+              <Badge kind="outOfStock" />
+            </span>
+          )}
+        </div>
 
-//         <ProductOptions
-//           product={product}
-//           selectedOptionId={selectedOptionId}
-//           selectedAddOnIds={selectedAddOnIds}
-//           onSelectOption={setSelectedOptionId}
-//           onSelectAddOns={setSelectedAddOnIds}
-//           isDisabled={!inStock}
-//         />
+        {(product.badge || description) && (
+          <div className={styles.intro}>
+            {inStock && product.badge && <Badge kind={product.badge} />}
+            {description && <p className={styles.description}>{description}</p>}
+          </div>
+        )}
 
-//         {product.oftenOrderedWith.length > 0 && (
-//           <section aria-label={t.oftenOrdered} className={styles.related}>
-//             <h3 className={styles.relatedTitle}>{t.oftenOrdered}</h3>
-//             <div className={styles.relatedRail}>
-//               {product.oftenOrderedWith.map((other) => (
-//                 <OftenOrderedCard
-//                   key={other.id}
-//                   product={other}
-//                   onOpen={() => onOpenProduct(other.id)}
-//                 />
-//               ))}
-//             </div>
-//           </section>
-//         )}
-//       </div>
-//     </BottomSheet>
-//   );
-// }
+        <BaseOptions
+          product={product}
+          strings={s}
+          locale={locale}
+          formatMoney={formatMoney}
+          selectedOptionId={selectedOptionId}
+          selectedAddOnIds={selectedAddOnIds}
+          onSelectOption={setSelectedOptionId}
+          onSelectAddOns={setSelectedAddOnIds}
+          isDisabled={!inStock}
+        />
 
-// const cardStyles = {
-//   root: cx(
-//     "flex w-28 shrink-0 flex-col gap-1 rounded-md border border-arctic bg-white p-2 text-start",
-//     focusRing
-//   ),
-//   imageFrame: "relative",
-//   image: "h-16 w-full rounded-md",
-//   grayscale: "grayscale",
-//   outOfStockBadge: "absolute end-1 top-1",
-//   name: "line-clamp-2 min-h-[2lh] text-caption font-medium text-balance",
-//   nameUnavailable: "text-navy/60",
-//   footer: "flex items-center justify-between gap-1",
-//   unavailable: "opacity-60",
-// } as const;
+        {product.oftenOrderedWith.length > 0 && (
+          <section aria-label={s.oftenOrdered} className={styles.related}>
+            <h3 className={styles.relatedTitle}>{s.oftenOrdered}</h3>
+            <div className={styles.relatedRail}>
+              {product.oftenOrderedWith.map((other) => (
+                <OftenOrderedCard
+                  key={other.id}
+                  product={other}
+                  locale={locale}
+                  formatMoney={formatMoney}
+                  openLabel={s.openItem(other.name[locale])}
+                  onOpen={() => onOpenProduct(other.id)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </BottomSheet>
+  );
+}
 
-// // Tapping the card (or its arrow) opens that product's own sheet.
-// function OftenOrderedCard({
-//   product,
-//   onOpen,
-// }: {
-//   product: ProductRef;
-//   onOpen: () => void;
-// }) {
-//   const t = useStrings(strings);
-//   const locale = useLocale();
-//   const name = product.name[locale];
-//   const inStock = product.availability === "in_stock";
-//   const { current, regular } = getProductPrice(product.pricing);
+const cardStyles = {
+  root: "relative flex w-28 shrink-0 flex-col gap-1 rounded-md border border-arctic bg-white p-2 text-start",
+  frame: "relative",
+  image: "h-16 w-full rounded-md",
+  grayscale: "grayscale",
+  outOfStockBadge: "absolute end-1 top-1",
+  name: "line-clamp-2 min-h-[2lh] text-caption font-medium text-balance",
+  nameUnavailable: "text-navy/60",
+  footer: "flex items-center justify-between gap-1",
+  unavailable: "opacity-60",
+  action:
+    "absolute inset-0 z-10 rounded-md outline-none data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
+} as const;
 
-//   return (
-//     <Button
-//       aria-label={t.a11yOpenProduct(name)}
-//       onPress={onOpen}
-//       className={cardStyles.root}
-//     >
-//       <span className={cardStyles.imageFrame}>
-//         <Img
-//           image={product.image}
-//           className={cx(cardStyles.image, !inStock && cardStyles.grayscale)}
-//         />
-//         {!inStock && (
-//           <span className={cardStyles.outOfStockBadge}>
-//             <Badge kind="outOfStock" compact />
-//           </span>
-//         )}
-//       </span>
-//       <span
-//         className={cx(cardStyles.name, !inStock && cardStyles.nameUnavailable)}
-//       >
-//         {name}
-//       </span>
-//       <span className={cardStyles.footer}>
-//         <span className={inStock ? undefined : cardStyles.unavailable}>
-//           <PriceWithDiscount value={current} regular={regular} size="caption" />
-//         </span>
-//         <Chevron small />
-//       </span>
-//     </Button>
-//   );
-// }
+function OftenOrderedCard({
+  product,
+  locale,
+  formatMoney,
+  openLabel,
+  onOpen,
+}: {
+  product: ProductRef;
+  locale: Locale;
+  formatMoney: (value: number, plus?: boolean) => string;
+  openLabel: string;
+  onOpen: () => void;
+}) {
+  const name = product.name[locale];
+  const inStock = product.availability === "in_stock";
+  const { current, regular } = getProductPrice(product.pricing);
+
+  return (
+    <div className={cardStyles.root}>
+      <div className={cardStyles.frame}>
+        <Img
+          image={product.image}
+          className={`${cardStyles.image} ${
+            inStock ? "" : cardStyles.grayscale
+          }`}
+        />
+        {!inStock && (
+          <span className={cardStyles.outOfStockBadge}>
+            <Badge kind="outOfStock" compact />
+          </span>
+        )}
+      </div>
+
+      <span
+        className={`${cardStyles.name} ${
+          inStock ? "" : cardStyles.nameUnavailable
+        }`}
+      >
+        {name}
+      </span>
+
+      <span className={cardStyles.footer}>
+        <span className={inStock ? undefined : cardStyles.unavailable}>
+          <Price
+            value={current}
+            regular={regular}
+            formatMoney={formatMoney}
+            size="caption"
+          />
+        </span>
+        <Chevron size="s" />
+      </span>
+
+      <Button
+        type="button"
+        aria-label={openLabel}
+        onPress={onOpen}
+        className={cardStyles.action}
+      />
+    </div>
+  );
+}

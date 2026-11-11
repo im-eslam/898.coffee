@@ -1,120 +1,86 @@
-// import { useRef, useState, type ReactNode } from "react";
-// import { Dialog, Modal, ModalOverlay } from "react-aria-components";
-// import { useSheetDrag } from "../../hooks/use-sheet-drag";
-// import { cx, CloseButton } from "../ui";
+import type { ReactNode } from "react";
+import { Drawer as VaulDrawer } from "vaul";
+import { MenuButton } from "../ui/menu-button";
 
-// interface Props {
-//   isOpen: boolean;
-//   label: string;
-//   onClose: () => void;
-//   footer?: ReactNode;
-//   children: ReactNode;
-// }
+export interface BottomSheetStrings {
+  title: string;
+  description: string;
+}
 
-// const styles = {
-//   overlay:
-//     "fixed inset-0 z-50 flex items-end justify-center bg-scrim md:items-center md:p-6 data-entering:animate-scrim-in data-exiting:animate-scrim-out",
-//   modal:
-//     "flex max-h-[88dvh] w-full max-w-120 flex-col overflow-hidden rounded-t-sheet bg-white shadow-sheet md:max-h-[85dvh] md:max-w-140 md:rounded-b-sheet data-entering:animate-slide-up data-exiting:animate-slide-down",
-//   modalSettling: "transition-transform duration-500 ease-smooth",
-//   dialog: "relative flex min-h-0 flex-1 flex-col outline-none",
-//   topBar:
-//     "group relative z-20 flex h-10 shrink-0 items-center rounded-t-sheet bg-white",
-//   topBarLine:
-//     "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-navy/7 opacity-0 transition-opacity duration-150 group-data-stuck:opacity-100",
-//   handleArea:
-//     "absolute inset-0 flex cursor-grab touch-none select-none items-center justify-center transition-opacity duration-150 active:cursor-grabbing group-data-stuck:opacity-0",
-//   handle: "h-1.5 w-10 rounded-full bg-navy/15",
-//   barTitle:
-//     "pointer-events-none absolute inset-y-0 start-4 end-14 flex items-center truncate text-body font-bold opacity-0 transition-opacity duration-150 group-data-stuck:opacity-100",
-//   barTitleText: "truncate",
-//   closeSlot: "absolute inset-y-0 end-1.5 z-10 flex items-center",
-//   scroller:
-//     "min-h-0 flex-1 overflow-y-auto overscroll-contain pb-6 [overflow-anchor:none]",
-//   footer:
-//     "shrink-0 border-t border-mist bg-white px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]",
-// } as const;
+interface BottomSheetProps {
+  strings: BottomSheetStrings;
+  isOpen: boolean;
+  onClose: () => void;
+  footer?: ReactNode;
+  children: ReactNode;
+}
 
-// export function BottomSheet({
-//   isOpen,
-//   label,
-//   onClose,
-//   footer,
-//   children,
-// }: Props) {
-//   const { handleProps, style, dragging, reset } = useSheetDrag(onClose);
-//   const topBarRef = useRef<HTMLDivElement>(null);
-//   const observer = useRef<IntersectionObserver | null>(null);
+const styles = {
+  overlay:
+    "fixed inset-0 z-50 bg-scrim backdrop-blur-[2px] transition-opacity duration-(--duration-interactive) ease-smooth data-[state=open]:opacity-100 data-[state=closed]:opacity-0 motion-reduce:transition-none",
+  content:
+    "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[88dvh] w-full max-w-120 flex-col overflow-hidden rounded-t-sheet border-t border-sand/50 bg-cream text-charcoal outline-none md:max-w-140",
+  close: "absolute end-2 top-1 z-10",
+  handleRow:
+    "relative z-0 flex h-10 w-full shrink-0 items-center justify-center",
+  handle:
+    "cursor-grab touch-none rounded-full !bg-charcoal/60 [&_[data-vaul-handle-hitarea]]:!h-20 [&_[data-vaul-handle-hitarea]]:!w-999 hover:!bg-charcoal/70 active:cursor-grabbing active:!bg-charcoal/80",
+  body: "flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-6 md:px-6",
+  header: "mb-5 pe-12",
+  title: "text-title font-bold text-balance text-charcoal",
+  description: "sr-only",
+  footer:
+    "shrink-0 border-t border-sand/50 bg-cream px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] md:px-6",
+} as const;
 
-//   const [wasOpen, setWasOpen] = useState(isOpen);
-//   if (isOpen !== wasOpen) {
-//     setWasOpen(isOpen);
-//     if (isOpen) reset();
-//   }
+export function BottomSheet({
+  strings: s,
+  isOpen,
+  onClose,
+  footer,
+  children,
+}: BottomSheetProps) {
+  return (
+    <VaulDrawer.Root
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+      shouldScaleBackground={false}
+      handleOnly
+      repositionInputs={false}
+    >
+      <VaulDrawer.Portal>
+        <VaulDrawer.Overlay className={styles.overlay} />
 
-//   function setScroller(scroller: HTMLDivElement | null) {
-//     observer.current?.disconnect();
-//     observer.current = null;
-//     const heading = scroller?.querySelector<HTMLElement>("[data-sheet-title]");
-//     if (!scroller || !heading) return;
-//     observer.current = new IntersectionObserver(
-//       ([entry]) => {
-//         const bar = topBarRef.current;
-//         if (!bar || !entry.rootBounds) return;
-//         const gone =
-//           !entry.isIntersecting &&
-//           entry.boundingClientRect.bottom < entry.rootBounds.top + 1;
-//         if (gone) bar.setAttribute("data-stuck", "");
-//         else bar.removeAttribute("data-stuck");
-//       },
-//       { root: scroller, threshold: 0 }
-//     );
-//     observer.current.observe(heading);
-//   }
+        <VaulDrawer.Content className={styles.content}>
+          <MenuButton
+            variant="close"
+            size="s"
+            onPress={onClose}
+            className={styles.close}
+          />
 
-//   return (
-//     <ModalOverlay
-//       isOpen={isOpen}
-//       onOpenChange={(open) => {
-//         if (!open) onClose();
-//       }}
-//       isDismissable
-//       className={styles.overlay}
-//     >
-//       <Modal
-//         style={style}
-//         className={({ isEntering, isExiting }) =>
-//           cx(
-//             styles.modal,
-//             !isEntering && !isExiting && !dragging && styles.modalSettling
-//           )
-//         }
-//       >
-//         <Dialog aria-label={label} className={styles.dialog}>
-//           <div ref={topBarRef} className={styles.topBar}>
-//             <span aria-hidden="true" className={styles.topBarLine} />
-//             <div
-//               {...handleProps}
-//               aria-hidden="true"
-//               className={styles.handleArea}
-//             >
-//               <span className={styles.handle} />
-//             </div>
-//             <span className={styles.barTitle}>
-//               <span className={styles.barTitleText}>{label}</span>
-//             </span>
-//             <div className={styles.closeSlot}>
-//               <CloseButton small onPress={onClose} />
-//             </div>
-//           </div>
+          <div className={styles.handleRow}>
+            <VaulDrawer.Handle className={styles.handle} />
+          </div>
 
-//           <div ref={setScroller} className={styles.scroller}>
-//             {children}
-//           </div>
+          <div className={styles.body}>
+            <div className={styles.header}>
+              <VaulDrawer.Title className={styles.title}>
+                {s.title}
+              </VaulDrawer.Title>
+              <VaulDrawer.Description className={styles.description}>
+                {s.description}
+              </VaulDrawer.Description>
+            </div>
 
-//           {footer && <div className={styles.footer}>{footer}</div>}
-//         </Dialog>
-//       </Modal>
-//     </ModalOverlay>
-//   );
-// }
+            {children}
+          </div>
+
+          {footer && <div className={styles.footer}>{footer}</div>}
+        </VaulDrawer.Content>
+      </VaulDrawer.Portal>
+    </VaulDrawer.Root>
+  );
+}
