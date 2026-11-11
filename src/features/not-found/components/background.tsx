@@ -1,5 +1,9 @@
 import { Fragment, useId } from "react";
 
+interface BackgroundProps {
+  className?: string;
+}
+
 const styles = {
   colors: {
     base: "color-mix(in srgb, var(--color-cream) 60%, var(--color-sand))",
@@ -143,10 +147,6 @@ const VEIL = [
   `radial-gradient(ellipse ${v.glowSize} at ${v.glowCenter}, color-mix(in srgb, ${c.base} ${v.glowStrength}%, transparent), transparent 100%)`,
   `linear-gradient(to bottom, transparent ${v.fadeStart}, ${c.base} 100%)`,
 ].join(", ");
-
-interface BackgroundProps {
-  className?: string;
-}
 
 export function Background({ className }: BackgroundProps) {
   const patternId = useId();

@@ -47,7 +47,7 @@ export function HeaderNav({
   onCategories,
   className,
 }: HeaderNavProps) {
-  const nav = useHeaderNav({
+  const { railRef, highlight, canAnimate, edges } = useHeaderNav({
     activeId,
     contentKey: JSON.stringify(sections),
     direction,
@@ -55,7 +55,7 @@ export function HeaderNav({
 
   const highlightClassName = [
     styles.highlight,
-    nav.canAnimate && styles.highlightAnimation,
+    canAnimate && styles.highlightAnimation,
   ]
     .filter(Boolean)
     .join(" ");
@@ -73,19 +73,13 @@ export function HeaderNav({
       </div>
 
       <nav className={styles.nav}>
-        <div
-          ref={nav.railRef}
-          onTouchStart={nav.startTouch}
-          onTouchEnd={nav.endTouch}
-          onTouchCancel={nav.endTouch}
-          className={styles.rail}
-        >
+        <div ref={railRef} className={styles.rail}>
           <span
             className={highlightClassName}
             style={{
-              width: nav.highlight?.width ?? 0,
-              transform: `translateX(${nav.highlight?.x ?? 0}px)`,
-              opacity: nav.highlight ? 1 : 0,
+              width: highlight?.width ?? 0,
+              transform: `translateX(${highlight?.x ?? 0}px)`,
+              opacity: highlight ? 1 : 0,
             }}
           />
 
@@ -118,13 +112,13 @@ export function HeaderNav({
 
         <div
           className={`${styles.fade} ${styles.fadeStart} ${
-            nav.edges.start ? styles.fadeVisible : styles.fadeHidden
+            edges.start ? styles.fadeVisible : styles.fadeHidden
           }`}
         />
 
         <div
           className={`${styles.fade} ${styles.fadeEnd} ${
-            nav.edges.end ? styles.fadeVisible : styles.fadeHidden
+            edges.end ? styles.fadeVisible : styles.fadeHidden
           }`}
         />
       </nav>
