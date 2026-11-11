@@ -1,81 +1,133 @@
-// import { useEffect, useRef, useState } from "react";
-// import { Dialog, Modal, ModalOverlay } from "react-aria-components";
-// import { useStrings } from "@/shared/i18n";
-// import { strings } from "../../strings";
-// import type { Popup } from "../../types/menu-models";
-// import { CloseButton } from "../ui/";
+import { useEffect, useState } from "react";
+import { Dialog, Modal, ModalOverlay } from "react-aria-components";
+import type { Popup } from "../../types/menu-models";
+import { MenuButton } from "../ui/menu-button";
 
-// interface Props {
-//   popup: Popup;
-//   busy: boolean;
-// }
+interface Props {
+  popup: Popup;
+  busy: boolean;
+}
 
-// const styles = {
-//   overlay:
-//     "fixed inset-0 z-50 flex items-center justify-center bg-scrim p-4 data-entering:animate-scrim-in data-exiting:animate-scrim-out",
-//   modal: "relative outline-none data-entering:animate-reveal-in",
-//   dialog: "outline-none",
-//   image:
-//     "block h-auto max-h-[80dvh] w-auto max-w-[min(28rem,calc(100vw-2rem))] rounded-lg bg-white object-contain",
-//   close: "absolute end-1 top-1",
-// } as const;
+const styles = {
+  overlay:
+    "fixed inset-0 z-50 flex items-center justify-center bg-scrim p-4 data-entering:animate-scrim-in data-exiting:animate-scrim-out motion-reduce:animate-none",
+  modal:
+    "relative outline-none data-entering:animate-reveal-in data-exiting:animate-reveal-out motion-reduce:animate-none",
+  dialog: "outline-none",
+  image:
+    "block h-auto max-h-[80dvh] w-auto max-w-[min(28rem,calc(100vw-2rem))] rounded-lg bg-white object-contain",
+  close: "absolute end-1 top-1 z-10",
+} as const;
 
-// export function PromoPopup({ popup, busy }: Props) {
-//   const t = useStrings(strings);
-//   const { enabled, image, delaySeconds } = popup;
-//   const [isOpen, setIsOpen] = useState(false);
+export function PromoPopup({ popup, busy }: Props) {
+  const { enabled, image, delaySeconds } = popup;
 
-//   const busyRef = useRef(busy);
-//   useEffect(() => {
-//     busyRef.current = busy;
-//   }, [busy]);
+  const delayMs =
+    Math.max(0, Number.isFinite(delaySeconds) ? delaySeconds : 0) * 1000;
 
-//   useEffect(() => {
-//     if (!enabled || !image) return;
-//     let cancelled = false;
-//     let timer = 0;
+  const configKey = JSON.stringify([enabled, image, delayMs]);
 
-//     const loaded = new Promise<boolean>((resolve) => {
-//       const picture = new Image();
-//       picture.onload = () => resolve(true);
-//       picture.onerror = () => resolve(false);
-//       picture.src = image;
-//     });
-//     const waited = new Promise<void>((resolve) => {
-//       timer = window.setTimeout(resolve, delaySeconds * 1000);
-//     });
+  const [readyKey, setReadyKey] = useState<string | null>(null);
+  const [dismissedKey, setDismissedKey] = useState<string | null>(null);
 
-//     void Promise.all([loaded, waited]).then(([ok]) => {
-//       if (!cancelled && ok && !busyRef.current) setIsOpen(true);
-//     });
-//     return () => {
-//       cancelled = true;
-//       window.clearTimeout(timer);
-//     };
-//   }, [enabled, image, delaySeconds]);
+  const isReady = readyKey === configKey;
+  const isDismissed = dismissedKey === configKey;
 
-//   if (!enabled || !image) return null;
+  const isOpen = enabled && Boolean(image) && isReady && !isDismissed && !busy;
 
-//   return (
-//     <ModalOverlay
-//       isOpen={isOpen}
-//       onOpenChange={setIsOpen}
-//       isDismissable
-//       className={styles.overlay}
-//     >
-//       <Modal className={styles.modal}>
-//         <Dialog aria-label={t.promoAlt} className={styles.dialog}>
-//           <img
-//             src={image}
-//             alt={t.promoAlt}
-//             draggable={false}
-//             className={styles.image}
-//           />
-//           <span className={styles.close}>
-//             <CloseButton small onPress={() => setIsOpen(false)} />
-//           </span>
-//         </Dialog>
-//       </Modal>
-//     </ModalOverlay>
-//   );
-// }
+  useEffect(() => {
+    if (!enabled || !image) return;
+
+    let active = true;
+    let imageLoaded = false;
+    let delayElapsed = false;
+    let timerId: number | undefined;
+
+    const imageLoader = new Image();
+
+    function markReady() {
+      if (!active || !imageLoaded || !delayElapsed) return;
+
+      active = false;
+      setReadyKey(configKey);
+    }
+
+    function handleImageLoad() {
+      imageLoaded = true;
+      markReady();
+    }
+
+    function handleImageError() {
+      active = false;
+
+      if (timerId !== undefined) {
+        window.clearTimeout(timerId);
+      }
+    }
+
+    imageLoader.onload = handleImageLoad;
+    imageLoader.onerror = handleImageError;
+
+    timerId = window.setTimeout(() => {
+      delayElapsed = true;
+      markReady();
+    }, delayMs);
+
+    imageLoader.src = image;
+
+    if (imageLoader.complete) {
+      if (imageLoader.naturalWidth > 0) {
+        handleImageLoad();
+      } else {
+        handleImageError();
+      }
+    }
+
+    return () => {
+      active = false;
+
+      if (timerId !== undefined) {
+        window.clearTimeout(timerId);
+      }
+
+      imageLoader.onload = null;
+      imageLoader.onerror = null;
+    };
+  }, [enabled, image, delayMs, configKey]);
+
+  function handleOpenChange(open: boolean) {
+    if (!open) {
+      setDismissedKey(configKey);
+    }
+  }
+
+  if (!enabled || !image) return null;
+
+  return (
+    <ModalOverlay
+      isOpen={isOpen}
+      onOpenChange={handleOpenChange}
+      isDismissable
+      className={styles.overlay}
+    >
+      <Modal className={styles.modal}>
+        <Dialog className={styles.dialog}>
+          <img
+            src={image}
+            alt=""
+            draggable={false}
+            decoding="async"
+            className={styles.image}
+          />
+
+          <MenuButton
+            variant="close"
+            size="s"
+            onPress={() => handleOpenChange(false)}
+            className={styles.close}
+          />
+        </Dialog>
+      </Modal>
+    </ModalOverlay>
+  );
+}

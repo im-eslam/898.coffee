@@ -9,7 +9,7 @@ const FIRST_VISIBLE = 4;
 const STAGGER_STEPS = 6;
 const STAGGER_MS = 40;
 
-export interface ProductsSectionStrings {
+interface ProductsSectionStrings {
   showAll: (name: string, count: number) => string;
 }
 

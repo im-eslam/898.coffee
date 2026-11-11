@@ -4,7 +4,7 @@ import type { Product } from "../../types/menu-models";
 import { Heading } from "../ui/heading";
 import { SignatureCard } from "./signature-card";
 
-export interface SignaturesSectionStrings {
+interface SignaturesSectionStrings {
   title: string;
   sub?: string;
 }

@@ -1,13 +1,13 @@
 import { Button } from "react-aria-components";
 import { Background } from "./background";
 
-export interface ErrorStateStrings {
+interface ErrorStateStrings {
   title: string;
   description: string;
   retry: string;
 }
 
-export interface ErrorStateProps {
+interface ErrorStateProps {
   strings: ErrorStateStrings;
   onRetry: () => void;
   className?: string;

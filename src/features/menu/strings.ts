@@ -47,7 +47,7 @@ const en = {
         lang: "ar",
       },
     },
-  },
+  },  
 };
 
 const ar: typeof en = {

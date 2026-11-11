@@ -4,7 +4,7 @@ import type { Pairing } from "../../types/menu-models";
 import { Heading } from "../ui/heading";
 import { PairingCard } from "./pairing-card";
 
-export interface PairingsSectionStrings {
+interface PairingsSectionStrings {
   title: string;
   sub?: string;
   savings: (amount: string) => string;

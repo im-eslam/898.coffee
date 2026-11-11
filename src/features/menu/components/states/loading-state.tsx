@@ -1,12 +1,12 @@
 import { Icon } from "@/shared/icons";
 import { Background } from "./background";
 
-export interface LoadingStateStrings {
+interface LoadingStateStrings {
   title: string;
   description?: string;
 }
 
-export interface LoadingStateProps {
+interface LoadingStateProps {
   strings: LoadingStateStrings;
   className?: string;
 }

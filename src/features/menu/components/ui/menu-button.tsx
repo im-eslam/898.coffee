@@ -30,7 +30,6 @@ interface SecondaryButtonProps extends TextButtonProps {
 
 interface CloseButtonProps extends BaseButtonProps {
   variant: "close";
-  label: string;
   size?: CloseButtonSize;
 }
 
@@ -76,7 +75,6 @@ export function MenuButton(props: MenuButtonProps) {
     return (
       <Button
         type="button"
-        aria-label={props.label}
         onPress={onPress}
         isDisabled={isDisabled}
         className={`${styles.base} ${styles.close} ${className ?? ""}`}
