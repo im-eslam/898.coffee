@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { config, type BadgeLabelKind } from "../../strings";
+import { config } from "../../strings";
 
+type BadgeLabelKind = keyof typeof config.badges.en;
 type ContentBadgeKind = "detail" | "savings";
 type BadgeKind = BadgeLabelKind | ContentBadgeKind;
 

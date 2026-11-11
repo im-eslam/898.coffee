@@ -3,7 +3,8 @@ import { ROUTES, useLocation } from "@/shared/router";
 
 type ReviewStep = "choices" | "note" | "success";
 
-const GOOGLE_REVIEW_URL = "https://google.com";
+const GOOGLE_REVIEW_URL =
+  "https://search.google.com/local/writereview?placeid=ChIJ6TmFLgCd9xQRJhy85GpSRQ4";
 
 export function useReviewFlow() {
   const [location, setLocation] = useLocation();

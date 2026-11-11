@@ -1,12 +1,11 @@
-import { useEffect, type ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 import { Button } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { ChoiceCard } from "./components/ui/choice-card";
 import { NoteField } from "./components/ui/note-field";
 import { ReviewShell } from "./components/review-shell";
 import { SuccessScreen } from "./components/success-screen";
-import { useReviewFlow } from "./hooks/use-review-flow";
-import { useReviewNote, NOTE_LIMITS } from "./hooks/use-review-note";
+import { useReview, NOTE_LIMITS } from "./hooks/use-review"; // Single import!
 import { strings } from "./strings";
 
 const styles = {
@@ -21,26 +20,19 @@ const styles = {
 
 export function ReviewPage() {
   const s = useStrings(strings);
-  const flow = useReviewFlow();
-  const note = useReviewNote();
-
-  useEffect(() => {
-    if (!flow.isOpen) {
-      note.reset();
-    }
-  }, [flow.isOpen, note]);
+  const review = useReview();
 
   return (
     <ReviewShell
       strings={{
         closeLabel: s.common.close,
-        title: flow.step === "note" ? s.choices.note.title : s.drawer.title,
+        title: review.step === "note" ? s.choices.note.title : s.drawer.title,
         description: s.drawer.description,
       }}
-      isOpen={flow.isOpen}
-      onClose={flow.close}
+      isOpen={review.isOpen}
+      onClose={review.close}
     >
-      {flow.step === "choices" && (
+      {review.step === "choices" && (
         <section className={styles.choices}>
           <ChoiceCard
             strings={{
@@ -48,7 +40,7 @@ export function ReviewPage() {
               title: s.choices.google.title,
               hint: s.choices.google.hint,
             }}
-            onPress={flow.openGoogleReview}
+            onPress={review.openGoogleReview}
           />
 
           <ChoiceCard
@@ -57,80 +49,75 @@ export function ReviewPage() {
               title: s.choices.note.title,
               hint: s.choices.note.hint,
             }}
-            onPress={flow.chooseNote}
+            onPress={review.chooseNote}
           />
         </section>
       )}
 
-      {flow.step === "note" && (
-        <form
-          noValidate
-          className={styles.form}
-          onSubmit={(e) => note.submit(e, flow.complete)}
-        >
-          {" "}
+      {review.step === "note" && (
+        <form noValidate className={styles.form} onSubmit={review.submit}>
           <NoteField
             strings={{
               label: s.form.fields.message.label,
-              hint: note.showTooShort
+              hint: review.showTooShort
                 ? s.form.fields.message.tooShort
                 : undefined,
             }}
             kind="textarea"
-            value={note.values.message}
-            onChange={(value) => note.changeField("message", value)}
+            value={review.values.message}
+            onChange={(value) => review.changeField("message", value)}
             maxLength={NOTE_LIMITS.message}
             required
           />
           <NoteField
             strings={{ label: s.form.fields.name.label }}
             kind="input"
-            value={note.values.name}
-            onChange={(value) => note.changeField("name", value)}
+            value={review.values.name}
+            onChange={(value) => review.changeField("name", value)}
             maxLength={NOTE_LIMITS.name}
             autoComplete="name"
           />
           <NoteField
             strings={{ label: s.form.fields.contact.label }}
             kind="input"
-            value={note.values.contact}
-            onChange={(value) => note.changeField("contact", value)}
+            value={review.values.contact}
+            onChange={(value) => review.changeField("contact", value)}
             maxLength={NOTE_LIMITS.contact}
           />
           <input
             type="text"
             name="website"
-            value={note.values.website}
+            value={review.values.website}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              note.changeField("website", e.currentTarget.value)
+              review.changeField("website", e.currentTarget.value)
             }
             tabIndex={-1}
             autoComplete="off"
             aria-hidden="true"
             className={styles.honeypot}
           />
-          {note.error && (
+          {review.error && (
             <p role="alert" className={styles.error}>
-              {s.form.errors[note.error]}
+              {s.form.errors[review.error]}
             </p>
           )}
           <Button
             type="submit"
-            isDisabled={!note.isValid || note.sending}
+            isDisabled={!review.isValid || review.sending}
             className={styles.submit}
           >
-            {note.sending ? s.form.actions.sending : s.form.actions.send}
+            {review.sending ? s.form.actions.sending : s.form.actions.send}
           </Button>
         </form>
       )}
 
-      {flow.step === "success" && (
+      {review.step === "success" && (
         <SuccessScreen
           strings={{
             message: s.success.message,
             closeLabel: s.common.close,
           }}
-          onClose={flow.close}
+          onClose={review.close}
         />
       )}
     </ReviewShell>

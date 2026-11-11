@@ -1,11 +1,5 @@
 import type { Localized } from "@/shared/i18n";
 
-interface BadgeStrings {
-  top: string;
-  new: string;
-  outOfStock: string;
-}
-
 export const config = {
   badges: {
     en: {
@@ -19,8 +13,53 @@ export const config = {
       outOfStock: "غير متوفر",
     },
   },
-} satisfies {
-  badges: Localized<BadgeStrings>;
+
+  sections: {
+    en: {
+      signatures: {
+        id: "signatures",
+        label: "Signatures",
+      },
+      pairings: {
+        id: "pairings",
+        label: "Pairings",
+      },
+    },
+    ar: {
+      signatures: {
+        id: "signatures",
+        label: "اختياراتنا المميزة",
+      },
+      pairings: {
+        id: "pairings",
+        label: "توليفاتنا",
+      },
+    },
+  },
 };
 
-export type BadgeLabelKind = keyof typeof config.badges.en;
+const en = {
+  header: {
+    bar: {
+      brandName: "Café",
+      language: {
+        name: "ع",
+        lang: "ar",
+      },
+    },
+  },
+};
+
+const ar: typeof en = {
+  header: {
+    bar: {
+      brandName: "المقهى",
+      language: {
+        name: "EN",
+        lang: "en",
+      },
+    },
+  },
+};
+
+export const strings: Localized<typeof en> = { en, ar };

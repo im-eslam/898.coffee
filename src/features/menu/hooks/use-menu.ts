@@ -1,58 +1,69 @@
-import { useEffect, useState } from "react";
-import { fetchMenu, getMenuError } from "../api/menu";
-import { MenuParser } from "../api/menu-parser";
+import { useMemo } from "react";
+import { setLocale, useLocale, useStrings } from "@/shared/i18n";
+import { config } from "../strings";
 import type { Menu } from "../types/menu-models";
+import { useMenuFlow } from "./use-menu-flow";
+import { useMenuNavigation, type NavSection } from "./use-menu-navigation";
 
-export type MenuState =
-  | { status: "loading" }
-  | { status: "error"; isNetworkError: boolean }
-  | { status: "ready"; menu: Menu };
+export function useMenu(menu: Menu) {
+  const locale = useLocale();
+  const predefinedSections = useStrings(config.sections);
 
-export type MenuResult = MenuState & { retry: () => void };
+  const sections = useMemo<NavSection[]>(() => {
+    const result: NavSection[] = [];
 
-let pendingMenuRequest: Promise<Menu> | null = null;
+    if (menu.signatures.length > 0) {
+      result.push(predefinedSections.signatures);
+    }
 
-function loadMenu(): Promise<Menu> {
-  if (!pendingMenuRequest) {
-    pendingMenuRequest = fetchMenu()
-      .then((response) => MenuParser.parse(response))
-      .finally(() => {
-        pendingMenuRequest = null;
-      });
+    if (menu.pairings.length > 0) {
+      result.push(predefinedSections.pairings);
+    }
+
+    result.push(
+      ...menu.categories.map((category) => ({
+        id: category.id,
+        label: category.name[locale],
+      }))
+    );
+
+    return result;
+  }, [menu, locale, predefinedSections]);
+
+  const flow = useMenuFlow();
+  const navigation = useMenuNavigation(sections);
+
+  function selectSection(id: string) {
+    flow.close();
+    navigation.selectSection(id);
   }
 
-  return pendingMenuRequest;
-}
-
-export function useMenu(): MenuResult {
-  const [state, setState] = useState<MenuState>({ status: "loading" });
-  const [attempt, setAttempt] = useState(0);
-
-  useEffect(() => {
-    let isActive = true;
-
-    loadMenu()
-      .then((menu) => {
-        if (isActive) setState({ status: "ready", menu });
-      })
-      .catch((cause: unknown) => {
-        if (!isActive) return;
-        const error = getMenuError(cause);
-        setState({
-          status: "error",
-          isNetworkError: error === "network" || error === "timeout",
-        });
-      });
-
-    return () => {
-      isActive = false;
-    };
-  }, [attempt]);
-
-  function retry() {
-    setState({ status: "loading" });
-    setAttempt((current) => current + 1);
+  function openProductById(id: string) {
+    const product = menu.productMap[id];
+    if (product) {
+      flow.openProduct(product);
+    }
   }
 
-  return { ...state, retry };
+  function toggleLanguage() {
+    setLocale(locale === "en" ? "ar" : "en");
+  }
+
+  return {
+    locale,
+    predefinedSections,
+    sections,
+    activeId: navigation.activeId,
+    headerRef: navigation.headerRef,
+    panel: flow.panel,
+
+    selectSection,
+    toggleLanguage,
+    openProductById,
+    openProduct: flow.openProduct,
+    openPairing: flow.openPairing,
+    openSearch: flow.openSearch,
+    openCategories: flow.openCategories,
+    close: flow.close,
+  };
 }
