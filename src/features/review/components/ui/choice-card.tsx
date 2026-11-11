@@ -1,10 +1,14 @@
 import { Button } from "react-aria-components";
 import { Icon, type IconName } from "@/shared/icons";
 
-interface ChoiceCardProps {
+interface ChoiceCardStrings {
   icon: IconName;
   title: string;
   hint: string;
+}
+
+interface ChoiceCardProps {
+  strings: ChoiceCardStrings;
   onPress: () => void;
 }
 
@@ -20,15 +24,15 @@ const styles = {
     "size-5 shrink-0 text-navy/40 transition duration-interactive ease-smooth group-data-hovered:translate-x-1 group-data-hovered:text-brand rtl:group-data-hovered:-translate-x-1 motion-reduce:transition-none",
 };
 
-export function ChoiceCard({ icon, title, hint, onPress }: ChoiceCardProps) {
+export function ChoiceCard({ strings: s, onPress }: ChoiceCardProps) {
   return (
     <Button onPress={onPress} className={styles.card}>
       <span className={styles.bubble}>
-        <Icon name={icon} className={styles.icon} />
+        <Icon name={s.icon} className={styles.icon} />
       </span>
       <span className={styles.text}>
-        <span className={styles.title}>{title}</span>
-        <span className={styles.hint}>{hint}</span>
+        <span className={styles.title}>{s.title}</span>
+        <span className={styles.hint}>{s.hint}</span>
       </span>
       <Icon name="arrow" className={styles.arrow} />
     </Button>

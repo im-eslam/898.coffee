@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   getReviewError,
   submitReview,
@@ -27,50 +27,47 @@ export function useReviewNote() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<ReviewError | null>(null);
 
-  const inFlight = useRef(false);
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    isMounted.current = true;
-
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   const messageLength = values.message.trim().length;
   const isValid = messageLength >= NOTE_LIMITS.minMessage;
 
-  function changeField(field: ReviewField, value: string) {
+  const changeField = useCallback((field: ReviewField, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
+    setError(null); 
+  }, []);
+
+  const reset = useCallback(() => {
+    setValues(EMPTY_NOTE);
     setError(null);
-  }
+    setSending(false);
+  }, []);
 
-  async function submit(): Promise<boolean> {
-    if (!isValid || inFlight.current) return false;
+  const submit = useCallback(
+    async (event?: React.FormEvent, onSuccess?: () => void): Promise<void> => {
+      if (event) event.preventDefault();
 
-    const payload: ReviewPayload = {
-      ...values,
-      message: values.message.trim(),
-      name: values.name.trim(),
-      contact: values.contact.trim(),
-    };
+      if (!isValid || sending) return;
 
-    inFlight.current = true;
-    setSending(true);
-    setError(null);
+      const payload: ReviewPayload = {
+        ...values,
+        message: values.message.trim(),
+        name: values.name.trim(),
+        contact: values.contact.trim(),
+      };
 
-    try {
-      await submitReview(payload);
-      return isMounted.current;
-    } catch (cause) {
-      if (isMounted.current) setError(getReviewError(cause));
-      return false;
-    } finally {
-      inFlight.current = false;
-      if (isMounted.current) setSending(false);
-    }
-  }
+      setSending(true);
+      setError(null);
+
+      try {
+        await submitReview(payload);
+        if (onSuccess) onSuccess();
+      } catch (cause) {
+        setError(getReviewError(cause));
+      } finally {
+        setSending(false);
+      }
+    },
+    [isValid, values, sending]
+  );
 
   return {
     values,
@@ -79,6 +76,7 @@ export function useReviewNote() {
     isValid,
     showTooShort: messageLength > 0 && !isValid,
     changeField,
+    reset,
     submit,
   };
 }

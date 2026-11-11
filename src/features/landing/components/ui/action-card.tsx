@@ -11,17 +11,15 @@ interface ActionCardStrings {
   hint?: string;
 }
 
-interface InternalActionCardProps {
+interface BaeActionCardProps {
   strings: ActionCardStrings;
   tone?: ActionCardTone;
   className?: string;
+}
+interface InternalActionCardProps extends BaeActionCardProps {
   to: AppRoute;
 }
-
-interface ExternalActionCardProps {
-  strings: ActionCardStrings;
-  tone?: ActionCardTone;
-  className?: string;
+interface ExternalActionCardProps extends BaeActionCardProps {
   href: string;
 }
 

@@ -7,16 +7,20 @@ import {
   TextField,
 } from "react-aria-components";
 
-interface NoteFieldProps {
-  kind: "input" | "textarea";
+interface NoteFieldStrings {
   label: string;
+  hint?: string;
+}
+
+interface NoteFieldProps {
+  strings: NoteFieldStrings;
+  kind: "input" | "textarea";
   value: string;
   onChange: (value: string) => void;
   maxLength: number;
   required?: boolean;
   autoComplete?: string;
   rows?: number;
-  hint?: string;
 }
 
 const styles = {
@@ -29,17 +33,41 @@ const styles = {
   error: "text-caption text-error",
 };
 
-export function NoteField({
-  kind,
-  label,
-  value,
-  onChange,
-  maxLength,
-  required = false,
-  autoComplete,
-  rows = 5,
-  hint,
-}: NoteFieldProps) {
+export function NoteField(props: NoteFieldProps) {
+  const {
+    strings: s,
+    kind,
+    value,
+    onChange,
+    maxLength,
+    required = false,
+    autoComplete,
+    rows = 5,
+  } = props;
+
+  const fieldControl =
+    kind === "textarea" ? (
+      <TextArea
+        maxLength={maxLength}
+        rows={rows}
+        dir="auto"
+        className={`${styles.control} ${styles.textarea}`}
+      />
+    ) : (
+      <Input
+        maxLength={maxLength}
+        autoComplete={autoComplete}
+        dir="auto"
+        className={styles.control}
+      />
+    );
+
+  const hintContent = s.hint ? (
+    <Text slot="description" className={styles.hint}>
+      {s.hint}
+    </Text>
+  ) : null;
+
   return (
     <TextField
       value={value}
@@ -47,30 +75,9 @@ export function NoteField({
       isRequired={required}
       className={styles.wrapper}
     >
-      <Label className={styles.label}>{label}</Label>
-
-      {kind === "textarea" ? (
-        <TextArea
-          maxLength={maxLength}
-          rows={rows}
-          dir="auto"
-          className={`${styles.control} ${styles.textarea}`}
-        />
-      ) : (
-        <Input
-          maxLength={maxLength}
-          autoComplete={autoComplete}
-          dir="auto"
-          className={styles.control}
-        />
-      )}
-
-      {hint && (
-        <Text slot="description" className={styles.hint}>
-          {hint}
-        </Text>
-      )}
-
+      <Label className={styles.label}>{s.label}</Label>
+      {fieldControl}
+      {hintContent}
       <FieldError className={styles.error} />
     </TextField>
   );

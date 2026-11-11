@@ -1,7 +1,7 @@
 import logo from "@/assets/mark.svg";
 import { useStrings } from "@/shared/i18n";
 import { Link, ROUTES } from "@/shared/router";
-import * as C from "./components";
+import { Background } from "./components/background";
 import { strings } from "./strings";
 
 const styles = {
@@ -19,7 +19,7 @@ export function NotFoundPage() {
 
   return (
     <main className={styles.page}>
-      <C.Background />
+      <Background />
       <div className={styles.content}>
         <img
           src={logo}

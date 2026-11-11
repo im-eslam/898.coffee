@@ -20,12 +20,11 @@ const styles = {
   navSection: "flex flex-col gap-3",
 } as const;
 
+const currentYear = new Date().getFullYear();
+
 export function LandingPage() {
   const s = useStrings(strings);
-
   const otherLocale = useLocale() === "en" ? "ar" : "en";
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <main className={styles.page}>
