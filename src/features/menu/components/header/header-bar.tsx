@@ -24,7 +24,7 @@ interface HeaderBarProps {
 const styles = {
   row: "mx-auto flex h-14 w-full max-w-5xl items-center gap-1 ps-4 pe-2 md:ps-6 md:pe-4",
   back: "-ms-3 flex size-12 shrink-0 items-center justify-center rounded-full text-charcoal transition-colors duration-(--duration-interactive) ease-smooth hover:bg-sand/40 active:bg-sand/60 motion-reduce:transition-none",
-  backIcon: "size-5 rotate-180 rtl:rotate-0",
+  backIcon: "size-5 rotate-180",
   brand: "flex min-w-0 items-center",
   logo: "h-7 w-auto",
   spacer: "flex-1",
