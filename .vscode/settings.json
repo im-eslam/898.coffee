@@ -17,10 +17,13 @@
     "src/featu[!r]*/**": true,
     "src/featur[!e]*/**": true,
     "src/feature[!s]*/**": true,
-    "src/features/[!m]*/**": true,
-    "src/features/m[!e]*/**": true,
-    "src/features/me[!n]*/**": true,
-    "src/features/men[!u]*/**": true
+    "src/features/[!l]*/**": true,
+    "src/features/l[!a]*/**": true,
+    "src/features/la[!n]*/**": true,
+    "src/features/lan[!d]*/**": true,
+    "src/features/land[!i]*/**": true,
+    "src/features/landi[!n]*/**": true,
+    "src/features/landin[!g]*/**": true
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

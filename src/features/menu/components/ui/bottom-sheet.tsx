@@ -10,7 +10,6 @@ interface BottomSheetProps {
   closeLabel: string;
   onClose: () => void;
   children: ReactNode;
-  footer?: ReactNode;
 }
 
 const styles = {
@@ -30,8 +29,6 @@ const styles = {
   header: "mb-5",
   title: "text-title font-bold text-charcoal",
   description: "sr-only",
-  footer:
-    "shrink-0 border-t border-sand/50 bg-cream px-6 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]",
 } as const;
 
 export function BottomSheet({
@@ -41,7 +38,6 @@ export function BottomSheet({
   closeLabel,
   onClose,
   children,
-  footer,
 }: BottomSheetProps) {
   return (
     <VaulDrawer.Root
@@ -83,8 +79,6 @@ export function BottomSheet({
 
             {children}
           </div>
-
-          {footer != null && <div className={styles.footer}>{footer}</div>}
         </VaulDrawer.Content>
       </VaulDrawer.Portal>
     </VaulDrawer.Root>
