@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Locale } from "@/shared/i18n";
 import type { Category, Product } from "../../types/menu-models";
+import { getCategorySectionId } from "../../util/section-ids";
 import { Heading } from "../ui/heading";
 import { MenuButton } from "../ui/menu-button";
 import { ProductCard } from "./product-card";
@@ -46,7 +47,7 @@ export function ProductsSection({
 
   return (
     <section
-      id={category.id}
+      id={getCategorySectionId(category.id)}
       dir={locale === "ar" ? "rtl" : "ltr"}
       aria-label={name}
       className={`${styles.section} ${className ?? ""}`}

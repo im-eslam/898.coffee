@@ -3,7 +3,7 @@ import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
 import type { Product, ProductRef } from "../../types/menu-models";
 import { getProductPrice, getProductTotal } from "../../util/pricing";
-import { BaseOptions } from "./Base-options";
+import { BaseOptions } from "./base-options";
 import { Badge } from "../ui/badge";
 import { Chevron } from "../ui/chevron";
 import { Img } from "../ui/img";

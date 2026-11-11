@@ -1,131 +1,189 @@
-import { Button } from "react-aria-components";
+import { useMemo } from "react";
 import { useStrings } from "@/shared/i18n";
-import {
-  CategorySection,
-  CategorySheet,
-  Header,
-  PairingSheet,
-  PairingsSection,
-  ProductSheet,
-  PromoPopup,
-  SearchOverlay,
-  SignaturesSection,
-} from "./components";
+import { ROUTES } from "@/shared/router";
+import { HeaderBar } from "./components/header/header-bar";
+import { HeaderNav } from "./components/header/header-nav";
+import { PromoPopup } from "./components/overlays/promo-popup";
+import { SearchOverlay } from "./components/overlays/search-overlay";
+import { PairingsSection } from "./components/sections/pairings-section";
+import { ProductsSection } from "./components/sections/products-section";
+import { SignaturesSection } from "./components/sections/signatures-section";
+import { CategorySheet } from "./components/sheets/category-sheet";
+import { PairingSheet } from "./components/sheets/pairing-sheet";
+import { ProductSheet } from "./components/sheets/product-sheet";
+import { ErrorState } from "./components/states/error-state";
+import { LoadingState } from "./components/states/loading-state";
+import { useData } from "./hooks/use-data";
 import { useMenu } from "./hooks/use-menu";
-import { useMenuFlow } from "./hooks/use-menu-flow";
 import { strings } from "./strings";
 import type { Menu } from "./types/menu-models";
+import { createMoneyFormatter } from "./util/pricing";
+import { getCategorySectionId } from "./util/section-ids";
 
 const styles = {
-  statusPage:
-    "flex min-h-dvh flex-col items-center justify-center gap-4 bg-white px-6 text-center",
-  spinner:
-    "size-10 animate-spin rounded-full border-2 border-arctic border-t-navy motion-reduce:animate-none",
-  statusText: "text-small font-medium text-navy/65",
-  errorTitle: "text-title font-bold",
-  retry:
-    "text-small rounded-full bg-brand px-6 py-3 font-bold text-white outline-none transition data-focus-visible:ring-2 data-focus-visible:ring-brand data-focus-visible:ring-offset-2 data-hovered:bg-brand/90 data-pressed:scale-[0.98]",
-  page: "min-h-dvh bg-white pb-8",
-  main: "divide-y-8 divide-mist",
+  page: "relative isolate min-h-dvh pb-8",
+  header: "sticky top-0 z-40 bg-cream/90 backdrop-blur",
+  main: "flex flex-col",
+  srOnly: "sr-only",
 } as const;
 
 export function MenuPage() {
+  const data = useData();
   const s = useStrings(strings);
-  const menu = useMenu();
 
-  if (menu.status === "loading") {
+  if (data.status === "loading") {
     return (
-      <main aria-busy="true" className={styles.statusPage}>
-        <div aria-hidden="true" className={styles.spinner} />
-        <p className={styles.statusText}>{s.loadingMenu}</p>
+      <main>
+        <LoadingState strings={s.loading} />
       </main>
     );
   }
 
-  if (menu.status === "error") {
+  if (data.status === "error") {
     return (
-      <main className={styles.statusPage}>
-        <h1 className={styles.errorTitle}>{s.errorTitle}</h1>
-        <p className={styles.statusText}>
-          {menu.isNetworkError ? s.errorNetwork : s.errorServer}
-        </p>
-        <Button onPress={menu.retry} className={styles.retry}>
-          {s.retry}
-        </Button>
+      <main>
+        <ErrorState
+          strings={data.isNetworkError ? s.errors.network : s.errors.generic}
+          onRetry={data.retry}
+        />
       </main>
     );
   }
 
-  return <MenuReady menu={menu.menu} />;
+  return <MenuReady menu={data.menu} />;
 }
 
-// Split from MenuPage so the flow hook only runs once the data exists.
 function MenuReady({ menu }: { menu: Menu }) {
-  const flow = useMenuFlow(menu);
+  const s = useStrings(strings);
+  const state = useMenu(menu);
+  const { locale, panel, activeId } = state;
+
+  const direction = locale === "ar" ? "rtl" : "ltr";
+
+  const formatMoney = useMemo(
+    () => createMoneyFormatter(locale, menu.currency),
+    [locale, menu.currency]
+  );
+
+  const activeCategoryId =
+    menu.categories.find(
+      (category) => getCategorySectionId(category.id) === activeId
+    )?.id ?? "";
+
+  function pickCategory(categoryId: string) {
+    state.selectSection(getCategorySectionId(categoryId));
+  }
 
   return (
     <div className={styles.page}>
-      <Header
-        sections={flow.sections}
-        activeId={flow.activeId}
-        onSelect={flow.scrollTo}
-        onSearch={() => flow.setPanel("search")}
-        onCategories={() => flow.setPanel("categories")}
-      />
+      <header ref={state.headerRef} className={styles.header}>
+        <HeaderBar
+          strings={s.header}
+          backHref={ROUTES.landing}
+          onSearch={state.openSearch}
+          onLanguageChange={state.toggleLanguage}
+        />
+
+        <HeaderNav
+          strings={s.header}
+          sections={state.sections}
+          activeId={activeId}
+          direction={direction}
+          onSelect={state.selectSection}
+          onCategories={state.openCategories}
+        />
+      </header>
 
       <main className={styles.main}>
+        <h1 className={styles.srOnly}>{s.page.title}</h1>
+
         {menu.signatures.length > 0 && (
           <SignaturesSection
             products={menu.signatures}
-            onOpen={flow.openProduct}
+            locale={locale}
+            strings={{
+              title: state.predefinedSections.signatures.label,
+              sub: s.signatures.sub,
+            }}
+            formatMoney={formatMoney}
+            onOpen={state.openProduct}
           />
         )}
+
         {menu.pairings.length > 0 && (
-          <PairingsSection pairings={menu.pairings} onOpen={flow.openPairing} />
+          <PairingsSection
+            pairings={menu.pairings}
+            locale={locale}
+            strings={{
+              title: state.predefinedSections.pairings.label,
+              sub: s.pairings.sub,
+              savings: s.pairings.savings,
+            }}
+            formatMoney={formatMoney}
+            onOpen={state.openPairing}
+          />
         )}
+
         {menu.categories.map((category) => (
-          <CategorySection
+          <ProductsSection
             key={category.id}
             category={category}
-            onOpen={flow.openProduct}
+            locale={locale}
+            strings={s.products}
+            formatMoney={formatMoney}
+            onOpen={state.openProduct}
           />
         ))}
       </main>
 
-      {flow.productSheet && (
-        <ProductSheet
-          key={flow.productSheet.id}
-          product={flow.productSheet.product}
-          isOpen={flow.panel === "product"}
-          onClose={flow.closePanel}
-          onOpenProduct={flow.openProductById}
-        />
-      )}
-      {flow.pairingSheet && (
-        <PairingSheet
-          key={flow.pairingSheet.id}
-          pairing={flow.pairingSheet.pairing}
-          isOpen={flow.panel === "pairing"}
-          onClose={flow.closePanel}
-        />
-      )}
-      <CategorySheet
-        isOpen={flow.panel === "categories"}
-        categories={menu.categories}
-        activeId={flow.activeId}
-        onClose={flow.closePanel}
-        onPick={flow.goToSection}
-      />
       <SearchOverlay
         menu={menu}
-        isOpen={flow.panel === "search"}
-        onClose={flow.closePanel}
-        onPickCategory={flow.goToSection}
-        onPickPairing={flow.openPairing}
-        onPickProduct={flow.openProduct}
+        locale={locale}
+        strings={s.search}
+        formatMoney={formatMoney}
+        isOpen={panel === "search"}
+        onClose={state.close}
+        onPickCategory={pickCategory}
+        onPickPairing={state.openPairing}
+        onPickProduct={state.openProduct}
       />
 
-      <PromoPopup popup={menu.popup} busy={flow.panel !== null} />
+      <CategorySheet
+        strings={s.sheets}
+        locale={locale}
+        isOpen={panel === "categories"}
+        categories={menu.categories}
+        activeId={activeCategoryId}
+        onClose={state.close}
+        onPick={pickCategory}
+      />
+
+      {state.productSheet && (
+        <ProductSheet
+          key={state.productSheet.key}
+          product={state.productSheet.item}
+          strings={s.sheets}
+          locale={locale}
+          formatMoney={formatMoney}
+          isOpen={panel === "product"}
+          onClose={state.close}
+          onOpenProduct={state.openProductById}
+        />
+      )}
+
+      {state.pairingSheet && (
+        <PairingSheet
+          key={state.pairingSheet.key}
+          pairing={state.pairingSheet.item}
+          strings={s.sheets}
+          locale={locale}
+          formatMoney={formatMoney}
+          isOpen={panel === "pairing"}
+          onClose={state.close}
+        />
+      )}
+
+      <PromoPopup popup={menu.popup} busy={panel !== null} />
     </div>
   );
 }

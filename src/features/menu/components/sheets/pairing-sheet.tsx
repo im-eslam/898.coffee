@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Locale } from "@/shared/i18n";
 import type { Pairing } from "../../types/menu-models";
 import { getPairingTotal, isPairingAvailable } from "../../util/pricing";
-import { BaseOptions } from "./Base-options";
+import { BaseOptions } from "./base-options";
 import { Badge } from "../ui/badge";
 import { Img } from "../ui/img";
 import { MenuButton } from "../ui/menu-button";
