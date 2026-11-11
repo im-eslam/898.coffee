@@ -16,11 +16,7 @@
     "src/feat[!u]*/**": true,
     "src/featu[!r]*/**": true,
     "src/featur[!e]*/**": true,
-    "src/feature[!s]*/**": true,
-    "src/features/[!m]*/**": true,
-    "src/features/m[!e]*/**": true,
-    "src/features/me[!n]*/**": true,
-    "src/features/men[!u]*/**": true
+    "src/feature[!s]*/**": true
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

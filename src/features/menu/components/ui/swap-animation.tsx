@@ -3,17 +3,20 @@ import { useState, type ReactNode } from "react";
 interface SwapAnimationProps {
   value: string | number | boolean;
   children: ReactNode;
+  block?: boolean;
   className?: string;
 }
 
 const styles = {
-  root: "inline-flex",
-  changed: "animate-pop-in motion-reduce:animate-none",
+  inline: "inline-flex",
+  block: "block w-full",
+  changed: "animate-swap-in motion-reduce:animate-none",
 } as const;
 
 export function SwapAnimation({
   value,
   children,
+  block = false,
   className,
 }: SwapAnimationProps) {
   const key = String(value);
@@ -26,7 +29,11 @@ export function SwapAnimation({
     setChanged(true);
   }
 
-  const animationClassName = [styles.root, changed && styles.changed, className]
+  const animationClassName = [
+    block ? styles.block : styles.inline,
+    changed && styles.changed,
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
