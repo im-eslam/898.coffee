@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { reportError } from "@/shared/logging";
 import {
   getReviewError,
   submitReview,
@@ -32,7 +33,7 @@ export function useReviewNote() {
 
   const changeField = useCallback((field: ReviewField, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
-    setError(null); 
+    setError(null);
   }, []);
 
   const reset = useCallback(() => {
@@ -60,7 +61,12 @@ export function useReviewNote() {
       try {
         await submitReview(payload);
         if (onSuccess) onSuccess();
-      } catch (cause) {
+      } catch (cause: unknown) {
+        reportError(cause, {
+          feature: "review",
+          operation: "submit",
+        });
+
         setError(getReviewError(cause));
       } finally {
         setSending(false);

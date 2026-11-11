@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { reportError } from "@/shared/logging";
 import { fetchMenu, getMenuError } from "../api/menu";
 import { MenuParser } from "../api/menu-parser";
 import type { Menu } from "../types/menu-models";
@@ -18,6 +19,14 @@ function loadMenu(): Promise<Menu> {
   if (!pendingMenuRequest) {
     pendingMenuRequest = fetchMenu()
       .then((response) => MenuParser.parse(response))
+      .catch((cause: unknown) => {
+        reportError(cause, {
+          feature: "menu",
+          operation: "load",
+        });
+
+        throw cause;
+      })
       .finally(() => {
         pendingMenuRequest = null;
       });
