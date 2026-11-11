@@ -50,7 +50,6 @@ export function useMenuFlow(menu: Menu) {
     setPanel("product");
   }
 
-  // "Often ordered with" only carries a ProductRef, so look up the full product.
   function openProductById(productId: string) {
     const product = menu.productMap[productId];
     if (product) openProduct(product);

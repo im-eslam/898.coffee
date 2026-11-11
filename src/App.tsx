@@ -4,7 +4,7 @@ import { useLocale } from "@/shared/i18n";
 import { NotFoundPage } from "@/features/not-found/";
 import { LandingPage } from "@/features/landing/";
 import { ReviewPage } from "@/features/review";
-import { MenuPage } from "@/features/menu";
+import { MenuPage } from "@/features/menu/index";
 
 export default function App() {
   const locale = useLocale();
