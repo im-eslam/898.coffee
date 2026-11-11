@@ -5,7 +5,10 @@
     "**/.hg": true,
     "**/.jj": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true
+    "**/Thumbs.db": true,
+    "[!s]*/**": true,
+    "s[!r]*/**": true,
+    "sr[!c]*/**": true
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

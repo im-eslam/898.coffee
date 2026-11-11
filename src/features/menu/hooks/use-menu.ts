@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { fetchMenu, getMenuError, type MenuError } from "../api/menu";
+import { fetchMenu, getMenuError } from "../api/menu";
 import { MenuParser } from "../api/menu-parser";
 import type { Menu } from "../types/menu-models";
 
-export type MenuStatus =
+export type MenuState =
   | { status: "loading" }
-  | { status: "ready"; data: Menu }
-  | { status: "error"; error: MenuError };
+  | { status: "error"; isNetworkError: boolean }
+  | { status: "ready"; menu: Menu };
 
-export type MenuResult = MenuStatus & { retry: () => void };
+export type MenuResult = MenuState & { retry: () => void };
 
 let pendingMenuRequest: Promise<Menu> | null = null;
 
@@ -25,20 +25,23 @@ function loadMenu(): Promise<Menu> {
 }
 
 export function useMenu(): MenuResult {
-  const [state, setState] = useState<MenuStatus>({ status: "loading" });
+  const [state, setState] = useState<MenuState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let isActive = true;
 
     loadMenu()
-      .then((data) => {
-        if (isActive) setState({ status: "ready", data });
+      .then((menu) => {
+        if (isActive) setState({ status: "ready", menu });
       })
       .catch((cause: unknown) => {
-        if (isActive) {
-          setState({ status: "error", error: getMenuError(cause) });
-        }
+        if (!isActive) return;
+        const error = getMenuError(cause);
+        setState({
+          status: "error",
+          isNetworkError: error === "network" || error === "timeout",
+        });
       });
 
     return () => {
