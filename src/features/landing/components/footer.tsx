@@ -1,12 +1,13 @@
-import { useStrings } from "@/shared/i18n";
-import { site } from "../../data";
-import { strings } from "../../strings";
-
-interface FooterProps {
-  className?: string;
+interface FooterStrings {
+  lead: string;
+  emphasis: string;
+  copyright: string;  
 }
 
-const currentYear = new Date().getFullYear();
+interface FooterProps {
+  strings: FooterStrings;
+  className?: string;
+}
 
 const styles = {
   footer: "flex flex-col items-center gap-2 text-center",
@@ -15,17 +16,15 @@ const styles = {
   copyright: "text-caption whitespace-nowrap text-navy/80",
 } as const;
 
-export function Footer({ className }: FooterProps) {
-  const s = useStrings(strings);
-
+export function Footer({ strings: s, className }: FooterProps) {
   return (
     <footer className={`${styles.footer} ${className ?? ""}`}>
       <p className={styles.lead}>
-        {s.footer.lead}{" "}
-        <span className={styles.emphasis}>{s.footer.emphasis}</span>
+        {s.lead}{" "}
+        <span className={styles.emphasis}>{s.emphasis}</span>
       </p>
       <p dir="ltr" className={styles.copyright}>
-        {`© ${currentYear} ${site.brandName}`}
+        {s.copyright}
       </p>
     </footer>
   );

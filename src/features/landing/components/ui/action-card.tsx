@@ -5,21 +5,24 @@ import type { AppRoute } from "@/shared/router";
 
 type ActionCardTone = "standard" | "featured" | "social";
 
-interface BaseActionCardProps {
+interface ActionCardStrings {
   icon: IconName;
   title: string;
   hint?: string;
-  tone?: ActionCardTone;
-  className?: string;
 }
 
-interface InternalActionCardProps extends BaseActionCardProps {
+interface InternalActionCardProps {
+  strings: ActionCardStrings;
+  tone?: ActionCardTone;
+  className?: string;
   to: AppRoute;
 }
 
-interface ExternalActionCardProps extends BaseActionCardProps {
+interface ExternalActionCardProps {
+  strings: ActionCardStrings;
+  tone?: ActionCardTone;
+  className?: string;
   href: string;
-  newTabLabel: string;
 }
 
 type ActionCardProps = InternalActionCardProps | ExternalActionCardProps;
@@ -59,9 +62,9 @@ const tones: Record<
 };
 
 export function ActionCard(props: ActionCardProps) {
-  const { icon, title, hint, tone = "standard", className } = props;
-  const look = tones[tone];
+  const { strings: s, tone = "standard", className } = props;
 
+  const look = tones[tone];
   const cardClassName = [styles.cardBase, look.card, className]
     .filter(Boolean)
     .join(" ");
@@ -69,11 +72,11 @@ export function ActionCard(props: ActionCardProps) {
   const content = (
     <>
       <span className={`${styles.bubbleBase} ${look.bubble}`}>
-        <Icon name={icon} />
+        <Icon name={s.icon} />
       </span>
       <span className={styles.textContainer}>
-        <span className={styles.title}>{title}</span>
-        {hint && <span className={styles.hint}>{hint}</span>}
+        <span className={styles.title}>{s.title}</span>
+        {s.hint && <span className={styles.hint}>{s.hint}</span>}
       </span>
       <Icon name="arrow" className={`${styles.arrowBase} ${look.arrow}`} />
     </>
@@ -86,6 +89,7 @@ export function ActionCard(props: ActionCardProps) {
       </Link>
     );
   }
+
   return (
     <a
       href={props.href}
@@ -94,7 +98,7 @@ export function ActionCard(props: ActionCardProps) {
       className={cardClassName}
     >
       {content}
-      <span className={styles.srOnly}>{props.newTabLabel}</span>
+      <span className={styles.srOnly}></span>
     </a>
   );
 }

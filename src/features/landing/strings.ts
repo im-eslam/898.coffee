@@ -7,18 +7,17 @@ const en = {
   },
   language: {
     name: "عربي",
-    switchTo: "Switch to Arabic",
-  },
-  nav: {
-    mainNav: "Main navigation",
-    newTab: "(opens in a new tab)",
   },
   sections: {
     primary: {
-      menuTitle: "Menu",
-      menuHint: "Drinks, desserts & offers",
-      reviewTitle: "Rate your visit",
-      reviewHint: "Shape your next sip",
+      menu: {
+        title: "Menu",
+        hint: "Drinks, desserts & offers",
+      },
+      review: {
+        title: "Rate your visit",
+        hint: "Shape your next sip",
+      },
     },
     social: {
       title: "Follow the story",
@@ -41,18 +40,17 @@ const ar: typeof en = {
   },
   language: {
     name: "English",
-    switchTo: "التبديل إلى الإنجليزية",
-  },
-  nav: {
-    mainNav: "التنقل الرئيسي",
-    newTab: "(يُفتح في تبويب جديد)",
   },
   sections: {
     primary: {
-      menuTitle: "القائمة",
-      menuHint: "مشروبات، حلويات وعروض",
-      reviewTitle: "قيّم زيارتك",
-      reviewHint: "رأيك بيحدد فنجانك الجاي",
+      menu: {
+        title: "القائمة",
+        hint: "مشروبات، حلويات وعروض",
+      },
+      review: {
+        title: "قيّم زيارتك",
+        hint: "رأيك بيحدد فنجانك الجاي",
+      },
     },
     social: {
       title: "تابع الحكاية",

@@ -1,5 +1,12 @@
-import { useStrings } from "@/shared/i18n";
-import * as C from "./components";
+import { setLocale, useLocale, useStrings } from "@/shared/i18n";
+import { ROUTES } from "@/shared/router";
+import { Background } from "./components/background";
+import { Header } from "./components/header";
+import { LanguageToggle } from "./components/language-toggle";
+import { Footer } from "./components/footer";
+import { ActionCard } from "./components/ui/action-card";
+import { SectionTitle } from "./components/ui/section-title";
+import { site } from "./data";
 import { strings } from "./strings";
 
 const styles = {
@@ -9,27 +16,93 @@ const styles = {
   headerSlot: "pt-10",
   toggleSlot: "absolute end-6 top-6 z-10",
   navSlot: "flex flex-1 flex-col gap-6",
+  primaryGroup: "flex flex-col gap-3",
+  navSection: "flex flex-col gap-3",
 } as const;
 
 export function LandingPage() {
   const s = useStrings(strings);
 
+  const otherLocale = useLocale() === "en" ? "ar" : "en";
+
+  const currentYear = new Date().getFullYear();
+
   return (
     <main className={styles.page}>
-      <C.Background />
+      <Background />
 
       <div className={styles.container}>
-        <C.LanguageToggle className={styles.toggleSlot} />
+        <LanguageToggle
+          strings={{
+            name: s.language.name,
+            lang: otherLocale,
+          }}
+          onPress={() => setLocale(otherLocale)}
+          className={styles.toggleSlot}
+        />
 
-        <C.Header className={styles.headerSlot} />
+        <Header
+          strings={{
+            brandName: site.brandName,
+            taglineLead: s.header.taglineLead,
+            taglineEmphasis: s.header.taglineEmphasis,
+          }}
+          className={styles.headerSlot}
+        />
 
-        <nav aria-label={s.nav.mainNav} className={styles.navSlot}>
-          <C.PrimaryNavSection />
-          <C.SocialNavSection />
-          <C.LocationNavSection />
+        <nav className={styles.navSlot}>
+          <div className={styles.primaryGroup}>
+            <ActionCard
+              strings={{
+                icon: "cup",
+                title: s.sections.primary.menu.title,
+                hint: s.sections.primary.menu.hint,
+              }}
+              tone="featured"
+              to={ROUTES.menu}
+            />
+            <ActionCard
+              strings={{
+                icon: "star",
+                title: s.sections.primary.review.title,
+                hint: s.sections.primary.review.hint,
+              }}
+              to={ROUTES.review}
+            />
+          </div>
+
+          <section className={styles.navSection}>
+            <SectionTitle>{s.sections.social.title}</SectionTitle>
+            <ActionCard
+              strings={{
+                icon: "instagram",
+                title: site.instagram.name,
+                hint: site.instagram.handle,
+              }}
+              tone="social"
+              href={site.instagram.url}
+            />
+          </section>
+
+          <section className={styles.navSection}>
+            <SectionTitle>{s.sections.location.title}</SectionTitle>
+            <ActionCard
+              strings={{
+                icon: "pin",
+                title: s.sections.location.locationName,
+              }}
+              href={site.location.mapsUrl}
+            />
+          </section>
         </nav>
 
-        <C.Footer />
+        <Footer
+          strings={{
+            lead: s.footer.lead,
+            emphasis: s.footer.emphasis,
+            copyright: `© ${currentYear} ${site.brandName}`,
+          }}
+        />
       </div>
     </main>
   );
