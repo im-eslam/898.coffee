@@ -22,7 +22,7 @@ import { getCategorySectionId } from "./util/section-ids";
 
 const styles = {
   page: "relative isolate min-h-dvh pb-8",
-  header: "sticky top-0 z-40 bg-cream/90 backdrop-blur",
+  header: "sticky top-0 z-40 bg-cream transform-gpu",
   main: "flex flex-col",
   srOnly: "sr-only",
 } as const;

@@ -1,7 +1,13 @@
-import { useMemo } from "react";
-import { Button } from "react-aria-components";
+import { useLayoutEffect, useRef } from "react";
+import {
+  Button,
+  SelectionIndicator,
+  SharedElementTransition,
+  Tab,
+  TabList,
+  Tabs,
+} from "react-aria-components";
 import { Icon } from "@/shared/icons";
-import { useHeaderNav } from "../../hooks/components/use-header-nav";
 import type { NavSection } from "../../hooks/use-menu-navigation";
 
 interface HeaderNavStrings {
@@ -22,28 +28,32 @@ const styles = {
   row: "mx-auto flex h-12 w-full max-w-5xl items-center",
   menuSlot: "shrink-0 ps-1 md:ps-3",
   categories:
-    "flex size-12 shrink-0 items-center justify-center rounded-full text-charcoal transition-colors duration-(--duration-interactive) ease-smooth data-hovered:bg-sand/40 data-pressed:bg-sand/60 motion-reduce:transition-none",
+    "flex size-12 shrink-0 items-center justify-center rounded-full text-charcoal transition-colors duration-(--duration-interactive) ease-smooth data-hovered:bg-sand/40 data-pressed:bg-sand/60",
   icon: "size-5",
   nav: "relative h-12 min-w-0 flex-1",
-  rail: "no-scrollbar relative flex h-12 touch-pan-x items-center gap-1 overflow-x-auto overscroll-x-contain px-4 will-change-scroll",
-  highlight:
-    "pointer-events-none absolute top-1 left-0 h-10 rounded-full bg-charcoal backface-hidden transform-gpu",
-  highlightAnimation:
-    "transition-[transform,width] duration-250 ease-smooth motion-reduce:transition-none",
-  pill: "group relative z-10 flex h-12 shrink-0 items-center rounded-full backface-hidden transform-gpu",
-  pillBody:
-    "grid h-10 place-items-center rounded-full px-4 text-small whitespace-nowrap",
-  pillSizer: "invisible col-start-1 row-start-1 font-semibold",
-  pillLabel:
-    "col-start-1 row-start-1 transition-colors duration-250 ease-smooth motion-reduce:transition-none",
-  labelActive: "font-semibold text-cream",
-  labelIdle: "font-medium text-taupe group-data-hovered:text-charcoal",
-  fade: "pointer-events-none absolute inset-y-0 z-20 w-4 from-cream to-transparent transition-opacity duration-(--duration-interactive) ease-smooth motion-reduce:transition-none backface-hidden transform-gpu",
-  fadeStart: "start-0 bg-linear-to-r rtl:bg-linear-to-l",
-  fadeEnd: "end-0 bg-linear-to-l rtl:bg-linear-to-r",
-  fadeVisible: "opacity-100",
-  fadeHidden: "opacity-0",
+  tabs: "flex h-full w-full items-center",
+  tabList:
+    "no-scrollbar relative flex h-12 w-full touch-pan-x items-center gap-1 overflow-x-auto overscroll-x-contain px-4 [mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)]",
+  tab: "group relative flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-small outline-none text-taupe data-hovered:text-charcoal data-selected:text-cream",
+  tabText: "relative z-10 font-medium group-data-selected:font-semibold",
+  indicator:
+    "absolute inset-0 z-0 rounded-full bg-charcoal transition-[translate,width] duration-300 ease-smooth",
 } as const;
+
+function animateScrollLeft(el: HTMLElement, to: number, duration: number) {
+  const from = el.scrollLeft;
+  const start = performance.now();
+  let frame = 0;
+
+  function step(now: number) {
+    const t = Math.min(1, (now - start) / duration);
+    el.scrollLeft = from + (to - from) * (1 - Math.pow(1 - t, 3));
+    if (t < 1) frame = requestAnimationFrame(step);
+  }
+
+  frame = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(frame);
+}
 
 export function HeaderNav({
   strings: s,
@@ -54,20 +64,30 @@ export function HeaderNav({
   onCategories,
   className,
 }: HeaderNavProps) {
-  const contentKey = useMemo(() => JSON.stringify(sections), [sections]);
+  const tabListRef = useRef<HTMLDivElement>(null);
 
-  const { railRef, highlight, canAnimate, edges } = useHeaderNav({
-    activeId,
-    contentKey,
-    direction,
-  });
+  useLayoutEffect(() => {
+    const list = tabListRef.current;
+    const tab = list?.querySelector<HTMLElement>(
+      `[data-key="${CSS.escape(activeId)}"]`
+    );
+    if (!list || !tab) return;
 
-  const highlightClassName = [
-    styles.highlight,
-    canAnimate && styles.highlightAnimation,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    const listBox = list.getBoundingClientRect();
+    const tabBox = tab.getBoundingClientRect();
+    const offset =
+      tabBox.left + tabBox.width / 2 - (listBox.left + listBox.width / 2);
+
+    const stop = animateScrollLeft(list, list.scrollLeft + offset, 300);
+
+    // if the user touches the bar, let them take over
+    list.addEventListener("touchstart", stop, { passive: true, once: true });
+
+    return () => {
+      stop();
+      list.removeEventListener("touchstart", stop);
+    };
+  }, [activeId]);
 
   return (
     <div dir={direction} className={`${styles.row} ${className ?? ""}`}>
@@ -83,54 +103,26 @@ export function HeaderNav({
       </div>
 
       <nav className={styles.nav}>
-        <div ref={railRef} className={styles.rail}>
-          <span
-            className={highlightClassName}
-            style={{
-              width: highlight?.width ?? 0,
-              transform: `translateX(${highlight?.x ?? 0}px)`,
-              opacity: highlight ? 1 : 0,
-            }}
-          />
-
-          {sections.map((section) => {
-            const active = section.id === activeId;
-
-            return (
-              <Button
-                key={section.id}
-                type="button"
-                data-nav-id={section.id}
-                onPress={() => onSelect(section.id)}
-                className={styles.pill}
-              >
-                <span className={styles.pillBody}>
-                  <span className={styles.pillSizer}>{section.label}</span>
-
-                  <span
-                    className={`${styles.pillLabel} ${
-                      active ? styles.labelActive : styles.labelIdle
-                    }`}
-                  >
-                    {section.label}
-                  </span>
-                </span>
-              </Button>
-            );
-          })}
-        </div>
-
-        <div
-          className={`${styles.fade} ${styles.fadeStart} ${
-            edges.start ? styles.fadeVisible : styles.fadeHidden
-          }`}
-        />
-
-        <div
-          className={`${styles.fade} ${styles.fadeEnd} ${
-            edges.end ? styles.fadeVisible : styles.fadeHidden
-          }`}
-        />
+        <SharedElementTransition>
+          <Tabs
+            selectedKey={activeId}
+            onSelectionChange={(key) => onSelect(key as string)}
+            className={styles.tabs}
+          >
+            <TabList
+              ref={tabListRef}
+              aria-label={s.categories}
+              className={styles.tabList}
+            >
+              {sections.map((section) => (
+                <Tab key={section.id} id={section.id} className={styles.tab}>
+                  <span className={styles.tabText}>{section.label}</span>
+                  <SelectionIndicator className={styles.indicator} />
+                </Tab>
+              ))}
+            </TabList>
+          </Tabs>
+        </SharedElementTransition>
       </nav>
     </div>
   );

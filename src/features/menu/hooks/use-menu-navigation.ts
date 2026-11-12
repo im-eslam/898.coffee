@@ -10,6 +10,8 @@ const SECTION_GAP = 16;
 
 export function useMenuNavigation(sections: NavSection[]) {
   const headerRef = useRef<HTMLElement>(null);
+  const pinnedRef = useRef(false);
+  const pinTimeoutRef = useRef<number | null>(null);
 
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
 
@@ -25,6 +27,7 @@ export function useMenuNavigation(sections: NavSection[]) {
     let frame = 0;
 
     function updateActiveSection() {
+      if (pinnedRef.current) return;
       const elements = sections
         .map((section) => document.getElementById(section.id))
         .filter((element): element is HTMLElement => element !== null);
@@ -55,6 +58,19 @@ export function useMenuNavigation(sections: NavSection[]) {
       setActiveId((current) => (current === nextId ? current : nextId));
     }
 
+    function release(event: Event) {
+      if (headerRef.current?.contains(event.target as Node)) return;
+      pinnedRef.current = false;
+      if (pinTimeoutRef.current !== null) {
+        window.clearTimeout(pinTimeoutRef.current);
+        pinTimeoutRef.current = null;
+      }
+    }
+
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchmove", release, { passive: true });
+    window.addEventListener("keydown", release);
+
     function scheduleUpdate() {
       if (frame) return;
 
@@ -64,6 +80,15 @@ export function useMenuNavigation(sections: NavSection[]) {
       });
     }
 
+    function handleScrollEnd() {
+      pinnedRef.current = false;
+      if (pinTimeoutRef.current !== null) {
+        window.clearTimeout(pinTimeoutRef.current);
+        pinTimeoutRef.current = null;
+      }
+      scheduleUpdate();
+    }
+
     updateActiveSection();
 
     window.addEventListener("scroll", scheduleUpdate, {
@@ -71,6 +96,7 @@ export function useMenuNavigation(sections: NavSection[]) {
     });
 
     window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("scrollend", handleScrollEnd);
 
     const observer = new ResizeObserver(scheduleUpdate);
     observer.observe(document.body);
@@ -81,6 +107,14 @@ export function useMenuNavigation(sections: NavSection[]) {
 
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("scrollend", handleScrollEnd);
+
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchmove", release);
+      window.removeEventListener("keydown", release);
+      if (pinTimeoutRef.current !== null) {
+        window.clearTimeout(pinTimeoutRef.current);
+      }
     };
   }, [sections, getOffset]);
 
@@ -89,14 +123,30 @@ export function useMenuNavigation(sections: NavSection[]) {
       const section = document.getElementById(id);
       if (!section) return;
 
+      const top = Math.max(
+        0,
+        window.scrollY + section.getBoundingClientRect().top - getOffset()
+      );
+
       setActiveId(id);
 
+      if (Math.abs(window.scrollY - top) <= 1) {
+        pinnedRef.current = false;
+        return;
+      }
+
+      pinnedRef.current = true;
+      if (pinTimeoutRef.current !== null) {
+        window.clearTimeout(pinTimeoutRef.current);
+      }
+      pinTimeoutRef.current = window.setTimeout(() => {
+        pinnedRef.current = false;
+        pinTimeoutRef.current = null;
+      }, 2000);
+
       window.scrollTo({
-        top: Math.max(
-          0,
-          window.scrollY + section.getBoundingClientRect().top - getOffset()
-        ),
-        behavior: "instant",
+        top,
+        behavior: "smooth",
       });
     },
     [getOffset]
