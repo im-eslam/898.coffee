@@ -66,7 +66,6 @@ export function useReviewNote() {
           feature: "review",
           operation: "submit",
         });
-
         setError(getReviewError(cause));
       } finally {
         setSending(false);

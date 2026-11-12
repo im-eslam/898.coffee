@@ -10,11 +10,7 @@ export type ReviewPayload = {
 };
 
 export type ReviewError =
-  | "unknown"
-  | "invalid-input"
-  | "timeout"
-  | "server"
-  | "rate-limited";
+  "unknown" | "invalid-input" | "timeout" | "server" | "rate-limited";
 
 export async function submitReview(payload: ReviewPayload): Promise<void> {
   await postJson(REVIEW_API, payload);
@@ -22,20 +18,15 @@ export async function submitReview(payload: ReviewPayload): Promise<void> {
 
 export function getReviewError(cause: unknown): ReviewError {
   if (!(cause instanceof ApiError)) return "unknown";
-
   if (cause.status === 429 || cause.code === "RATE_LIMITED") {
     return "rate-limited";
   }
-
   if (cause.status === 422 || cause.code === "INVALID_INPUT") {
     return "invalid-input";
   }
-
   if (cause.code === "TIMEOUT") return "timeout";
-
   if (cause.status >= 500 || cause.code === "INTERNAL_ERROR") {
     return "server";
   }
-
   return "unknown";
 }
