@@ -27,26 +27,16 @@ export function useHeaderNav({
 
   const [highlight, setHighlight] = useState<Highlight | null>(null);
   const [canAnimate, setCanAnimate] = useState(false);
-
-  const [edges, setEdges] = useState<Edges>({
-    start: false,
-    end: false,
-  });
+  const [edges, setEdges] = useState<Edges>({ start: false, end: false });
 
   useLayoutEffect(() => {
-    const element = railRef.current;
-    if (!element) return;
+    const rail = railRef.current;
+    if (!rail) return;
 
-    const rail = element;
-
-    const lifecycle = {
-      disposed: false,
-      measureFrame: 0,
-      animationFrame: 0,
-    };
+    let disposed = false;
+    let animationFrame = 0;
 
     const directionChanged = previousDirection.current !== direction;
-
     previousDirection.current = direction;
 
     if (directionChanged) {
@@ -55,15 +45,16 @@ export function useHeaderNav({
 
     function getItems() {
       return Array.from(
-        rail.querySelectorAll<HTMLButtonElement>("[data-nav-id]")
+        rail!.querySelectorAll<HTMLButtonElement>("[data-nav-id]")
       );
     }
 
-    function measure() {
-      if (lifecycle.disposed) return;
+    function updateHighlight() {
+      if (disposed) return;
 
-      const items = getItems();
-      const activeItem = items.find((item) => item.dataset.navId === activeId);
+      const activeItem = getItems().find(
+        (item) => item.dataset.navId === activeId
+      );
 
       const nextHighlight = activeItem
         ? {
@@ -79,130 +70,97 @@ export function useHeaderNav({
         ) {
           return current;
         }
-
         return nextHighlight;
-      });
-
-      const first = items[0];
-      const last = items[items.length - 1];
-
-      const nextEdges: Edges = {
-        start: false,
-        end: false,
-      };
-
-      if (first && last) {
-        const railBox = rail.getBoundingClientRect();
-        const firstBox = first.getBoundingClientRect();
-        const lastBox = last.getBoundingClientRect();
-        const tolerance = 2;
-
-        if (direction === "rtl") {
-          nextEdges.start = firstBox.right > railBox.right + tolerance;
-
-          nextEdges.end = lastBox.left < railBox.left - tolerance;
-        } else {
-          nextEdges.start = firstBox.left < railBox.left - tolerance;
-
-          nextEdges.end = lastBox.right > railBox.right + tolerance;
-        }
-      }
-
-      setEdges((current) =>
-        current.start === nextEdges.start && current.end === nextEdges.end
-          ? current
-          : nextEdges
-      );
-    }
-
-    function scheduleMeasure() {
-      if (lifecycle.disposed || lifecycle.measureFrame) return;
-
-      lifecycle.measureFrame = requestAnimationFrame(() => {
-        lifecycle.measureFrame = 0;
-        measure();
       });
     }
 
     function centerActiveItem() {
-      if (lifecycle.disposed || touching.current) return;
+      if (disposed || touching.current) return;
 
       const activeItem = getItems().find(
         (item) => item.dataset.navId === activeId
       );
-
       if (!activeItem) return;
 
-      const railBox = rail.getBoundingClientRect();
+      const railBox = rail!.getBoundingClientRect();
       const itemBox = activeItem.getBoundingClientRect();
 
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
-      rail.scrollBy({
+      rail!.scrollBy({
         left:
           itemBox.left + itemBox.width / 2 - (railBox.left + railBox.width / 2),
         behavior: directionChanged || reduceMotion ? "instant" : "smooth",
       });
     }
 
+    const items = getItems();
+    const firstItem = items[0];
+    const lastItem = items[items.length - 1];
+
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (disposed) return;
+
+        setEdges((current) => {
+          const next = { ...current };
+
+          entries.forEach((entry) => {
+            if (entry.target === firstItem)
+              next.start = entry.intersectionRatio < 0.95;
+            if (entry.target === lastItem)
+              next.end = entry.intersectionRatio < 0.95;
+          });
+
+          return current.start === next.start && current.end === next.end
+            ? current
+            : next;
+        });
+      },
+      {
+        root: rail,
+        threshold: [0.95, 1],
+      }
+    );
+
+    if (firstItem) intersectionObserver.observe(firstItem);
+    if (lastItem) intersectionObserver.observe(lastItem);
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateHighlight();
+    });
+
+    resizeObserver.observe(rail);
+    items.forEach((item) => resizeObserver.observe(item));
+
+    updateHighlight();
+    centerActiveItem();
+
+    animationFrame = requestAnimationFrame(() => {
+      animationFrame = requestAnimationFrame(() => {
+        if (!disposed) setCanAnimate(true);
+      });
+    });
+
     function startTouch() {
       touching.current = true;
     }
-
     function endTouch() {
       touching.current = false;
     }
 
-    rail.addEventListener("scroll", scheduleMeasure, {
-      passive: true,
-    });
-
-    rail.addEventListener("touchstart", startTouch, {
-      passive: true,
-    });
-
-    rail.addEventListener("touchend", endTouch, {
-      passive: true,
-    });
-
-    rail.addEventListener("touchcancel", endTouch, {
-      passive: true,
-    });
-
-    const observer = new ResizeObserver(scheduleMeasure);
-
-    observer.observe(rail);
-    getItems().forEach((item) => observer.observe(item));
-
-    measure();
-    centerActiveItem();
-    scheduleMeasure();
-
-    lifecycle.animationFrame = requestAnimationFrame(() => {
-      lifecycle.animationFrame = requestAnimationFrame(() => {
-        if (!lifecycle.disposed) {
-          setCanAnimate(true);
-        }
-      });
-    });
-
-    void document.fonts.ready.then(() => {
-      if (!lifecycle.disposed) {
-        scheduleMeasure();
-      }
-    });
+    rail.addEventListener("touchstart", startTouch, { passive: true });
+    rail.addEventListener("touchend", endTouch, { passive: true });
+    rail.addEventListener("touchcancel", endTouch, { passive: true });
 
     return () => {
-      lifecycle.disposed = true;
+      disposed = true;
+      cancelAnimationFrame(animationFrame);
+      intersectionObserver.disconnect();
+      resizeObserver.disconnect();
 
-      cancelAnimationFrame(lifecycle.measureFrame);
-      cancelAnimationFrame(lifecycle.animationFrame);
-
-      observer.disconnect();
-
-      rail.removeEventListener("scroll", scheduleMeasure);
       rail.removeEventListener("touchstart", startTouch);
       rail.removeEventListener("touchend", endTouch);
       rail.removeEventListener("touchcancel", endTouch);
