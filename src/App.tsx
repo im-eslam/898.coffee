@@ -9,7 +9,7 @@ import { MenuPage } from "@/features/menu/index";
 export default function App() {
   const locale = useLocale();
   return (
-    <>
+    <div className="app-shell">
       <I18nProvider locale={locale}>
         <Switch>
           <Route path={ROUTES.landing} component={LandingPage} />
@@ -19,6 +19,6 @@ export default function App() {
         </Switch>
         <ReviewPage />
       </I18nProvider>
-    </>
+    </div>
   );
 }

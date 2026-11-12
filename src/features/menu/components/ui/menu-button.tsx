@@ -39,9 +39,9 @@ type MenuButtonProps =
 const styles = {
   base: "flex shrink-0 items-center justify-center rounded-full transition-[transform,background-color,border-color] duration-(--duration-interactive) ease-smooth data-disabled:cursor-default data-disabled:opacity-50 motion-reduce:transition-none",
   primary:
-    "bg-brand text-center font-bold text-white data-hovered:bg-navy data-pressed:scale-[0.98]",
+    "bg-brand text-center font-bold text-white data-hovered:bg-navy data-pressed:scale-[0.96]",
   secondary:
-    "h-12 gap-2 border border-brand bg-transparent px-4 text-center text-small font-semibold text-brand data-hovered:bg-brand/5 data-pressed:scale-[0.98] data-pressed:bg-brand/10",
+    "h-12 gap-2 border border-brand bg-transparent px-4 text-center text-small font-semibold text-brand data-hovered:bg-brand/5 data-pressed:scale-[0.96] data-pressed:bg-brand/10",
   focus:
     "outline-none data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
   full: "w-full",
@@ -52,7 +52,7 @@ const styles = {
   compact: "px-3 text-body sm:text-heading",
   close: "group size-12 outline-none",
   closeSurface:
-    "flex items-center justify-center rounded-full bg-white/85 text-navy transition-[transform,background-color] duration-(--duration-interactive) ease-smooth group-data-hovered:bg-white group-data-pressed:scale-90 group-data-focus-visible:outline-2 group-data-focus-visible:outline-offset-2 group-data-focus-visible:outline-brand motion-reduce:transition-none",
+    "flex items-center justify-center rounded-full bg-white/85 text-navy transition-[transform,background-color] duration-(--duration-interactive) ease-smooth group-data-hovered:bg-white group-data-pressed:scale-[0.96] group-data-focus-visible:outline-2 group-data-focus-visible:outline-offset-2 group-data-focus-visible:outline-brand motion-reduce:transition-none",
 } as const;
 
 const closeSizes: Record<CloseButtonSize, { surface: string; icon: string }> = {

@@ -193,6 +193,18 @@
   }
 }
 
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+.app-shell {
+  padding-block-start: var(--sat);
+  padding-inline: var(--sal) var(--sar);
+}
+
 @layer base {
   [lang="ar"] {
     --text-title--line-height: 1.5;
@@ -213,6 +225,7 @@
   }
 
   body {
+    overscroll-behavior-y: none;
     background: var(--color-cream);
     font-weight: 500;
   }
@@ -229,6 +242,20 @@
   input:focus-visible {
     outline: none;
   }
+}
+
+button,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
 }
 
 [data-vaul-drawer],

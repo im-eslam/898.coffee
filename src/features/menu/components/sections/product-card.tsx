@@ -14,7 +14,7 @@ interface ProductCardProps {
 }
 
 const styles = {
-  root: "relative flex h-full w-full gap-3 rounded-lg bg-paper p-3 ring-1 ring-sand/40 duration-(--duration-interactive) ease-smooth has-[[data-pressed]]:scale-[0.985] motion-reduce:transition-none",
+  root: "relative flex h-full w-full gap-3 rounded-lg bg-paper p-3 ring-1 ring-sand/40 transition-transform duration-(--duration-interactive) ease-smooth has-[[data-pressed]]:scale-[0.96] motion-reduce:transition-none",
   image: "size-24 shrink-0 rounded-md",
   grayscale: "grayscale",
   content: "flex min-w-0 flex-1 flex-col gap-0.5",
