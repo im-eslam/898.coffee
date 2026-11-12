@@ -1,11 +1,6 @@
 import { setLocale, useLocale, useStrings } from "@/shared/i18n";
 import { ROUTES } from "@/shared/router";
-import { Background } from "./components/background";
-import { Header } from "./components/header";
-import { LanguageToggle } from "./components/language-toggle";
-import { Footer } from "./components/footer";
-import { ActionCard } from "./components/ui/action-card";
-import { SectionTitle } from "./components/ui/section-title";
+import * as C from "./components/";
 import { site } from "./data";
 import { strings } from "./strings";
 
@@ -28,10 +23,10 @@ export function LandingPage() {
 
   return (
     <main className={styles.page}>
-      <Background />
+      <C.Background />
 
       <div className={styles.container}>
-        <LanguageToggle
+        <C.LanguageToggle
           strings={{
             name: s.language.name,
             lang: otherLocale,
@@ -40,7 +35,7 @@ export function LandingPage() {
           className={styles.toggleSlot}
         />
 
-        <Header
+        <C.Header
           strings={{
             brandName: site.brandName,
             taglineLead: s.header.taglineLead,
@@ -51,7 +46,7 @@ export function LandingPage() {
 
         <nav className={styles.navSlot}>
           <div className={styles.primaryGroup}>
-            <ActionCard
+            <C.ActionCard
               strings={{
                 icon: "cup",
                 title: s.sections.primary.menu.title,
@@ -60,7 +55,7 @@ export function LandingPage() {
               tone="featured"
               to={ROUTES.menu}
             />
-            <ActionCard
+            <C.ActionCard
               strings={{
                 icon: "star",
                 title: s.sections.primary.review.title,
@@ -71,8 +66,8 @@ export function LandingPage() {
           </div>
 
           <section className={styles.navSection}>
-            <SectionTitle>{s.sections.social.title}</SectionTitle>
-            <ActionCard
+            <C.SectionTitle>{s.sections.social.title}</C.SectionTitle>
+            <C.ActionCard
               strings={{
                 icon: "instagram",
                 title: site.instagram.name,
@@ -84,8 +79,8 @@ export function LandingPage() {
           </section>
 
           <section className={styles.navSection}>
-            <SectionTitle>{s.sections.location.title}</SectionTitle>
-            <ActionCard
+            <C.SectionTitle>{s.sections.location.title}</C.SectionTitle>
+            <C.ActionCard
               strings={{
                 icon: "pin",
                 title: s.sections.location.locationName,
@@ -95,7 +90,7 @@ export function LandingPage() {
           </section>
         </nav>
 
-        <Footer
+        <C.Footer
           strings={{
             lead: s.footer.lead,
             emphasis: s.footer.emphasis,
