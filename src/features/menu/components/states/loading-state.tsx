@@ -13,7 +13,7 @@ interface LoadingStateProps {
 
 const styles = {
   section:
-    "relative isolate flex flex-col items-center justify-center min-h-[60dvh] overflow-hidden px-6 py-12 text-center",
+    "relative isolate flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 py-12 text-center",
   content: "relative z-10 flex w-full max-w-md flex-col items-center",
   iconWrapper: "relative w-32 h-32 mb-8 flex items-center justify-center",
   iconBase: "absolute inset-0 text-sand",

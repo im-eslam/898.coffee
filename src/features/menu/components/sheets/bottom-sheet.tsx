@@ -17,7 +17,7 @@ interface BottomSheetProps {
 
 const styles = {
   overlay:
-    "fixed inset-0 z-50 bg-scrim backdrop-blur-[2px] transition-opacity duration-(--duration-interactive) ease-smooth data-[state=open]:opacity-100 data-[state=closed]:opacity-0 motion-reduce:transition-none",
+    "fixed inset-0 z-50 bg-scrim transition-opacity duration-(--duration-interactive) ease-smooth data-[state=open]:opacity-100 data-[state=closed]:!pointer-events-none data-[state=closed]:opacity-0 motion-reduce:transition-none",
   content:
     "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[88dvh] w-full max-w-120 flex-col overflow-clip rounded-t-sheet border-t border-sand/50 bg-cream text-charcoal outline-none md:max-w-140",
   close: "absolute end-2 top-1 z-10",

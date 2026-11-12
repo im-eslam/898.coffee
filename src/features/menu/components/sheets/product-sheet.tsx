@@ -35,8 +35,8 @@ interface ProductSheetProps {
 
 const styles = {
   content: "flex flex-col gap-6",
-  hero: "relative mx-auto w-3/5 max-w-56",
-  heroImage: "aspect-square w-full rounded-lg shadow-sm",
+  hero: "relative",
+  heroImage: "aspect-square w-full rounded-lg",
   heroBadge: "absolute end-2 top-2",
   grayscale: "grayscale",
   intro: "flex flex-col items-start gap-2",
@@ -113,7 +113,12 @@ export function ProductSheet({
 
         <BaseOptions
           product={product}
-          strings={s}
+          strings={{
+            size: s.size,
+            baristaWay: s.baristaWay,
+            baristaSub: s.baristaSub,
+            addOns: s.addOns,
+          }}
           locale={locale}
           formatMoney={formatMoney}
           selectedOptionId={selectedOptionId}

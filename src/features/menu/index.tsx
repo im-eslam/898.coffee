@@ -34,7 +34,12 @@ export function MenuPage() {
   if (data.status === "loading") {
     return (
       <main>
-        <LoadingState strings={s.loading} />
+        <LoadingState
+          strings={{
+            title: s.loading.title,
+            description: s.loading.description,
+          }}
+        />
       </main>
     );
   }
@@ -43,7 +48,17 @@ export function MenuPage() {
     return (
       <main>
         <ErrorState
-          strings={data.isNetworkError ? s.errors.network : s.errors.generic}
+          strings={{
+            title: data.isNetworkError
+              ? s.errors.network.title
+              : s.errors.generic.title,
+            description: data.isNetworkError
+              ? s.errors.network.description
+              : s.errors.generic.description,
+            retry: data.isNetworkError
+              ? s.errors.network.retry
+              : s.errors.generic.retry,
+          }}
           onRetry={data.retry}
         />
       </main>
@@ -78,14 +93,19 @@ function MenuReady({ menu }: { menu: Menu }) {
     <div className={styles.page}>
       <header ref={state.headerRef} className={styles.header}>
         <HeaderBar
-          strings={s.header}
+          strings={{
+            back: s.header.back,
+            search: s.header.search,
+            languageName: s.header.language.name,
+            languageLang: s.header.language.lang,
+          }}
           backHref={ROUTES.landing}
           onSearch={state.openSearch}
           onLanguageChange={state.toggleLanguage}
         />
 
         <HeaderNav
-          strings={s.header}
+          strings={{ categories: s.header.categories }}
           sections={state.sections}
           activeId={activeId}
           direction={direction}
@@ -129,7 +149,7 @@ function MenuReady({ menu }: { menu: Menu }) {
             key={category.id}
             category={category}
             locale={locale}
-            strings={s.products}
+            strings={{ showAll: s.products.showAll }}
             formatMoney={formatMoney}
             onOpen={state.openProduct}
           />
@@ -139,7 +159,18 @@ function MenuReady({ menu }: { menu: Menu }) {
       <SearchOverlay
         menu={menu}
         locale={locale}
-        strings={s.search}
+        strings={{
+          label: s.search.label,
+          placeholder: s.search.placeholder,
+          clear: s.search.clear,
+          close: s.search.close,
+          prompt: s.search.prompt,
+          noMatch: s.search.noMatch,
+          itemsCount: s.search.itemsCount,
+          groupCategories: s.search.groupCategories,
+          groupOffers: s.search.groupOffers,
+          groupItems: s.search.groupItems,
+        }}
         formatMoney={formatMoney}
         isOpen={panel === "search"}
         onClose={state.close}
@@ -149,7 +180,11 @@ function MenuReady({ menu }: { menu: Menu }) {
       />
 
       <CategorySheet
-        strings={s.sheets}
+        strings={{
+          close: s.sheets.close,
+          categories: s.sheets.categories,
+          categoriesDescription: s.sheets.categoriesDescription,
+        }}
         locale={locale}
         isOpen={panel === "categories"}
         categories={menu.categories}
@@ -162,7 +197,16 @@ function MenuReady({ menu }: { menu: Menu }) {
         <ProductSheet
           key={state.productSheet.key}
           product={state.productSheet.item}
-          strings={s.sheets}
+          strings={{
+            itemDescription: s.sheets.itemDescription,
+            outOfStock: s.sheets.outOfStock,
+            oftenOrdered: s.sheets.oftenOrdered,
+            openItem: s.sheets.openItem,
+            size: s.sheets.size,
+            baristaWay: s.sheets.baristaWay,
+            baristaSub: s.sheets.baristaSub,
+            addOns: s.sheets.addOns,
+          }}
           locale={locale}
           formatMoney={formatMoney}
           isOpen={panel === "product"}
@@ -175,7 +219,15 @@ function MenuReady({ menu }: { menu: Menu }) {
         <PairingSheet
           key={state.pairingSheet.key}
           pairing={state.pairingSheet.item}
-          strings={s.sheets}
+          strings={{
+            itemDescription: s.sheets.itemDescription,
+            outOfStock: s.sheets.outOfStock,
+            saveChip: s.sheets.saveChip,
+            size: s.sheets.size,
+            baristaWay: s.sheets.baristaWay,
+            baristaSub: s.sheets.baristaSub,
+            addOns: s.sheets.addOns,
+          }}
           locale={locale}
           formatMoney={formatMoney}
           isOpen={panel === "pairing"}

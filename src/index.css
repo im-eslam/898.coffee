@@ -213,6 +213,8 @@
   }
 }
 
-[data-vaul-drawer] {
+[data-vaul-drawer],
+[data-vaul-overlay] {
   transition-timing-function: var(--ease-sheet-enter) !important;
+  animation-duration: var(--duration-interactive) !important;
 }

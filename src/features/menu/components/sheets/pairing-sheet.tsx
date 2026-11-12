@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { SetStateAction } from "react";
 import type { Locale } from "@/shared/i18n";
 import type { Pairing } from "../../types/menu-models";
 import { getPairingTotal, isPairingAvailable } from "../../util/pricing";
@@ -64,9 +65,15 @@ export function PairingSheet({
     );
   }
 
-  function selectAddOns(index: number, addOnIds: string[]) {
+  function selectAddOns(index: number, update: SetStateAction<string[]>) {
     setSelectedAddOnIds((current) =>
-      current.map((ids, i) => (i === index ? addOnIds : ids))
+      current.map((ids, i) =>
+        i === index
+          ? typeof update === "function"
+            ? update(ids)
+            : update
+          : ids
+      )
     );
   }
 
@@ -117,7 +124,12 @@ export function PairingSheet({
           <BaseOptions
             key={product.id}
             product={product}
-            strings={s}
+            strings={{
+              size: s.size,
+              baristaWay: s.baristaWay,
+              baristaSub: s.baristaSub,
+              addOns: s.addOns,
+            }}
             locale={locale}
             formatMoney={formatMoney}
             selectedOptionId={selectedOptionIds[index] ?? null}

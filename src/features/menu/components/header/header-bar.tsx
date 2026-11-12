@@ -7,10 +7,8 @@ import type { AppRoute } from "@/shared/router";
 interface HeaderBarStrings {
   back: string;
   search: string;
-  language: {
-    name: string;
-    lang: string;
-  };
+  languageName: string;
+  languageLang: string;
 }
 
 interface HeaderBarProps {
@@ -76,8 +74,8 @@ export function HeaderBar({
         onPress={onLanguageChange}
         className={styles.language}
       >
-        <span lang={s.language.lang} className={styles.languageSurface}>
-          {s.language.name}
+        <span lang={s.languageLang} className={styles.languageSurface}>
+          {s.languageName}
         </span>
       </Button>
     </div>

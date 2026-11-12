@@ -1,3 +1,4 @@
+import type { SetStateAction } from "react";
 import {
   Checkbox,
   CheckboxGroup,
@@ -28,7 +29,7 @@ interface ProductOptionsProps {
   selectedOptionId: string | null;
   selectedAddOnIds: string[];
   onSelectOption: (optionId: string) => void;
-  onSelectAddOns: (addOnIds: string[]) => void;
+  onSelectAddOns: (update: SetStateAction<string[]>) => void;
   showProduct?: boolean;
   isDisabled?: boolean;
 }
@@ -49,11 +50,14 @@ const styles = {
   oldPrice: "me-1 line-through opacity-70",
 
   barista:
-    "group flex min-h-14 w-full items-center gap-3 rounded-lg bg-arctic/50 px-4 py-2 text-start outline-none transition-[background-color,box-shadow] duration-200 motion-reduce:transition-none data-selected:bg-arctic data-selected:ring-2 data-selected:ring-inset data-selected:ring-brand data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-brand",
+    "group flex min-h-14 w-full items-center gap-3 rounded-lg border-2 border-taupe bg-transparent px-4 py-2 text-start text-charcoal outline-none transition-[background-color,border-color,color] duration-200 motion-reduce:transition-none data-hovered:bg-sand/20 data-selected:border-brand data-selected:bg-brand data-selected:text-white data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
   baristaIcon: "size-6 shrink-0",
   baristaText: "flex min-w-0 flex-1 flex-col",
   baristaTitle: "text-small font-bold",
-  baristaSub: "text-caption font-medium",
+  baristaSub:
+    "text-caption font-medium text-taupe group-data-selected:text-white/80",
+  baristaCheck:
+    "flex size-6 shrink-0 items-center justify-center rounded-sm border-2 border-taupe/60 transition-colors duration-200 group-data-selected:border-white/80 group-data-selected:bg-white group-data-selected:text-brand motion-reduce:transition-none",
 
   addOnsLabel: "pb-2 text-body font-bold",
   addOn:
@@ -93,13 +97,21 @@ export function BaseOptions({
   const baristaOn = baristaIds.every((id) => selectedAddOnIds.includes(id));
 
   function setBarista(on: boolean) {
-    const others = selectedAddOnIds.filter((id) => !baristaIds.includes(id));
-    onSelectAddOns(on ? [...others, ...baristaIds] : others);
+    onSelectAddOns((current) => {
+      const others = current.filter((id) => !baristaIds.includes(id));
+      return on ? [...others, ...baristaIds] : others;
+    });
   }
 
   function setAddOns(addOnIds: string[]) {
-    const barista = selectedAddOnIds.filter((id) => baristaIds.includes(id));
-    onSelectAddOns([...addOnIds, ...barista]);
+    onSelectAddOns((current) => {
+      const barista = current.filter(
+        (id) =>
+          baristaIds.includes(id) &&
+          !product.addOns.some((addOn) => addOn.id === id)
+      );
+      return [...addOnIds, ...barista];
+    });
   }
 
   return (
@@ -156,7 +168,7 @@ export function BaseOptions({
             <span className={styles.baristaTitle}>{s.baristaWay}</span>
             <span className={styles.baristaSub}>{s.baristaSub}</span>
           </span>
-          <span aria-hidden="true" className={styles.addOnBox}>
+          <span aria-hidden="true" className={styles.baristaCheck}>
             <Icon name="check" className={styles.tick} />
           </span>
         </ToggleButton>
@@ -164,7 +176,9 @@ export function BaseOptions({
 
       {hasAddOns && (
         <CheckboxGroup
-          value={selectedAddOnIds}
+          value={product.addOns
+            .filter((addOn) => selectedAddOnIds.includes(addOn.id))
+            .map((addOn) => addOn.id)}
           onChange={setAddOns}
           isDisabled={isDisabled}
         >

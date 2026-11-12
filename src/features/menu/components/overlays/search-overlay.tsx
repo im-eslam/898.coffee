@@ -46,10 +46,10 @@ type SearchPanelProps = Omit<SearchOverlayProps, "isOpen">;
 
 const styles = {
   overlay:
-    "fixed inset-0 z-50 flex justify-center overscroll-none md:items-start md:p-6 md:pt-[8dvh] data-entering:animate-scrim-in data-exiting:animate-scrim-out",
+    "fixed inset-0 z-50 flex justify-center overscroll-none md:items-start md:p-6 md:pt-[8dvh] data-entering:animate-fade-in data-exiting:animate-fade-out motion-reduce:animate-none",
   scrim: "pointer-events-none absolute inset-0 bg-scrim",
   modal:
-    "relative z-10 flex h-full w-full max-w-120 flex-col overflow-hidden bg-white outline-none md:h-[min(40rem,80dvh)] md:max-w-140 md:rounded-lg md:shadow-sheet",
+    "relative z-10 flex h-full w-full max-w-120 flex-col overflow-hidden bg-white outline-none data-entering:animate-fade-in data-exiting:animate-fade-out motion-reduce:animate-none md:h-[min(40rem,80dvh)] md:max-w-140 md:rounded-lg md:shadow-sheet",
   dialog: "flex min-h-0 flex-1 flex-col outline-none",
 
   topBar:

@@ -15,7 +15,7 @@ interface ErrorStateProps {
 
 const styles = {
   section:
-    "relative isolate flex flex-col items-center justify-center min-h-[60dvh] overflow-hidden px-6 py-12 text-center",
+    "relative isolate flex min-h-dvh flex-col items-center justify-center min-h-[60dvh] overflow-hidden px-6 py-12 text-center",
   content: "relative z-10 flex w-full max-w-md flex-col items-center",
   code: "text-[clamp(5rem,30vw,8rem)] leading-none font-bold tracking-tight text-brand",
   title: "mt-5 text-title font-bold text-charcoal text-balance",
