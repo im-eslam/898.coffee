@@ -1,11 +1,15 @@
 import { lazy, Suspense } from "react";
 import { ROUTES, Route, Switch, useLocation } from "@/shared/router";
 import { LandingPage } from "@/features/landing";
-import { ReviewPage } from "@/features/review";
 
 const MenuPage = lazy(() =>
   import("@/features/menu").then((module) => ({
     default: module.MenuPage,
+  }))
+);
+const ReviewPage = lazy(() =>
+  import("@/features/review").then((module) => ({
+    default: module.ReviewPage,
   }))
 );
 const NotFoundPage = lazy(() =>
@@ -22,12 +26,17 @@ export default function App() {
       <Suspense fallback={null}>
         <Switch>
           <Route path={ROUTES.landing} component={LandingPage} />
+          <Route path={ROUTES.review} component={LandingPage} />
           <Route path={ROUTES.menu} component={MenuPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Suspense>
 
-      {location === ROUTES.landing && <ReviewPage />}
+      {location === ROUTES.review && (
+        <Suspense fallback={null}>
+          <ReviewPage />
+        </Suspense>
+      )}
     </div>
   );
 }
