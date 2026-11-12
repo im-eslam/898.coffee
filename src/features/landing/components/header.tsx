@@ -13,7 +13,7 @@ interface HeaderProps {
 
 const styles = {
   header: "flex flex-col items-center text-center",
-  logo: "w-[clamp(10.5rem,50vw,13rem)]",
+  logo: "w-[clamp(10.5rem,50vw,13rem)] h-auto",
   tagline: "mt-5 max-w-72 text-body text-navy",
   emphasis: "font-bold text-brand",
 } as const;

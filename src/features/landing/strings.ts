@@ -2,8 +2,8 @@ import type { Localized } from "@/shared/i18n";
 
 const en = {
   header: {
-    taglineLead: "Where clarity",
-    taglineEmphasis: "brews.",
+    taglineLead: "Good Coffee",
+    taglineEmphasis: "Better Days.",
   },
   language: {
     name: "عربي",
@@ -35,8 +35,8 @@ const en = {
 
 const ar: typeof en = {
   header: {
-    taglineLead: "قهوة توزن",
-    taglineEmphasis: "أفكارك.",
+    taglineLead: "قهوه حلوة",
+    taglineEmphasis: "أيام أحلى.",
   },
   language: {
     name: "English",

@@ -56,7 +56,7 @@ export function useMenu(menu: Menu) {
     sections,
     activeId: navigation.activeId,
     headerRef: navigation.headerRef,
-    mainRef: navigation.mainRef,
+    // mainRef: navigation.mainRef,
     panel: flow.panel,
     productSheet: flow.productSheet,
     pairingSheet: flow.pairingSheet,
