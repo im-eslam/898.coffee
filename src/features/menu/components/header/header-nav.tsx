@@ -25,12 +25,12 @@ const styles = {
     "flex size-12 shrink-0 items-center justify-center rounded-full text-charcoal transition-colors duration-(--duration-interactive) ease-smooth data-hovered:bg-sand/40 data-pressed:bg-sand/60 motion-reduce:transition-none",
   icon: "size-5",
   nav: "relative h-12 min-w-0 flex-1",
-  rail: "no-scrollbar relative flex h-12 touch-pan-x items-center gap-1 overflow-x-auto overscroll-x-contain px-4",
+  rail: "no-scrollbar relative flex h-12 touch-pan-x items-center gap-1 overflow-x-auto overscroll-x-contain px-4 will-change-scroll",
   highlight:
-    "pointer-events-none absolute top-1 left-0 h-10 rounded-full bg-charcoal",
+    "pointer-events-none absolute top-1 left-0 h-10 rounded-full bg-charcoal backface-hidden transform-gpu",
   highlightAnimation:
     "transition-[transform,width] duration-250 ease-smooth motion-reduce:transition-none",
-  pill: "group relative z-10 flex h-12 shrink-0 items-center rounded-full",
+  pill: "group relative z-10 flex h-12 shrink-0 items-center rounded-full backface-hidden transform-gpu",
   pillBody:
     "grid h-10 place-items-center rounded-full px-4 text-small whitespace-nowrap",
   pillSizer: "invisible col-start-1 row-start-1 font-semibold",
@@ -38,7 +38,7 @@ const styles = {
     "col-start-1 row-start-1 transition-colors duration-250 ease-smooth motion-reduce:transition-none",
   labelActive: "font-semibold text-cream",
   labelIdle: "font-medium text-taupe group-data-hovered:text-charcoal",
-  fade: "pointer-events-none absolute inset-y-0 z-20 w-4 from-cream to-transparent transition-opacity duration-(--duration-interactive) ease-smooth motion-reduce:transition-none",
+  fade: "pointer-events-none absolute inset-y-0 z-20 w-4 from-cream to-transparent transition-opacity duration-(--duration-interactive) ease-smooth motion-reduce:transition-none backface-hidden transform-gpu",
   fadeStart: "start-0 bg-linear-to-r rtl:bg-linear-to-l",
   fadeEnd: "end-0 bg-linear-to-l rtl:bg-linear-to-r",
   fadeVisible: "opacity-100",
