@@ -8,7 +8,7 @@ import {
   Tabs,
 } from "react-aria-components";
 import { Icon } from "@/shared/icons";
-import type { NavSection } from "../../hooks/use-menu-navigation";
+import type { NavSection } from "../../types/flow";
 
 interface HeaderNavStrings {
   categories: string;
@@ -80,14 +80,13 @@ export function HeaderNav({
 
     const stop = animateScrollLeft(list, list.scrollLeft + offset, 300);
 
-    // if the user touches the bar, let them take over
     list.addEventListener("touchstart", stop, { passive: true, once: true });
 
     return () => {
       stop();
       list.removeEventListener("touchstart", stop);
     };
-  }, [activeId]);
+  }, [activeId, direction]);
 
   return (
     <div dir={direction} className={`${styles.row} ${className ?? ""}`}>

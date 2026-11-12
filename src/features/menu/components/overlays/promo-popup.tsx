@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dialog, Modal, ModalOverlay } from "react-aria-components";
-import type { Popup } from "../../types/menu-models";
+import type { Popup } from "../../types/menu";
 import { MenuButton } from "../ui/menu-button";
 
 interface Props {

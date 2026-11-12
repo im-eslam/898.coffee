@@ -1,6 +1,6 @@
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
-import type { Category } from "../../types/menu-models";
+import type { Category } from "../../types/menu";
 import { BottomSheet } from "./bottom-sheet";
 
 interface CategorySheetStrings {

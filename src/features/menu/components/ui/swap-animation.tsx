@@ -38,7 +38,12 @@ export function SwapAnimation({
     .join(" ");
 
   return (
-    <span key={key} className={animationClassName}>
+    <span
+      key={key}
+      className={animationClassName}
+      onAnimationEnd={() => setChanged(false)}
+    >
+      {" "}
       {children}
     </span>
   );

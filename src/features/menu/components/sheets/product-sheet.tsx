@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
-import type { Product, ProductRef } from "../../types/menu-models";
+import type { Product, ProductRef } from "../../types/menu";
+import { resolveImageUrl } from "../../util/image";
 import { getProductPrice, getProductTotal } from "../../util/pricing";
 import { BaseOptions } from "./base-options";
 import { Badge } from "../ui/badge";
@@ -88,7 +89,7 @@ export function ProductSheet({
         <SwapAnimation value={product.id} block>
           <div className={styles.hero}>
             <Img
-              image={product.image}
+              src={resolveImageUrl(product.image, "full")}
               alt={name}
               className={`${styles.heroImage} ${inStock ? "" : styles.grayscale}`}
             />
@@ -185,7 +186,7 @@ function OftenOrderedCard({
     <div className={cardStyles.root}>
       <div className={cardStyles.frame}>
         <Img
-          image={product.image}
+          src={resolveImageUrl(product.image, "thumb")}
           className={`${cardStyles.image} ${
             inStock ? "" : cardStyles.grayscale
           }`}

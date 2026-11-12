@@ -1,5 +1,5 @@
 import type { Localized } from "@/shared/i18n";
-import type { Availability, BadgeKind } from "../types/menu-models";
+import type { Availability, BadgeKind } from "../types/menu";
 
 export interface RawAddOn {
   name: Localized<string>;

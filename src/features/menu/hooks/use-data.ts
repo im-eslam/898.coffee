@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { reportError } from "@/shared/logging";
 import { fetchMenu, getMenuError } from "../api/menu";
 import { MenuParser } from "../api/menu-parser";
-import type { Menu } from "../types/menu-models";
+import type { Menu } from "../types/menu";
 
 export type MenuState =
   | { status: "loading" }
@@ -24,7 +24,6 @@ function loadMenu(): Promise<Menu> {
           feature: "menu",
           operation: "load",
         });
-
         throw cause;
       })
       .finally(() => {
@@ -56,9 +55,7 @@ export function useData(): MenuResult {
       })
       .catch((cause: unknown) => {
         if (!isActive) return;
-
         const error = getMenuError(cause);
-
         setState({
           status: "error",
           isNetworkError: error === "network" || error === "timeout",

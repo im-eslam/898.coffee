@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { SetStateAction } from "react";
 import type { Locale } from "@/shared/i18n";
-import type { Pairing } from "../../types/menu-models";
+import type { Pairing } from "../../types/menu";
+import { resolveImageUrl } from "../../util/image";
 import { getPairingTotal, isPairingAvailable } from "../../util/pricing";
 import { BaseOptions } from "./base-options";
 import { Badge } from "../ui/badge";
@@ -100,7 +101,7 @@ export function PairingSheet({
           {pairing.items.map((product) => (
             <Img
               key={product.id}
-              image={product.image}
+              src={resolveImageUrl(product.image, "full")}
               alt={product.name[locale]}
               className={`${styles.picture} ${
                 product.availability === "out_of_stock" ? styles.grayscale : ""

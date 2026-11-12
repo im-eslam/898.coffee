@@ -8,7 +8,7 @@ import type {
   PriceOption,
   Product,
   ProductRef,
-} from "../types/menu-models";
+} from "../types/menu";
 import type {
   RawAddOn,
   RawCategory,

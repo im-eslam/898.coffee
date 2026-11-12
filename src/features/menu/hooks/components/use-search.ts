@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import type { Locale } from "@/shared/i18n";
-import type { Category, Menu, Pairing, Product } from "../../types/menu-models";
+import type { Category, Menu, Pairing, Product } from "../../types/menu";
 
 export interface SearchResults {
   categories: Category[];

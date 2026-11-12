@@ -32,7 +32,7 @@ export const config = {
       },
       pairings: {
         id: "pairings",
-        label: "توليفاتنا",
+        label: "ثنائياتنا",
       },
     },
   },

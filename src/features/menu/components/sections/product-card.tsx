@@ -1,6 +1,7 @@
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
-import type { Product } from "../../types/menu-models";
+import type { Product } from "../../types/menu";
+import { resolveImageUrl } from "../../util/image";
 import { Badge } from "../ui/badge";
 import { Chevron } from "../ui/chevron";
 import { Img } from "../ui/img";
@@ -43,7 +44,7 @@ export function ProductCard({
   return (
     <div className={styles.root}>
       <Img
-        image={product.image}
+        src={resolveImageUrl(product.image, "thumb")}
         className={`${styles.image} ${inStock ? "" : styles.grayscale}`}
       />
 

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Icon } from "@/shared/icons";
 
 interface ImgProps {
-  image: string | null;
+  src: string | null;
   alt?: string;
   priority?: boolean;
   className?: string;
@@ -15,26 +16,24 @@ const styles = {
     "absolute inset-0 size-full object-cover transition-opacity duration-(--duration-interactive) ease-smooth motion-reduce:transition-none",
   shown: "opacity-100",
   hidden: "opacity-0",
+  placeholder: "absolute inset-0 flex items-center justify-center text-navy/20",
+  placeholderIcon: "size-10",
 } as const;
 
-export function Img({ image, alt = "", priority, className }: ImgProps) {
+export function Img({ src, alt = "", priority, className }: ImgProps) {
   const [state, setState] = useState<ImageState>("loading");
-  const [shownImage, setShownImage] = useState(image);
-  const imageSrc = image
-    ? `${import.meta.env.BASE_URL}${image.replace(/^\/+/, "")}`
-    : null;
+  const [shownSrc, setShownSrc] = useState(src);
 
-  if (shownImage !== image) {
-    setShownImage(image);
+  if (shownSrc !== src) {
+    setShownSrc(src);
     setState("loading");
   }
 
   return (
     <div className={`${styles.frame} ${className ?? ""}`}>
-      {image && state !== "broken" && (
+      {src && state !== "broken" ? (
         <img
-          key={imageSrc}
-          src={imageSrc ?? undefined}
+          src={src}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}
@@ -46,6 +45,10 @@ export function Img({ image, alt = "", priority, className }: ImgProps) {
             state === "loaded" ? styles.shown : styles.hidden
           }`}
         />
+      ) : (
+        <span className={styles.placeholder} aria-hidden="true">
+          <Icon name="cup" className={styles.placeholderIcon} />
+        </span>
       )}
     </div>
   );

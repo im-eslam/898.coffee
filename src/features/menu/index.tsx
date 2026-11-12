@@ -16,7 +16,7 @@ import { LoadingState } from "./components/states/loading-state";
 import { useData } from "./hooks/use-data";
 import { useMenu } from "./hooks/use-menu";
 import { strings } from "./strings";
-import type { Menu } from "./types/menu-models";
+import type { Menu } from "./types/menu";
 import { createMoneyFormatter } from "./util/pricing";
 import { getCategorySectionId } from "./util/section-ids";
 

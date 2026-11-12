@@ -151,7 +151,7 @@
         "en": "Hot Coffee",
         "ar": "قهوة ساخنة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p001",
           "name": {
@@ -162,7 +162,7 @@
             "en": "Concentrated, syrupy shot with a caramel crema and a clean, lingering finish.\n\nA measured dose of finely ground coffee is tamped into the portafilter and extracted under pressure into a pre-warmed cup. The shot is served on its own, with its natural crema intact.",
             "ar": "شوت مركّز بكريما دهبية وطعم نضيف بيفضل معاك.\n\nبتتطحن حبوب القهوة ناعم وتتضغط في البورتافلتر، وبعدها بتتستخلص تحت ضغط في فنجان متسخّن. بيتقدم الشوت لوحده مع طبقة الكريما الطبيعية."
           },
-          "image": "menu/products/hot-coffee-espresso.jpg",
+          "image": "hot-coffee-espresso.webp",
           "availability": "in_stock",
           "badge": "new",
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -204,7 +204,7 @@
             "en": "Bold espresso marked with a spoonful of silky milk foam.\n\nA fresh espresso shot is pulled into a small cup and marked with a spoonful of finely textured milk foam. The milk softens the surface without hiding the coffee’s bold character.",
             "ar": "إسبريسو قوي بملعقة رغوة لبن حرير فوقه.\n\nبيتعمل شوت إسبريسو طازة، وفوقه معلقة من رغوة اللبن الناعمة. الرغوة بتطرّي طعم القهوة من غير ما تخفي قوته."
           },
-          "image": "menu/products/hot-coffee-macchiato.jpg",
+          "image": "hot-coffee-macchiato.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -246,7 +246,7 @@
             "en": "Rich espresso lengthened with hot water for a smooth, clean cup.\n\nFresh espresso is extracted first, then lengthened with hot water to the preferred strength. It is served without milk so the coffee’s aroma and clean finish remain clear.",
             "ar": "إسبريسو غني متخفف بمية سخنة، كوباية ناعمة ونضيفة.\n\nبنستخلص شوت إسبريسو طازة، وبعدها بنضيف له مية سخنة لحد القوة المناسبة. بيتقدم من غير لبن عشان نكهة القهوة تفضل واضحة."
           },
-          "image": "menu/products/hot-coffee-americano.jpg",
+          "image": "hot-coffee-americano.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -275,7 +275,7 @@
             "en": "Frothy, golden Nescafé whipped until creamy and served piping hot.\n\nInstant coffee granules are dissolved in hot water and whisked until a light, creamy foam forms. The drink is served hot, with sweetness or milk added only if requested.",
             "ar": "نسكافيه مضروب ورغوته كتير وبيتقدم سخن ومظبوط.\n\nبتدوب حبيبات النسكافيه في مية سخنة وبتتضرب لحد ما تتكون رغوة خفيفة وكريمية. بيتقدم سخن، والسكر أو اللبن حسب الطلب."
           },
-          "image": "menu/products/hot-coffee-nescafe.jpg",
+          "image": "hot-coffee-nescafe.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -304,7 +304,7 @@
             "en": "Velvety steamed milk poured over smooth, mellow espresso.\n\nEspresso is poured into a cup and combined with steamed milk. A thin layer of fine milk foam finishes the drink while keeping the coffee smooth and balanced.",
             "ar": "لبن مبخّر حرير على إسبريسو سلس وهادي.\n\nبنحضر شوت إسبريسو ونضيف له لبن مبخّر. طبقة رفيعة من رغوة اللبن الناعمة بتكمل المشروب وتخليه متوازن."
           },
-          "image": "menu/products/hot-coffee-latte.jpg",
+          "image": "hot-coffee-latte.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -333,7 +333,7 @@
             "en": "Espresso, steamed milk and a thick, cloud-like foam in perfect balance.\n\nA shot of espresso is combined with steamed milk and a generous cap of airy milk foam. The three layers are balanced to give the cup its classic coffee-forward taste.",
             "ar": "إسبريسو ولبن مبخّر ورغوة تخينة زي السحاب بنسب مظبوطة.\n\nشوت إسبريسو بيتخلط مع لبن مبخّر وفوقه طبقة سخية من الرغوة الهوائية. التوازن بين القهوة واللبن والرغوة هو سر الكابتشينو الكلاسيك."
           },
-          "image": "menu/products/hot-coffee-cappuccino.jpg",
+          "image": "hot-coffee-cappuccino.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -375,7 +375,7 @@
             "en": "Espresso and dark chocolate melted into steamed milk - dessert in a cup.\n\nEspresso is blended with chocolate sauce before steamed milk is added. The cup is finished with a light chocolate accent for a rich coffee-and-cocoa flavour.",
             "ar": "إسبريسو وشوكولاتة داكنة دايبين في لبن سخن، حلو في كوباية.\n\nبنمزج الإسبريسو مع صوص الشوكولاتة، وبعدها بنضيف اللبن المبخّر. لمسة شوكولاتة أخيرة بتكمل طعم القهوة الغني."
           },
-          "image": "menu/products/hot-coffee-mocha.jpg",
+          "image": "hot-coffee-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -417,7 +417,7 @@
             "en": "Smooth espresso folded into sweet, creamy white chocolate and steamed milk.\n\nEspresso is combined with melted white-chocolate sauce and steamed milk. The ingredients are stirred until smooth, then finished with a soft layer of milk foam.",
             "ar": "إسبريسو ناعم مع وايت شوكليت كريمي ولبن مبخّر.\n\nبنمزج الإسبريسو مع صوص الوايت شوكليت واللبن المبخّر لحد ما الخليط يبقى ناعم. بيتقدم بطبقة خفيفة من رغوة اللبن."
           },
-          "image": "menu/products/hot-coffee-white-mocha.jpg",
+          "image": "hot-coffee-white-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -459,7 +459,7 @@
             "en": "Vanilla-kissed steamed milk, bold espresso and a buttery caramel drizzle.\n\nVanilla-flavoured milk is steamed and poured with a fresh espresso shot. A caramel drizzle is added on top for a buttery finish.",
             "ar": "لبن مبخّر بلمسة فانيليا وإسبريسو قوي وكراميل بالزبدة على الوش.\n\nبنضيف شوت إسبريسو للبن المبخّر بنكهة الفانيليا. وعلى الوش بنرسم طبقة من صوص الكراميل الغني."
           },
-          "image": "menu/products/hot-coffee-caramel-macchiato.jpg",
+          "image": "hot-coffee-caramel-macchiato.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -488,7 +488,7 @@
             "en": "Double espresso under a thin layer of micro-foam - strong, silky, smooth.\n\nA double espresso is extracted into a cup and topped with steamed milk textured into fine, glossy micro-foam. The milk is integrated rather than layered, keeping the finish strong and silky.",
             "ar": "دبل إسبريسو تحت طبقة رغوة رفيعة، قوي وحرير.\n\nبنستخلص دبل إسبريسو ونضيف له لبن مبخّر برغوة دقيقة ولامعة. اللبن بيمتزج مع القهوة من غير طبقات تقيلة عشان يفضل الطعم قوي وناعم."
           },
-          "image": "menu/products/hot-coffee-flat-white.jpg",
+          "image": "hot-coffee-flat-white.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -517,7 +517,7 @@
             "en": "Espresso and steamed milk sweetened with luscious condensed milk.\n\nEspresso is mixed with steamed milk and sweetened condensed milk. The condensed milk gives the drink its signature rounded sweetness and creamy body.",
             "ar": "إسبريسو ولبن مبخّر متحلّي بلبن مكثّف غني.\n\nبنخلط الإسبريسو مع اللبن المبخّر واللبن المكثف المحلّى. اللبن المكثف بيدي المشروب قوام كريمي وحلاوة مميزة."
           },
-          "image": "menu/products/hot-coffee-spanish-latte.jpg",
+          "image": "hot-coffee-spanish-latte.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -546,7 +546,7 @@
             "en": "Equal parts espresso and warm milk - short, balanced and punchy.\n\nA fresh espresso shot is combined with an equal amount of warm, lightly textured milk. The small drink is served without a thick foam cap so the coffee and milk stay in balance.",
             "ar": "إسبريسو ولبن سخن بالتساوي، صغير ومتوازن وقوي.\n\nبنمزج شوت إسبريسو مع كمية مساوية تقريباً من اللبن الدافي الخفيف. بيتقدم في فنجان صغير من غير طبقة رغوة سميكة."
           },
-          "image": "menu/products/hot-coffee-cortado.jpg",
+          "image": "hot-coffee-cortado.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -573,7 +573,7 @@
         "en": "Iced Coffee",
         "ar": "قهوة مثلجة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p013",
           "name": {
@@ -584,7 +584,7 @@
             "en": "Espresso poured over ice and cold water - crisp, bold and refreshing.\n\nEspresso is poured over fresh ice and topped with cold water. It is stirred briefly and served immediately for a crisp, clean coffee taste.",
             "ar": "إسبريسو على تلج ومية ساقعة، منعش وقوي.\n\nبنصب الإسبريسو الطازة على التلج ونكمله بمية ساقعة. بيتقلب تقليبة خفيفة ويتقدم فوراً بطعم قهوة صافي ومنعش."
           },
-          "image": "menu/products/cold-coffee-iced-americano.jpg",
+          "image": "cold-coffee-iced-americano.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -613,7 +613,7 @@
             "en": "Cold milk and ice crowned with a bold espresso float.\n\nCold milk is poured over ice and topped with a fresh espresso shot. The coffee is left visibly layered or gently stirred before serving.",
             "ar": "لبن ساقع وتلج وفوقهم شوت إسبريسو قوي.\n\nبنصب اللبن الساقع على التلج، وبعدها بنضيف شوت إسبريسو فوقه. ممكن يتقدم بطبقاته أو يتقلب برفق قبل التقديم."
           },
-          "image": "menu/products/cold-coffee-iced-macchiato.jpg",
+          "image": "cold-coffee-iced-macchiato.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -642,7 +642,7 @@
             "en": "Smooth espresso stretched over cold milk and ice.\n\nA fresh espresso shot is poured over ice, then topped with chilled milk. The drink is stirred to combine the coffee and milk just before serving.",
             "ar": "إسبريسو سلس على لبن ساقع وتلج.\n\nبنصب شوت الإسبريسو على التلج ونكمله بلبن ساقع. بيتقلب قبل التقديم عشان القهوة واللبن يمتزجوا."
           },
-          "image": "menu/products/cold-coffee-iced-latte.jpg",
+          "image": "cold-coffee-iced-latte.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -671,7 +671,7 @@
             "en": "Short, strong and chilled: espresso balanced with cold milk.\n\nEspresso is poured over ice and balanced with a similar measure of cold milk. It is served short and lightly stirred for a concentrated, chilled finish.",
             "ar": "إسبريسو ولبن ساقع بتوازن، صغير وقوي ومنعش.\n\nبنصب الإسبريسو على التلج ونوازنه بكمية قريبة منه من اللبن الساقع. بيتقدم قصير ومركز مع تقليبة خفيفة."
           },
-          "image": "menu/products/cold-coffee-iced-cortado.jpg",
+          "image": "cold-coffee-iced-cortado.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -700,7 +700,7 @@
             "en": "Rich dark chocolate whisked into ice-cold milk.\n\nChocolate sauce or cocoa is blended into cold milk until fully dissolved. The mixture is poured over ice and finished with a smooth chocolate taste.",
             "ar": "شوكولاتة داكنة غنية متخفوقة في لبن ساقع.\n\nبندوب صوص الشوكولاتة أو الكاكاو في اللبن الساقع لحد ما يبقى ناعم. بيتصب الخليط على التلج بطعم شوكولاتة غني."
           },
-          "image": "menu/products/cold-coffee-iced-chocolate.jpg",
+          "image": "cold-coffee-iced-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -729,7 +729,7 @@
             "en": "Espresso, cold milk and airy foam over ice.\n\nEspresso is combined with chilled milk and poured over ice. A light milk foam is added on top to give the cold drink a cappuccino-style finish.",
             "ar": "إسبريسو ولبن ساقع ورغوة خفيفة على تلج.\n\nبنمزج الإسبريسو مع اللبن الساقع ونصبه على التلج. بنضيف رغوة لبن خفيفة على الوش عشان ياخد لمسة كابتشينو مثلجة."
           },
-          "image": "menu/products/cold-coffee-iced-cappuccino.jpg",
+          "image": "cold-coffee-iced-cappuccino.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -758,7 +758,7 @@
             "en": "Espresso and dark chocolate over milk and ice, finished with a velvety swirl.\n\nEspresso and chocolate sauce are stirred together, then poured over cold milk and ice. A soft cream finish rounds out the chocolate flavour.",
             "ar": "إسبريسو وشوكولاتة داكنة على لبن وتلج بلمسة كريمة ناعمة.\n\nبنقلب الإسبريسو مع صوص الشوكولاتة، وبعدها بنضيف اللبن الساقع والتلج. لمسة كريمة ناعمة بتكمل الطعم."
           },
-          "image": "menu/products/cold-coffee-iced-mocha.jpg",
+          "image": "cold-coffee-iced-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -787,7 +787,7 @@
             "en": "Sweet white chocolate melted into chilled espresso and cold milk.\n\nWhite-chocolate sauce is blended with espresso until smooth, then combined with chilled milk. The drink is poured over ice for a creamy, sweet finish.",
             "ar": "وايت شوكليت دايب في إسبريسو ولبن ساقع، حلو وناعم.\n\nبنمزج صوص الوايت شوكليت مع الإسبريسو لحد ما يدوب، وبعدها نضيف اللبن الساقع. بيتقدم على التلج بقوام كريمي وحلاوة واضحة."
           },
-          "image": "menu/products/cold-coffee-iced-white-mocha.jpg",
+          "image": "cold-coffee-iced-white-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -816,7 +816,7 @@
             "en": "Smooth espresso stretched over ice, layered with rich, buttery caramel.\n\nCold milk is poured over ice with a touch of vanilla flavour, then topped with espresso. Caramel sauce is drizzled over the finished layers.",
             "ar": "إسبريسو سلس على التلج مع طبقات من الكراميل الغني.\n\nبنصب اللبن الساقع بنكهة فانيليا على التلج، ونضيف شوت الإسبريسو فوقه. بنزين الوش بخطوط من صوص الكراميل."
           },
-          "image": "menu/products/cold-coffee-iced-caramel-macchiato.jpg",
+          "image": "cold-coffee-iced-caramel-macchiato.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -845,7 +845,7 @@
             "en": "Espresso and cold milk swirled with creamy sweetened condensed milk.\n\nEspresso is combined with chilled milk and sweetened condensed milk. The mixture is poured over ice and stirred until creamy and evenly blended.",
             "ar": "إسبريسو ولبن ساقع مع لبن مكثّف كريمي حلو.\n\nبنمزج الإسبريسو مع اللبن الساقع واللبن المكثف المحلّى. بيتصب على التلج ويتقلب لحد ما يبقى كريمي ومتجانس."
           },
-          "image": "menu/products/cold-coffee-iced-spanish-latte.jpg",
+          "image": "cold-coffee-iced-spanish-latte.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -874,7 +874,7 @@
             "en": "Our house signature: espresso, velvety milk and a secret sweet finish.\n\nA fresh espresso shot is combined with chilled milk and the café’s proprietary 898 sweet finish. The house recipe is served over ice; its signature flavour blend is intentionally kept in-house.",
             "ar": "مشروب البيت المميز: إسبريسو ولبن حرير ولمسة حلوة سرّية.\n\nبنمزج شوت إسبريسو مع اللبن الساقع ولمسة 898 الحلوة الخاصة بالكافيه. بيتقدم على التلج، وتفاصيل الخلطة المميزة سر من أسرار البيت."
           },
-          "image": "menu/products/cold-coffee-special-898.jpg",
+          "image": "cold-coffee-special-898.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -901,7 +901,7 @@
         "en": "Frappé",
         "ar": "فرابيه"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p030",
           "name": {
@@ -912,7 +912,7 @@
             "en": "Icy blended espresso, bold, frosty and lightly sweet.\n\nEspresso or concentrated coffee is combined with milk, ice and a little sweetness in a blender. It is blended until frosty and smooth, then served immediately.",
             "ar": "إسبريسو متخلوط بالتلج، قوي وساقع وحلاوته خفيفة.\n\nبنمزج الإسبريسو أو القهوة المركزة مع اللبن والتلج ولمسة حلاوة في الخلاط. بنضرب الخليط لحد ما يبقى ساقع وناعم وكثيف."
           },
-          "image": "menu/products/frappe-espresso.jpg",
+          "image": "frappe-espresso.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -941,7 +941,7 @@
             "en": "Icy blended coffee frappé swirled with buttery caramel, topped with cream.\n\nCoffee, chilled milk, ice and caramel sauce are blended until thick and frosty. A little extra caramel is used as a finishing swirl.",
             "ar": "فرابيه قهوة ساقع ومتخلوط مع كراميل بالزبدة وكريمة فوقه.\n\nبنضرب القهوة مع اللبن الساقع والتلج وصوص الكراميل في الخلاط لحد ما القوام يبقى كثيف ومثلج. بنضيف لمسة كراميل على الوش."
           },
-          "image": "menu/products/frappe-caramel.jpg",
+          "image": "frappe-caramel.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -970,7 +970,7 @@
             "en": "Icy blended coffee frappé swirled with espresso and dark chocolate, topped with cream.\n\nCoffee is blended with chilled milk, ice and dark-chocolate sauce until smooth. The frappé is served cold with a chocolate finish.",
             "ar": "فرابيه قهوة ساقع ومتخلوط مع إسبريسو وشوكولاتة داكنة وكريمة فوقه.\n\nبنخلط القهوة مع اللبن الساقع والتلج وصوص الشوكولاتة الداكنة لحد ما يبقى ناعم. بيتقدم الفرابيه بلمسة شوكولاتة."
           },
-          "image": "menu/products/frappe-mocha.jpg",
+          "image": "frappe-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -999,7 +999,7 @@
             "en": "Icy blended coffee frappé swirled with espresso and white chocolate, topped with cream.\n\nCoffee, chilled milk, ice and white-chocolate sauce are blended into a smooth frozen drink. A white-chocolate finish completes the creamy flavour.",
             "ar": "فرابيه قهوة ساقع ومتخلوط مع إسبريسو ووايت شوكليت وكريمة فوقه.\n\nبنضرب القهوة مع اللبن الساقع والتلج وصوص الوايت شوكليت لحد ما الخليط يبقى ناعم ومثلج. لمسة وايت شوكليت بتكمل الطعم الكريمي."
           },
-          "image": "menu/products/frappe-white-mocha.jpg",
+          "image": "frappe-white-mocha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -1028,7 +1028,7 @@
             "en": "Our signature frappé: thick, creamy, frosty and unapologetically indulgent.\n\nCoffee is blended with milk, ice and the café’s proprietary 898 frappé base until thick and frosty. The house finishing touch is kept as part of the signature recipe.",
             "ar": "فرابيه البيت المميز: تقيل وكريمي وساقع ومدلّع.\n\nبنمزج القهوة مع اللبن والتلج وقاعدة 898 الخاصة بالفرابيه لحد ما القوام يبقى كثيف ومثلج. اللمسة النهائية من وصفة البيت المميزة."
           },
-          "image": "menu/products/frappe-898.jpg",
+          "image": "frappe-898.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a01", "a15", "a16", "a17", "a02", "a03"],
@@ -1055,7 +1055,7 @@
         "en": "Specialty Coffee",
         "ar": "القهوة المختصة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p024",
           "name": {
@@ -1066,7 +1066,7 @@
             "en": "Hand-poured filter coffee, bright and clean with delicate fruity notes.\n\nFreshly ground coffee is placed in a paper filter, rinsed, and brewed with hot water poured slowly in controlled circles. The brewed coffee is served black to highlight its aroma and natural tasting notes.",
             "ar": "قهوة فلتر بتتصب بإيد الباريستا، نضيفة وفيها نوتات فواكه خفيفة.\n\nبنحط القهوة المطحونة الطازة في فلتر ورقي ونشطفه، وبعدها نصب المية السخنة تدريجياً بحركة دائرية. القهوة بتتقدم سادة عشان نكهتها الطبيعية تبان."
           },
-          "image": "menu/products/speciality-coffee-hot-v60.jpg",
+          "image": "speciality-coffee-hot-v60.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1095,7 +1095,7 @@
             "en": "The same hand-poured V60, chilled over ice for a crisp, aromatic sip.\n\nFreshly ground coffee is brewed by hand through a V60 paper filter with hot water. The brew is served over ice so it chills quickly while retaining its clean, aromatic profile.",
             "ar": "نفس الـV60 على التلج، ساقعة ومنعشة وريحتها حلوة.\n\nبنحضر القهوة المطحونة الطازة يدويّاً باستخدام فلتر V60 ومية سخنة. بنقدمها على التلج عشان تبرد بسرعة وتحتفظ بريحتها وطعمها النضيف."
           },
-          "image": "menu/products/speciality-coffee-iced-v60.jpg",
+          "image": "speciality-coffee-iced-v60.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a11"],
@@ -1122,7 +1122,7 @@
         "en": "Turkish & French Coffee",
         "ar": "قهوة تركي وفرنساوي"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p026",
           "name": {
@@ -1133,7 +1133,7 @@
             "en": "Traditional Turkish coffee, slowly brewed with a thick, aromatic foam.\n\nFinely ground Turkish coffee and water are combined in a small cezve and heated slowly. The coffee is poured carefully into a cup with its traditional fine grounds and foam.",
             "ar": "قهوة تركي على أصولها، متحضرة على نار هادية ووشها كتير.\n\nبنخلط القهوة التركي المطحونة ناعم مع المية في كنكة صغيرة ونسخنها على نار هادية. بنصبها بهدوء في الفنجان مع الوش والرواسب التقليدية."
           },
-          "image": "menu/products/regular-coffee-turkish.jpg",
+          "image": "regular-coffee-turkish.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1162,7 +1162,7 @@
             "en": "Turkish coffee perfumed with warming spices.\n\nFinely ground Turkish coffee, water and the café’s warming spice blend are stirred together in a cezve. The mixture is heated gently and poured once the foam rises.",
             "ar": "قهوة تركي بريحة التوابل الدافية.\n\nبنخلط القهوة التركي المطحونة ناعم مع المية وخلطة التوابل الدافية الخاصة بالكافيه في كنكة. بنسخنها بهدوء لحد ما الوش يطلع، وبعدها نقدمها."
           },
-          "image": "menu/products/regular-coffee-turkish.jpg",
+          "image": "regular-coffee-turkish.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1191,7 +1191,7 @@
             "en": "Full-bodied, creamy French-style coffee, rich and comforting.\n\nFrench-style ground coffee is brewed with milk for a rounded, creamy cup. It is heated gently and served hot once the coffee flavour has infused the milk.",
             "ar": "قهوة فرنساوي تقيلة وكريمي، غنية ومريّحة.\n\nبنحضر القهوة الفرنساوي مع اللبن عشان تطلع غنية وكريمية. بنسخنها على نار هادية لحد ما نكهة القهوة تمتزج باللبن."
           },
-          "image": "menu/products/regular-coffee-french.jpg",
+          "image": "regular-coffee-french.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a04"],
@@ -1220,7 +1220,7 @@
             "en": "Creamy French coffee with a sweet flavour twist.\n\nFrench-style coffee is prepared with milk, then finished with a measured portion of flavoured syrup. The cup is stirred until the flavour is evenly distributed.",
             "ar": "قهوة فرنساوي كريمي بنكهة حلوة مميزة.\n\nبنحضر القهوة الفرنساوي باللبن، وبعدها نضيف كمية مظبوطة من السيرب بالنكهة المختارة. بنقلبها لحد ما النكهة تتوزع في الكوباية."
           },
-          "image": "menu/products/regular-coffee-french.jpg",
+          "image": "regular-coffee-french.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a04", "a06"],
@@ -1247,7 +1247,7 @@
         "en": "Iced Matcha",
         "ar": "ماتشا مثلجة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p035",
           "name": {
@@ -1258,7 +1258,7 @@
             "en": "Earthy, vivid green matcha whisked with cold milk over ice.\n\nMatcha powder is sifted and whisked with a little water until smooth, then combined with cold milk. The drink is poured over ice and stirred for an even green-tea flavour.",
             "ar": "ماتشا خضراء ترابية متخفوقة مع لبن ساقع على تلج.\n\nبننخل الماتشا ونخفقها مع شوية مية لحد ما تبقى ناعمة، وبعدها نمزجها مع اللبن الساقع. بتتقدم على التلج وتتقلب كويس."
           },
-          "image": "menu/products/iced-matcha-classic.jpg",
+          "image": "iced-matcha-classic.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1287,7 +1287,7 @@
             "en": "Earthy matcha shaken with cold milk over ice, layered with sweet-tart mixed berries.\n\nMatcha is whisked smooth and mixed with chilled milk, then layered with a mixed-berry purée or fruit sauce. It is served over ice so the earthy tea meets a sweet-tart berry finish.",
             "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها توت مشكّل حلو وحامض.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص التوت المشكل. بتتقدم على التلج بمذاق حلو وحامض."
           },
-          "image": "menu/products/iced-matcha-berry.jpg",
+          "image": "iced-matcha-berry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1316,7 +1316,7 @@
             "en": "Earthy matcha shaken with cold milk over ice, layered with ripe, golden mango.\n\nMatcha is whisked with a little water and blended with cold milk. Mango purée or mango flavour is added before the drink is served over ice.",
             "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها مانجو ناضجة ومنعشة.\n\nبنخفق الماتشا مع شوية مية ونمزجها باللبن الساقع. بنضيف بيوريه أو نكهة المانجو قبل ما تتقدم على التلج."
           },
-          "image": "menu/products/iced-matcha-mango.jpg",
+          "image": "iced-matcha-mango.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1345,7 +1345,7 @@
             "en": "Earthy matcha shaken with cold milk over ice, layered with juicy strawberries.\n\nMatcha is whisked until smooth, combined with chilled milk and layered with strawberry purée or fruit sauce. The drink is served over ice for a bright fruit-and-tea balance.",
             "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها فراولة طازجة وعصيرية.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص الفراولة. بتتقدم على التلج بتوازن بين الشاي والفاكهة."
           },
-          "image": "menu/products/iced-matcha-strawberry.jpg",
+          "image": "iced-matcha-strawberry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1374,7 +1374,7 @@
             "en": "Matcha and cold milk sweetened with creamy condensed milk.\n\nMatcha is whisked smooth and mixed with cold milk and sweetened condensed milk. It is poured over ice for a creamy Spanish-style matcha.",
             "ar": "ماتشا ولبن ساقع متحلّيين بلبن مكثّف كريمي.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونمزجها مع اللبن الساقع واللبن المكثف المحلّى. بتتقدم على التلج بقوام كريمي."
           },
-          "image": "menu/products/iced-matcha-spanish.jpg",
+          "image": "iced-matcha-spanish.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1401,7 +1401,7 @@
         "en": "Mixed Soda & Boba",
         "ar": "ميكس صودا وبوبا"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p074",
           "name": {
@@ -1412,7 +1412,7 @@
             "en": "Lime, mint and sparkling soda - crisp, zingy and cold.\n\nFresh mint leaves and lime are lightly muddled to release their oils and juice. Sugar, soda water and ice are added, then the drink is stirred and served cold.",
             "ar": "ليمون ونعناع وصودا فوّارة، منعش وحادق وساقع.\n\nبندعك ورق النعناع الطازة مع الليمون برفق عشان نطلع الزيوت والعصير. بنضيف السكر والصودا والتلج ونقلب المشروب قبل التقديم."
           },
-          "image": "menu/products/mixed-soda-boba-mojito-classic.jpg",
+          "image": "mixed-soda-boba-mojito-classic.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1441,7 +1441,7 @@
             "en": "Our mojito with a fruity flavour burst, fizzy and cooling.\n\nMint and lime are lightly muddled, then combined with the selected fruit flavour and ice. Soda water is added last to keep the drink lively and sparkling.",
             "ar": "الموهيتو بنكهة فواكه، فوّار ومنعش.\n\nبندعك النعناع والليمون برفق، وبعدها نضيف نكهة الفاكهة المختارة والتلج. بنصب الصودا في الآخر عشان تفضل الفقاقيع منعشة."
           },
-          "image": "menu/products/mixed-soda-boba-mojito-flavour.jpg",
+          "image": "mixed-soda-boba-mojito-flavour.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1470,7 +1470,7 @@
             "en": "Orange Miranda fizzed up with mint and ice.\n\nChilled Mirinda orange soda is poured over ice. It is served immediately for a bright, fizzy orange-citrus drink.",
             "ar": "ميراندا برتقال متفوّرة مع نعناع وتلج.\n\nبنصب ميرندا البرتقال الساقعة على التلج. بيتقدم فوراً كمشروب برتقالي غازي ومنعش."
           },
-          "image": "menu/products/mixed-soda-boba-mirinda-soda.jpg",
+          "image": "mixed-soda-boba-mirinda-soda.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1499,7 +1499,7 @@
             "en": "Mojito freshness with a Red Bull kick.\n\nFresh mint and lime are lightly muddled with ice. Red Bull is poured over the mixture and stirred gently for a crisp, sparkling mojito-style drink.",
             "ar": "انتعاش الموهيتو مع شحنة ريد بول.\n\nبندعك النعناع الطازة والليمون برفق مع التلج. بنضيف ريد بول ونقلب بهدوء لمشروب موهيتو غازي ومنعش."
           },
-          "image": "menu/products/mixed-soda-boba-mojito-redbull.jpg",
+          "image": "mixed-soda-boba-mojito-redbull.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1528,7 +1528,7 @@
             "en": "Cold milk tea with soft, chewy tapioca pearls.\n\nTea is brewed and chilled, then poured over cooked tapioca pearls with the café’s chosen sweetness. The pearls settle at the bottom for a chewy sip with every mouthful.",
             "ar": "شاي بلبن ساقع مع لؤلؤ بوبا طري.\n\nبنحضر الشاي ونسيبه يبرد، وبعدها نصبه على لآلئ التابيوكا المطبوخة مع درجة الحلاوة المناسبة. اللآلئ بتستقر في قاع الكوباية عشان كل رشفة يبقى فيها بوبا."
           },
-          "image": "menu/products/mixed-soda-boba-classic-boba-tea.jpg",
+          "image": "mixed-soda-boba-classic-boba-tea.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1557,7 +1557,7 @@
             "en": "Spanish matcha over chewy boba pearls.\n\nMatcha is whisked smooth and combined with cold milk and condensed milk. Cooked tapioca pearls are added to the cup before the matcha mixture is poured over ice.",
             "ar": "ماتشا سبانيش على لؤلؤ بوبا.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونمزجها باللبن الساقع واللبن المكثف. بنحط لآلئ التابيوكا المطبوخة في الكوباية ونضيف خليط الماتشا على التلج."
           },
-          "image": "menu/products/mixed-soda-boba-classic-boba-spanish-matcha.jpg",
+          "image": "mixed-soda-boba-classic-boba-spanish-matcha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1586,7 +1586,7 @@
             "en": "Sparkling soda with popping, chewy boba.\n\nA chilled sparkling soda base is poured over ice and combined with chewy boba pearls. The drink is served immediately so the pearls keep their texture.",
             "ar": "صودا فوّارة مع بوبا.\n\nبنصب قاعدة صودا ساقعة على التلج ونضيف لآلئ البوبا المطاطية. بيتقدم فوراً عشان اللآلئ تحتفظ بقوامها."
           },
-          "image": "menu/products/mixed-soda-boba-classic-boba-soda.jpg",
+          "image": "mixed-soda-boba-classic-boba-soda.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1615,7 +1615,7 @@
             "en": "Iced coffee and milk with sweet, chewy tapioca pearls.\n\nCoffee is chilled and combined with milk, then poured over ice and cooked tapioca pearls. The drink brings together a smooth coffee base and chewy boba.",
             "ar": "قهوة ساقعة بلبن مع لؤلؤ بوبا حلو.\n\nبنبرّد القهوة ونمزجها باللبن، وبعدها نصبها على التلج ولآلئ التابيوكا المطبوخة. المشروب بيجمع بين نعومة القهوة وقوام البوبا."
           },
-          "image": "menu/products/mixed-soda-boba-classic-boba-coffee.jpg",
+          "image": "mixed-soda-boba-classic-boba-coffee.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12"],
@@ -1642,7 +1642,7 @@
         "en": "Hot Drinks",
         "ar": "مشروبات ساخنة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p040",
           "name": {
@@ -1653,7 +1653,7 @@
             "en": "Strong, fragrant black tea brewed the traditional way.\n\nBlack tea leaves are steeped in freshly boiled water until the desired strength and aroma develop. The tea is strained and served hot.",
             "ar": "شاي أسود تقيل وريحته حلوة متحضر على أصوله.\n\nبننقع ورق الشاي الأسود في مية مغلية لحد ما يوصل للقوة والريحة المطلوبة. بنصفيه ونتقدمه سخن."
           },
-          "image": "menu/products/hot-drinks-tea.jpg",
+          "image": "hot-drinks-tea.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1682,7 +1682,7 @@
             "en": "A warm, comforting house cup, soothing from the first sip.\n\nThe café’s Harps herbal blend is steeped in freshly boiled water to release its aroma. It is strained and served hot as a simple, soothing infusion.",
             "ar": "كوباية دافية من البيت، مريّحة من أول شفطة.\n\nبننقع خلطة هارس العشبية الخاصة في مية مغلية لحد ما تطلع ريحتها. بنصفيها ونتقدمها سخنة كمشروب أعشاب مريح."
           },
-          "image": "menu/products/hot-drinks-herbs.jpg",
+          "image": "hot-drinks-herbs.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1711,7 +1711,7 @@
             "en": "Fragrant tea infused with a sweet flavour of your choice.\n\nBlack tea is brewed in hot water and infused with the selected flavour. The tea is strained and served hot so the tea and flavour remain balanced.",
             "ar": "شاي ريحته حلوة بنكهة تختارها.\n\nبنحضر الشاي الأسود في مية سخنة ونضيف له النكهة المختارة. بنصفيه ونتقدمه سخن مع توازن بين طعم الشاي والنكهة."
           },
-          "image": "menu/products/hot-drinks-tea-flavor.jpg",
+          "image": "hot-drinks-tea-flavor.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a06"],
@@ -1740,7 +1740,7 @@
             "en": "Our richer, mixed take on Harps, warm and layered.\n\nA house blend of Harps herbs is steeped in freshly boiled water until fragrant. The infusion is strained and served hot as the mixed herbal version.",
             "ar": "نسخة هارس الغنية بالميكس، دافية ومتعددة النكهات.\n\nبننقع خلطة هارس ميكس العشبية في مية مغلية لحد ما تبقى عطرية. بنصفي المشروب ونتقدمه سخن كخلطة أعشاب متنوعة."
           },
-          "image": "menu/products/hot-drinks-herbs-mix.jpg",
+          "image": "hot-drinks-herbs-mix.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1769,7 +1769,7 @@
             "en": "Silky black tea simmered with creamy milk.\n\nBlack tea is brewed strongly, then combined with milk and gently heated until creamy. It is served hot with the tea flavour still present.",
             "ar": "شاي أسود حرير متسبّك مع لبن كريمي.\n\nبنحضر الشاي الأسود تقيل، وبعدها نضيف اللبن ونسخنه برفق لحد ما يبقى كريمي. بيتقدم سخن مع احتفاظه بطعم الشاي."
           },
-          "image": "menu/products/hot-drinks-milk-tea.jpg",
+          "image": "hot-drinks-milk-tea.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a06"],
@@ -1798,7 +1798,7 @@
             "en": "Warm, spiced apple cider - sweet, tangy and cosy.\n\nApple cider is warmed gently with a house selection of aromatic spices. It is served hot, allowing the sweet apple and warming spice notes to come through.",
             "ar": "سايدر تفاح سخن بتوابل، حلو وحادق ودافي.\n\nبنسخن سايدر التفاح بهدوء مع مجموعة توابل عطرية من اختيار البيت. بيتقدم سخن عشان يجمع بين حلاوة التفاح ودفا التوابل."
           },
-          "image": "menu/products/hot-drinks-cider.jpg",
+          "image": "hot-drinks-cider.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1827,7 +1827,7 @@
             "en": "Steamed milk melted with caramelised Lotus biscuit spread.\n\nMilk is heated and blended with caramelised Lotus biscuit spread until the spread melts smoothly into it. The drink is served hot with a biscuit-spice finish.",
             "ar": "لبن مبخّر مع كريمة اللوتس المكرمل الدايبة.\n\nبنسخن اللبن ونمزجه مع سبريد بسكويت لوتس لحد ما يدوب تماماً. بيتقدم سخن بلمسة بسكويت متكرمل."
           },
-          "image": "menu/products/hot-drinks-lotus.jpg",
+          "image": "hot-drinks-lotus.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a02", "a03", "a08", "a14"],
@@ -1856,7 +1856,7 @@
             "en": "Earthy matcha whisked into velvety steamed milk.\n\nMatcha powder is sifted and whisked with a small amount of warm water to remove lumps. Steamed milk is added gradually, creating a smooth, earthy hot matcha.",
             "ar": "ماتشا ترابية متخفوقة في لبن مبخّر حرير.\n\nبننخل الماتشا ونخفقها مع كمية صغيرة من المية الدافية عشان تختفي أي تكتلات. بنضيف اللبن المبخّر تدريجياً لحد ما يبقى المشروب ناعم."
           },
-          "image": "menu/products/hot-drinks-matcha.jpg",
+          "image": "hot-drinks-matcha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -1885,7 +1885,7 @@
             "en": "Thick, dark chocolate melted into steaming milk.\n\nChocolate or cocoa is whisked into hot milk until fully melted and smooth. The drink is heated gently and served with a rich chocolate finish.",
             "ar": "شوكولاتة داكنة تقيلة دايبة في لبن سخن.\n\nبنخفق الشوكولاتة أو الكاكاو في اللبن السخن لحد ما يدوب ويبقى ناعم. بنسخنه برفق ونتقدمه بطعم شوكولاتة غني."
           },
-          "image": "menu/products/hot-drinks-chocolate.jpg",
+          "image": "hot-drinks-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a04", "a07", "a08"],
@@ -1914,7 +1914,7 @@
             "en": "Our hot chocolate crowned with soft, melting marshmallows.\n\nChocolate is melted into hot milk and whisked until smooth. Marshmallows are placed on top just before serving so they soften into the warm drink.",
             "ar": "الهوت شوكلت بتاعنا وفوقه مارشميلو طري بيدوب.\n\nبندوب الشوكولاتة في اللبن السخن ونخفقها لحد ما تبقى ناعمة. بنحط المارشميلو على الوش قبل التقديم عشان يطرى مع السخونية."
           },
-          "image": "menu/products/hot-drinks-chocolate-marshmallow.jpg",
+          "image": "hot-drinks-chocolate-marshmallow.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a04", "a07", "a08"],
@@ -1941,7 +1941,7 @@
         "en": "Milkshake",
         "ar": "ميلك شيك"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p050",
           "name": {
@@ -1952,7 +1952,7 @@
             "en": "Thick, ice-cold milkshake blended with real vanilla ice cream.\n\nVanilla ice cream is blended with cold milk until thick and drinkable. The shake is poured chilled, with a light vanilla finish.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـآيس كريم فانيليا أصلي.\n\nبنضرب آيس كريم الفانيليا مع اللبن الساقع لحد ما القوام يبقى كثيف وسهل الشرب. بيتصب ساقع بلمسة فانيليا خفيفة."
           },
-          "image": "menu/products/milkshake-vanilla.jpg",
+          "image": "milkshake-vanilla.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -1981,7 +1981,7 @@
             "en": "Thick, ice-cold milkshake blended with dark, fudgy chocolate.\n\nChocolate ice cream or chocolate sauce is blended with cold milk until smooth and creamy. It is served cold with a rich cocoa flavour.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـشوكولاتة داكنة غنية.\n\nبنمزج آيس كريم الشوكولاتة أو صوص الشوكولاتة مع اللبن الساقع لحد ما يبقى كريمي وناعم. بيتقدم ساقع بطعم كاكاو غني."
           },
-          "image": "menu/products/milkshake-chocolate.jpg",
+          "image": "milkshake-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2010,7 +2010,7 @@
             "en": "Thick, ice-cold milkshake blended with crushed Oreo cookies.\n\nOreo biscuits are crushed and blended with vanilla ice cream and cold milk. A little cookie crumble can be used as a finishing touch.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـأوريو مجروش.\n\nبنكسر بسكويت أوريو ونضربه مع آيس كريم الفانيليا واللبن الساقع. ممكن نضيف فتافيت بسكويت على الوش."
           },
-          "image": "menu/products/milkshake-orio.jpg",
+          "image": "milkshake-orio.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2039,7 +2039,7 @@
             "en": "Thick, ice-cold milkshake blended with sweet-tart mixed berries.\n\nMixed berries are blended with ice cream and cold milk until smooth. The shake is served chilled with a sweet-tart berry flavour.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـتوت مشكّل حلو وحامض.\n\nبنضرب التوت المشكل مع الآيس كريم واللبن الساقع لحد ما الخليط يبقى ناعم. بيتقدم ساقع بطعم فاكهة حلو وحامض."
           },
-          "image": "menu/products/milkshake-berry.jpg",
+          "image": "milkshake-berry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2068,7 +2068,7 @@
             "en": "Thick, ice-cold milkshake blended with ripe, golden mango.\n\nRipe mango is blended with ice cream and cold milk until thick and creamy. The shake is served cold with a fresh mango finish.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـمانجو ناضجة ومنعشة.\n\nبنمزج المانجو الناضجة مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وكريمي. بيتقدم ساقع بلمسة مانجو طازة."
           },
-          "image": "menu/products/milkshake-mango.jpg",
+          "image": "milkshake-mango.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2097,7 +2097,7 @@
             "en": "Thick, ice-cold milkshake blended with juicy strawberries.\n\nStrawberries are blended with ice cream and cold milk until smooth. The finished shake is poured chilled with a bright strawberry taste.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـفراولة طازجة وعصيرية.\n\nبنضرب الفراولة مع الآيس كريم واللبن الساقع لحد ما الخليط يبقى ناعم. بيتصب ساقع بطعم فراولة واضح ومنعش."
           },
-          "image": "menu/products/milkshake-strawberry.jpg",
+          "image": "milkshake-strawberry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2126,7 +2126,7 @@
             "en": "Thick, ice-cold milkshake blended with caramelised Lotus biscuit spread.\n\nLotus biscuit spread is blended with ice cream and cold milk until creamy. A little biscuit crumb may be added on top for texture.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـكريمة اللوتس المكرمل.\n\nبنمزج سبريد لوتس مع الآيس كريم واللبن الساقع لحد ما يبقى كريمي. ممكن نزينه بفتافيت بسكويت لوتس."
           },
-          "image": "menu/products/milkshake-lotus.jpg",
+          "image": "milkshake-lotus.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2155,7 +2155,7 @@
             "en": "Thick, ice-cold milkshake blended with roasted pistachio cream.\n\nPistachio cream is blended with ice cream and cold milk until thick and smooth. The shake is finished with a pistachio accent.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـكريمة الفستق المحمص.\n\nبنضرب كريمة الفستق مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وناعم. بنختمه بلمسة فستق."
           },
-          "image": "menu/products/milkshake-pistachio.jpg",
+          "image": "milkshake-pistachio.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2184,7 +2184,7 @@
             "en": "Thick, ice-cold milkshake blended with Kinder chocolate and milky hazelnut.\n\nKinder chocolate is blended with ice cream and cold milk until the shake is smooth and creamy. A chocolate finish completes the flavour.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـشوكولاتة كيندر باللبن والبندق.\n\nبنمزج شوكولاتة كيندر مع الآيس كريم واللبن الساقع لحد ما الميلك شيك يبقى كريمي. لمسة شوكولاتة بتكمل الطعم."
           },
-          "image": "menu/products/milkshake-kinder.jpg",
+          "image": "milkshake-kinder.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2213,7 +2213,7 @@
             "en": "Thick, ice-cold milkshake blended with earthy green matcha.\n\nMatcha powder is whisked smooth, then blended with ice cream and cold milk. The shake is served chilled with a gentle earthy-green-tea finish.",
             "ar": "ميلك شيك تقيل وساقع متخلوط بـماتشا خضراء ترابية.\n\nبنخفق الماتشا لحد ما تبقى ناعمة، وبعدها نضربها مع الآيس كريم واللبن الساقع. بيتقدم ساقع بلمسة شاي أخضر مميزة."
           },
-          "image": "menu/products/milkshake-matcha.jpg",
+          "image": "milkshake-matcha.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09", "a18", "a12", "a03"],
@@ -2242,7 +2242,7 @@
             "en": "Our signature shake: thick, creamy and loaded with house-made indulgence.\n\nThe café’s 898 milkshake base is blended with ice cream and cold milk until thick and creamy. Its signature flavouring and finishing touch remain exclusive to the house recipe.",
             "ar": "ميلك شيك البيت المميز: تقيل وكريمي ومليان دلع.\n\nبنضرب قاعدة 898 الخاصة مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وكريمي. نكهة البيت واللمسة النهائية جزء من الوصفة السرية."
           },
-          "image": "menu/products/milkshake-898.jpg",
+          "image": "milkshake-898.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a08", "a10", "a13", "a14"],
@@ -2269,7 +2269,7 @@
         "en": "Smoothies & Fresh Juice",
         "ar": "سموذي وعصائر طازة"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p061",
           "name": {
@@ -2280,7 +2280,7 @@
             "en": "Blended ripe, golden mango with ice - thick, bright and refreshing.\n\nRipe mango is blended with ice and a chilled liquid base until smooth and pourable. The smoothie is served immediately to keep its fresh tropical flavour.",
             "ar": "سموذي مانجو ناضجة ومنعشة متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب المانجو الناضجة مع التلج وقاعدة سائلة ساقعة لحد ما القوام يبقى ناعم وسهل الشرب. بيتقدم فوراً عشان يحتفظ بطعم الفاكهة."
           },
-          "image": "menu/products/smoothie-mango.jpg",
+          "image": "smoothie-mango.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2309,7 +2309,7 @@
             "en": "Blended juicy strawberries with ice - thick, bright and refreshing.\n\nStrawberries are blended with ice and a chilled liquid base until smooth. The smoothie is served cold with a naturally sweet, lightly tangy finish.",
             "ar": "سموذي فراولة طازجة وعصيرية متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب الفراولة مع التلج وقاعدة سائلة ساقعة لحد ما الخليط يبقى ناعم. بيتقدم بارد بطعم حلو مع حموضة خفيفة."
           },
-          "image": "menu/products/smoothie-strawberry.jpg",
+          "image": "smoothie-strawberry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2338,7 +2338,7 @@
             "en": "Blended tangy kiwi with ice - thick, bright and refreshing.\n\nPeeled kiwi is blended with ice and a chilled liquid base until smooth. The drink is served cold to preserve its bright, tangy fruit character.",
             "ar": "سموذي كيوي حادق ومنعش متخلوط بالتلج، تقيل ومنعش.\n\nبنقشر الكيوي ونضربه مع التلج وقاعدة سائلة ساقعة لحد ما يبقى ناعم. بيتقدم ساقع عشان نكهته الحمضية تفضل واضحة."
           },
-          "image": "menu/products/smoothie-kiwi.jpg",
+          "image": "smoothie-kiwi.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2367,7 +2367,7 @@
             "en": "Blended zesty lemon with ice - thick, bright and refreshing.\n\nFresh lemon juice is blended with ice and a chilled liquid base. The smoothie is served cold with a lively citrus tang.",
             "ar": "سموذي ليمون منعش متخلوط بالتلج، تقيل ومنعش.\n\nبنمزج عصير الليمون الطازة مع التلج وقاعدة سائلة ساقعة. بيتقدم ساقع بطعم حمضيات منعش."
           },
-          "image": "menu/products/smoothie-lemon.jpg",
+          "image": "smoothie-lemon.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2396,7 +2396,7 @@
             "en": "Blended zesty lemon and cool mint with ice - thick, bright and refreshing.\n\nFresh lemon juice and mint are blended with ice and a chilled liquid base. The mint is mixed through the drink for a cooling citrus finish.",
             "ar": "سموذي ليمون ونعناع بارد متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب عصير الليمون الطازة مع النعناع والتلج وقاعدة سائلة ساقعة. النعناع بيمتزج في المشروب ويديله انتعاش واضح."
           },
-          "image": "menu/products/smoothie-lemon-mint.jpg",
+          "image": "smoothie-lemon-mint.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2425,7 +2425,7 @@
             "en": "Blended soft, sweet peach with ice - thick, bright and refreshing.\n\nPeach is blended with ice and a chilled liquid base until smooth. The finished smoothie is served cold with a soft, fragrant peach flavour.",
             "ar": "سموذي خوخ حلو وطري متخلوط بالتلج، تقيل ومنعش.\n\nبنمزج الخوخ مع التلج وقاعدة سائلة ساقعة لحد ما يبقى ناعم. بيتقدم ساقع بنكهة خوخ خفيفة وعطرية."
           },
-          "image": "menu/products/smoothie-peach.jpg",
+          "image": "smoothie-peach.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2454,7 +2454,7 @@
             "en": "Blended sweet-tart mixed berries with ice - thick, bright and refreshing.\n\nMixed berries are blended with ice and a chilled liquid base until smooth. The drink is served cold with a rounded sweet-and-tart berry profile.",
             "ar": "سموذي توت مشكّل حلو وحامض متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب التوت المشكل مع التلج وقاعدة سائلة ساقعة لحد ما يبقى ناعم. بيتقدم ساقع بطعم فاكهة متوازن بين الحلاوة والحموضة."
           },
-          "image": "menu/products/smoothie-berry.jpg",
+          "image": "smoothie-berry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2483,7 +2483,7 @@
             "en": "Blended ruby-red hibiscus with ice - thick, bright and refreshing.\n\nHibiscus infusion is chilled and blended with ice until refreshing. The smoothie is served cold with the floral, gently tart character of hibiscus.",
             "ar": "سموذي كركديه أحمر منعش متخلوط بالتلج، تقيل ومنعش.\n\nبنحضر منقوع الكركديه ونبرده، وبعدها نضربه مع التلج لحد ما يبقى منعش. بيتقدم ساقع بنكهة زهرية وحموضة خفيفة."
           },
-          "image": "menu/products/smoothie-hibiscus.jpg",
+          "image": "smoothie-hibiscus.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2512,7 +2512,7 @@
             "en": "A fruit-lover's blend of our best flavours, icy and vibrant.\n\nA selection of fruit flavours is blended together with ice and a chilled liquid base. The smoothie is served immediately as a balanced mixed-fruit drink.",
             "ar": "ميكس من أحلى الفواكه عندنا، ساقع ومنعش.\n\nبنمزج مجموعة من نكهات الفاكهة مع التلج وقاعدة سائلة ساقعة. بيتقدم فوراً كسموذي فواكه ميكس متوازن."
           },
-          "image": "menu/products/smoothie-mix.jpg",
+          "image": "smoothie-mix.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a09"],
@@ -2541,7 +2541,7 @@
             "en": "Freshly squeezed lemon, sharp, cold and thirst-quenching.\n\nFresh lemons are cut and pressed to extract their juice. The juice is served chilled, with sweetness adjusted to taste if requested.",
             "ar": "ليمون معصور طازة، حادق وساقع ويروي.\n\nبنقطع الليمون الطازة ونعصره لاستخراج العصير. بيتقدم ساقع، وممكن نضبط الحلاوة حسب الطلب."
           },
-          "image": "menu/products/juice-lemon.jpg",
+          "image": "juice-lemon.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2570,7 +2570,7 @@
             "en": "Fresh lemon blitzed with cool mint leaves.\n\nFresh lemon juice is combined with mint and cold water, then stirred or lightly blended. It is served chilled for a bright, cooling citrus drink.",
             "ar": "ليمون طازة مضروب مع نعناع بارد.\n\nبنمزج عصير الليمون الطازة مع النعناع والمية الساقعة، وبعدها نقلب أو نضرب الخليط ضربة خفيفة. بيتقدم ساقع ومنعش."
           },
-          "image": "menu/products/juice-lemon-mint.jpg",
+          "image": "juice-lemon-mint.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2599,7 +2599,7 @@
             "en": "Pure, sun-sweet orange juice squeezed to order.\n\nFresh oranges are squeezed to extract their juice. The juice is served chilled to preserve its natural citrus aroma and sweetness.",
             "ar": "برتقال حلو معصور على الطلب.\n\nبنعصر البرتقال الطازة لاستخراج العصير. بيتقدم ساقع عشان يحتفظ بريحة البرتقال وحلاوته الطبيعية."
           },
-          "image": "menu/products/juice-orange.jpg",
+          "image": "juice-orange.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2628,7 +2628,7 @@
             "en": "Thick, golden mango juice, naturally sweet.\n\nRipe mango flesh is blended and strained as needed to create a smooth fresh juice. It is served chilled with its natural tropical sweetness.",
             "ar": "عصير مانجو دهبي وتقيل وحلاوته طبيعية.\n\nبنضرب لب المانجو الناضجة، وممكن نصفيه حسب القوام المطلوب. بيتقدم ساقع بحلاوة المانجو الطبيعية."
           },
-          "image": "menu/products/juice-mango.jpg",
+          "image": "juice-mango.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2655,7 +2655,7 @@
         "en": "Soft Drinks",
         "ar": "مشروبات غازية"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p082",
           "name": {
@@ -2666,7 +2666,7 @@
             "en": "Chilled bottled water.\n\nSealed drinking water is served chilled or at room temperature according to preference. No additional ingredients are added.",
             "ar": "مياه معبأة ساقعة.\n\nبتتقدم مية شرب معبأة ومقفولة ساقعة أو بدرجة حرارة الغرفة حسب الرغبة. من غير أي إضافات."
           },
-          "image": "menu/products/soft-drinks-water.jpg",
+          "image": "soft-drinks-water.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2695,7 +2695,7 @@
             "en": "Ice-cold, fizzy cola.\n\nPepsi is served chilled straight from its bottle or can. Ice may be added when requested.",
             "ar": "كولا فوّارة وساقعة.\n\nبيبسي بيتقدم ساقع من العبوة أو الكان. ممكن نضيف تلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-pepsi.jpg",
+          "image": "soft-drinks-pepsi.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2724,7 +2724,7 @@
             "en": "Crisp lemon-lime fizz.\n\n7Up is served chilled straight from its bottle or can. Ice may be added when requested.",
             "ar": "فوران ليمون منعش.\n\nسفن أب بيتقدم ساقع من العبوة أو الكان. ممكن نضيف تلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-7up.jpg",
+          "image": "soft-drinks-7up.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2753,7 +2753,7 @@
             "en": "Bubbly, sweet orange soda.\n\nMirinda is served chilled straight from its bottle or can. Ice may be added when requested.",
             "ar": "صودا برتقال حلوة وفوّارة.\n\nميرندا بيتقدم ساقع من العبوة أو الكان. ممكن نضيف تلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-mirinda.jpg",
+          "image": "soft-drinks-mirinda.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2782,7 +2782,7 @@
             "en": "Bold, fizzy cola.\n\nV Cola is served chilled straight from its bottle or can. Ice may be added when requested.",
             "ar": "كولا فوّارة بطعم قوي.\n\nفي كولا بيتقدم ساقع من العبوة أو الكان. ممكن نضيف تلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-v-cola.jpg",
+          "image": "soft-drinks-v-cola.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2811,7 +2811,7 @@
             "en": "Citrusy, sparkling twist.\n\nTwist is served chilled straight from its bottle or can. Ice may be added when requested.",
             "ar": "صودا بنكهة حمضيات.\n\nتويست بيتقدم ساقع من العبوة أو الكان. ممكن نضيف تلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-twist.jpg",
+          "image": "soft-drinks-twist.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2840,7 +2840,7 @@
             "en": "The classic energy drink, served cold.\n\nRed Bull is served chilled straight from its can. It may be poured over ice when requested.",
             "ar": "مشروب الطاقة المعروف، ساقع.\n\nريد بول بيتقدم ساقع من العبوة. وممكن نصبه على التلج حسب الطلب."
           },
-          "image": "menu/products/soft-drinks-red-bull.jpg",
+          "image": "soft-drinks-red-bull.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a11"],
@@ -2867,7 +2867,7 @@
         "en": "Breakfast & Toast",
         "ar": "فطار وتوست"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p089",
           "name": {
@@ -2878,7 +2878,7 @@
             "en": "Buttery, flaky and golden, baked fresh.\n\nButter-rich croissant dough is laminated into delicate layers, shaped and proofed before baking. It is baked until puffed, flaky and evenly golden.",
             "ar": "كرواسون بالزبدة هش ودهبي ومخبوز طازة.\n\nبنفرد عجينة الكرواسون بالزبدة في طبقات رفيعة، ونشكلها ونسيبها تختمر قبل الخَبز. بتدخل الفرن لحد ما تنتفخ وتبقى هشة ودهبية."
           },
-          "image": "menu/products/breakfast-croissant-classic.jpg",
+          "image": "breakfast-croissant-classic.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2907,7 +2907,7 @@
             "en": "Flaky croissant filled with melted chocolate.\n\nCroissant dough is layered with butter, filled with chocolate and shaped before proofing. It is baked until the pastry is crisp and the chocolate is soft.",
             "ar": "كرواسون هش محشي شوكولاتة دايبة.\n\nبنحشي عجينة الكرواسون بالزبدة بالشوكولاتة ونشكلها ونسيبها تختمر. بتتخبز لحد ما العجينة تقرمش والشوكولاتة تطرى."
           },
-          "image": "menu/products/breakfast-croissant-chocolate.jpg",
+          "image": "breakfast-croissant-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a10"],
@@ -2936,7 +2936,7 @@
             "en": "Warm, flaky croissant stuffed with melty cheese.\n\nA laminated croissant is filled with cheese before baking. The pastry is baked until flaky and golden and the cheese is warm and melted.",
             "ar": "كرواسون سخن وهش محشي جبنة دايبة.\n\nبنحشي الكرواسون بالجبنة قبل الخَبز. بيدخل الفرن لحد ما العجينة تبقى هشة ودهبية والجبنة تسيح."
           },
-          "image": "menu/products/breakfast-croissant-cheese.jpg",
+          "image": "breakfast-croissant-cheese.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2965,7 +2965,7 @@
             "en": "Flaky croissant filled with roasted pistachio cream.\n\nButter-layered croissant dough is filled or finished with pistachio cream. It is baked until crisp and golden, then served with its nutty pistachio topping.",
             "ar": "كرواسون هش محشي كريمة فستق محمص.\n\nبنحشي عجينة الكرواسون الغنية بالزبدة بكريمة الفستق أو نزينها بيها. بتتخبز لحد ما تبقى مقرمشة ودهبية وتتقدم بلمسة فستق."
           },
-          "image": "menu/products/breakfast-croissant-pistachio.jpg",
+          "image": "breakfast-croissant-pistachio.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a10"],
@@ -2994,7 +2994,7 @@
             "en": "Our signature sweet croissant, loaded and decadent.\n\nA freshly baked, buttery croissant is finished with the café’s signature sweet 898 filling and topping. The precise house filling is kept as part of the signature preparation.",
             "ar": "كرواسون 898 الحلو المميز، مليان ومدلّع.\n\nبنجهز كرواسون بالزبدة ونضيف له حشوة وتغطية 898 الحلوة المميزة. تفاصيل الحشوة الخاصة من وصفة البيت."
           },
-          "image": "menu/products/breakfast-croissant-sweet-898.jpg",
+          "image": "breakfast-croissant-sweet-898.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a07", "a10"],
@@ -3023,7 +3023,7 @@
             "en": "Flaky croissant stuffed with a savoury Turkish-style mix.\n\nA flaky croissant is filled with a savoury Turkish-style mix and warmed until the pastry is crisp. It is served hot so the filling stays rich and fragrant.",
             "ar": "كرواسون هش محشي ميكس تركي مالح.\n\nبنحشي كرواسون هش بميكس تركي مالح ونسخنه لحد ما العجينة تبقى مقرمشة. بيتقدم سخن عشان الحشوة تفضل غنية وريحتها حلوة."
           },
-          "image": "menu/products/breakfast-croissant-mix-turkish.jpg",
+          "image": "breakfast-croissant-mix-turkish.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -3052,7 +3052,7 @@
             "en": "Golden grilled toast with melted roumi cheese.\n\nSlices of bread are filled with Roumi cheese and toasted until the exterior is crisp. The cheese softens inside, creating a warm, savoury toast.",
             "ar": "توست متحمّر بجبنة رومي دايبة.\n\nبنحط جبنة رومي بين شرائح العيش ونحمصها لحد ما الوش يبقى مقرمش. الجبنة بتسيح من جوه وبيتقدم التوست سخن."
           },
-          "image": "menu/products/breakfast-toast-roumi.jpg",
+          "image": "breakfast-toast-roumi.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -3081,7 +3081,7 @@
             "en": "Crisp toast with creamy, melty Kiri cheese.\n\nBread is spread or filled with Kiri cream cheese and toasted until warm and lightly crisp. It is served while the creamy cheese is soft.",
             "ar": "توست مقرمش بجبنة كيري كريمي.\n\nبندهن أو نحشي العيش بجبنة كيري الكريمية ونحمصه لحد ما يبقى دافي ومقرمش خفيف. بيتقدم والجبنة لسه طرية."
           },
-          "image": "menu/products/breakfast-toast-kiri.jpg",
+          "image": "breakfast-toast-kiri.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -3110,7 +3110,7 @@
             "en": "Grilled toast stuffed with a savoury Turkish-style mix.\n\nBread is filled with the café’s Turkish-style savoury mix and toasted until the outside turns golden. It is served hot for a crisp bite and a warm filling.",
             "ar": "توست متحمّر محشي ميكس تركي.\n\nبنحشي العيش بميكس تركي مالح من خلطة البيت ونحمصه لحد ما الوش يبقى دهبي. بيتقدم سخن بحشوة دافية."
           },
-          "image": "menu/products/breakfast-toast-turkish-mix.jpg",
+          "image": "breakfast-toast-turkish-mix.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -3137,7 +3137,7 @@
         "en": "Pancake & Waffle",
         "ar": "بان كيك ووافل"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p098",
           "name": {
@@ -3148,7 +3148,7 @@
             "en": "Fluffy golden pancakes drenched in silky hazelnut Nutella.\n\nPancake batter is poured onto a hot griddle and cooked until fluffy and golden on both sides. Nutella is spread over the warm pancakes so it melts into the surface.",
             "ar": "بان كيك هش ودهبي مغرّق في نوتيلا بالبندق.\n\nبنصب خليط البان كيك على صاج سخن ونستويه لحد ما ينفش ويبقى دهبي من الناحيتين. بندهن نوتيلا على الطبقات وهي دافية عشان تسيح."
           },
-          "image": "menu/products/pancake-nutella.jpg",
+          "image": "pancake-nutella.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3177,7 +3177,7 @@
             "en": "Fluffy golden pancakes drenched in creamy white chocolate.\n\nPancake batter is cooked on a hot griddle until soft inside and golden outside. White-chocolate sauce is poured over the warm stack before serving.",
             "ar": "بان كيك هش ودهبي مغرّق في وايت شوكليت كريمي.\n\nبنستوي خليط البان كيك على صاج سخن لحد ما يبقى طري من جوه ودهبي من بره. بنصب صوص الوايت شوكليت على الطبقات الدافية."
           },
-          "image": "menu/products/pancake-white-chocolate.jpg",
+          "image": "pancake-white-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3206,7 +3206,7 @@
             "en": "Fluffy golden pancakes drenched in roasted pistachio cream.\n\nPancake batter is cooked into fluffy golden rounds on a hot griddle. Pistachio cream is spread over the stack and finished with a nutty pistachio accent.",
             "ar": "بان كيك هش ودهبي مغرّق في كريمة الفستق المحمص.\n\nبنستوي خليط البان كيك على شكل دوائر هشة ودهبية. بندهن كريمة الفستق على الطبقات ونكملها بلمسة فستق."
           },
-          "image": "menu/products/pancake-pistachio.jpg",
+          "image": "pancake-pistachio.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3235,7 +3235,7 @@
             "en": "Fluffy golden pancakes drenched in caramelised Lotus biscuit spread.\n\nPancake batter is griddled until fluffy and golden. Lotus biscuit spread is warmed and drizzled over the stack for a caramelised biscuit finish.",
             "ar": "بان كيك هش ودهبي مغرّق في كريمة اللوتس المكرمل.\n\nبنستوي خليط البان كيك على الصاج لحد ما يبقى هش ودهبي. بندفي سبريد لوتس ونوزعه فوق الطبقات بطعم البسكويت المتكرمل."
           },
-          "image": "menu/products/pancake-lotus.jpg",
+          "image": "pancake-lotus.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3264,7 +3264,7 @@
             "en": "Fluffy golden pancakes drenched in Kinder chocolate and milky hazelnut.\n\nPancake batter is cooked on a hot griddle until golden and tender. Kinder chocolate topping is added while warm so it softens over the pancakes.",
             "ar": "بان كيك هش ودهبي مغرّق في شوكولاتة كيندر باللبن والبندق.\n\nبنستوي خليط البان كيك على صاج سخن لحد ما يبقى دهبي وطري. بنضيف طبقة كيندر وهو دافي عشان الشوكولاتة تسيح."
           },
-          "image": "menu/products/pancake-kinder.jpg",
+          "image": "pancake-kinder.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3293,7 +3293,7 @@
             "en": "Fluffy golden pancakes drenched in a mix of all our best spreads.\n\nFresh pancake batter is cooked into a stack of soft, golden pancakes. A combination of the café’s selected sweet toppings is added for a mixed finish.",
             "ar": "بان كيك هش ودهبي مغرّق في ميكس من أحلى الصوصات.\n\nبنحضر خليط البان كيك ونستويه لحد ما يطلع طري ودهبي. بنضيف تشكيلة من التوبينجز الحلوة المختارة من الكافيه."
           },
-          "image": "menu/products/pancake-mix.jpg",
+          "image": "pancake-mix.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3322,7 +3322,7 @@
             "en": "Crisp-edged golden waffle loaded with silky hazelnut Nutella.\n\nWaffle batter is poured into a preheated waffle iron and cooked until the outside is crisp and the inside stays tender. Nutella is spread over the warm waffle.",
             "ar": "وافل مقرمش ودهبي مليان نوتيلا بالبندق.\n\nبنصب خليط الوافل في ماكينة سخنة ونستويه لحد ما يبقى مقرمش من بره وطري من جوه. بندهن نوتيلا على الوافل وهو دافي."
           },
-          "image": "menu/products/waffle-nutella.jpg",
+          "image": "waffle-nutella.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3351,7 +3351,7 @@
             "en": "Crisp-edged golden waffle loaded with creamy white chocolate.\n\nWaffle batter is cooked in a hot waffle iron until golden with crisp edges. White-chocolate sauce is drizzled over the waffle before serving.",
             "ar": "وافل مقرمش ودهبي مليان وايت شوكليت كريمي.\n\nبنستوي خليط الوافل في ماكينة سخنة لحد ما يبقى دهبي وحوافه مقرمشة. بنزينه بصوص الوايت شوكليت قبل التقديم."
           },
-          "image": "menu/products/waffle-white-chocolate.jpg",
+          "image": "waffle-white-chocolate.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3380,7 +3380,7 @@
             "en": "Crisp-edged golden waffle loaded with roasted pistachio cream.\n\nWaffle batter is cooked until crisp outside and soft inside. Pistachio cream is spread over the warm waffle for a rich nutty finish.",
             "ar": "وافل مقرمش ودهبي مليان كريمة الفستق المحمص.\n\nبنستوي خليط الوافل لحد ما يبقى مقرمش من بره وطري من جوه. بندهن كريمة الفستق على الوافل الدافي."
           },
-          "image": "menu/products/waffle-pistachio.jpg",
+          "image": "waffle-pistachio.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3409,7 +3409,7 @@
             "en": "Crisp-edged golden waffle loaded with caramelised Lotus biscuit spread.\n\nWaffle batter is cooked in a preheated waffle iron until golden and crisp. Lotus biscuit spread is added on top and allowed to soften over the warm waffle.",
             "ar": "وافل مقرمش ودهبي مليان كريمة اللوتس المكرمل.\n\nبنستوي خليط الوافل في ماكينة مسخنة مسبقاً لحد ما يبقى دهبي ومقرمش. بنضيف سبريد لوتس فوقه عشان يطرى على الوافل السخن."
           },
-          "image": "menu/products/waffle-lotus.jpg",
+          "image": "waffle-lotus.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3438,7 +3438,7 @@
             "en": "Crisp-edged golden waffle loaded with Kinder chocolate and milky hazelnut.\n\nWaffle batter is cooked until the grid turns golden and crisp. Kinder chocolate topping is added over the hot waffle for a creamy chocolate finish.",
             "ar": "وافل مقرمش ودهبي مليان شوكولاتة كيندر باللبن والبندق.\n\nبنستوي خليط الوافل لحد ما الشبكة تبقى دهبية ومقرمشة. بنضيف كيندر على الوش عشان يدي طعم شوكولاتة كريمي."
           },
-          "image": "menu/products/waffle-kinder.jpg",
+          "image": "waffle-kinder.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3467,7 +3467,7 @@
             "en": "Crisp-edged golden waffle loaded with a mix of all our best spreads.\n\nA freshly cooked waffle is topped with a selection of the café’s favourite sweet toppings. The combination is assembled over the warm, crisp waffle for a signature mixed finish.",
             "ar": "وافل مقرمش ودهبي مليان ميكس من أحلى الصوصات.\n\nبنجهز وافل طازة ونضيف فوقه تشكيلة من أشهر التوبينجز الحلوة عندنا. بنركب الميكس على الوافل وهو دافي عشان يجمع القرمشة والطعم الغني."
           },
-          "image": "menu/products/waffle-mix.jpg",
+          "image": "waffle-mix.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3494,7 +3494,7 @@
         "en": "Desserts",
         "ar": "حلويات"
       },
-      "menu/products": [
+      "products": [
         {
           "id": "p110",
           "name": {
@@ -3505,7 +3505,7 @@
             "en": "Creamy, silky cheesecake on a buttery biscuit base.\n\nA buttery biscuit base is pressed into a cake tin and covered with a smooth cream-cheese filling. The cheesecake is baked or chilled according to the house method, then set before slicing.",
             "ar": "تشيز كيك كريمي وحرير على قاعدة بسكوت بالزبدة.\n\nبنضغط قاعدة من البسكويت بالزبدة في القالب ونغطيها بخليط ناعم من الجبنة الكريمية. بنخبز التشيز كيك أو نبرده حسب طريقة البيت، وبعدها نسيبه يتماسك قبل التقطيع."
           },
-          "image": "menu/products/dessert-classic-cheesecake.jpg",
+          "image": "dessert-classic-cheesecake.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3534,7 +3534,7 @@
             "en": "Our creamy cheesecake with a sweet fruity or chocolatey topping.\n\nA biscuit base is topped with the café’s classic cheesecake filling and a selected flavour layer. The cheesecake is chilled until set and sliced to order.",
             "ar": "التشيز كيك الكريمي بتوبينج حلو بنكهة.\n\nبنحط خليط التشيز كيك الكلاسيك فوق قاعدة بسكويت ونضيف طبقة بالنكهة المختارة. بنبردها لحد ما تتماسك ونقطعها وقت الطلب."
           },
-          "image": "menu/products/dessert-flavored-cheesecake.jpg",
+          "image": "dessert-flavored-cheesecake.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3563,7 +3563,7 @@
             "en": "Soft crimson sponge layered with tangy cream cheese frosting.\n\nRed velvet sponge is baked until soft, then layered with a smooth cream-cheese-style frosting. The cake is finished with red velvet crumbs for a classic look.",
             "ar": "كيك أحمر طري بطبقات كريمة جبنة.\n\nبنخبز طبقات كيك ريد فيلفت لحد ما تبقى طرية، وبعدها نحشيها بكريمة ناعمة بطعم الجبنة الكريمية. بنزينها بفتات الريد فيلفت."
           },
-          "image": "menu/products/dessert-red-velvet.jpg",
+          "image": "dessert-red-velvet.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3592,7 +3592,7 @@
             "en": "Dense, fudgy chocolate brownie with a crackly top.\n\nButter, sugar, chocolate and cocoa are combined with flour and baked into a dense, fudgy slab. The brownies are cooled before being cut into rich squares.",
             "ar": "براونيز شوكولاتة تقيلة وغنية وسطحها مقرمش.\n\nبنخلط الزبدة والسكر والشوكولاتة والكاكاو مع الدقيق ونخبز الخليط لحد ما يبقى كثيف وفادجي. بنسيب البراونيز تبرد قبل ما نقطعها مربعات."
           },
-          "image": "menu/products/dessert-brownies.jpg",
+          "image": "dessert-brownies.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3621,7 +3621,7 @@
             "en": "Moist, deep chocolate cake layered with silky ganache.\n\nChocolate sponge is baked, cooled and layered with chocolate cream or frosting. The cake is finished with a smooth chocolate coating before slicing.",
             "ar": "كيكة شوكولاتة طرية بطبقات جاناش حرير.\n\nبنخبز كيك شوكولاتة ونسيبه يبرد، وبعدها نعمل طبقات من الكيك وكريمة أو فروستنج الشوكولاتة. بنغطيه بلمسة شوكولاتة قبل التقطيع."
           },
-          "image": "menu/products/dessert-chocolate-cake.jpg",
+          "image": "dessert-chocolate-cake.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3650,7 +3650,7 @@
             "en": "Warm chocolate cake with a molten centre that flows on the first cut.\n\nChocolate cake batter is portioned around a soft chocolate centre and baked just until the outer cake sets. It is served warm so the molten middle flows when cut.",
             "ar": "كيكة شوكولاتة سخنة وقلبها سايل أول ما تقطعها.\n\nبنقسم خليط كيك الشوكولاتة حوالين قلب شوكولاتة طري ونخبزه لحد ما الطبقة الخارجية تمسك. بيتقدم دافي عشان القلب السايح ينزل مع أول قطمة."
           },
-          "image": "menu/products/dessert-volcano-cake.jpg",
+          "image": "dessert-volcano-cake.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3679,7 +3679,7 @@
             "en": "Creamy Kinder chocolate and hazelnut dessert.\n\nA creamy dessert base is layered or topped with Kinder chocolate pieces and sauce. It is chilled or set before serving so the chocolate finish holds its shape.",
             "ar": "حلو كيندر بالشوكولاتة والبندق الكريمي.\n\nبنجهز قاعدة حلو كريمية ونضيف طبقات أو قطع من شوكولاتة كيندر والصوص. بنسيب الحلو يبرد أو يتماسك قبل التقديم."
           },
-          "image": "menu/products/dessert-kinder.jpg",
+          "image": "dessert-kinder.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3708,7 +3708,7 @@
             "en": "Coffee-soaked sponge, mascarpone cream and a dusting of cocoa.\n\nCoffee is brewed and used to lightly soak layers of ladyfingers or sponge. The layers are stacked with mascarpone-style cream, chilled, then dusted with cocoa.",
             "ar": "إسفنج مبلول بالقهوة وكريمة ماسكاربوني وكاكاو فوقها.\n\nبنحضر القهوة ونستخدمها لترطيب طبقات البسكويت أو الكيك الإسفنجي. بنرص الطبقات مع كريمة ماسكاربوني، ونبردها ونرش كاكاو على الوش."
           },
-          "image": "menu/products/dessert-tiramisu.jpg",
+          "image": "dessert-tiramisu.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3737,7 +3737,7 @@
             "en": "Burnt Basque cheesecake, caramelised outside and creamy inside.\n\nA rich mixture of cream cheese, eggs, sugar and cream is baked at high heat until the top becomes deeply caramelised. The centre is left soft and creamy, then the cake is rested before slicing.",
             "ar": "تشيز كيك محروق من برة وكريمي من جوه.\n\nبنخلط الجبنة الكريمية مع البيض والسكر والكريمة، وبعدها نخبزها على حرارة عالية لحد ما الوش يتكرمل. بنسيب القلب طري وكريمي ونريح الكيكة قبل التقطيع."
           },
-          "image": "menu/products/dessert-san-sebastian.jpg",
+          "image": "dessert-san-sebastian.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3766,7 +3766,7 @@
             "en": "Warm chocolate cake with a rich, flowing centre.\n\nChocolate cake batter is baked in a portion that keeps the centre soft and flowing. It is served warm so the molten chocolate interior contrasts with the set outer cake.",
             "ar": "كيكة شوكولاتة سخنة بقلب سايل غني.\n\nبنخبز خليط كيك الشوكولاتة في قوالب صغيرة مع الحفاظ على القلب طري وسايح. بيتقدم دافي عشان قلب الشوكولاتة يقابل طبقة الكيك المتماسكة."
           },
-          "image": "menu/products/dessert-molten-cake.jpg",
+          "image": "dessert-molten-cake.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],
@@ -3795,7 +3795,7 @@
             "en": "Giant, gooey cookie slice with a crisp edge and soft centre.\n\nCookie dough is mixed, shaped and baked until the edges turn golden while the centre remains tender. The baked cookie is cooled slightly and cut into a generous slice.",
             "ar": "سلايس كوكيز كبير وطري وحوافه مقرمشة.\n\nبنخلط عجينة الكوكيز ونشكلها ونخبزها لحد ما الأطراف تبقى دهبية والقلب يفضل طري. بنسيبها تهدى شوية وبعدها نقدمها كسلايس كبيرة."
           },
-          "image": "menu/products/dessert-cookie-slice.jpg",
+          "image": "dessert-cookie-slice.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": ["a10", "a19", "a20"],

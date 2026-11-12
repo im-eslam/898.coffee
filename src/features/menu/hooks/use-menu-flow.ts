@@ -1,15 +1,7 @@
 import { useCallback, useState } from "react";
-import type { Pairing, Product } from "../types/menu-models";
+import type { Pairing, Product } from "../types/menu";
+import type { SheetSelection, MenuPanel } from "../types/flow";
 
-type MenuPanel = "search" | "categories" | "product" | "pairing" | null;
-
-export interface SheetSelection<T> {
-  item: T;
-  key: number;
-}
-
-// The selection outlives the open panel so the sheet can finish its exit
-// animation; the key changes on every open so sheet state starts fresh.
 export function useMenuFlow() {
   const [panel, setPanel] = useState<MenuPanel>(null);
   const [productSheet, setProductSheet] =

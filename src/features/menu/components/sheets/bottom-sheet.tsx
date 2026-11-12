@@ -47,7 +47,7 @@ export function BottomSheet({
         if (!open) onClose();
       }}
       shouldScaleBackground={false}
-      handleOnly
+      handleOnly={true}
       repositionInputs={false}
     >
       <VaulDrawer.Portal>

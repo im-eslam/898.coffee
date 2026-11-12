@@ -121,7 +121,7 @@ export function Price({
     <span className={`${styles.discount} ${className ?? ""}`}>
       <span className={`${styles.number} ${sizes[size]}`}>{content}</span>
       {regular != null && value < regular && (
-        <bdi className={styles.struck}>{Math.round(regular)}</bdi>
+        <bdi className={styles.struck}>{formatMoney(regular)}</bdi>
       )}
     </span>
   );

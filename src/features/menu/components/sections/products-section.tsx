@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Locale } from "@/shared/i18n";
-import type { Category, Product } from "../../types/menu-models";
+import type { Category, Product } from "../../types/menu";
 import { getCategorySectionId } from "../../util/section-ids";
 import { Heading } from "../ui/heading";
 import { MenuButton } from "../ui/menu-button";

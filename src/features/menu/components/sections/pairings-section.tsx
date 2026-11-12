@@ -1,6 +1,6 @@
 import type { Locale } from "@/shared/i18n";
 import { useCarousel } from "../../hooks/components/use-carousel";
-import type { Pairing } from "../../types/menu-models";
+import type { Pairing } from "../../types/menu";
 import { Heading } from "../ui/heading";
 import { PairingCard } from "./pairing-card";
 

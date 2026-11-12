@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-
-export interface NavSection {
-  id: string;
-  label: string;
-}
+import type { NavSection } from "../types/flow";
 
 const DEFAULT_HEADER_HEIGHT = 104;
 const SECTION_GAP = 16;
@@ -27,9 +23,10 @@ export function useMenuNavigation(sections: NavSection[]) {
   useEffect(() => {
     function updateActiveSection() {
       if (pinnedRef.current) return;
+
       const elements = sections
         .map((section) => document.getElementById(section.id))
-        .filter((element): element is HTMLElement => element !== null);
+        .filter((el): el is HTMLElement => el !== null);
 
       if (elements.length === 0) {
         setActiveId("");
@@ -39,9 +36,9 @@ export function useMenuNavigation(sections: NavSection[]) {
       const offset = getOffset();
       let nextId = elements[0]?.id ?? "";
 
-      for (const element of elements) {
-        if (element.getBoundingClientRect().top <= offset + 2) {
-          nextId = element.id;
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top <= offset + 2) {
+          nextId = el.id;
         }
       }
 
@@ -57,22 +54,8 @@ export function useMenuNavigation(sections: NavSection[]) {
       setActiveId((current) => (current === nextId ? current : nextId));
     }
 
-    function release(event: Event) {
-      if (headerRef.current?.contains(event.target as Node)) return;
-      pinnedRef.current = false;
-      if (pinTimeoutRef.current !== null) {
-        window.clearTimeout(pinTimeoutRef.current);
-        pinTimeoutRef.current = null;
-      }
-    }
-
-    window.addEventListener("wheel", release, { passive: true });
-    window.addEventListener("touchmove", release, { passive: true });
-    window.addEventListener("keydown", release);
-
     function scheduleUpdate() {
       if (frameRef.current !== null) return;
-
       frameRef.current = requestAnimationFrame(() => {
         frameRef.current = null;
         updateActiveSection();
@@ -90,10 +73,7 @@ export function useMenuNavigation(sections: NavSection[]) {
 
     updateActiveSection();
 
-    window.addEventListener("scroll", scheduleUpdate, {
-      passive: true,
-    });
-
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     window.addEventListener("scrollend", handleScrollEnd);
 
@@ -105,18 +85,14 @@ export function useMenuNavigation(sections: NavSection[]) {
         cancelAnimationFrame(frameRef.current);
         frameRef.current = null;
       }
+      if (pinTimeoutRef.current !== null) {
+        window.clearTimeout(pinTimeoutRef.current);
+        pinTimeoutRef.current = null;
+      }
       observer.disconnect();
-
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
       window.removeEventListener("scrollend", handleScrollEnd);
-
-      window.removeEventListener("wheel", release);
-      window.removeEventListener("touchmove", release);
-      window.removeEventListener("keydown", release);
-      if (pinTimeoutRef.current !== null) {
-        window.clearTimeout(pinTimeoutRef.current);
-      }
     };
   }, [sections, getOffset]);
 
@@ -146,10 +122,7 @@ export function useMenuNavigation(sections: NavSection[]) {
         pinTimeoutRef.current = null;
       }, 2000);
 
-      window.scrollTo({
-        top,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top, behavior: "smooth" });
     },
     [getOffset]
   );

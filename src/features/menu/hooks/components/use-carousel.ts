@@ -6,10 +6,11 @@ interface UseCarouselOptions {
 }
 
 const ITEM_SELECTOR = "[data-carousel-card]";
-const EDGE_TOLERANCE = 2;
+const EDGE_TOLERANCE = 5;
 
 export function useCarousel({ contentKey, direction }: UseCarouselOptions) {
   const railRef = useRef<HTMLDivElement>(null);
+  const rafIdRef = useRef<number>(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -17,102 +18,79 @@ export function useCarousel({ contentKey, direction }: UseCarouselOptions) {
     if (!rail) return;
 
     const items = Array.from(rail.querySelectorAll<HTMLElement>(ITEM_SELECTOR));
+    if (items.length === 0) return;
 
-    const lifecycle = {
-      disposed: false,
-      frame: 0,
-    };
+    const visibleItems = new Map<number, number>();
 
-    function measure() {
-      if (lifecycle.disposed) return;
+    const updateIndex = () => {
+      if (!rail) return;
 
-      let nextIndex = 0;
+      const scrollRight =
+        rail.scrollWidth - rail.clientWidth - Math.abs(rail.scrollLeft);
+      const isAtEnd = scrollRight <= EDGE_TOLERANCE;
 
-      if (
-        items.length > 1 &&
-        rail!.scrollWidth > rail!.clientWidth + EDGE_TOLERANCE
-      ) {
-        const railBox = rail!.getBoundingClientRect();
-        const computedStyle = getComputedStyle(rail!);
-        const paddingLeft = parseFloat(computedStyle.paddingLeft) || 0;
-        const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
+      if (isAtEnd) {
+        setActiveIndex(items.length - 1);
+        return;
+      }
 
-        const viewportLeft = railBox.left + rail!.clientLeft;
-        const viewportRight = viewportLeft + rail!.clientWidth;
+      let maxRatio = 0;
+      let bestIndex = 0;
 
-        const start =
-          direction === "rtl"
-            ? viewportRight - paddingRight
-            : viewportLeft + paddingLeft;
-
-        let nearestDistance = Number.POSITIVE_INFINITY;
-
-        items.forEach((item, index) => {
-          const itemBox = item.getBoundingClientRect();
-
-          const itemStart = direction === "rtl" ? itemBox.right : itemBox.left;
-
-          const distance = Math.abs(itemStart - start);
-
-          if (distance < nearestDistance) {
-            nearestDistance = distance;
-            nextIndex = index;
-          }
-        });
-
-        const lastItem = items[items.length - 1];
-
-        if (lastItem) {
-          const lastBox = lastItem.getBoundingClientRect();
-
-          const atEnd =
-            direction === "rtl"
-              ? lastBox.left >= viewportLeft + paddingLeft - EDGE_TOLERANCE
-              : lastBox.right <= viewportRight - paddingRight + EDGE_TOLERANCE;
-
-          if (atEnd) {
-            nextIndex = items.length - 1;
-          }
+      for (const [index, ratio] of visibleItems.entries()) {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          bestIndex = index;
+        } else if (ratio === maxRatio && ratio > 0) {
+          if (index < bestIndex) bestIndex = index;
         }
       }
 
       setActiveIndex((current) =>
-        current === nextIndex ? current : nextIndex
+        current === bestIndex ? current : bestIndex
       );
-    }
+    };
 
-    function scheduleMeasure() {
-      if (lifecycle.disposed || lifecycle.frame) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let changed = false;
 
-      lifecycle.frame = requestAnimationFrame(() => {
-        lifecycle.frame = 0;
-        measure();
-      });
-    }
+        entries.forEach((entry) => {
+          const index = items.indexOf(entry.target as HTMLElement);
+          if (index !== -1) {
+            if (entry.isIntersecting) {
+              visibleItems.set(index, entry.intersectionRatio);
+            } else {
+              visibleItems.delete(index);
+            }
+            changed = true;
+          }
+        });
 
-    const observer = new ResizeObserver(scheduleMeasure);
+        if (changed) {
+          cancelAnimationFrame(rafIdRef.current);
+          rafIdRef.current = requestAnimationFrame(updateIndex);
+        }
+      },
+      {
+        root: rail,
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      }
+    );
 
-    observer.observe(rail);
     items.forEach((item) => observer.observe(item));
 
-    rail.addEventListener("scroll", scheduleMeasure, {
-      passive: true,
-    });
+    const handleScroll = () => {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = requestAnimationFrame(updateIndex);
+    };
 
-    window.addEventListener("resize", scheduleMeasure);
-
-    void document.fonts.ready.then(scheduleMeasure);
-
-    scheduleMeasure();
+    rail.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      lifecycle.disposed = true;
-
-      cancelAnimationFrame(lifecycle.frame);
       observer.disconnect();
-
-      rail.removeEventListener("scroll", scheduleMeasure);
-      window.removeEventListener("resize", scheduleMeasure);
+      rail.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafIdRef.current);
     };
   }, [contentKey, direction]);
 

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { ReactNode } from "react";
 import {
   Button,
@@ -11,7 +12,13 @@ import {
 import type { Locale } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { useSearch } from "../../hooks/components/use-search";
-import type { Category, Menu, Pairing, Product } from "../../types/menu-models";
+import type { Category, Menu, Pairing, Product } from "../../types/menu";
+import { resolveImageUrl } from "../../util/image";
+import {
+  getProductPrice,
+  isPairingAvailable,
+  isProductAvailable,
+} from "../../util/pricing";
 import { Badge } from "../ui/badge";
 import { Img } from "../ui/img";
 import { MenuButton } from "../ui/menu-button";
@@ -105,10 +112,7 @@ export function SearchOverlay({
     >
       <div aria-hidden="true" className={styles.scrim} />
       <Modal className={styles.modal}>
-        <Dialog
-          aria-labelledby="search-dialog-title"
-          className={styles.dialog}
-        >
+        <Dialog aria-labelledby="search-dialog-title" className={styles.dialog}>
           <h2 id="search-dialog-title" className="sr-only">
             {panel.strings.label}
           </h2>
@@ -119,7 +123,6 @@ export function SearchOverlay({
   );
 }
 
-// Mounted only while the overlay is open, so the query resets on every open.
 function SearchPanel({
   menu,
   locale,
@@ -185,7 +188,7 @@ function SearchPanel({
                 key={category.id}
                 category={category}
                 locale={locale}
-                onPress={() => onPickCategory(category.id)}
+                onPickCategory={onPickCategory}
               />
             ))}
           </section>
@@ -202,7 +205,7 @@ function SearchPanel({
                 pairing={pairing}
                 locale={locale}
                 formatMoney={formatMoney}
-                onPress={() => onPickPairing(pairing)}
+                onPickPairing={onPickPairing}
               />
             ))}
           </section>
@@ -219,7 +222,7 @@ function SearchPanel({
                 product={product}
                 locale={locale}
                 formatMoney={formatMoney}
-                onPress={() => onPickProduct(product)}
+                onPickProduct={onPickProduct}
               />
             ))}
           </section>
@@ -251,45 +254,49 @@ function ResultRow({
   );
 }
 
-function CategoryRow({
+const CategoryRow = memo(function CategoryRow({
   category,
   locale,
-  onPress,
+  onPickCategory,
 }: {
   category: Category;
   locale: Locale;
-  onPress: () => void;
+  onPickCategory: (categoryId: string) => void;
 }) {
   return (
-    <ResultRow onPress={onPress} className={styles.rowCategory}>
+    <ResultRow
+      onPress={() => onPickCategory(category.id)}
+      className={styles.rowCategory}
+    >
       <span className={styles.rowName}>{category.name[locale]}</span>
       <span className={styles.rowCount}>{category.products.length}</span>
     </ResultRow>
   );
-}
+});
 
-function PairingRow({
+const PairingRow = memo(function PairingRow({
   pairing,
   locale,
   formatMoney,
-  onPress,
+  onPickPairing,
 }: {
   pairing: Pairing;
   locale: Locale;
   formatMoney: (value: number, plus?: boolean) => string;
-  onPress: () => void;
+  onPickPairing: (pairing: Pairing) => void;
 }) {
-  const available = pairing.items.every(
-    (product) => product.availability === "in_stock"
-  );
+  const available = isPairingAvailable(pairing);
 
   return (
-    <ResultRow onPress={onPress} className={styles.rowRich}>
+    <ResultRow
+      onPress={() => onPickPairing(pairing)}
+      className={styles.rowRich}
+    >
       <span className={styles.pairThumbs}>
         {pairing.items.map((product) => (
           <Img
             key={product.id}
-            image={product.image}
+            src={resolveImageUrl(product.image, "thumb")}
             className={`${styles.pairThumb} ${
               available ? "" : styles.grayscale
             }`}
@@ -311,27 +318,30 @@ function PairingRow({
       </span>
     </ResultRow>
   );
-}
+});
 
-function ProductRow({
+const ProductRow = memo(function ProductRow({
   product,
   locale,
   formatMoney,
-  onPress,
+  onPickProduct,
 }: {
   product: Product;
   locale: Locale;
   formatMoney: (value: number, plus?: boolean) => string;
-  onPress: () => void;
+  onPickProduct: (product: Product) => void;
 }) {
-  const inStock = product.availability === "in_stock";
+  const inStock = isProductAvailable(product);
   const description = product.description[locale];
-  const price = product.pricing.options[0];
+  const { current, regular } = getProductPrice(product.pricing);
 
   return (
-    <ResultRow onPress={onPress} className={styles.rowRich}>
+    <ResultRow
+      onPress={() => onPickProduct(product)}
+      className={styles.rowRich}
+    >
       <Img
-        image={product.image}
+        src={resolveImageUrl(product.image, "thumb")}
         className={`${styles.productThumb} ${inStock ? "" : styles.grayscale}`}
       />
 
@@ -343,11 +353,11 @@ function ProductRow({
         {!inStock && <Badge kind="outOfStock" compact />}
       </span>
 
-      {price && (
+      {product.pricing.options.length > 0 && (
         <span className={inStock ? undefined : styles.unavailable}>
           <Price
-            value={price.final}
-            regular={price.price}
+            value={current}
+            regular={regular}
             formatMoney={formatMoney}
             size="small"
           />
@@ -355,4 +365,4 @@ function ProductRow({
       )}
     </ResultRow>
   );
-}
+});

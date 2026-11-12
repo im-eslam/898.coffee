@@ -5,7 +5,6 @@ import { config } from "../../strings";
 
 type BadgeLabelKind = keyof typeof config.badges.en;
 type ContentBadgeKind = "detail" | "savings";
-type BadgeKind = BadgeLabelKind | ContentBadgeKind;
 
 interface BaseBadgeProps {
   compact?: boolean;
@@ -36,7 +35,7 @@ const styles = {
   star: "size-3 shrink-0",
 } as const;
 
-const kinds: Record<BadgeKind, string> = {
+const kinds: Record<BadgeLabelKind | ContentBadgeKind, string> = {
   detail: "bg-cream font-medium text-charcoal",
   savings: "bg-success font-semibold text-white",
   top: "bg-honey font-semibold text-charcoal",

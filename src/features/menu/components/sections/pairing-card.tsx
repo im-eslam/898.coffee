@@ -1,7 +1,8 @@
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import type { Pairing } from "../../types/menu-models";
+import type { Pairing } from "../../types/menu";
+import { resolveImageUrl } from "../../util/image";
 import { Badge } from "../ui/badge";
 import { Chevron } from "../ui/chevron";
 import { Img } from "../ui/img";
@@ -56,7 +57,7 @@ export function PairingCard({
         {pairing.items.map((product) => (
           <Img
             key={product.id}
-            image={product.image}
+            src={resolveImageUrl(product.image, "thumb")}
             className={`${styles.picture} ${
               product.availability === "out_of_stock" ? styles.grayscale : ""
             }`}
