@@ -10,6 +10,7 @@ const styles = {
     "relative mx-auto flex min-h-dvh w-full max-w-md flex-col gap-8 px-6 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]",
   headerSlot: "pt-10",
   toggleSlot: "absolute end-6 top-6 z-10",
+  main: "flex flex-1 flex-col",
   navSlot: "flex flex-1 flex-col gap-6",
   primaryGroup: "flex flex-col gap-3",
   navSection: "flex flex-col gap-3",
@@ -22,7 +23,7 @@ export function LandingPage() {
   const otherLocale = useLocale() === "en" ? "ar" : "en";
 
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <C.Background />
 
       <div className={styles.container}>
@@ -44,51 +45,53 @@ export function LandingPage() {
           className={styles.headerSlot}
         />
 
-        <nav className={styles.navSlot}>
-          <div className={styles.primaryGroup}>
-            <C.ActionCard
-              strings={{
-                icon: "cup",
-                title: s.sections.primary.menu.title,
-                hint: s.sections.primary.menu.hint,
-              }}
-              tone="featured"
-              to={ROUTES.menu}
-            />
-            <C.ActionCard
-              strings={{
-                icon: "star",
-                title: s.sections.primary.review.title,
-                hint: s.sections.primary.review.hint,
-              }}
-              to={ROUTES.review}
-            />
-          </div>
+        <main className={styles.main}>
+          <nav className={styles.navSlot}>
+            <div className={styles.primaryGroup}>
+              <C.ActionCard
+                strings={{
+                  icon: "cup",
+                  title: s.sections.primary.menu.title,
+                  hint: s.sections.primary.menu.hint,
+                }}
+                tone="featured"
+                to={ROUTES.menu}
+              />
+              <C.ActionCard
+                strings={{
+                  icon: "star",
+                  title: s.sections.primary.review.title,
+                  hint: s.sections.primary.review.hint,
+                }}
+                to={ROUTES.review}
+              />
+            </div>
 
-          <section className={styles.navSection}>
-            <C.SectionTitle>{s.sections.social.title}</C.SectionTitle>
-            <C.ActionCard
-              strings={{
-                icon: "instagram",
-                title: site.instagram.name,
-                hint: site.instagram.handle,
-              }}
-              tone="social"
-              href={site.instagram.url}
-            />
-          </section>
+            <section className={styles.navSection}>
+              <C.SectionTitle>{s.sections.social.title}</C.SectionTitle>
+              <C.ActionCard
+                strings={{
+                  icon: "instagram",
+                  title: site.instagram.name,
+                  hint: <bdi dir="ltr">{site.instagram.handle}</bdi>,
+                }}
+                tone="social"
+                href={site.instagram.url}
+              />
+            </section>
 
-          <section className={styles.navSection}>
-            <C.SectionTitle>{s.sections.location.title}</C.SectionTitle>
-            <C.ActionCard
-              strings={{
-                icon: "pin",
-                title: s.sections.location.locationName,
-              }}
-              href={site.location.mapsUrl}
-            />
-          </section>
-        </nav>
+            <section className={styles.navSection}>
+              <C.SectionTitle>{s.sections.location.title}</C.SectionTitle>
+              <C.ActionCard
+                strings={{
+                  icon: "pin",
+                  title: s.sections.location.locationName,
+                }}
+                href={site.location.mapsUrl}
+              />
+            </section>
+          </nav>
+        </main>
 
         <C.Footer
           strings={{
@@ -98,6 +101,6 @@ export function LandingPage() {
           }}
         />
       </div>
-    </main>
+    </div>
   );
 }

@@ -25,8 +25,8 @@ export function Header({ strings: s, className }: HeaderProps) {
         <img
           src={logo}
           alt={s.brandName}
-          width={462}
-          height={447}
+          width={2142}
+          height={1470}
           fetchPriority="high"
           decoding="async"
           className={styles.logo}
