@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Icon } from "@/shared/icons";
 import { Link } from "@/shared/router";
 import type { IconName } from "@/shared/icons";
@@ -9,7 +8,7 @@ type ActionCardTone = "standard" | "featured" | "social";
 interface ActionCardStrings {
   icon: IconName;
   title: string;
-  hint?: ReactNode;
+  hint?: string;
 }
 
 interface BaeActionCardProps {
@@ -33,7 +32,7 @@ const styles = {
     "flex size-11 shrink-0 items-center justify-center rounded-full transition-colors duration-interactive ease-smooth motion-reduce:transition-none",
   textContainer: "flex min-w-0 flex-1 flex-col",
   title: "text-heading font-bold",
-  hint: "text-body opacity-80",
+  hint: "text-small opacity-80",
   arrowBase:
     "size-5 shrink-0 transition-transform duration-interactive ease-smooth group-hover:translate-x-1 rtl:group-hover:-translate-x-1 motion-reduce:transition-none",
   srOnly: "sr-only",

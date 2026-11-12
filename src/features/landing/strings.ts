@@ -1,7 +1,6 @@
 import type { Localized } from "@/shared/i18n";
 
 const en = {
-  loadingLabel: "Loading page",
   header: {
     taglineLead: "Good Coffee",
     taglineEmphasis: "Better Days.",
@@ -35,7 +34,6 @@ const en = {
 };
 
 const ar: typeof en = {
-  loadingLabel: "جارٍ تحميل الصفحة",
   header: {
     taglineLead: "قهوه حلوة",
     taglineEmphasis: "أيام أحلى.",
