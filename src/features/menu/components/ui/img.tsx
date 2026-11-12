@@ -20,6 +20,9 @@ const styles = {
 export function Img({ image, alt = "", priority, className }: ImgProps) {
   const [state, setState] = useState<ImageState>("loading");
   const [shownImage, setShownImage] = useState(image);
+  const imageSrc = image
+    ? `${import.meta.env.BASE_URL}${image.replace(/^\/+/, "")}`
+    : null;
 
   if (shownImage !== image) {
     setShownImage(image);
@@ -30,8 +33,8 @@ export function Img({ image, alt = "", priority, className }: ImgProps) {
     <div className={`${styles.frame} ${className ?? ""}`}>
       {image && state !== "broken" && (
         <img
-          key={image}
-          src={image}
+          key={imageSrc}
+          src={imageSrc ?? undefined}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}
