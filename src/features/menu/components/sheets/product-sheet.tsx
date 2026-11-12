@@ -3,12 +3,13 @@ import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
 import type { Product, ProductRef } from "../../types/menu-models";
 import { getProductPrice, getProductTotal } from "../../util/pricing";
-import { BaseOptions } from "./Base-options";
+import { BaseOptions } from "./base-options";
 import { Badge } from "../ui/badge";
 import { Chevron } from "../ui/chevron";
 import { Img } from "../ui/img";
 import { MenuButton } from "../ui/menu-button";
 import { Price } from "../ui/price";
+import { SwapAnimation } from "../ui/swap-animation";
 import { BottomSheet } from "./bottom-sheet";
 
 interface ProductSheetStrings {
@@ -34,8 +35,8 @@ interface ProductSheetProps {
 
 const styles = {
   content: "flex flex-col gap-6",
-  hero: "relative",
-  heroImage: "aspect-square w-full rounded-lg",
+  hero: "relative mx-auto w-3/5 max-w-56",
+  heroImage: "aspect-square w-full rounded-lg shadow-sm",
   heroBadge: "absolute end-2 top-2",
   grayscale: "grayscale",
   intro: "flex flex-col items-start gap-2",
@@ -84,24 +85,30 @@ export function ProductSheet({
       }}
     >
       <div className={styles.content}>
-        <div className={styles.hero}>
-          <Img
-            image={product.image}
-            alt={name}
-            className={`${styles.heroImage} ${inStock ? "" : styles.grayscale}`}
-          />
-          {!inStock && (
-            <span className={styles.heroBadge}>
-              <Badge kind="outOfStock" />
-            </span>
-          )}
-        </div>
+        <SwapAnimation value={product.id} block>
+          <div className={styles.hero}>
+            <Img
+              image={product.image}
+              alt={name}
+              className={`${styles.heroImage} ${inStock ? "" : styles.grayscale}`}
+            />
+            {!inStock && (
+              <span className={styles.heroBadge}>
+                <Badge kind="outOfStock" />
+              </span>
+            )}
+          </div>
+        </SwapAnimation>
 
         {(product.badge || description) && (
-          <div className={styles.intro}>
-            {inStock && product.badge && <Badge kind={product.badge} />}
-            {description && <p className={styles.description}>{description}</p>}
-          </div>
+          <SwapAnimation value={product.id} block>
+            <div className={styles.intro}>
+              {inStock && product.badge && <Badge kind={product.badge} />}
+              {description && (
+                <p className={styles.description}>{description}</p>
+              )}
+            </div>
+          </SwapAnimation>
         )}
 
         <BaseOptions

@@ -23,7 +23,7 @@ const styles = {
   section: "scroll-mt-26 pt-6 pb-5",
   inner: "mx-auto flex w-full max-w-5xl flex-col gap-4",
   head: "px-4 md:px-6",
-  rail: "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 scroll-ps-4 md:grid md:snap-none md:grid-cols-2 md:overflow-visible md:px-6 lg:grid-cols-3",
+  rail: "no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pt-px pb-1 scroll-ps-4 md:grid md:snap-none md:grid-cols-2 md:overflow-visible md:px-6 md:pt-0 lg:grid-cols-3",
   card: "w-[80%] min-w-72 snap-start md:w-auto md:min-w-0",
   dots: "flex justify-center gap-2 md:hidden",
   dot: "size-2 rounded-full transition-colors duration-(--duration-interactive) ease-smooth motion-reduce:transition-none",

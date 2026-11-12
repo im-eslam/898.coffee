@@ -49,19 +49,16 @@ const en = {
   page: {
     title: "Menu",
   },
-
   header: {
     back: "Back",
     search: "Search the menu",
     categories: "Browse categories",
-    language: { name: "العربية", lang: "ar" },
+    language: { name: "ع", lang: "ar" },
   },
-
   loading: {
     title: "Brewing the menu",
     description: "Just a moment while we get everything ready.",
   },
-
   errors: {
     network: {
       title: "Can't reach the menu",
@@ -74,20 +71,16 @@ const en = {
       retry: "Try again",
     },
   },
-
   signatures: {
     sub: "Our most loved picks",
   },
-
   pairings: {
     sub: "Better together, for less",
     savings: (amount: string) => `Save ${amount}`,
   },
-
   products: {
     showAll: (name: string, count: number) => `Show all ${name} (${count})`,
   },
-
   sheets: {
     close: "Close",
     categories: "Categories",
@@ -102,7 +95,6 @@ const en = {
     addOns: "Add-ons",
     saveChip: (amount: string) => `Save ${amount}`,
   },
-
   search: {
     label: "Search the menu",
     placeholder: "Search drinks, food and offers",
@@ -121,19 +113,16 @@ const ar: typeof en = {
   page: {
     title: "القائمة",
   },
-
   header: {
     back: "رجوع",
     search: "ابحث في القائمة",
     categories: "تصفح الأقسام",
-    language: { name: "English", lang: "en" },
+    language: { name: "En", lang: "en" },
   },
-
   loading: {
     title: "نجهّز القائمة",
     description: "لحظات ونكون جاهزين.",
   },
-
   errors: {
     network: {
       title: "تعذّر الوصول إلى القائمة",
@@ -146,20 +135,16 @@ const ar: typeof en = {
       retry: "حاول مرة أخرى",
     },
   },
-
   signatures: {
     sub: "الأكثر حبًا لدى ضيوفنا",
   },
-
   pairings: {
     sub: "أطيب معًا وبسعر أقل",
     savings: (amount) => `وفّر ${amount}`,
   },
-
   products: {
     showAll: (name, count) => `عرض كل ${name} (${count})`,
   },
-
   sheets: {
     close: "إغلاق",
     categories: "الأقسام",
@@ -174,7 +159,6 @@ const ar: typeof en = {
     addOns: "إضافات",
     saveChip: (amount) => `وفّر ${amount}`,
   },
-
   search: {
     label: "ابحث في القائمة",
     placeholder: "ابحث عن مشروب أو طعام أو عرض",

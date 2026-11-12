@@ -1,44 +1,54 @@
 import { useCallback, useState } from "react";
 import type { Pairing, Product } from "../types/menu-models";
 
-type MenuPanel =
-  | { type: "search" }
-  | { type: "categories" }
-  | { type: "product"; product: Product }
-  | { type: "pairing"; pairing: Pairing }
-  | null;
+type MenuPanel = "search" | "categories" | "product" | "pairing" | null;
 
+export interface SheetSelection<T> {
+  item: T;
+  key: number;
+}
+
+// The selection outlives the open panel so the sheet can finish its exit
+// animation; the key changes on every open so sheet state starts fresh.
 export function useMenuFlow() {
   const [panel, setPanel] = useState<MenuPanel>(null);
+  const [productSheet, setProductSheet] =
+    useState<SheetSelection<Product> | null>(null);
+  const [pairingSheet, setPairingSheet] =
+    useState<SheetSelection<Pairing> | null>(null);
 
   const close = useCallback(() => {
     setPanel(null);
   }, []);
 
   const openSearch = useCallback(() => {
-    setPanel({ type: "search" });
+    setPanel("search");
   }, []);
 
   const openCategories = useCallback(() => {
-    setPanel({ type: "categories" });
+    setPanel("categories");
   }, []);
 
   const openProduct = useCallback((product: Product) => {
-    setPanel({
-      type: "product",
-      product,
-    });
+    setProductSheet((current) => ({
+      item: product,
+      key: (current?.key ?? 0) + 1,
+    }));
+    setPanel("product");
   }, []);
 
   const openPairing = useCallback((pairing: Pairing) => {
-    setPanel({
-      type: "pairing",
-      pairing,
-    });
+    setPairingSheet((current) => ({
+      item: pairing,
+      key: (current?.key ?? 0) + 1,
+    }));
+    setPanel("pairing");
   }, []);
 
   return {
     panel,
+    productSheet,
+    pairingSheet,
     close,
     openSearch,
     openCategories,

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { setLocale, useLocale, useStrings } from "@/shared/i18n";
 import { config } from "../strings";
 import type { Menu } from "../types/menu-models";
+import { getCategorySectionId } from "../util/section-ids";
 import { useMenuFlow } from "./use-menu-flow";
 import { useMenuNavigation, type NavSection } from "./use-menu-navigation";
 
@@ -22,7 +23,7 @@ export function useMenu(menu: Menu) {
 
     result.push(
       ...menu.categories.map((category) => ({
-        id: category.id,
+        id: getCategorySectionId(category.id),
         label: category.name[locale],
       }))
     );
@@ -56,6 +57,8 @@ export function useMenu(menu: Menu) {
     activeId: navigation.activeId,
     headerRef: navigation.headerRef,
     panel: flow.panel,
+    productSheet: flow.productSheet,
+    pairingSheet: flow.pairingSheet,
 
     selectSection,
     toggleLanguage,

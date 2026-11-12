@@ -43,13 +43,13 @@ const styles = {
   group: "flex flex-col gap-2",
   groupLabel: "text-body font-bold",
   sizes: "grid auto-cols-fr grid-flow-col gap-2",
-  size: "flex min-h-12 flex-col items-center justify-center rounded-full border border-sand px-2 py-1 text-center outline-none data-hovered:bg-mist data-selected:border-brand data-selected:bg-brand data-selected:text-white data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
+  size: "flex min-h-12 flex-col items-center justify-center rounded-full border border-sand/70 px-2 py-1 text-center outline-none transition-colors duration-200 motion-reduce:transition-none data-hovered:bg-mist data-selected:border-brand data-selected:bg-brand data-selected:text-white data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
   sizeName: "text-small font-medium",
   sizePrice: "text-caption tabular-nums",
   oldPrice: "me-1 line-through opacity-70",
 
   barista:
-    "group flex min-h-14 w-full items-center gap-3 rounded-lg bg-arctic px-4 py-2 text-start outline-none data-selected:bg-sand data-selected:ring-2 data-selected:ring-inset data-selected:ring-brand data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-brand",
+    "group flex min-h-14 w-full items-center gap-3 rounded-lg bg-arctic/50 px-4 py-2 text-start outline-none transition-[background-color,box-shadow] duration-200 motion-reduce:transition-none data-selected:bg-arctic data-selected:ring-2 data-selected:ring-inset data-selected:ring-brand data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-brand",
   baristaIcon: "size-6 shrink-0",
   baristaText: "flex min-w-0 flex-1 flex-col",
   baristaTitle: "text-small font-bold",
@@ -57,9 +57,9 @@ const styles = {
 
   addOnsLabel: "pb-2 text-body font-bold",
   addOn:
-    "group flex min-h-14 w-full items-center gap-4 border-b border-mist py-2 text-start outline-none data-hovered:bg-mist/60 data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-brand",
+    "group flex min-h-14 w-full items-center gap-4 border-b-[0.5px] border-sand/30 py-2 text-start outline-none transition-colors duration-200 last:border-b-0 data-hovered:bg-mist/60 data-disabled:opacity-50 data-focus-visible:outline-2 data-focus-visible:outline-brand motion-reduce:transition-none",
   addOnBox:
-    "flex size-6 shrink-0 items-center justify-center rounded-sm border-2 border-navy group-data-selected:border-brand group-data-selected:bg-brand group-data-selected:text-white",
+    "flex size-6 shrink-0 items-center justify-center rounded-sm border-2 border-taupe/60 transition-colors duration-200 group-data-selected:border-brand group-data-selected:bg-brand group-data-selected:text-white motion-reduce:transition-none",
   addOnName:
     "min-w-0 flex-1 text-body font-medium group-data-selected:font-semibold",
   addOnPrice: "shrink-0 text-end",

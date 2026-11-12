@@ -5,7 +5,8 @@ import { Link } from "@/shared/router";
 import type { AppRoute } from "@/shared/router";
 
 interface HeaderBarStrings {
-  brandName: string;
+  back: string;
+  search: string;
   language: {
     name: string;
     lang: string;
@@ -46,12 +47,13 @@ export function HeaderBar({
     <div className={`${styles.row} ${className ?? ""}`}>
       <Link href={backHref} className={styles.back}>
         <Icon name="arrow" className={styles.backIcon} />
+        <span className="sr-only">{s.back}</span>
       </Link>
 
       <div className={styles.brand}>
         <img
           src={mark}
-          alt={s.brandName}
+          alt=""
           decoding="async"
           draggable={false}
           className={styles.logo}
@@ -60,7 +62,12 @@ export function HeaderBar({
 
       <div className={styles.spacer} />
 
-      <Button type="button" onPress={onSearch} className={styles.search}>
+      <Button
+        type="button"
+        aria-label={s.search}
+        onPress={onSearch}
+        className={styles.search}
+      >
         <Icon name="search" className={styles.icon} />
       </Button>
 

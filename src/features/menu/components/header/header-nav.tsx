@@ -1,9 +1,15 @@
+import { useMemo } from "react";
 import { Button } from "react-aria-components";
 import { Icon } from "@/shared/icons";
 import { useHeaderNav } from "../../hooks/components/use-header-nav";
 import type { NavSection } from "../../hooks/use-menu-navigation";
 
+interface HeaderNavStrings {
+  categories: string;
+}
+
 interface HeaderNavProps {
+  strings: HeaderNavStrings;
   sections: NavSection[];
   activeId: string;
   direction: "ltr" | "rtl";
@@ -40,6 +46,7 @@ const styles = {
 } as const;
 
 export function HeaderNav({
+  strings: s,
   sections,
   activeId,
   direction,
@@ -47,9 +54,11 @@ export function HeaderNav({
   onCategories,
   className,
 }: HeaderNavProps) {
+  const contentKey = useMemo(() => JSON.stringify(sections), [sections]);
+
   const { railRef, highlight, canAnimate, edges } = useHeaderNav({
     activeId,
-    contentKey: JSON.stringify(sections),
+    contentKey,
     direction,
   });
 
@@ -65,6 +74,7 @@ export function HeaderNav({
       <div className={styles.menuSlot}>
         <Button
           type="button"
+          aria-label={s.categories}
           onPress={onCategories}
           className={styles.categories}
         >
