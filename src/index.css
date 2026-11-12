@@ -18,7 +18,7 @@
   --color-scrim: rgb(41 39 33 / 0.6);
 
   --font-latin: "Montserrat Variable", system-ui, sans-serif;
-  --font-arabic: "Montserrat Variable", "Cairo Variable", system-ui, sans-serif;
+  --font-arabic: "Cairo Variable", "Montserrat Variable", system-ui, sans-serif;
   --font-system: system-ui, sans-serif;
 
   --text-title: 1.5rem;
@@ -41,6 +41,9 @@
     0 1px 2px rgb(41 39 33 / 0.06), 0 4px 12px rgb(41 39 33 / 0.06);
   --shadow-card-raised:
     0 2px 4px rgb(41 39 33 / 0.08), 0 8px 20px rgb(41 39 33 / 0.1);
+
+  --ease-sheet-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sheet-exit: cubic-bezier(0.3, 0, 0, 1);
 
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-exit: cubic-bezier(0.3, 0, 0, 1);
@@ -199,6 +202,16 @@
     text-align: start;
   }
 
+  button,
+  a,
+  [role="button"],
+  [role="tab"] {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
@@ -212,12 +225,10 @@
   transition-duration: var(--duration-sheet) !important;
   transition-timing-function: var(--ease-sheet-enter) !important;
 }
-
 [data-vaul-drawer][data-state="closed"] {
   transition-duration: var(--duration-sheet-exit) !important;
   transition-timing-function: var(--ease-sheet-exit) !important;
 }
-
 [data-vaul-overlay] {
   transition-duration: var(--duration-scrim) !important;
 }

@@ -1,5 +1,5 @@
 import path from "path";
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, type HtmlTagDescriptor, type Plugin } from "vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import babel from "@rolldown/plugin-babel";
@@ -13,46 +13,45 @@ const proxy = {
   },
 };
 
-function preloadMontserrat(): Plugin {
+const FONTS_TO_PRELOAD = [/montserrat-latin-wght-normal.*\.woff2$/];
+
+function preloadFonts(): Plugin {
   let base = "/";
   return {
-    name: "preload-montserrat",
+    name: "preload-fonts",
     apply: "build",
     configResolved(config) {
       base = config.base;
     },
     transformIndexHtml: {
       order: "post",
-      handler(_html, ctx) {
-        const file = Object.keys(ctx.bundle ?? {}).find((f) =>
-          /montserrat-latin-wght-normal.*\.woff2$/.test(f)
+      handler(_html, ctx): HtmlTagDescriptor[] {
+        const files = Object.keys(ctx.bundle ?? {}).filter((file) =>
+          FONTS_TO_PRELOAD.some((pattern) => pattern.test(file))
         );
-        if (!file) return;
-        return [
-          {
-            tag: "link",
-            attrs: {
-              rel: "preload",
-              as: "font",
-              type: "font/woff2",
-              href: `${base}${file}`,
-              crossorigin: "anonymous",
-            },
-            injectTo: "head-prepend",
+
+        return files.map((file) => ({
+          tag: "link",
+          attrs: {
+            rel: "preload",
+            as: "font",
+            type: "font/woff2",
+            href: `${base}${file}`,
+            crossorigin: "anonymous",
           },
-        ];
+          injectTo: "head-prepend",
+        }));
       },
     },
   };
 }
-
 export default defineConfig({
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     oxlintPlugin(),
-    preloadMontserrat(),
+    preloadFonts(),
   ],
   resolve: {
     alias: {

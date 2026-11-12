@@ -15,7 +15,7 @@ interface ProductCardProps {
 }
 
 const styles = {
-  root: "relative flex h-full w-full gap-3 rounded-lg bg-paper p-3 ring-1 ring-sand/40 transition-transform duration-(--duration-interactive) ease-smooth has-[[data-pressed]]:scale-[0.96] motion-reduce:transition-none",
+  root: "relative flex h-full w-full select-none gap-3 rounded-lg bg-paper p-3 ring-1 ring-sand/40 [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] transition-transform duration-(--duration-interactive) ease-smooth [@media(hover:hover)_and_(pointer:fine)]:has-[[data-pressed]]:scale-[0.96] motion-reduce:transition-none",
   image: "size-24 shrink-0 rounded-md",
   grayscale: "grayscale",
   content: "flex min-w-0 flex-1 flex-col gap-0.5",
@@ -26,7 +26,7 @@ const styles = {
   chevron: "-my-1 ms-auto",
   badge: "absolute -top-2.5 end-4",
   action:
-    "absolute inset-0 z-10 rounded-lg outline-none data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
+    "absolute inset-0 z-10 rounded-lg outline-none [touch-action:pan-x_pan-y] data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
 } as const;
 
 export function ProductCard({

@@ -17,7 +17,7 @@ interface SignatureCardProps {
 }
 
 const styles = {
-  root: "relative flex shrink-0 flex-col gap-3 rounded-lg bg-paper p-3 duration-(--duration-interactive) ease-smooth has-[[data-pressed]]:scale-[0.985] motion-reduce:transition-none sm:p-4",
+  root: "relative flex shrink-0 select-none flex-col gap-3 rounded-lg bg-paper p-3 [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] duration-(--duration-interactive) ease-smooth motion-reduce:transition-none sm:p-4",
   frame: "relative",
   image: "aspect-square w-full rounded-md",
   grayscale: "grayscale",
@@ -29,7 +29,7 @@ const styles = {
   unavailable: "opacity-60",
   chevron: "ms-auto",
   action:
-    "absolute inset-0 z-10 rounded-lg outline-none data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
+    "absolute inset-0 z-10 rounded-lg outline-none [touch-action:pan-x_pan-y] data-focus-visible:outline-2 data-focus-visible:outline-offset-2 data-focus-visible:outline-brand",
 } as const;
 
 export function SignatureCard({

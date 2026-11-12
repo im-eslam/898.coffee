@@ -27,7 +27,7 @@ type ActionCardProps = InternalActionCardProps | ExternalActionCardProps;
 
 const styles = {
   cardBase:
-    "group flex min-h-16 w-full items-center gap-4 rounded-lg border px-4 py-3 outline-none transition duration-interactive ease-smooth focus-visible:ring-2 focus-visible:ring-brand active:scale-95 motion-reduce:transition-none",
+    "group flex min-h-16 w-full items-center gap-4 rounded-lg border px-4 py-3 outline-none transition duration-interactive ease-smooth focus-visible:ring-2 focus-visible:ring-brand [@media(hover:hover)_and_(pointer:fine)]:active:scale-95 motion-reduce:transition-none",
   bubbleBase:
     "flex size-11 shrink-0 items-center justify-center rounded-full transition-colors duration-interactive ease-smooth motion-reduce:transition-none",
   textContainer: "flex min-w-0 flex-1 flex-col",

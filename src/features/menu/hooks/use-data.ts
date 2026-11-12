@@ -14,43 +14,47 @@ export type MenuResult = MenuState & {
 };
 
 let pendingMenuRequest: Promise<Menu> | null = null;
+let cachedMenu: Menu | null = null;
 
-function loadMenu(): Promise<Menu> {
+export function loadMenu(): Promise<Menu> {
+  if (cachedMenu) return Promise.resolve(cachedMenu);
   if (!pendingMenuRequest) {
     pendingMenuRequest = fetchMenu()
-      .then((response) => MenuParser.parse(response))
+      .then((response) => {
+        cachedMenu = MenuParser.parse(response);
+        return cachedMenu;
+      })
       .catch((cause: unknown) => {
-        reportError(cause, {
-          feature: "menu",
-          operation: "load",
-        });
+        reportError(cause, { feature: "menu", operation: "load" });
         throw cause;
       })
       .finally(() => {
         pendingMenuRequest = null;
       });
   }
-
   return pendingMenuRequest;
 }
 
+export function prefetchMenu(): void {
+  loadMenu().catch(() => undefined);
+}
+
 export function useData(): MenuResult {
-  const [state, setState] = useState<MenuState>({
-    status: "loading",
-  });
+  const [state, setState] = useState<MenuState>(() =>
+    cachedMenu ? { status: "ready", menu: cachedMenu } : { status: "loading" }
+  );
 
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
+    if (cachedMenu) return;
+
     let isActive = true;
 
     loadMenu()
       .then((menu) => {
         if (isActive) {
-          setState({
-            status: "ready",
-            menu,
-          });
+          setState({ status: "ready", menu });
         }
       })
       .catch((cause: unknown) => {

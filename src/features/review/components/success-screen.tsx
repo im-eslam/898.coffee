@@ -19,7 +19,7 @@ const styles = {
   icon: "size-8",
   message: "text-heading mt-2 font-bold text-navy text-balance",
   button:
-    "text-small mt-4 min-h-12 w-full rounded-full bg-brand px-8 text-center font-bold text-white outline-none transition duration-interactive ease-smooth data-focus-visible:ring-2 data-focus-visible:ring-brand data-focus-visible:ring-offset-2 data-hovered:bg-brand/90 data-pressed:scale-[0.98] motion-reduce:transition-none",
+    "text-small mt-4 min-h-12 w-full rounded-full bg-brand px-8 text-center font-bold text-white outline-none transition duration-interactive ease-smooth data-focus-visible:ring-2 data-focus-visible:ring-brand data-focus-visible:ring-offset-2 data-hovered:bg-brand/90 [@media(hover:hover)_and_(pointer:fine)]:data-pressed:scale-[0.98] motion-reduce:transition-none",
 };
 
 export function SuccessScreen({ strings: s, onClose }: SuccessScreenProps) {

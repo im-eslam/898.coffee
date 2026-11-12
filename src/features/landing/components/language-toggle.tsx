@@ -13,7 +13,7 @@ const styles = {
   button:
     "group inline-flex min-h-12 min-w-12 items-center justify-center p-1 outline-none",
   surface:
-    "inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-white/85 px-4 text-small font-bold whitespace-nowrap text-navy transition duration-interactive ease-smooth group-hover:bg-white group-active:scale-[0.97] group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-brand motion-reduce:transition-none",
+    "inline-flex min-h-10 min-w-10 items-center justify-center rounded-full bg-white/85 px-4 text-small font-bold whitespace-nowrap text-navy transition duration-interactive ease-smooth group-hover:bg-white [@media(hover:hover)_and_(pointer:fine)]:group-active:scale-[0.97] group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-brand motion-reduce:transition-none",
   arabicLabel: "font-system",
 } as const;
 

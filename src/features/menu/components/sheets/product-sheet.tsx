@@ -162,7 +162,7 @@ const cardStyles = {
   footer: "flex items-center justify-between gap-1",
   unavailable: "opacity-60",
   action:
-    "absolute inset-0 z-10 rounded-md outline-none data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
+    "absolute inset-0 z-10 rounded-md outline-none [touch-action:pan-x_pan-y] data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
 } as const;
 
 function OftenOrderedCard({

@@ -18,7 +18,7 @@ interface PairingCardProps {
 }
 
 const styles = {
-  root: "relative flex shrink-0 flex-col gap-2 rounded-lg bg-white/70 p-2 ring-1 ring-sand/60",
+  root: "relative flex shrink-0 select-none flex-col gap-2 rounded-lg bg-white/70 p-2 ring-1 ring-sand/60 [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]",
   pictures: "relative flex aspect-2/1 w-full gap-1",
   picture: "min-w-0 flex-1 rounded-md",
   grayscale: "grayscale",
@@ -31,7 +31,7 @@ const styles = {
   unavailable: "opacity-60",
   chevron: "ms-auto",
   action:
-    "absolute inset-0 z-10 rounded-lg outline-none data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
+    "absolute inset-0 z-10 rounded-lg outline-none [touch-action:pan-x_pan-y] data-focus-visible:outline-2 data-focus-visible:-outline-offset-2 data-focus-visible:outline-brand",
 } as const;
 
 export function PairingCard({
