@@ -18,7 +18,7 @@ type HeadingProps = SectionHeadingProps | SheetHeadingProps;
 
 const styles = {
   section: "flex flex-col gap-1",
-  title: "text-title font-bold text-balance text-charcoal",
+  title: "text-title font-bold tracking-tight text-balance text-charcoal",
   sub: "text-small font-medium text-navy/80",
 } as const;
 

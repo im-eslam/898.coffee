@@ -19,15 +19,15 @@ interface SignaturesSectionProps {
 }
 
 const styles = {
-  section: "scroll-mt-26 py-6",
+  section: "scroll-mt-26 rounded-b-sheet bg-navy py-8",
   inner: "mx-auto flex w-full max-w-5xl flex-col gap-4",
   head: "px-4 md:px-6",
   rail: "no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pt-px pb-1 scroll-ps-4 md:grid md:snap-none md:grid-cols-3 md:overflow-visible md:px-6 md:pt-0 lg:grid-cols-4",
   card: "w-[72%] min-w-64 max-w-96 snap-start md:w-auto md:min-w-0 md:max-w-none",
   dots: "flex justify-center gap-2 md:hidden",
   dot: "size-2 rounded-full transition-colors duration-(--duration-interactive) ease-smooth motion-reduce:transition-none",
-  dotActive: "bg-brand",
-  dotIdle: "bg-arctic",
+  dotActive: "bg-honey",
+  dotIdle: "bg-cream/30",
 } as const;
 
 export function SignaturesSection({
@@ -54,7 +54,12 @@ export function SignaturesSection({
     >
       <div className={styles.inner}>
         <div className={styles.head}>
-          <Heading sub={s.sub}>{s.title}</Heading>
+          <Heading
+            className="[&>h2]:text-cream [&>p]:text-cream/75"
+            sub={s.sub}
+          >
+            {s.title}
+          </Heading>
         </div>
 
         <div ref={railRef} className={styles.rail}>

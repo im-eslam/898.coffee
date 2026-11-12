@@ -38,8 +38,8 @@ const styles = {
 
 const kinds: Record<BadgeKind, string> = {
   detail: "bg-cream font-medium text-charcoal",
-  savings: "bg-arctic font-semibold text-navy",
-  top: "bg-sand font-semibold text-charcoal",
+  savings: "bg-success font-semibold text-white",
+  top: "bg-honey font-semibold text-charcoal",
   new: "bg-brand font-semibold text-white",
   outOfStock: "bg-white/85 font-semibold text-navy",
 };

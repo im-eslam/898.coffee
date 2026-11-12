@@ -96,7 +96,7 @@ export function PairingCard({
           formatMoney={formatMoney}
           size="small"
         />
-        
+
         <span className={styles.chevron}>
           <Chevron size="s" />
         </span>

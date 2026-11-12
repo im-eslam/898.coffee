@@ -34,10 +34,10 @@ const styles = {
   tabs: "flex h-full w-full items-center",
   tabList:
     "no-scrollbar relative flex h-12 w-full touch-pan-x items-center gap-1 overflow-x-auto overscroll-x-contain px-4 [mask-image:linear-gradient(to_right,transparent,black_16px,black_calc(100%-16px),transparent)]",
-  tab: "group relative flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-small outline-none text-taupe data-hovered:text-charcoal data-selected:text-cream",
+  tab: "group relative flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-small outline-none text-charcoal/70 data-hovered:text-charcoal data-selected:text-cream",
   tabText: "relative z-10 font-medium group-data-selected:font-semibold",
   indicator:
-    "absolute inset-0 z-0 rounded-full bg-charcoal transition-[translate,width] duration-300 ease-smooth",
+    "absolute inset-0 z-0 rounded-full bg-brand transition-[translate,width] duration-300 ease-smooth",
 } as const;
 
 function animateScrollLeft(el: HTMLElement, to: number, duration: number) {

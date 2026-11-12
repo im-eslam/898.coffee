@@ -6,7 +6,12 @@ const MENU_ENDPOINT = "/menu";
 export type MenuError = "server" | "timeout" | "network" | "unknown";
 
 export async function fetchMenu(): Promise<RawMenuResponse> {
-  return getJson<RawMenuResponse>(MENU_ENDPOINT);
+  try {
+    return await getJson<RawMenuResponse>(MENU_ENDPOINT);
+  } catch (cause) {
+    if (getMenuError(cause) === "unknown") throw cause;
+    return getJson<RawMenuResponse>(MENU_ENDPOINT);
+  }
 }
 
 export function getMenuError(cause: unknown): MenuError {

@@ -12,6 +12,7 @@ export function useMenuNavigation(sections: NavSection[]) {
   const headerRef = useRef<HTMLElement>(null);
   const pinnedRef = useRef(false);
   const pinTimeoutRef = useRef<number | null>(null);
+  const frameRef = useRef<number | null>(null);
 
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
 
@@ -24,8 +25,6 @@ export function useMenuNavigation(sections: NavSection[]) {
   }, []);
 
   useEffect(() => {
-    let frame = 0;
-
     function updateActiveSection() {
       if (pinnedRef.current) return;
       const elements = sections
@@ -72,10 +71,10 @@ export function useMenuNavigation(sections: NavSection[]) {
     window.addEventListener("keydown", release);
 
     function scheduleUpdate() {
-      if (frame) return;
+      if (frameRef.current !== null) return;
 
-      frame = requestAnimationFrame(() => {
-        frame = 0;
+      frameRef.current = requestAnimationFrame(() => {
+        frameRef.current = null;
         updateActiveSection();
       });
     }
@@ -102,7 +101,10 @@ export function useMenuNavigation(sections: NavSection[]) {
     observer.observe(document.body);
 
     return () => {
-      cancelAnimationFrame(frame);
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
       observer.disconnect();
 
       window.removeEventListener("scroll", scheduleUpdate);

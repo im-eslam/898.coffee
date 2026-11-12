@@ -8,7 +8,7 @@ interface ChevronProps {
 }
 
 const styles = {
-  root: "flex shrink-0 items-center justify-center rounded-full bg-arctic/60 text-brand",
+  root: "flex shrink-0 items-center justify-center rounded-full bg-mist text-brand",
 } as const;
 
 const sizes: Record<ChevronSize, { root: string; icon: string }> = {

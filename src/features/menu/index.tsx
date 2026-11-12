@@ -22,7 +22,7 @@ import { getCategorySectionId } from "./util/section-ids";
 
 const styles = {
   page: "relative isolate min-h-dvh pb-8",
-  header: "sticky top-0 z-40 bg-cream transform-gpu",
+  header: "sticky top-0 z-40 border-b border-sand/40 bg-cream transform-gpu",
   main: "flex flex-col",
   srOnly: "sr-only",
 } as const;
@@ -70,8 +70,24 @@ export function MenuPage() {
 
 function MenuReady({ menu }: { menu: Menu }) {
   const s = useStrings(strings);
-  const state = useMenu(menu);
-  const { locale, panel, activeId } = state;
+  const {
+    locale,
+    panel,
+    activeId,
+    headerRef,
+    predefinedSections,
+    sections,
+    productSheet,
+    pairingSheet,
+    selectSection,
+    toggleLanguage,
+    openProductById,
+    openProduct,
+    openPairing,
+    openSearch,
+    openCategories,
+    close,
+  } = useMenu(menu);
 
   const direction = locale === "ar" ? "rtl" : "ltr";
 
@@ -86,12 +102,12 @@ function MenuReady({ menu }: { menu: Menu }) {
     )?.id ?? "";
 
   function pickCategory(categoryId: string) {
-    state.selectSection(getCategorySectionId(categoryId));
+    selectSection(getCategorySectionId(categoryId));
   }
 
   return (
     <div className={styles.page}>
-      <header ref={state.headerRef} className={styles.header}>
+      <header ref={headerRef} className={styles.header}>
         <HeaderBar
           strings={{
             back: s.header.back,
@@ -100,17 +116,17 @@ function MenuReady({ menu }: { menu: Menu }) {
             languageLang: s.header.language.lang,
           }}
           backHref={ROUTES.landing}
-          onSearch={state.openSearch}
-          onLanguageChange={state.toggleLanguage}
+          onSearch={openSearch}
+          onLanguageChange={toggleLanguage}
         />
 
         <HeaderNav
           strings={{ categories: s.header.categories }}
-          sections={state.sections}
+          sections={sections}
           activeId={activeId}
           direction={direction}
-          onSelect={state.selectSection}
-          onCategories={state.openCategories}
+          onSelect={selectSection}
+          onCategories={openCategories}
         />
       </header>
 
@@ -122,11 +138,11 @@ function MenuReady({ menu }: { menu: Menu }) {
             products={menu.signatures}
             locale={locale}
             strings={{
-              title: state.predefinedSections.signatures.label,
+              title: predefinedSections.signatures.label,
               sub: s.signatures.sub,
             }}
             formatMoney={formatMoney}
-            onOpen={state.openProduct}
+            onOpen={openProduct}
           />
         )}
 
@@ -135,12 +151,12 @@ function MenuReady({ menu }: { menu: Menu }) {
             pairings={menu.pairings}
             locale={locale}
             strings={{
-              title: state.predefinedSections.pairings.label,
+              title: predefinedSections.pairings.label,
               sub: s.pairings.sub,
               savings: s.pairings.savings,
             }}
             formatMoney={formatMoney}
-            onOpen={state.openPairing}
+            onOpen={openPairing}
           />
         )}
 
@@ -151,7 +167,7 @@ function MenuReady({ menu }: { menu: Menu }) {
             locale={locale}
             strings={{ showAll: s.products.showAll }}
             formatMoney={formatMoney}
-            onOpen={state.openProduct}
+            onOpen={openProduct}
           />
         ))}
       </main>
@@ -173,10 +189,10 @@ function MenuReady({ menu }: { menu: Menu }) {
         }}
         formatMoney={formatMoney}
         isOpen={panel === "search"}
-        onClose={state.close}
+        onClose={close}
         onPickCategory={pickCategory}
-        onPickPairing={state.openPairing}
-        onPickProduct={state.openProduct}
+        onPickPairing={openPairing}
+        onPickProduct={openProduct}
       />
 
       <CategorySheet
@@ -189,14 +205,14 @@ function MenuReady({ menu }: { menu: Menu }) {
         isOpen={panel === "categories"}
         categories={menu.categories}
         activeId={activeCategoryId}
-        onClose={state.close}
+        onClose={close}
         onPick={pickCategory}
       />
 
-      {state.productSheet && (
+      {productSheet && (
         <ProductSheet
-          key={state.productSheet.key}
-          product={state.productSheet.item}
+          key={productSheet.key}
+          product={productSheet.item}
           strings={{
             itemDescription: s.sheets.itemDescription,
             outOfStock: s.sheets.outOfStock,
@@ -210,15 +226,15 @@ function MenuReady({ menu }: { menu: Menu }) {
           locale={locale}
           formatMoney={formatMoney}
           isOpen={panel === "product"}
-          onClose={state.close}
-          onOpenProduct={state.openProductById}
+          onClose={close}
+          onOpenProduct={openProductById}
         />
       )}
 
-      {state.pairingSheet && (
+      {pairingSheet && (
         <PairingSheet
-          key={state.pairingSheet.key}
-          pairing={state.pairingSheet.item}
+          key={pairingSheet.key}
+          pairing={pairingSheet.item}
           strings={{
             itemDescription: s.sheets.itemDescription,
             outOfStock: s.sheets.outOfStock,
@@ -231,7 +247,7 @@ function MenuReady({ menu }: { menu: Menu }) {
           locale={locale}
           formatMoney={formatMoney}
           isOpen={panel === "pairing"}
-          onClose={state.close}
+          onClose={close}
         />
       )}
 

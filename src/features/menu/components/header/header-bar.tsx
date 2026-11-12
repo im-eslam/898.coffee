@@ -31,7 +31,7 @@ const styles = {
   icon: "size-5",
   language: "group flex h-12 shrink-0 items-center justify-center rounded-full",
   languageSurface:
-    "flex h-10 min-w-12 items-center justify-center rounded-full border border-sand bg-white/60 px-3.5 text-small font-bold text-charcoal transition-[transform,background-color,border-color] duration-(--duration-interactive) ease-smooth group-data-hovered:border-taupe group-data-hovered:bg-white group-data-pressed:scale-[0.97] motion-reduce:transition-none",
+    "flex h-10 min-w-12 items-center justify-center rounded-full border border-sand bg-paper px-3.5 text-small font-bold text-charcoal transition-[transform,background-color,border-color] duration-(--duration-interactive) ease-smooth group-data-hovered:border-taupe group-data-hovered:bg-white group-data-pressed:scale-[0.97] motion-reduce:transition-none",
 } as const;
 
 export function HeaderBar({

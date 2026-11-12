@@ -11,6 +11,7 @@
     "dev:full": "concurrently --names \"API,UI\" --prefix-colors \"blue,magenta\" --kill-others \"php -S 0.0.0.0:8000 -t api\" \"vite --host 0.0.0.0\"",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "preview:full": "npm run build && concurrently --names \"API,UI\" --prefix-colors \"blue,magenta\" --kill-others \"php -S 0.0.0.0:8000 -t api\" \"vite preview --host 0.0.0.0\"",
     "lint": "oxlint",
     "format": "prettier --write ."
   },

@@ -16,7 +16,7 @@ interface SignatureCardProps {
 }
 
 const styles = {
-  root: "relative flex shrink-0 flex-col gap-3 rounded-lg bg-white/70 p-3 ring-1 ring-sand/60 sm:p-4",
+  root: "relative flex shrink-0 flex-col gap-3 rounded-lg bg-paper p-3 duration-(--duration-interactive) ease-smooth has-[[data-pressed]]:scale-[0.985] motion-reduce:transition-none sm:p-4",
   frame: "relative",
   image: "aspect-square w-full rounded-md",
   grayscale: "grayscale",
