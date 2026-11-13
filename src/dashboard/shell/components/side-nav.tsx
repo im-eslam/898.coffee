@@ -12,16 +12,23 @@ interface SideNavProps {
   onLogout: () => void;
 }
 
+const styles = {
+  aside:
+    "hidden w-64 shrink-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 md:flex",
+  brandWrap: "px-2 pt-2 pb-6",
+  nav: "flex flex-1 flex-col gap-1",
+} as const;
+
 export function SideNav({ tabs, activeKey, pending, onLogout }: SideNavProps) {
   const s = useStrings(strings);
 
   return (
-    <aside className="hidden w-64 shrink-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 md:flex">
-      <div className="px-2 pt-2 pb-6">
+    <aside className={styles.aside}>
+      <div className={styles.brandWrap}>
         <Brand />
       </div>
 
-      <nav aria-label={s.nav} className="flex flex-1 flex-col gap-1">
+      <nav aria-label={s.nav} className={styles.nav}>
         {tabs.map((tab) => (
           <NavItem
             key={tab.key}

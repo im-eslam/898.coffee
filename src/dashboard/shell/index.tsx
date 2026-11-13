@@ -15,6 +15,14 @@ interface ShellProps {
   children: ReactNode;
 }
 
+const styles = {
+  layout:
+    "flex min-h-dvh flex-col bg-slate-100 md:h-dvh md:flex-row md:gap-3 md:p-3",
+  main: "min-w-0 flex-1 md:overflow-y-auto",
+  content: "mx-auto w-full max-w-4xl px-4 pt-6 pb-28 md:px-6 md:pt-2 md:pb-8",
+  title: "mb-6 text-title font-bold text-slate-900",
+} as const;
+
 export function Shell({ tabs, activeKey, onLogout, children }: ShellProps) {
   const s = useStrings(strings);
   const [loggingOut, setLoggingOut] = useState(false);
@@ -29,7 +37,7 @@ export function Shell({ tabs, activeKey, onLogout, children }: ShellProps) {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-slate-100 md:h-dvh md:flex-row md:gap-3 md:p-3">
+    <div className={styles.layout}>
       <ScrollToTop />
 
       <MobileHeader pending={loggingOut} onLogout={signOut} />
@@ -41,11 +49,9 @@ export function Shell({ tabs, activeKey, onLogout, children }: ShellProps) {
         onLogout={signOut}
       />
 
-      <main className="min-w-0 flex-1 md:overflow-y-auto">
-        <div className="mx-auto w-full max-w-4xl px-4 pt-6 pb-28 md:px-6 md:pt-2 md:pb-8">
-          <h1 className="mb-6 text-title font-bold text-slate-900">
-            {s.tabs[activeKey]}
-          </h1>
+      <main className={styles.main}>
+        <div className={styles.content}>
+          <h1 className={styles.title}>{s.tabs[activeKey]}</h1>
           <PageBoundary key={activeKey}>{children}</PageBoundary>
         </div>
       </main>

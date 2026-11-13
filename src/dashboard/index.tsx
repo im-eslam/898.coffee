@@ -8,27 +8,33 @@ import { strings } from "./strings";
 import { DEFAULT_TAB, TABS, findTab } from "./routes";
 import { useDashboard } from "./use-dashboard";
 
+const loadingStyles = {
+  text: "py-12 text-center text-body text-slate-500",
+} as const;
+
 function LoadingState() {
   const s = useStrings(strings);
   return (
-    <p role="status" className="py-12 text-center text-body text-slate-500">
+    <p role="status" className={loadingStyles.text}>
       {s.loading}
     </p>
   );
 }
 
+const errorStyles = {
+  container:
+    "flex min-h-dvh flex-col items-center justify-center gap-4 bg-slate-50 px-4 text-center",
+  text: "text-body text-slate-700",
+  button:
+    "inline-flex h-10 items-center rounded-lg bg-brand px-4 text-small font-semibold text-white data-hovered:bg-navy",
+} as const;
+
 function SessionErrorState({ onRetry }: { onRetry: () => void }) {
   const s = useStrings(strings);
   return (
-    <div
-      role="alert"
-      className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-slate-50 px-4 text-center"
-    >
-      <p className="text-body text-slate-700">{s.sessionError}</p>
-      <Button
-        onPress={onRetry}
-        className="inline-flex h-10 items-center rounded-lg bg-brand px-4 text-small font-semibold text-white data-hovered:bg-navy"
-      >
+    <div role="alert" className={errorStyles.container}>
+      <p className={errorStyles.text}>{s.sessionError}</p>
+      <Button onPress={onRetry} className={errorStyles.button}>
         {s.retry}
       </Button>
     </div>

@@ -4,6 +4,14 @@ import { useStrings } from "@/shared/i18n";
 import { reportError } from "@/shared/logging";
 import { strings } from "../strings";
 
+const styles = {
+  loadingText: "py-12 text-center text-body text-slate-500",
+  errorContainer: "flex flex-col items-start gap-3 py-8",
+  errorText: "text-body text-slate-600",
+  retryButton:
+    "inline-flex h-10 items-center rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 data-hovered:bg-slate-50 data-pressed:bg-slate-100",
+} as const;
+
 export function PageBoundary({ children }: { children: ReactNode }) {
   return (
     <ErrorBoundary>
@@ -15,7 +23,7 @@ export function PageBoundary({ children }: { children: ReactNode }) {
 function PageLoading() {
   const s = useStrings(strings);
   return (
-    <p role="status" className="py-12 text-center text-body text-slate-500">
+    <p role="status" className={styles.loadingText}>
       {s.page.loading}
     </p>
   );
@@ -24,11 +32,11 @@ function PageLoading() {
 function PageLoadError() {
   const s = useStrings(strings);
   return (
-    <div role="alert" className="flex flex-col items-start gap-3 py-8">
-      <p className="text-body text-slate-600">{s.page.error}</p>
+    <div role="alert" className={styles.errorContainer}>
+      <p className={styles.errorText}>{s.page.error}</p>
       <Button
         onPress={() => window.location.reload()}
-        className="inline-flex h-10 items-center rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 data-hovered:bg-slate-50 data-pressed:bg-slate-100"
+        className={styles.retryButton}
       >
         {s.page.retry}
       </Button>

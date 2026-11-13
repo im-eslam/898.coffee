@@ -8,14 +8,15 @@ interface BottomNavProps {
   activeKey: TabKey;
 }
 
+const styles = {
+  nav: "fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-20 flex gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 md:hidden",
+} as const;
+
 export function BottomNav({ tabs, activeKey }: BottomNavProps) {
   const s = useStrings(strings);
 
   return (
-    <nav
-      aria-label={s.nav}
-      className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-20 flex gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 md:hidden"
-    >
+    <nav aria-label={s.nav} className={styles.nav}>
       {tabs.map((tab) => (
         <NavItem
           key={tab.key}

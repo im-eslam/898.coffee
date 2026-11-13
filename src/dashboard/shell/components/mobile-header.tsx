@@ -6,9 +6,14 @@ interface MobileHeaderProps {
   onLogout: () => void;
 }
 
+const styles = {
+  header:
+    "sticky top-0 z-10 flex min-h-14 items-center justify-between border-b border-slate-200 bg-white px-4 pt-[env(safe-area-inset-top)] md:hidden",
+} as const;
+
 export function MobileHeader({ pending, onLogout }: MobileHeaderProps) {
   return (
-    <header className="sticky top-0 z-10 flex min-h-14 items-center justify-between border-b border-slate-200 bg-white px-4 pt-[env(safe-area-inset-top)] md:hidden">
+    <header className={styles.header}>
       <Brand />
       <LogoutButton pending={pending} onPress={onLogout} variant="compact" />
     </header>
