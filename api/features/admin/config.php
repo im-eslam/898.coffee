@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'auth',
+    'name' => 'admin',
     
     'settings' => [
         'table' => 'admin_users',

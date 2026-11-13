@@ -3,7 +3,7 @@
 class Guard
 {
     public static function settings(array $config): array {
-        return $config['features']['auth'];
+        return $config['features']['admin'];
     }
 
     public static function publicUser(array $user): array {

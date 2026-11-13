@@ -11,7 +11,7 @@ Autoloader::register(dirname(__DIR__));
 
 Env::load(dirname(__DIR__) . '/.env');
 $config  = require __DIR__ . '/../appsettings.php';
-$authCfg = $config['features']['auth'];
+$authCfg = $config['features']['admin'];
 
 if ($argc < 2) {
     die("Usage: php create-admin.php <username>\n");

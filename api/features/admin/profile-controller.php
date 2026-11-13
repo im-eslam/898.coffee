@@ -21,7 +21,7 @@ class ProfileController extends ControllerBase
         $user = Guard::requireAdmin($this->config);
 
         $language = HttpContext::getString(HttpContext::readBody(), 'language');
-        if (!in_array($language, $this->config['features']['auth']['languages'], true)) {
+        if (!in_array($language, $this->config['features']['admin']['languages'], true)) {
             HttpContext::fail(422, 'Invalid language', 'invalid_language');
         }
 
@@ -124,14 +124,14 @@ class ProfileController extends ControllerBase
             throw new \InvalidArgumentException("update(): invalid column '$column'");
         }
 
-        $table = $this->config['features']['auth']['table'];
+        $table = $this->config['features']['admin']['table'];
         $this->DbContext()->prepare("UPDATE {$table} SET {$column} = ? WHERE id = ?")
             ->execute([$value, $id]);
     }
 
     private function assertNotLocked(): void
     {
-        $limit = $this->config['features']['auth']['reauth_limit'];
+        $limit = $this->config['features']['admin']['reauth_limit'];
         $wait  = RateLimiter::blocked('admin_reauth', $limit['max'], $limit['window']);
         if ($wait > 0) {
             header('Retry-After: ' . $wait);
@@ -141,7 +141,7 @@ class ProfileController extends ControllerBase
 
     private function confirmCurrentPassword(int $userId, string $password): void
     {
-        $cfg   = $this->config['features']['auth'];
+        $cfg   = $this->config['features']['admin'];
         $limit = $cfg['reauth_limit'];
 
         $stmt = $this->DbContext()->prepare("SELECT password_hash FROM {$cfg['table']} WHERE id = ?");

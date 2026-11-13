@@ -19,7 +19,7 @@ class LoginController extends ControllerBase
      */
     public function login(): void
     {
-        $cfg   = $this->config['features']['auth'];
+        $cfg   = $this->config['features']['admin'];
         $limit = $cfg['login_limit'];
 
         Guard::csrfGuard();
