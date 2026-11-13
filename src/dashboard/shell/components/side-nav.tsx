@@ -16,7 +16,7 @@ export function SideNav({ tabs, activeKey, pending, onLogout }: SideNavProps) {
   const s = useStrings(strings);
 
   return (
-    <aside className="hidden w-64 shrink-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:flex">
+    <aside className="hidden w-64 shrink-0 flex-col rounded-2xl border border-slate-200 bg-white p-4 md:flex">
       <div className="px-2 pt-2 pb-6">
         <Brand />
       </div>

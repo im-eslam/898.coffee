@@ -1,6 +1,8 @@
 import { ApiError, getJson, postJson } from "@/shared/api";
 import type { AdminUser, AuthError } from "./models";
 
+export const ADMIN_API = "/admin";
+
 interface UserResponse {
   ok: true;
   user: AdminUser;
@@ -10,7 +12,7 @@ const sessionEvents = new EventTarget();
 const EXPIRED = "expired";
 
 export async function me(): Promise<AdminUser> {
-  const response = await getJson<UserResponse>("/admin/me");
+  const response = await getJson<UserResponse>(`${ADMIN_API}/me`);
   return response.user;
 }
 
@@ -18,7 +20,7 @@ export async function login(
   username: string,
   password: string
 ): Promise<AdminUser> {
-  const response = await postJson<UserResponse>("/admin/login", {
+  const response = await postJson<UserResponse>(`${ADMIN_API}/login`, {
     username,
     password,
   });
@@ -26,7 +28,7 @@ export async function login(
 }
 
 export async function logout(): Promise<void> {
-  await postJson<{ ok: true }>("/admin/logout", {});
+  await postJson<{ ok: true }>(`${ADMIN_API}/logout`, {});
 }
 
 export async function withSession<T>(request: () => Promise<T>): Promise<T> {

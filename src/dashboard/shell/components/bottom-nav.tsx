@@ -14,7 +14,7 @@ export function BottomNav({ tabs, activeKey }: BottomNavProps) {
   return (
     <nav
       aria-label={s.nav}
-      className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-20 flex gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-lg md:hidden"
+      className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-20 flex gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 md:hidden"
     >
       {tabs.map((tab) => (
         <NavItem

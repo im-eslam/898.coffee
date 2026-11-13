@@ -1,54 +1,41 @@
-import { ApiError, postJson } from "@/shared/api";
-import { reportError } from "@/shared/logging";
-import { getAuthError, withSession } from "../../api";
-import {
-  isSettingsErrorCode,
-  type LanguageRequest,
-  type OkResponse,
-  type PasswordRequest,
-  type SettingsFailure,
-  type UserResponse,
-  type UsernameRequest,
-} from "./models";
+import { postJson } from "@/shared/api";
+import type { Locale } from "@/shared/i18n";
+import { withSession } from "../../api";
+import type { AdminUser } from "../../models";
 
-export function updateLanguage(body: LanguageRequest): Promise<UserResponse> {
+const SETTINGS_API = "/admin/settings";
+
+interface UserResponse {
+  ok: true;
+  user: AdminUser;
+}
+
+export function updateLanguage(language: Locale): Promise<UserResponse> {
   return withSession(() =>
-    postJson<UserResponse>("/admin/settings/language", { ...body })
+    postJson<UserResponse>(`${SETTINGS_API}/language`, { language })
   );
 }
 
-export function updateUsername(body: UsernameRequest): Promise<UserResponse> {
+export function updateUsername(
+  username: string,
+  current_password: string
+): Promise<UserResponse> {
   return withSession(() =>
-    postJson<UserResponse>("/admin/settings/username", { ...body })
+    postJson<UserResponse>(`${SETTINGS_API}/username`, {
+      username,
+      current_password,
+    })
   );
 }
 
-export function updatePassword(body: PasswordRequest): Promise<OkResponse> {
+export function updatePassword(
+  current_password: string,
+  new_password: string
+): Promise<{ ok: true }> {
   return withSession(() =>
-    postJson<OkResponse>("/admin/settings/password", { ...body })
+    postJson<{ ok: true }>(`${SETTINGS_API}/password`, {
+      current_password,
+      new_password,
+    })
   );
-}
-
-export function toFailure(cause: unknown, operation: string): SettingsFailure {
-  const auth = getAuthError(cause);
-
-  if (auth === "network") return { kind: "network" };
-
-  if (auth === "rate_limited") {
-    const retryAfter =
-      cause instanceof ApiError &&
-      "retryAfter" in cause &&
-      typeof cause.retryAfter === "number"
-        ? cause.retryAfter
-        : undefined;
-    return { kind: "code", code: "too_many_attempts", retryAfter };
-  }
-
-  if (cause instanceof ApiError && isSettingsErrorCode(cause.code)) {
-    return { kind: "code", code: cause.code };
-  }
-
-  // Log unexpected failures (server errors, 403s, truly unknown) so we have a trail.
-  reportError(cause, { feature: "dashboard", operation });
-  return { kind: "generic" };
 }

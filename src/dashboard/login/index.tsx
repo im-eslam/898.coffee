@@ -13,7 +13,7 @@ interface LoginScreenProps {
 const styles = {
   page: "flex min-h-dvh flex-col items-center justify-center bg-slate-50 px-4 pt-[max(2.5rem,env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]",
   logo: "h-20 w-auto",
-  card: "mt-6 w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:max-w-md sm:p-8",
+  card: "mt-6 w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 sm:max-w-md sm:p-8",
   title: "text-center text-title font-bold text-slate-900",
   description: "mt-1 text-center text-small text-slate-500",
   form: "mt-6 flex flex-col gap-5",

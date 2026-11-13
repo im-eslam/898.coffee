@@ -1,4 +1,5 @@
 import { Button } from "react-aria-components";
+import { Toaster } from "react-hot-toast";
 import { useStrings } from "@/shared/i18n";
 import { LoginScreen } from "./login";
 import { SessionProvider } from "./auth-session";
@@ -34,7 +35,7 @@ function SessionErrorState({ onRetry }: { onRetry: () => void }) {
   );
 }
 
-export function Dashboard() {
+function DashboardView() {
   const { session, path, signIn, signOut, retry, updateUser } = useDashboard();
 
   switch (session.status) {
@@ -60,4 +61,13 @@ export function Dashboard() {
       );
     }
   }
+}
+
+export function Dashboard() {
+  return (
+    <>
+      <DashboardView />
+      <Toaster position="bottom-center" />
+    </>
+  );
 }
