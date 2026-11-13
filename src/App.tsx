@@ -18,6 +18,12 @@ const NotFoundPage = lazy(() =>
   }))
 );
 
+const DashboardPage = lazy(() =>
+  import("@/dashboard").then((module) => ({
+    default: module.Dashboard,
+  }))
+);
+
 export default function App() {
   return (
     <div className="app-shell">
@@ -26,6 +32,8 @@ export default function App() {
           <Route path={ROUTES.landing} component={LandingPage} />
           <Route path={ROUTES.review} component={LandingPage} />
           <Route path={ROUTES.menu} component={MenuPage} />
+          <Route path={ROUTES.dashboard} component={DashboardPage} />
+          <Route path={`${ROUTES.dashboard}/*`} component={DashboardPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Suspense>

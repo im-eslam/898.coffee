@@ -53,11 +53,19 @@ class RateLimiter {
     }
 
     public static function reset(string $bucket): void {
-        @unlink(self::file($bucket));
+        self::remove(self::file($bucket));
     }
 
-    private static function file(string $bucket): string {
-        return sys_get_temp_dir() . '/api_ratelimit_' . hash('sha256', $bucket . '|' . self::clientIp()) . '.json';
+    public static function resetForClientIp(string $bucket, string $clientIp): bool {
+        return self::remove(self::file($bucket, $clientIp));
+    }
+
+    private static function file(string $bucket, ?string $clientIp = null): string {
+        return sys_get_temp_dir() . '/api_ratelimit_' . hash('sha256', $bucket . '|' . ($clientIp ?? self::clientIp())) . '.json';
+    }
+
+    private static function remove(string $file): bool {
+        return !file_exists($file) || @unlink($file);
     }
 
     private static function open(string $bucket) {
