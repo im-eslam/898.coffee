@@ -6,7 +6,6 @@ interface UserResponse {
   user: AdminUser;
 }
 
-// Session expiry is broadcast here so any part of the dashboard can react to it.
 const sessionEvents = new EventTarget();
 const EXPIRED = "expired";
 
@@ -30,6 +29,17 @@ export async function logout(): Promise<void> {
   await postJson<{ ok: true }>("/admin/logout", {});
 }
 
+export async function withSession<T>(request: () => Promise<T>): Promise<T> {
+  try {
+    return await request();
+  } catch (cause) {
+    if (getAuthError(cause) === "unauthorized") {
+      sessionEvents.dispatchEvent(new Event(EXPIRED));
+    }
+    throw cause;
+  }
+}
+
 export function getAuthError(cause: unknown): AuthError {
   if (!(cause instanceof ApiError)) return "unknown";
   if (cause.code === "NETWORK_ERROR" || cause.code === "TIMEOUT") {
@@ -44,22 +54,6 @@ export function getAuthError(cause: unknown): AuthError {
       return "rate_limited";
     default:
       return cause.status >= 500 ? "server" : "unknown";
-  }
-}
-
-/**
- * Wrap requests made by signed-in screens (tabs). If the server says the
- * session is gone, every onSessionExpired listener is notified.
- * Do not wrap login: a 401 there means "wrong password".
- */
-export async function withSession<T>(request: () => Promise<T>): Promise<T> {
-  try {
-    return await request();
-  } catch (cause) {
-    if (getAuthError(cause) === "unauthorized") {
-      sessionEvents.dispatchEvent(new Event(EXPIRED));
-    }
-    throw cause;
   }
 }
 

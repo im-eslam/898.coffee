@@ -16,9 +16,18 @@ export function useDashboard() {
     setSession({ status: "signed-in", user });
   }
 
-  // Check the session on mount, and again each time the user presses retry.
+  function updateUser(user: AdminUser) {
+    if (
+      session.status === "signed-in" &&
+      user.language !== session.user.language
+    ) {
+      setLocale(user.language);
+    }
+    setSession({ status: "signed-in", user });
+  }
+
   useEffect(() => {
-    let active = true; // ignore results from a check that was superseded
+    let active = true;
 
     me()
       .then((user) => {
@@ -32,7 +41,10 @@ export function useDashboard() {
           return;
         }
 
-        reportError(cause, { feature: "dashboard", operation: "session check" });
+        reportError(cause, {
+          feature: "dashboard",
+          operation: "session check",
+        });
         setSession({ status: "error" });
       });
 
@@ -41,7 +53,6 @@ export function useDashboard() {
     };
   }, [attempt]);
 
-  // Session expired while the user was working: send them back to login.
   useEffect(() => {
     return onSessionExpired(() => setSession({ status: "signed-out" }));
   }, []);
@@ -69,5 +80,5 @@ export function useDashboard() {
     setSession({ status: "signed-out" });
   }
 
-  return { session, path, signIn, signOut, retry };
+  return { session, path, signIn, signOut, retry, updateUser };
 }

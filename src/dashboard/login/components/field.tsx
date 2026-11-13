@@ -4,12 +4,14 @@ import {
   Input,
   Label,
   FieldError,
+  Text,
   type TextFieldProps as AriaTextFieldProps,
   type ValidationResult,
 } from "react-aria-components";
 
 interface TextFieldProps extends AriaTextFieldProps {
   label: string;
+  description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
   trailing?: ReactNode;
 }
@@ -22,11 +24,13 @@ const styles = {
     "h-12 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand focus:ring-4 focus:ring-brand/15 disabled:bg-slate-50 disabled:text-slate-500 data-invalid:border-error data-invalid:focus:ring-error/15",
   inputWithTrailing: "pe-16",
   trailing: "absolute inset-y-0 end-2 flex items-center",
+  description: "text-small text-slate-500",
   error: "text-small text-error",
 } as const;
 
 export function TextField({
   label,
+  description,
   errorMessage,
   trailing,
   ...props
@@ -42,6 +46,11 @@ export function TextField({
         <Input className={inputClass} />
         {trailing && <div className={styles.trailing}>{trailing}</div>}
       </div>
+      {description && (
+        <Text slot="description" className={styles.description}>
+          {description}
+        </Text>
+      )}
       <FieldError className={styles.error}>{errorMessage}</FieldError>
     </AriaTextField>
   );

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { useStrings } from "@/shared/i18n";
 import { ScrollToTop } from "@/shared/router";
 import type { NavTab, TabKey } from "../routes";
@@ -7,7 +7,6 @@ import { MobileHeader } from "./components/mobile-header";
 import { PageBoundary } from "./components/page-boundary";
 import { SideNav } from "./components/side-nav";
 import { strings } from "./strings";
-import { useShell } from "./use-shell";
 
 interface ShellProps {
   tabs: readonly NavTab[];
@@ -18,7 +17,16 @@ interface ShellProps {
 
 export function Shell({ tabs, activeKey, onLogout, children }: ShellProps) {
   const s = useStrings(strings);
-  const { loggingOut, signOut } = useShell(onLogout);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function signOut() {
+    setLoggingOut(true);
+    try {
+      await onLogout();
+    } finally {
+      setLoggingOut(false);
+    }
+  }
 
   return (
     <div className="flex min-h-dvh flex-col bg-slate-100 md:h-dvh md:flex-row md:gap-3 md:p-3">

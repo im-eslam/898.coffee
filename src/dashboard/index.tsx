@@ -1,6 +1,7 @@
 import { Button } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { LoginScreen } from "./login";
+import { SessionProvider } from "./auth-session";
 import { Shell } from "./shell";
 import { strings } from "./strings";
 import { DEFAULT_TAB, TABS, findTab } from "./routes";
@@ -34,7 +35,7 @@ function SessionErrorState({ onRetry }: { onRetry: () => void }) {
 }
 
 export function Dashboard() {
-  const { session, path, signIn, signOut, retry } = useDashboard();
+  const { session, path, signIn, signOut, retry, updateUser } = useDashboard();
 
   switch (session.status) {
     case "checking":
@@ -51,14 +52,11 @@ export function Dashboard() {
       const Page = tab.page;
 
       return (
-        <Shell
-          username={session.user.username}
-          tabs={TABS}
-          activeKey={tab.key}
-          onLogout={signOut}
-        >
-          <Page />
-        </Shell>
+        <SessionProvider user={session.user} updateUser={updateUser}>
+          <Shell tabs={TABS} activeKey={tab.key} onLogout={signOut}>
+            <Page />
+          </Shell>
+        </SessionProvider>
       );
     }
   }
