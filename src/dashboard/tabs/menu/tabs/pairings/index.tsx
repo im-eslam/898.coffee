@@ -1,0 +1,179 @@
+import { Button } from "react-aria-components";
+import { useStrings } from "@/shared/i18n";
+import { Icon } from "@/shared/icons";
+import { NumberInput } from "../../components/number-input";
+import { SelectField, type SelectOption } from "../../components/select-field";
+import { useLoadedDraft } from "../../context";
+import { emptyPairing } from "../../lib/factories";
+import { localizedLabel } from "../../lib/labels";
+import { productMap, referenceable } from "../../lib/selectors";
+import { fill, strings } from "../../strings";
+import { ui } from "../../ui";
+import type { DraftPairing } from "../../types";
+
+const styles = {
+  root: "flex flex-col gap-6",
+  toolbar: "flex items-center justify-between gap-3",
+  list: "flex flex-col gap-4",
+  card: `${ui.card} flex flex-col gap-4`,
+  products: "grid gap-4 sm:grid-cols-2",
+  pricing: "grid items-end gap-4 sm:grid-cols-3",
+  final: "flex h-11 items-center text-body font-semibold text-slate-900",
+  footer: "flex justify-end",
+  empty: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
+} as const;
+
+export function PairingsTab() {
+  const s = useStrings(strings);
+  const { draft, update, issuesAt } = useLoadedDraft();
+  const map = productMap(draft);
+  const products = referenceable(draft);
+
+  const baseOptions: SelectOption[] = products.map((product) => ({
+    id: product.id,
+    label: localizedLabel(product.name, s.products.unnamed),
+  }));
+
+  const optionsFor = (current: string): SelectOption[] =>
+    map.has(current) || current === ""
+      ? baseOptions
+      : [...baseOptions, { id: current, label: s.pairings.missingProduct }];
+
+  const patch = (index: number, change: (pairing: DraftPairing) => DraftPairing) =>
+    update(
+      (current) => ({
+        ...current,
+        pairings: current.pairings.map((pairing, position) =>
+          position === index ? change(pairing) : pairing
+        ),
+      }),
+      `pairings[${index}]`
+    );
+
+  const setItem = (index: number, slot: 0 | 1, id: string) =>
+    patch(index, (pairing) => {
+      const items = [...pairing.items];
+      items[slot] = id;
+      return { ...pairing, items };
+    });
+
+  const setPrice = (index: number, price: number) =>
+    patch(index, (pairing) => ({
+      ...pairing,
+      pricing: {
+        price,
+        discount: pairing.pricing.discount,
+        final: price - pairing.pricing.discount,
+      },
+    }));
+
+  const setDiscount = (index: number, discount: number) =>
+    patch(index, (pairing) => ({
+      ...pairing,
+      pricing: {
+        price: pairing.pricing.price,
+        discount,
+        final: pairing.pricing.price - discount,
+      },
+    }));
+
+  const addPairing = () => {
+    const [first, second] = products;
+    if (!first || !second) return;
+    update((current) => ({
+      ...current,
+      pairings: [...current.pairings, emptyPairing([first.id, second.id])],
+    }));
+  };
+
+  const messages = (path: string) =>
+    issuesAt(path).map((issue) => issue.message);
+
+  return (
+    <div className={styles.root}>
+      <div className={styles.toolbar}>
+        <h2 className={ui.heading}>{s.pairings.listLabel}</h2>
+        <Button
+          className={ui.primary}
+          isDisabled={products.length < 2}
+          onPress={addPairing}
+        >
+          <Icon name="plus" className="size-4" />
+          {s.pairings.add}
+        </Button>
+      </div>
+
+      {draft.pairings.length === 0 ? (
+        <p className={styles.empty}>{s.pairings.empty}</p>
+      ) : (
+        <ul className={styles.list} aria-label={s.pairings.listLabel}>
+          {draft.pairings.map((pairing, index) => {
+            const path = `pairings[${index}]`;
+            const a = pairing.items[0] ?? "";
+            const b = pairing.items[1] ?? "";
+            const pairName = fill(s.pairings.pairLabel, {
+              a: map.get(a) ? localizedLabel(map.get(a)!.product.name, s.products.unnamed) : s.pairings.missingProduct,
+              b: map.get(b) ? localizedLabel(map.get(b)!.product.name, s.products.unnamed) : s.pairings.missingProduct,
+            });
+            return (
+              <li key={pairing.uid}>
+                <section className={styles.card} aria-label={pairName}>
+                  <div className={styles.products}>
+                    <SelectField
+                      label={s.pairings.productA}
+                      options={optionsFor(a)}
+                      value={a}
+                      errors={messages(`${path}.items`)}
+                      onChange={(id) => setItem(index, 0, id)}
+                    />
+                    <SelectField
+                      label={s.pairings.productB}
+                      options={optionsFor(b)}
+                      value={b}
+                      onChange={(id) => setItem(index, 1, id)}
+                    />
+                  </div>
+                  <div className={styles.pricing}>
+                    <NumberInput
+                      label={s.pairings.price}
+                      value={pairing.pricing.price}
+                      errors={messages(`${path}.pricing.price`)}
+                      onCommit={(value) => setPrice(index, value)}
+                    />
+                    <NumberInput
+                      label={s.pairings.discount}
+                      value={pairing.pricing.discount}
+                      errors={messages(`${path}.pricing.discount`)}
+                      onCommit={(value) => setDiscount(index, value)}
+                    />
+                    <p className={styles.final}>
+                      {fill(s.pairings.final, {
+                        value: `${pairing.pricing.final} ${draft.currency}`,
+                      })}
+                    </p>
+                  </div>
+                  <div className={styles.footer}>
+                    <Button
+                      className={ui.danger}
+                      onPress={() =>
+                        update((current) => ({
+                          ...current,
+                          pairings: current.pairings.filter(
+                            (item) => item.uid !== pairing.uid
+                          ),
+                        }))
+                      }
+                    >
+                      <Icon name="trash" className="size-4" />
+                      {s.pairings.remove}
+                    </Button>
+                  </div>
+                </section>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
