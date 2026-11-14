@@ -22,6 +22,18 @@ class HttpContext {
         self::json($body, $status);
     }
 
+    public static function readRaw(int $maxBytes = self::MAX_BODY): string {
+        $type = strtolower($_SERVER['CONTENT_TYPE'] ?? '');
+        if (!str_starts_with($type, 'application/json')) {
+            self::fail(415, 'Content-Type must be application/json', 'UNSUPPORTED_MEDIA_TYPE');
+        }
+        $raw = file_get_contents('php://input', false, null, 0, $maxBytes + 1) ?: '';
+        if (strlen($raw) > $maxBytes) {
+            self::fail(413, 'Payload too large', 'PAYLOAD_TOO_LARGE');
+        }
+        return $raw;
+    }
+
     public static function readBody(): array {
         $type = strtolower($_SERVER['CONTENT_TYPE'] ?? '');
         if (!str_starts_with($type, 'application/json')) {

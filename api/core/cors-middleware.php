@@ -29,8 +29,8 @@ class CorsMiddleware {
         header('Access-Control-Allow-Credentials: true'); 
 
         if ($method === 'OPTIONS') {
-            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-            header('Access-Control-Allow-Headers: Content-Type');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
+            header('Access-Control-Allow-Headers: Content-Type, If-Match');
             header('Access-Control-Max-Age: 600');
             http_response_code(204);
             exit;
