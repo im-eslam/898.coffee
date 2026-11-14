@@ -3875,8 +3875,8 @@
     }
   ],
   "popup": {
-    "enabled": false,
-    "image": null,
+    "enabled": true,
+    "image": "baner.jpg",
     "delaySeconds": 1
   }
 }

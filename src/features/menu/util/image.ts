@@ -8,3 +8,8 @@ export function resolveImageUrl(
     size === "thumb" ? image.replace(/(\.[^.]+)$/, "@400w$1") : image;
   return `${import.meta.env.BASE_URL}menu/${folder}/${filename}`;
 }
+
+export function resolvePopupImageUrl(image: string | null): string | null {
+  if (!image) return null;
+  return `${import.meta.env.BASE_URL}menu/popup/${image}`;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Dialog, Modal, ModalOverlay } from "react-aria-components";
 import type { Popup } from "../../types/menu";
+import { resolvePopupImageUrl } from "../../util/image";
 import { MenuButton } from "../ui/menu-button";
 
 interface Props {
@@ -21,11 +22,12 @@ const styles = {
 
 export function PromoPopup({ popup, busy }: Props) {
   const { enabled, image, delaySeconds } = popup;
+  const imageUrl = resolvePopupImageUrl(image);
 
   const delayMs =
     Math.max(0, Number.isFinite(delaySeconds) ? delaySeconds : 0) * 1000;
 
-  const configKey = JSON.stringify([enabled, image, delayMs]);
+  const configKey = JSON.stringify([enabled, imageUrl, delayMs]);
 
   const [readyKey, setReadyKey] = useState<string | null>(null);
   const [dismissedKey, setDismissedKey] = useState<string | null>(null);
@@ -33,67 +35,63 @@ export function PromoPopup({ popup, busy }: Props) {
   const isReady = readyKey === configKey;
   const isDismissed = dismissedKey === configKey;
 
-  const isOpen = enabled && Boolean(image) && isReady && !isDismissed && !busy;
+  const isOpen =
+    enabled && Boolean(imageUrl) && isReady && !isDismissed && !busy;
 
   useEffect(() => {
-    if (!enabled || !image) return;
+    if (!enabled || !imageUrl) return;
 
-    let active = true;
-    let imageLoaded = false;
-    let delayElapsed = false;
-    let timerId: number | undefined;
+    const controller = new AbortController();
+    const { signal } = controller;
 
-    const imageLoader = new Image();
+    const imagePromise = new Promise<void>((resolve, reject) => {
+      const imageLoader = new Image();
 
-    function markReady() {
-      if (!active || !imageLoaded || !delayElapsed) return;
+      signal.addEventListener(
+        "abort",
+        () => {
+          imageLoader.onload = null;
+          imageLoader.onerror = null;
+        },
+        { once: true }
+      );
 
-      active = false;
-      setReadyKey(configKey);
-    }
+      imageLoader.onload = () => resolve();
+      imageLoader.onerror = () =>
+        reject(new Error("Failed to load popup image"));
+      imageLoader.src = imageUrl;
 
-    function handleImageLoad() {
-      imageLoaded = true;
-      markReady();
-    }
-
-    function handleImageError() {
-      active = false;
-
-      if (timerId !== undefined) {
-        window.clearTimeout(timerId);
+      if (imageLoader.complete) {
+        if (imageLoader.naturalWidth > 0) {
+          resolve();
+        } else {
+          reject(new Error("Failed to load popup image"));
+        }
       }
-    }
+    });
 
-    imageLoader.onload = handleImageLoad;
-    imageLoader.onerror = handleImageError;
+    const delayPromise = new Promise<void>((resolve) => {
+      const timerId = window.setTimeout(resolve, delayMs);
 
-    timerId = window.setTimeout(() => {
-      delayElapsed = true;
-      markReady();
-    }, delayMs);
+      signal.addEventListener("abort", () => window.clearTimeout(timerId), {
+        once: true,
+      });
+    });
 
-    imageLoader.src = image;
-
-    if (imageLoader.complete) {
-      if (imageLoader.naturalWidth > 0) {
-        handleImageLoad();
-      } else {
-        handleImageError();
-      }
-    }
+    Promise.all([imagePromise, delayPromise])
+      .then(() => {
+        if (!signal.aborted) {
+          setReadyKey(configKey);
+        }
+      })
+      .catch(() => {
+        controller.abort();
+      });
 
     return () => {
-      active = false;
-
-      if (timerId !== undefined) {
-        window.clearTimeout(timerId);
-      }
-
-      imageLoader.onload = null;
-      imageLoader.onerror = null;
+      controller.abort();
     };
-  }, [enabled, image, delayMs, configKey]);
+  }, [enabled, imageUrl, delayMs, configKey]);
 
   function handleOpenChange(open: boolean) {
     if (!open) {
@@ -101,7 +99,7 @@ export function PromoPopup({ popup, busy }: Props) {
     }
   }
 
-  if (!enabled || !image) return null;
+  if (!enabled || !imageUrl) return null;
 
   return (
     <ModalOverlay
@@ -113,7 +111,7 @@ export function PromoPopup({ popup, busy }: Props) {
       <Modal className={styles.modal}>
         <Dialog className={styles.dialog}>
           <img
-            src={image}
+            src={imageUrl}
             alt=""
             draggable={false}
             decoding="async"
