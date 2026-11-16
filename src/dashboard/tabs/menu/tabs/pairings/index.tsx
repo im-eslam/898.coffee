@@ -3,19 +3,24 @@ import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { NumberInput } from "../../components/number-input";
 import { SelectField, type SelectOption } from "../../components/select-field";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { emptyPairing } from "../../lib/factories";
 import { localizedLabel } from "../../lib/labels";
 import { productMap, referenceable } from "../../lib/selectors";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
-import type { DraftPairing } from "../../types";
+import type { DraftPairing } from "../../types/draft";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
   toolbar: "flex items-center justify-between gap-3",
+  heading: "text-heading font-semibold text-slate-900",
+  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
+  danger: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-error/40 bg-white px-4 text-small font-semibold text-error transition-colors data-[hovered]:bg-error/5 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
   list: "flex flex-col gap-4",
-  card: `${ui.card} flex flex-col gap-4`,
+  card: "flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6",
   products: "grid gap-4 sm:grid-cols-2",
   pricing: "grid items-end gap-4 sm:grid-cols-3",
   final: "flex h-11 items-center text-body font-semibold text-slate-900",
@@ -92,9 +97,9 @@ export function PairingsTab() {
   return (
     <div className={styles.root}>
       <div className={styles.toolbar}>
-        <h2 className={ui.heading}>{s.pairings.listLabel}</h2>
+        <h2 className={styles.heading}>{s.pairings.listLabel}</h2>
         <Button
-          className={ui.primary}
+          className={styles.primary}
           isDisabled={products.length < 2}
           onPress={addPairing}
         >
@@ -154,7 +159,7 @@ export function PairingsTab() {
                   </div>
                   <div className={styles.footer}>
                     <Button
-                      className={ui.danger}
+                      className={styles.danger}
                       onPress={() =>
                         update((current) => ({
                           ...current,

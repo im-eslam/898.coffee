@@ -3,17 +3,23 @@ import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { NumberInput } from "../../components/number-input";
 import { TextInput } from "../../components/text-input";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { emptyAddOn } from "../../lib/factories";
 import { addOnUsage } from "../../lib/selectors";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
-import type { DraftAddOn } from "../../types";
+import type { DraftAddOn } from "../../types/draft";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
   toolbar: "flex items-center justify-between gap-3",
-  scroll: `${ui.card} overflow-x-auto p-0`,
+  heading: "text-heading font-semibold text-slate-900",
+  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
+  scroll:
+    "overflow-x-auto rounded-2xl border border-slate-200 bg-white p-0",
   table: "w-full min-w-176 border-collapse text-start",
   th: "px-4 py-3 text-start text-small font-medium text-slate-500",
   td: "px-4 py-3 align-top",
@@ -44,9 +50,9 @@ export function AddOnsTab() {
   return (
     <div className={styles.root}>
       <div className={styles.toolbar}>
-        <h2 className={ui.heading}>{s.addons.tableLabel}</h2>
+        <h2 className={styles.heading}>{s.addons.tableLabel}</h2>
         <Button
-          className={ui.primary}
+          className={styles.primary}
           onPress={() =>
             update((current) => ({
               ...current,
@@ -132,7 +138,7 @@ export function AddOnsTab() {
                     </td>
                     <td className={styles.td}>
                       <Button
-                        className={ui.iconButton}
+                        className={styles.iconButton}
                         isDisabled={usage > 0}
                         aria-label={s.addons.remove}
                         onPress={() =>

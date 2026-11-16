@@ -13,7 +13,7 @@ import { IssueSummary } from "./components/issue-summary";
 import { LeaveGuard } from "./components/leave-guard";
 import { SaveBar } from "./components/save-bar";
 import { SessionModal } from "./components/session-modal";
-import { MenuDraftProvider, useDraft } from "./context";
+import { MenuDraftProvider, useDraft } from "./hooks/use-draft-context";
 import { allProducts } from "./lib/selectors";
 import { strings } from "./strings";
 import { AddOnsTab } from "./tabs/addons";
@@ -23,20 +23,26 @@ import { PairingsTab } from "./tabs/pairings";
 import { PopupTab } from "./tabs/popup";
 import { ProductsTab } from "./tabs/products";
 import { SignaturesTab } from "./tabs/signatures";
-import { ui } from "./ui";
-import { DEFAULT_MENU_TAB, MENU_TABS, type MenuTabKey } from "./types";
+import { DEFAULT_MENU_TAB, MENU_TABS, type MenuTabKey } from "./types/ui";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   page: "flex w-full flex-col gap-5",
   tabList:
     "flex gap-1 overflow-x-auto border-b border-slate-200 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-  tab: `flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 border-transparent px-4 text-small font-semibold text-slate-600 transition-colors data-[hovered]:text-slate-900 data-[selected]:border-brand data-[selected]:text-brand ${ui.focusRing}`,
+  tab: `flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 border-transparent px-4 text-small font-semibold text-slate-600 transition-colors data-[hovered]:text-slate-900 data-[selected]:border-brand data-[selected]:text-brand ${focusRing}`,
   count:
     "rounded-full bg-slate-100 px-2 py-0.5 text-small font-medium text-slate-700",
   panel: "outline-none",
-  state: `${ui.card} flex flex-col items-center gap-4 py-12 text-center`,
+  card: "rounded-2xl border border-slate-200 bg-white p-6",
+  heading: "text-heading font-semibold text-slate-900",
+  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
   stateText: "text-body text-slate-600",
 } as const;
+
+const stateCardClass = `${styles.card} flex flex-col items-center gap-4 py-12 text-center`;
 
 function readTab(): MenuTabKey {
   const value = new URLSearchParams(window.location.search).get("menu");
@@ -50,7 +56,7 @@ function writeTab(tab: MenuTabKey) {
 }
 
 function StateCard({ children }: { children: ReactNode }) {
-  return <div className={styles.state}>{children}</div>;
+  return <div className={stateCardClass}>{children}</div>;
 }
 
 function MenuContent() {
@@ -81,7 +87,7 @@ function MenuContent() {
         <p role="alert" className={styles.stateText}>
           {s.page.loadFailed}
         </p>
-        <Button className={ui.primary} onPress={retryLoad}>
+        <Button className={styles.primary} onPress={retryLoad}>
           {s.page.retry}
         </Button>
       </StateCard>
@@ -101,9 +107,9 @@ function MenuContent() {
   const panels: Record<MenuTabKey, ReactNode> = {
     products: needsCategory ? (
       <StateCard>
-        <h2 className={ui.heading}>{s.page.emptyTitle}</h2>
+        <h2 className={styles.heading}>{s.page.emptyTitle}</h2>
         <p className={styles.stateText}>{s.page.emptyText}</p>
-        <Button className={ui.primary} onPress={() => select("categories")}>
+        <Button className={styles.primary} onPress={() => select("categories")}>
           {s.page.emptyAction}
         </Button>
       </StateCard>

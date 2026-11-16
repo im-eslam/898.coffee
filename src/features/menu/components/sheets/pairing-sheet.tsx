@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { SetStateAction } from "react";
 import type { Locale } from "@/shared/i18n";
-import type { Pairing } from "../../types/menu";
+import type { Pairing } from "@/shared/menu";
 import { resolveImageUrl } from "../../util/image";
 import { getPairingTotal, isPairingAvailable } from "../../util/pricing";
 import { BaseOptions } from "./base-options";

@@ -1,11 +1,13 @@
 import { useStrings } from "@/shared/i18n";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { strings } from "../../strings";
-import { ui } from "../../ui";
 
 const styles = {
   root: "flex flex-col gap-6",
-  card: `${ui.card} flex flex-col gap-3`,
+  card: "flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6",
+  label: "text-small font-medium text-slate-700",
+  heading: "text-heading font-semibold text-slate-900",
+  sub: "text-small text-slate-500",
   row: "flex flex-col gap-1",
   value: "text-body font-medium text-slate-900",
   list: "flex flex-col gap-3",
@@ -22,17 +24,17 @@ export function GeneralTab() {
   return (
     <div className={styles.root}>
       <section className={styles.card} aria-labelledby="general-currency">
-        <h2 id="general-currency" className={ui.label}>
+        <h2 id="general-currency" className={styles.label}>
           {s.general.currency}
         </h2>
         <p className={styles.value}>{draft.currency}</p>
       </section>
 
       <section className={styles.card} aria-labelledby="general-badges">
-        <h2 id="general-badges" className={ui.heading}>
+        <h2 id="general-badges" className={styles.heading}>
           {s.general.badges}
         </h2>
-        <p className={ui.sub}>{s.general.badgesText}</p>
+        <p className={styles.sub}>{s.general.badgesText}</p>
         <ul className={styles.list}>
           {draft.badges.map((badge) => (
             <li key={badge} className={styles.badge}>
@@ -46,11 +48,11 @@ export function GeneralTab() {
       </section>
 
       <section className={styles.card} aria-labelledby="general-warnings">
-        <h2 id="general-warnings" className={ui.heading}>
+        <h2 id="general-warnings" className={styles.heading}>
           {s.general.warnings}
         </h2>
         {warnings.length === 0 ? (
-          <p className={ui.sub}>{s.general.noWarnings}</p>
+          <p className={styles.sub}>{s.general.noWarnings}</p>
         ) : (
           <ul className={styles.warnings}>
             {warnings.map((warning, index) => (

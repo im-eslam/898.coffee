@@ -1,7 +1,10 @@
 import type { ChangeEvent } from "react";
 import { Button } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
-import * as C from "./components/";
+import { ChoiceCard } from "./components/choice-card";
+import { NoteField } from "./components/note-field";
+import { ReviewShell } from "./components/review-shell";
+import { SuccessScreen } from "./components/success-screen";
 import { useReview, NOTE_LIMITS } from "./hooks/use-review";
 import { strings } from "./strings";
 
@@ -20,7 +23,7 @@ export function ReviewPage() {
   const review = useReview();
 
   return (
-    <C.ReviewShell
+    <ReviewShell
       strings={{
         closeLabel: s.common.close,
         title: review.step === "note" ? s.choices.note.title : s.drawer.title,
@@ -31,7 +34,7 @@ export function ReviewPage() {
     >
       {review.step === "choices" && (
         <section className={styles.choices}>
-          <C.ChoiceCard
+          <ChoiceCard
             strings={{
               icon: "star",
               title: s.choices.google.title,
@@ -40,7 +43,7 @@ export function ReviewPage() {
             onPress={review.openGoogleReview}
           />
 
-          <C.ChoiceCard
+          <ChoiceCard
             strings={{
               icon: "chat",
               title: s.choices.note.title,
@@ -53,7 +56,7 @@ export function ReviewPage() {
 
       {review.step === "note" && (
         <form noValidate className={styles.form} onSubmit={review.submit}>
-          <C.NoteField
+          <NoteField
             strings={{
               label: s.form.fields.message.label,
               hint: review.showTooShort
@@ -66,7 +69,7 @@ export function ReviewPage() {
             maxLength={NOTE_LIMITS.message}
             required
           />
-          <C.NoteField
+          <NoteField
             strings={{ label: s.form.fields.name.label }}
             kind="input"
             value={review.values.name}
@@ -74,7 +77,7 @@ export function ReviewPage() {
             maxLength={NOTE_LIMITS.name}
             autoComplete="name"
           />
-          <C.NoteField
+          <NoteField
             strings={{ label: s.form.fields.contact.label }}
             kind="input"
             value={review.values.contact}
@@ -109,7 +112,7 @@ export function ReviewPage() {
       )}
 
       {review.step === "success" && (
-        <C.SuccessScreen
+        <SuccessScreen
           strings={{
             message: s.success.message,
             closeLabel: s.common.close,
@@ -117,6 +120,6 @@ export function ReviewPage() {
           onClose={review.close}
         />
       )}
-    </C.ReviewShell>
+    </ReviewShell>
   );
 }

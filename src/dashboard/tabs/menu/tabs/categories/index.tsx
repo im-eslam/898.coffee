@@ -12,20 +12,34 @@ import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { SelectField } from "../../components/select-field";
 import { TextInput } from "../../components/text-input";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { useReorder } from "../../hooks/use-reorder";
 import { emptyCategory } from "../../lib/factories";
 import { localizedLabel } from "../../lib/labels";
 import { moveItems } from "../../lib/reorder";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
-import type { DraftCategory } from "../../types";
+import type { DraftCategory } from "../../types/draft";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
   toolbar: "flex items-center justify-between gap-3",
+  heading: "text-heading font-semibold text-slate-900",
+  sub: "text-small text-slate-500",
+  error: "text-small text-error",
+  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
+  button: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 transition-colors data-[hovered]:bg-slate-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
+  danger: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-error/40 bg-white px-4 text-small font-semibold text-error transition-colors data-[hovered]:bg-error/5 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
+  dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
+  overlay:
+    "fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 p-4 sm:items-center data-[entering]:animate-in data-[entering]:fade-in",
+  modal:
+    "w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-xl outline-none",
   list: "flex flex-col gap-3 outline-none",
-  row: `flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 data-[dragging]:opacity-50 sm:flex-row sm:items-start ${ui.focusRing}`,
+  row: `flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 data-[dragging]:opacity-50 sm:flex-row sm:items-start ${focusRing}`,
   fields: "grid min-w-0 flex-1 gap-3 sm:grid-cols-2",
   meta: "flex items-center justify-between gap-2 sm:h-11 sm:justify-end sm:pt-6",
   count: "text-small text-slate-500",
@@ -99,9 +113,9 @@ export function CategoriesTab() {
   return (
     <div className={styles.root}>
       <div className={styles.toolbar}>
-        <h2 className={ui.heading}>{s.categories.listLabel}</h2>
+        <h2 className={styles.heading}>{s.categories.listLabel}</h2>
         <Button
-          className={ui.primary}
+          className={styles.primary}
           onPress={() =>
             update((current) => ({
               ...current,
@@ -136,7 +150,7 @@ export function CategoriesTab() {
             >
               <Button
                 slot="drag"
-                className={ui.dragHandle}
+                className={styles.dragHandle}
                 aria-label={s.common.dragHandle}
               >
                 <Icon name="menu" className="size-5" />
@@ -174,7 +188,7 @@ export function CategoriesTab() {
                     : fill(s.categories.products, { count })}
                 </span>
                 <Button
-                  className={ui.iconButton}
+                  className={styles.iconButton}
                   aria-label={`${s.categories.remove}: ${localizedLabel(category.name, fallbackName)}`}
                   onPress={() => requestRemove(category)}
                 >
@@ -187,21 +201,21 @@ export function CategoriesTab() {
       </GridList>
 
       <ModalOverlay
-        className={ui.overlay}
+        className={styles.overlay}
         isOpen={removing !== undefined}
         onOpenChange={(open) => {
           if (!open) closeModal();
         }}
         isDismissable
       >
-        <Modal className={ui.modal}>
+        <Modal className={styles.modal}>
           <Dialog className={styles.dialog}>
-            <Heading slot="title" className={ui.heading}>
+            <Heading slot="title" className={styles.heading}>
               {fill(s.categories.removeTitle, { name: removingName })}
             </Heading>
-            <p className={ui.sub}>{s.categories.removeText}</p>
+            <p className={styles.sub}>{s.categories.removeText}</p>
             {others.length === 0 ? (
-              <p className={ui.error}>{s.categories.noOther}</p>
+              <p className={styles.error}>{s.categories.noOther}</p>
             ) : (
               <SelectField
                 label={s.categories.moveTo}
@@ -214,11 +228,11 @@ export function CategoriesTab() {
               />
             )}
             <div className={styles.actions}>
-              <Button className={ui.button} onPress={closeModal}>
+              <Button className={styles.button} onPress={closeModal}>
                 {s.common.cancel}
               </Button>
               <Button
-                className={ui.danger}
+                className={styles.danger}
                 isDisabled={!targetUid}
                 onPress={confirmMove}
               >

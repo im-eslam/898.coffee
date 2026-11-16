@@ -6,7 +6,7 @@ import type {
   Pricing,
   Product,
   ProductRef,
-} from "../types/menu";
+} from "@/shared/menu";
 
 export function getSelectedOption(
   pricing: Pricing,

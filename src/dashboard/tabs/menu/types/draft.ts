@@ -6,14 +6,6 @@ import type {
   Popup,
 } from "@/features/menu/types/menu";
 
-/*
- * The shared `Menu` type is the storefront's resolved view (objects instead of
- * ids, broken references already dropped). The admin needs the wire shape with
- * ids intact so broken references stay visible until the admin saves.
- * `uid` is a client-only key: new entries all have `id: ""` until the server
- * assigns one.
- */
-
 export interface DraftAddOn {
   uid: string;
   id: string;
@@ -79,22 +71,6 @@ export interface MenuIssue {
   code: string;
   message: string;
 }
-
-export type SaveStatus = "idle" | "saving" | "saved" | "error";
-
-export const MENU_TABS = [
-  "products",
-  "categories",
-  "addons",
-  "signatures",
-  "pairings",
-  "popup",
-  "general",
-] as const;
-
-export type MenuTabKey = (typeof MENU_TABS)[number];
-
-export const DEFAULT_MENU_TAB: MenuTabKey = "products";
 
 export const MAX_SIZES = 10;
 export const MIN_SIZES = 2;

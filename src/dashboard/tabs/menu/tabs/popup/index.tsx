@@ -2,15 +2,18 @@ import { Switch } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { ImagePicker } from "../../components/image-picker";
 import { NumberInput } from "../../components/number-input";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { imageOptions } from "../../lib/selectors";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "grid gap-6 lg:grid-cols-2",
-  card: `${ui.card} flex flex-col gap-5`,
-  switch: `group inline-flex min-h-11 items-center gap-3 text-body font-medium text-slate-900 ${ui.focusRing}`,
+  card: "flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-6",
+  heading: "text-heading font-semibold text-slate-900",
+  switch: `group inline-flex min-h-11 items-center gap-3 text-body font-medium text-slate-900 ${focusRing}`,
   track:
     "relative h-6 w-11 shrink-0 rounded-full bg-slate-300 transition-colors group-data-[selected]:bg-brand",
   thumb:
@@ -82,8 +85,8 @@ export function PopupTab() {
         />
       </section>
 
-      <section className={ui.card} aria-labelledby="popup-preview">
-        <h2 id="popup-preview" className={ui.heading}>
+      <section className={styles.card} aria-labelledby="popup-preview">
+        <h2 id="popup-preview" className={styles.heading}>
           {s.popup.previewTitle}
         </h2>
         <div className={`${styles.previewBody} mt-3`}>

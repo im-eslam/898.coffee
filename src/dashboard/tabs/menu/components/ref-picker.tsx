@@ -15,19 +15,25 @@ import {
 import { Icon } from "@/shared/icons";
 import { useStrings } from "@/shared/i18n";
 import { fill, strings } from "../strings";
-import { ui } from "../ui";
 
 const styles = {
   root: "flex flex-col gap-2",
+  label: "text-small font-medium text-slate-700",
+  sub: "text-small text-slate-500",
   tags: "flex flex-wrap gap-2",
   tag: "inline-flex min-h-9 items-center gap-1 rounded-full border border-slate-300 bg-slate-50 py-1 pr-1 pl-3 text-small text-slate-800 outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-brand",
   tagBroken: "border-error/50 bg-error/5 text-error",
   remove:
     "inline-flex size-7 items-center justify-center rounded-full text-slate-500 outline-none data-[hovered]:bg-slate-200 data-[focus-visible]:outline-2 data-[focus-visible]:outline-brand",
-  broken: "text-small text-error",
   empty: "text-small text-slate-500",
   field: "flex flex-col gap-1.5",
   inputWrap: "relative",
+  input:
+    "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20",
+  popover:
+    "max-h-72 w-(--trigger-width) overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg",
+  option:
+    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10 data-[disabled]:opacity-50",
 } as const;
 
 export interface RefOption {
@@ -69,7 +75,7 @@ export function RefPicker({
         aria-label={label}
         onRemove={(keys) => onChange(value.filter((id) => !keys.has(id)))}
       >
-        <Label className={ui.label}>{label}</Label>
+        <Label className={styles.label}>{label}</Label>
         <TagList
           className={styles.tags}
           items={items}
@@ -115,20 +121,20 @@ export function RefPicker({
         }}
       >
         <div className={styles.inputWrap}>
-          <Input className={ui.input} placeholder={s.editor.pickerPlaceholder} />
+          <Input className={styles.input} placeholder={s.editor.pickerPlaceholder} />
         </div>
         {hint ? (
-          <Text slot="description" className={ui.sub}>
+          <Text slot="description" className={styles.sub}>
             {hint}
           </Text>
         ) : null}
-        <Popover className={ui.popover}>
+        <Popover className={styles.popover}>
           <ListBox className="outline-none">
             {(option: RefOption) => (
               <ListBoxItem
                 id={option.id}
                 textValue={option.label}
-                className={ui.option}
+                className={styles.option}
               >
                 {option.label}
               </ListBoxItem>

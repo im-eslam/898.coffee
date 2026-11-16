@@ -1,6 +1,6 @@
 import type { Locale } from "@/shared/i18n";
 import { useCarousel } from "../../hooks/components/use-carousel";
-import type { Product } from "../../types/menu";
+import type { Product } from "@/shared/menu";
 import { Heading } from "../ui/heading";
 import { SignatureCard } from "./signature-card";
 

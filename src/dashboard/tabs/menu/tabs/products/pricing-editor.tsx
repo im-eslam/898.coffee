@@ -3,16 +3,18 @@ import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { NumberInput } from "../../components/number-input";
 import { TextInput } from "../../components/text-input";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { emptyOption } from "../../lib/factories";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
 import {
   MAX_SIZES,
   MIN_SIZES,
   type DraftOption,
   type DraftPricing,
-} from "../../types";
+} from "../../types/draft";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-4",
@@ -23,6 +25,8 @@ const styles = {
   rowTitle: "text-small font-semibold text-slate-700",
   rowFields: "grid gap-3 sm:grid-cols-2",
   final: "flex h-11 items-center text-body font-semibold text-slate-900",
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
+  button: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 transition-colors data-[hovered]:bg-slate-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
 } as const;
 
 interface PricingEditorProps {
@@ -95,7 +99,7 @@ export function PricingEditor({ pricing, basePath, onChange }: PricingEditorProp
                 <div className={styles.rowHead}>
                   <h4 className={styles.rowTitle}>{title}</h4>
                   <Button
-                    className={ui.iconButton}
+                    className={styles.iconButton}
                     isDisabled={pricing.options.length <= MIN_SIZES}
                     aria-label={`${s.pricing.removeSize}: ${title}`}
                     onPress={() =>
@@ -154,7 +158,7 @@ export function PricingEditor({ pricing, basePath, onChange }: PricingEditorProp
       </ul>
       <div>
         <Button
-          className={ui.button}
+          className={styles.button}
           isDisabled={pricing.options.length >= MAX_SIZES}
           onPress={() =>
             onChange({

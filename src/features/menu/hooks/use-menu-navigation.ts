@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { NavSection } from "../types/flow";
+
+export interface NavSection {
+  id: string;
+  label: string;
+}
 
 const DEFAULT_HEADER_HEIGHT = 104;
 const SECTION_GAP = 16;

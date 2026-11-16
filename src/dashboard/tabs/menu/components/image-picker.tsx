@@ -11,11 +11,18 @@ import {
 } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { strings } from "../strings";
-import { ui } from "../ui";
 
 const styles = {
   root: "flex flex-col gap-1.5",
+  label: "text-small font-medium text-slate-700",
+  error: "text-small text-error",
   hint: "text-small text-slate-500",
+  input:
+    "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20 data-[invalid]:border-error data-[disabled]:bg-slate-50 data-[disabled]:text-slate-500",
+  popover:
+    "max-h-72 w-(--trigger-width) overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg",
+  option:
+    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10 data-[disabled]:opacity-50",
 } as const;
 
 interface ImagePickerProps {
@@ -73,9 +80,9 @@ function ImageCombo({
       }}
       onBlur={() => commit(text)}
     >
-      <Label className={ui.label}>{label}</Label>
+      <Label className={styles.label}>{label}</Label>
       <Input
-        className={ui.input}
+        className={styles.input}
         placeholder={placeholder ?? s.editor.imagePlaceholder}
         dir="ltr"
       />
@@ -84,11 +91,11 @@ function ImageCombo({
           {hint}
         </Text>
       ) : null}
-      <FieldError className={ui.error}>{errors.join(" ")}</FieldError>
-      <Popover className={ui.popover}>
+      <FieldError className={styles.error}>{errors.join(" ")}</FieldError>
+      <Popover className={styles.popover}>
         <ListBox className="outline-none" renderEmptyState={() => null}>
           {(item: { id: string }) => (
-            <ListBoxItem id={item.id} textValue={item.id} className={ui.option}>
+            <ListBoxItem id={item.id} textValue={item.id} className={styles.option}>
               {item.id}
             </ListBoxItem>
           )}

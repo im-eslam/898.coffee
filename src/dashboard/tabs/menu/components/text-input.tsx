@@ -9,11 +9,17 @@ import {
 } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { strings } from "../strings";
-import { ui } from "../ui";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-1.5",
+  label: "text-small font-medium text-slate-700",
   hint: "text-small text-slate-500",
+  error: "text-small text-error",
+  input: `h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20 data-[invalid]:border-error data-[disabled]:bg-slate-50 data-[disabled]:text-slate-500 ${focusRing}`,
+  textarea: `min-h-28 w-full resize-y rounded-lg border border-slate-300 bg-white px-3 py-2 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20 data-[invalid]:border-error ${focusRing}`,
 } as const;
 
 interface TextInputProps {
@@ -63,23 +69,23 @@ export function TextInput({
         if (next !== value) onCommit(next);
       }}
     >
-      <Label className={hideLabel ? "sr-only" : ui.label}>{label}</Label>
+      <Label className={hideLabel ? "sr-only" : styles.label}>{label}</Label>
       {multiline ? (
         <TextArea
-          className={ui.textarea}
+          className={styles.textarea}
           dir={dir}
           placeholder={placeholder}
           rows={rows ?? 5}
         />
       ) : (
-        <Input className={ui.input} dir={dir} placeholder={placeholder} />
+        <Input className={styles.input} dir={dir} placeholder={placeholder} />
       )}
       {hint ? (
         <Text slot="description" className={styles.hint}>
           {hint}
         </Text>
       ) : null}
-      <FieldError className={ui.error}>{messages.join(" ")}</FieldError>
+      <FieldError className={styles.error}>{messages.join(" ")}</FieldError>
     </TextField>
   );
 }

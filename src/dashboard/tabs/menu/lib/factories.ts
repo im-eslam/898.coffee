@@ -4,7 +4,7 @@ import type {
   DraftOption,
   DraftPairing,
   DraftProduct,
-} from "../types";
+} from "../types/draft";
 
 let sequence = 0;
 

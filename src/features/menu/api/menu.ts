@@ -1,5 +1,5 @@
 import { ApiError, getJson } from "@/shared/api";
-import type { RawMenuResponse } from "./menu-definition";
+import type { RawMenuResponse } from "@/shared/menu";
 
 const MENU_ENDPOINT = "/menu";
 

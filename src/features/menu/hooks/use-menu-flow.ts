@@ -1,6 +1,12 @@
 import { useCallback, useState } from "react";
-import type { Pairing, Product } from "../types/menu";
-import type { SheetSelection, MenuPanel } from "../types/flow";
+import type { Pairing, Product } from "@/shared/menu";
+
+type MenuPanel = "search" | "categories" | "product" | "pairing" | null;
+
+interface SheetSelection<T> {
+  item: T;
+  key: number;
+}
 
 export function useMenuFlow() {
   const [panel, setPanel] = useState<MenuPanel>(null);

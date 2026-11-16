@@ -1,23 +1,21 @@
 import type { Localized } from "@/shared/i18n";
-import type { Availability, BadgeKind } from "../types/menu";
+import type {
+  Availability,
+  BadgeKind,
+  PairingPricing,
+  Popup,
+  PriceOption,
+  Pricing,
+} from "./data-config";
 
 export interface RawAddOn {
   name: Localized<string>;
   price: number;
 }
 
-export interface RawPriceOption {
-  id: string;
-  name: Localized<string> | null;
-  price: number;
-  discount: number;
-  final: number;
-}
+export type RawPriceOption = PriceOption;
 
-export interface RawPricing {
-  type: "single" | "sizes";
-  options: RawPriceOption[];
-}
+export type RawPricing = Pricing;
 
 export interface RawProduct {
   id: string;
@@ -41,7 +39,7 @@ export interface RawCategory {
 export interface RawPairing {
   id: string;
   items: string[];
-  pricing: { price: number; discount: number; final: number };
+  pricing: PairingPricing;
 }
 
 export interface RawMenuResponse {
@@ -53,5 +51,5 @@ export interface RawMenuResponse {
   categories: RawCategory[];
   signatures: string[];
   pairings: RawPairing[];
-  popup: { enabled: boolean; image: string | null; delaySeconds: number };
+  popup: Popup;
 }

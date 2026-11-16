@@ -2,15 +2,16 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { ApiError } from "@/shared/api";
 import { useStrings } from "@/shared/i18n";
-import { getIssues, loadMenu, saveMenu, type MenuSnapshot } from "../api";
-import { toWire } from "../lib/wire";
+import { getIssues, loadMenu, saveMenu, type MenuSnapshot } from "../api/api";
+import { MenuDraftParser } from "../api/menu-parser";
 import { fill, strings } from "../strings";
-import type { MenuDraft, MenuIssue, SaveStatus } from "../types";
+import type { MenuDraft, MenuIssue } from "../types/draft";
+import type { SaveStatus } from "../types/ui";
 
 type LoadState = "loading" | "ready" | "error";
 
 function serialize(draft: MenuDraft): string {
-  return JSON.stringify(toWire(draft));
+  return JSON.stringify(MenuDraftParser.toWire(draft));
 }
 
 export function useMenu() {
@@ -84,7 +85,9 @@ export function useMenu() {
   const keepMine = useCallback(async () => {
     if (!draft) return;
     try {
-      await navigator.clipboard.writeText(JSON.stringify(toWire(draft), null, 2));
+      await navigator.clipboard.writeText(
+        JSON.stringify(MenuDraftParser.toWire(draft), null, 2)
+      );
       toast.success(s.toast.copied);
     } catch {
       toast.error(s.toast.copyFailed);
@@ -122,7 +125,9 @@ export function useMenu() {
         }),
       }));
       const pairings = productId
-        ? current.pairings.filter((pairing) => !pairing.items.includes(productId))
+        ? current.pairings.filter(
+            (pairing) => !pairing.items.includes(productId)
+          )
         : current.pairings;
       const removed = current.pairings.length - pairings.length;
       if (removed > 0) setRemovedPairings((count) => count + removed);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
-import type { Product, ProductRef } from "../../types/menu";
+import type { Product, ProductRef } from "@/shared/menu";
 import { resolveImageUrl } from "../../util/image";
 import { getProductPrice, getProductTotal } from "../../util/pricing";
 import { BaseOptions } from "./base-options";

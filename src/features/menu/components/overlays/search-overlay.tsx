@@ -12,7 +12,7 @@ import {
 import type { Locale } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { useSearch } from "../../hooks/components/use-search";
-import type { Category, Menu, Pairing, Product } from "../../types/menu";
+import type { Category, Menu, Pairing, Product } from "@/shared/menu";
 import { resolveImageUrl } from "../../util/image";
 import {
   getProductPrice,

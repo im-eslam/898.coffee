@@ -5,28 +5,32 @@ import { ImagePicker } from "../../components/image-picker";
 import { RefPicker, type RefOption } from "../../components/ref-picker";
 import { SelectField } from "../../components/select-field";
 import { TextInput } from "../../components/text-input";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { emptyOption } from "../../lib/factories";
 import { localizedLabel } from "../../lib/labels";
 import { allProducts, imageOptions } from "../../lib/selectors";
 import { strings } from "../../strings";
-import { ui } from "../../ui";
-import type { DraftPricing, DraftProduct } from "../../types";
+import type { DraftPricing, DraftProduct } from "../../types/draft";
 import { PricingEditor } from "./pricing-editor";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   form: "flex flex-col gap-6",
   pair: "grid gap-4 sm:grid-cols-2",
-  switch: `group inline-flex min-h-11 items-center gap-3 text-body font-medium text-slate-900 ${ui.focusRing}`,
+  label: "text-small font-medium text-slate-700",
+  switch: `group inline-flex min-h-11 items-center gap-3 text-body font-medium text-slate-900 ${focusRing}`,
   track:
     "relative h-6 w-11 shrink-0 rounded-full bg-slate-300 transition-colors group-data-[selected]:bg-brand",
   thumb:
     "absolute top-0.5 left-0.5 size-5 rounded-full bg-white shadow transition-transform group-data-[selected]:translate-x-5 rtl:group-data-[selected]:-translate-x-5",
   group: "flex flex-col gap-3",
   radios: "flex flex-wrap gap-3",
-  radio: `group flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-slate-300 px-4 text-body text-slate-800 data-[selected]:border-brand data-[selected]:bg-brand/5 ${ui.focusRing}`,
+  radio: `group flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-slate-300 px-4 text-body text-slate-800 data-[selected]:border-brand data-[selected]:bg-brand/5 ${focusRing}`,
   dot: "size-4 rounded-full border border-slate-400 group-data-[selected]:border-4 group-data-[selected]:border-brand",
   hint: "text-small text-slate-500",
+  danger: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-error/40 bg-white px-4 text-small font-semibold text-error transition-colors data-[hovered]:bg-error/5 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
   footer: "flex justify-end border-t border-slate-200 pt-4",
 } as const;
 
@@ -245,7 +249,7 @@ export function ProductEditor({ product, onDeleted }: ProductEditorProps) {
           value={product.pricing.type}
           onChange={(value) => changePricingType(value as DraftPricing["type"])}
         >
-          <Label className={ui.label}>{s.editor.pricingType}</Label>
+          <Label className={styles.label}>{s.editor.pricingType}</Label>
           <div className={styles.radios}>
             <Radio value="single" className={styles.radio}>
               <span className={styles.dot} aria-hidden="true" />
@@ -266,7 +270,7 @@ export function ProductEditor({ product, onDeleted }: ProductEditorProps) {
 
       <div className={styles.footer}>
         <Button
-          className={ui.danger}
+          className={styles.danger}
           onPress={() => {
             removeProduct(product.uid);
             onDeleted();

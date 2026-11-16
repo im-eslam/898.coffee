@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-11-15T00:59:00+02:00",
+    "updatedAt": "2026-11-16T21:39:47+02:00",
     "currency": "EGP",
     "badges": [
         "top",
@@ -149,10 +149,296 @@
     },
     "categories": [
         {
+            "id": "c06",
+            "name": {
+                "en": "Iced Matcha",
+                "ar": "ماتشا مثلجة"
+            },
+            "products": [
+                {
+                    "id": "p035",
+                    "name": {
+                        "en": "Classic Matcha",
+                        "ar": "ماتشا كلاسيك"
+                    },
+                    "description": {
+                        "en": "Earthy, vivid green matcha whisked with cold milk over ice.\n\nMatcha powder is sifted and whisked with a little water until smooth, then combined with cold milk. The drink is poured over ice and stirred for an even green-tea flavour.",
+                        "ar": "ماتشا خضراء ترابية متخفوقة مع لبن ساقع على تلج.\n\nبننخل الماتشا ونخفقها مع شوية مية لحد ما تبقى ناعمة، وبعدها نمزجها مع اللبن الساقع. بتتقدم على التلج وتتقلب كويس."
+                    },
+                    "image": "iced-matcha-classic.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a09",
+                        "a18",
+                        "a12",
+                        "a03"
+                    ],
+                    "baristaWay": [
+                        "a03"
+                    ],
+                    "oftenOrderedWith": [
+                        "p089",
+                        "p113",
+                        "p118"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 93,
+                                "discount": 0,
+                                "final": 93
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "p036",
+                    "name": {
+                        "en": "Berry Matcha",
+                        "ar": "ماتشا بيري"
+                    },
+                    "description": {
+                        "en": "Earthy matcha shaken with cold milk over ice, layered with sweet-tart mixed berries.\n\nMatcha is whisked smooth and mixed with chilled milk, then layered with a mixed-berry purée or fruit sauce. It is served over ice so the earthy tea meets a sweet-tart berry finish.",
+                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها توت مشكّل حلو وحامض.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص التوت المشكل. بتتقدم على التلج بمذاق حلو وحامض."
+                    },
+                    "image": "iced-matcha-berry.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a09",
+                        "a18",
+                        "a12",
+                        "a03"
+                    ],
+                    "baristaWay": [
+                        "a03"
+                    ],
+                    "oftenOrderedWith": [
+                        "p089",
+                        "p113",
+                        "p118"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 105,
+                                "discount": 0,
+                                "final": 105
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "p037",
+                    "name": {
+                        "en": "Mango Matcha",
+                        "ar": "ماتشا مانجو"
+                    },
+                    "description": {
+                        "en": "Earthy matcha shaken with cold milk over ice, layered with ripe, golden mango.\n\nMatcha is whisked with a little water and blended with cold milk. Mango purée or mango flavour is added before the drink is served over ice.",
+                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها مانجو ناضجة ومنعشة.\n\nبنخفق الماتشا مع شوية مية ونمزجها باللبن الساقع. بنضيف بيوريه أو نكهة المانجو قبل ما تتقدم على التلج."
+                    },
+                    "image": "iced-matcha-mango.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a09",
+                        "a18",
+                        "a12",
+                        "a03"
+                    ],
+                    "baristaWay": [
+                        "a03"
+                    ],
+                    "oftenOrderedWith": [
+                        "p089",
+                        "p113",
+                        "p118"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 105,
+                                "discount": 0,
+                                "final": 105
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "p038",
+                    "name": {
+                        "en": "Strawberry Matcha",
+                        "ar": "ماتشا فراولة"
+                    },
+                    "description": {
+                        "en": "Earthy matcha shaken with cold milk over ice, layered with juicy strawberries.\n\nMatcha is whisked until smooth, combined with chilled milk and layered with strawberry purée or fruit sauce. The drink is served over ice for a bright fruit-and-tea balance.",
+                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها فراولة طازجة وعصيرية.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص الفراولة. بتتقدم على التلج بتوازن بين الشاي والفاكهة."
+                    },
+                    "image": "iced-matcha-strawberry.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a09",
+                        "a18",
+                        "a12",
+                        "a03"
+                    ],
+                    "baristaWay": [
+                        "a03"
+                    ],
+                    "oftenOrderedWith": [
+                        "p089",
+                        "p113",
+                        "p118"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 105,
+                                "discount": 0,
+                                "final": 105
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "p039",
+                    "name": {
+                        "en": "Spanish Matcha",
+                        "ar": "ماتشا سبانيش"
+                    },
+                    "description": {
+                        "en": "Matcha and cold milk sweetened with creamy condensed milk.\n\nMatcha is whisked smooth and mixed with cold milk and sweetened condensed milk. It is poured over ice for a creamy Spanish-style matcha.",
+                        "ar": "ماتشا ولبن ساقع متحلّيين بلبن مكثّف كريمي.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونمزجها مع اللبن الساقع واللبن المكثف المحلّى. بتتقدم على التلج بقوام كريمي."
+                    },
+                    "image": "iced-matcha-spanish.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a09",
+                        "a18",
+                        "a12",
+                        "a03"
+                    ],
+                    "baristaWay": [
+                        "a03"
+                    ],
+                    "oftenOrderedWith": [
+                        "p089",
+                        "p113",
+                        "p118"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 105,
+                                "discount": 0,
+                                "final": 105
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "c04",
+            "name": {
+                "en": "Specialty Coffee",
+                "ar": "القهوة المختصة"
+            },
+            "products": [
+                {
+                    "id": "p024",
+                    "name": {
+                        "en": "V60 Hot",
+                        "ar": "V60 ساخن"
+                    },
+                    "description": {
+                        "en": "Hand-poured filter coffee, bright and clean with delicate fruity notes.\n\nFreshly ground coffee is placed in a paper filter, rinsed, and brewed with hot water poured slowly in controlled circles. The brewed coffee is served black to highlight its aroma and natural tasting notes.",
+                        "ar": "قهوة فلتر بتتصب بإيد الباريستا، نضيفة وفيها نوتات فواكه خفيفة.\n\nبنحط القهوة المطحونة الطازة في فلتر ورقي ونشطفه، وبعدها نصب المية السخنة تدريجياً بحركة دائرية. القهوة بتتقدم سادة عشان نكهتها الطبيعية تبان."
+                    },
+                    "image": "speciality-coffee-hot-v60.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [],
+                    "baristaWay": [],
+                    "oftenOrderedWith": [
+                        "p113",
+                        "p118",
+                        "p120"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 109,
+                                "discount": 0,
+                                "final": 109
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "p025",
+                    "name": {
+                        "en": "V60 Iced",
+                        "ar": "V60 مثلج"
+                    },
+                    "description": {
+                        "en": "The same hand-poured V60, chilled over ice for a crisp, aromatic sip.\n\nFreshly ground coffee is brewed by hand through a V60 paper filter with hot water. The brew is served over ice so it chills quickly while retaining its clean, aromatic profile.",
+                        "ar": "نفس الـV60 على التلج، ساقعة ومنعشة وريحتها حلوة.\n\nبنحضر القهوة المطحونة الطازة يدويّاً باستخدام فلتر V60 ومية سخنة. بنقدمها على التلج عشان تبرد بسرعة وتحتفظ بريحتها وطعمها النضيف."
+                    },
+                    "image": "speciality-coffee-iced-v60.webp",
+                    "availability": "in_stock",
+                    "badge": null,
+                    "addOns": [
+                        "a11"
+                    ],
+                    "baristaWay": [],
+                    "oftenOrderedWith": [
+                        "p113",
+                        "p118",
+                        "p120"
+                    ],
+                    "pricing": {
+                        "type": "single",
+                        "options": [
+                            {
+                                "id": "default",
+                                "name": null,
+                                "price": 109,
+                                "discount": 0,
+                                "final": 109
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": "c03",
             "name": {
-                "en": "Frappé",
-                "ar": "فرابيه"
+                "en": "Frappé 1",
+                "ar": "فرابيه 1"
             },
             "products": [
                 {
@@ -1401,83 +1687,6 @@
             ]
         },
         {
-            "id": "c04",
-            "name": {
-                "en": "Specialty Coffee",
-                "ar": "القهوة المختصة"
-            },
-            "products": [
-                {
-                    "id": "p024",
-                    "name": {
-                        "en": "V60 Hot",
-                        "ar": "V60 ساخن"
-                    },
-                    "description": {
-                        "en": "Hand-poured filter coffee, bright and clean with delicate fruity notes.\n\nFreshly ground coffee is placed in a paper filter, rinsed, and brewed with hot water poured slowly in controlled circles. The brewed coffee is served black to highlight its aroma and natural tasting notes.",
-                        "ar": "قهوة فلتر بتتصب بإيد الباريستا، نضيفة وفيها نوتات فواكه خفيفة.\n\nبنحط القهوة المطحونة الطازة في فلتر ورقي ونشطفه، وبعدها نصب المية السخنة تدريجياً بحركة دائرية. القهوة بتتقدم سادة عشان نكهتها الطبيعية تبان."
-                    },
-                    "image": "speciality-coffee-hot-v60.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [],
-                    "baristaWay": [],
-                    "oftenOrderedWith": [
-                        "p113",
-                        "p118",
-                        "p120"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 109,
-                                "discount": 0,
-                                "final": 109
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": "p025",
-                    "name": {
-                        "en": "V60 Iced",
-                        "ar": "V60 مثلج"
-                    },
-                    "description": {
-                        "en": "The same hand-poured V60, chilled over ice for a crisp, aromatic sip.\n\nFreshly ground coffee is brewed by hand through a V60 paper filter with hot water. The brew is served over ice so it chills quickly while retaining its clean, aromatic profile.",
-                        "ar": "نفس الـV60 على التلج، ساقعة ومنعشة وريحتها حلوة.\n\nبنحضر القهوة المطحونة الطازة يدويّاً باستخدام فلتر V60 ومية سخنة. بنقدمها على التلج عشان تبرد بسرعة وتحتفظ بريحتها وطعمها النضيف."
-                    },
-                    "image": "speciality-coffee-iced-v60.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a11"
-                    ],
-                    "baristaWay": [],
-                    "oftenOrderedWith": [
-                        "p113",
-                        "p118",
-                        "p120"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 109,
-                                "discount": 0,
-                                "final": 109
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
             "id": "c05",
             "name": {
                 "en": "Turkish & French Coffee",
@@ -1617,215 +1826,6 @@
                                 "price": 69,
                                 "discount": 0,
                                 "final": 69
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "c06",
-            "name": {
-                "en": "Iced Matcha",
-                "ar": "ماتشا مثلجة"
-            },
-            "products": [
-                {
-                    "id": "p035",
-                    "name": {
-                        "en": "Classic Matcha",
-                        "ar": "ماتشا كلاسيك"
-                    },
-                    "description": {
-                        "en": "Earthy, vivid green matcha whisked with cold milk over ice.\n\nMatcha powder is sifted and whisked with a little water until smooth, then combined with cold milk. The drink is poured over ice and stirred for an even green-tea flavour.",
-                        "ar": "ماتشا خضراء ترابية متخفوقة مع لبن ساقع على تلج.\n\nبننخل الماتشا ونخفقها مع شوية مية لحد ما تبقى ناعمة، وبعدها نمزجها مع اللبن الساقع. بتتقدم على التلج وتتقلب كويس."
-                    },
-                    "image": "iced-matcha-classic.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a09",
-                        "a18",
-                        "a12",
-                        "a03"
-                    ],
-                    "baristaWay": [
-                        "a03"
-                    ],
-                    "oftenOrderedWith": [
-                        "p089",
-                        "p113",
-                        "p118"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 93,
-                                "discount": 0,
-                                "final": 93
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": "p036",
-                    "name": {
-                        "en": "Berry Matcha",
-                        "ar": "ماتشا بيري"
-                    },
-                    "description": {
-                        "en": "Earthy matcha shaken with cold milk over ice, layered with sweet-tart mixed berries.\n\nMatcha is whisked smooth and mixed with chilled milk, then layered with a mixed-berry purée or fruit sauce. It is served over ice so the earthy tea meets a sweet-tart berry finish.",
-                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها توت مشكّل حلو وحامض.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص التوت المشكل. بتتقدم على التلج بمذاق حلو وحامض."
-                    },
-                    "image": "iced-matcha-berry.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a09",
-                        "a18",
-                        "a12",
-                        "a03"
-                    ],
-                    "baristaWay": [
-                        "a03"
-                    ],
-                    "oftenOrderedWith": [
-                        "p089",
-                        "p113",
-                        "p118"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 105,
-                                "discount": 0,
-                                "final": 105
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": "p037",
-                    "name": {
-                        "en": "Mango Matcha",
-                        "ar": "ماتشا مانجو"
-                    },
-                    "description": {
-                        "en": "Earthy matcha shaken with cold milk over ice, layered with ripe, golden mango.\n\nMatcha is whisked with a little water and blended with cold milk. Mango purée or mango flavour is added before the drink is served over ice.",
-                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها مانجو ناضجة ومنعشة.\n\nبنخفق الماتشا مع شوية مية ونمزجها باللبن الساقع. بنضيف بيوريه أو نكهة المانجو قبل ما تتقدم على التلج."
-                    },
-                    "image": "iced-matcha-mango.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a09",
-                        "a18",
-                        "a12",
-                        "a03"
-                    ],
-                    "baristaWay": [
-                        "a03"
-                    ],
-                    "oftenOrderedWith": [
-                        "p089",
-                        "p113",
-                        "p118"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 105,
-                                "discount": 0,
-                                "final": 105
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": "p038",
-                    "name": {
-                        "en": "Strawberry Matcha",
-                        "ar": "ماتشا فراولة"
-                    },
-                    "description": {
-                        "en": "Earthy matcha shaken with cold milk over ice, layered with juicy strawberries.\n\nMatcha is whisked until smooth, combined with chilled milk and layered with strawberry purée or fruit sauce. The drink is served over ice for a bright fruit-and-tea balance.",
-                        "ar": "ماتشا ترابية متخفوقة مع لبن ساقع على تلج وفوقها فراولة طازجة وعصيرية.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونخلطها مع اللبن الساقع، وبعدها نضيف صوص الفراولة. بتتقدم على التلج بتوازن بين الشاي والفاكهة."
-                    },
-                    "image": "iced-matcha-strawberry.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a09",
-                        "a18",
-                        "a12",
-                        "a03"
-                    ],
-                    "baristaWay": [
-                        "a03"
-                    ],
-                    "oftenOrderedWith": [
-                        "p089",
-                        "p113",
-                        "p118"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 105,
-                                "discount": 0,
-                                "final": 105
-                            }
-                        ]
-                    }
-                },
-                {
-                    "id": "p039",
-                    "name": {
-                        "en": "Spanish Matcha",
-                        "ar": "ماتشا سبانيش"
-                    },
-                    "description": {
-                        "en": "Matcha and cold milk sweetened with creamy condensed milk.\n\nMatcha is whisked smooth and mixed with cold milk and sweetened condensed milk. It is poured over ice for a creamy Spanish-style matcha.",
-                        "ar": "ماتشا ولبن ساقع متحلّيين بلبن مكثّف كريمي.\n\nبنخفق الماتشا لحد ما تبقى ناعمة ونمزجها مع اللبن الساقع واللبن المكثف المحلّى. بتتقدم على التلج بقوام كريمي."
-                    },
-                    "image": "iced-matcha-spanish.webp",
-                    "availability": "in_stock",
-                    "badge": null,
-                    "addOns": [
-                        "a09",
-                        "a18",
-                        "a12",
-                        "a03"
-                    ],
-                    "baristaWay": [
-                        "a03"
-                    ],
-                    "oftenOrderedWith": [
-                        "p089",
-                        "p113",
-                        "p118"
-                    ],
-                    "pricing": {
-                        "type": "single",
-                        "options": [
-                            {
-                                "id": "default",
-                                "name": null,
-                                "price": 105,
-                                "discount": 0,
-                                "final": 105
                             }
                         ]
                     }

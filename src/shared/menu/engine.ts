@@ -1,25 +1,61 @@
+import type { Localized } from "@/shared/i18n";
 import type {
-  AddOn,
-  Category,
-  Menu,
-  Pairing,
-  Popup,
-  Pricing,
+  Availability,
+  BadgeKind,
   PriceOption,
-  Product,
-  ProductRef,
-} from "../types/menu";
+  Pricing,
+  PricingType,
+} from "./data-config";
+import type { AddOn, Category, Pairing, Product, ProductRef } from "./data-models";
 import type {
   RawAddOn,
   RawCategory,
-  RawMenuResponse,
   RawPairing,
   RawPriceOption,
   RawPricing,
   RawProduct,
-} from "./menu-definition";
+} from "./data-raw";
 
-class AddOnParser {
+export type Dict = Record<string, unknown>;
+
+export function isDict(value: unknown): value is Dict {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+export function asString(value: unknown, fallback = ""): string {
+  return typeof value === "string" ? value : fallback;
+}
+
+export function asNumber(value: unknown, fallback = 0): number {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
+export function asList(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [];
+}
+
+export function asStringList(value: unknown): string[] {
+  return asList(value).filter((v): v is string => typeof v === "string");
+}
+
+export function asLocalized(value: unknown): Localized<string> {
+  const source = isDict(value) ? value : {};
+  return { en: asString(source.en), ar: asString(source.ar) };
+}
+
+export function asAvailability(value: unknown): Availability {
+  return value === "out_of_stock" ? "out_of_stock" : "in_stock";
+}
+
+export function asBadgeKind(value: unknown): BadgeKind | null {
+  return value === "new" || value === "top" ? value : null;
+}
+
+export function asPricingType(value: unknown): PricingType {
+  return value === "sizes" ? "sizes" : "single";
+}
+
+export class AddOnParser {
   static parse(id: string, raw: RawAddOn): AddOn {
     return { id, name: raw.name, price: raw.price };
   }
@@ -33,7 +69,7 @@ class AddOnParser {
   }
 }
 
-class PricingParser {
+export class PricingParser {
   static parseOption(raw: RawPriceOption): PriceOption {
     return {
       id: raw.id,
@@ -52,7 +88,7 @@ class PricingParser {
   }
 }
 
-class ProductParser {
+export class ProductParser {
   static parse(raw: RawProduct, addOnMap: Record<string, AddOn>): Product {
     const resolveAddOns = (ids: string[] | null): AddOn[] =>
       (ids ?? [])
@@ -85,7 +121,7 @@ class ProductParser {
   }
 }
 
-class CategoryParser {
+export class CategoryParser {
   static parse(raw: RawCategory, addOnMap: Record<string, AddOn>): Category {
     return {
       id: raw.id,
@@ -97,7 +133,7 @@ class CategoryParser {
   }
 }
 
-class PairingParser {
+export class PairingParser {
   static parse(raw: RawPairing, productMap: Record<string, Product>): Pairing {
     return {
       id: raw.id,
@@ -105,50 +141,6 @@ class PairingParser {
         .map((id) => productMap[id])
         .filter((p): p is Product => p !== undefined),
       pricing: raw.pricing,
-    };
-  }
-}
-
-export class MenuParser {
-  static parse(raw: RawMenuResponse): Menu {
-    const addOnMap = AddOnParser.parseMap(raw.addOns);
-
-    const categories = raw.categories.map((cat) =>
-      CategoryParser.parse(cat, addOnMap)
-    );
-
-    const productMap: Record<string, Product> = {};
-    for (const cat of categories) {
-      for (const product of cat.products) {
-        productMap[product.id] = product;
-      }
-    }
-
-    for (const cat of raw.categories) {
-      for (const rawProduct of cat.products) {
-        const product = productMap[rawProduct.id];
-        if (!product) continue;
-        product.oftenOrderedWith = rawProduct.oftenOrderedWith
-          .map((id) => productMap[id])
-          .filter((p): p is Product => p !== undefined)
-          .map(ProductParser.toRef);
-      }
-    }
-
-    const popup: Popup = raw.popup;
-
-    return {
-      updatedAt: raw.updatedAt,
-      currency: raw.currency,
-      badges: raw.badges,
-      categories,
-      signatures: raw.signatures
-        .map((id) => productMap[id])
-        .filter((p): p is Product => p !== undefined),
-      pairings: raw.pairings.map((p) => PairingParser.parse(p, productMap)),
-      popup,
-      productMap,
-      addOnMap,
     };
   }
 }

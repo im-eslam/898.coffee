@@ -8,24 +8,30 @@ import {
 } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { useReorder } from "../../hooks/use-reorder";
 import { emptyProduct } from "../../lib/factories";
 import { localizedLabel } from "../../lib/labels";
 import { moveItems } from "../../lib/reorder";
 import { sizeLabel } from "../../lib/selectors";
 import { fill, strings } from "../../strings";
-import { ui } from "../../ui";
-import type { DraftCategory, DraftProduct } from "../../types";
+import type { DraftCategory, DraftProduct } from "../../types/draft";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-5",
   search: "flex flex-col gap-1.5",
+  input:
+    "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20",
   searchWrap: "relative",
   clear: "absolute inset-y-0 end-0 flex w-11 items-center justify-center text-slate-500 outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-brand [[data-empty]_&]:hidden",
   section: "flex flex-col gap-2",
   sectionHead: "flex items-center justify-between gap-2",
   sectionTitle: "text-body font-semibold text-slate-900",
+  button: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 transition-colors data-[hovered]:bg-slate-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
+  dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
   list: "flex flex-col gap-2 outline-none",
   row: `flex min-h-14 cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 outline-none data-[hovered]:bg-slate-50 data-[dragging]:opacity-50 data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand`,
   rowSelected: "border-brand bg-brand/5",
@@ -73,7 +79,7 @@ export function ProductList({
       >
         <Label className="sr-only">{s.products.searchLabel}</Label>
         <div className={styles.searchWrap}>
-          <Input className={ui.input} placeholder={s.products.searchPlaceholder} />
+          <Input className={styles.input} placeholder={s.products.searchPlaceholder} />
           <Button className={styles.clear} aria-label={s.products.clearSearch}>
             <Icon name="close" className="size-4" />
           </Button>
@@ -147,7 +153,7 @@ function CategorySection({
         <h3 id={headingId} className={styles.sectionTitle}>
           {title}
         </h3>
-        <Button className={ui.button} onPress={addProduct}>
+        <Button className={styles.button} onPress={addProduct}>
           <Icon name="plus" className="size-4" />
           {s.products.addProduct}
         </Button>
@@ -172,7 +178,7 @@ function CategorySection({
             >
               <Button
                 slot="drag"
-                className={ui.dragHandle}
+                className={styles.dragHandle}
                 aria-label={s.common.dragHandle}
               >
                 <Icon name="menu" className="size-5" />

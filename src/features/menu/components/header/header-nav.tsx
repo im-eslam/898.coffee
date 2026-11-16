@@ -8,7 +8,7 @@ import {
   Tabs,
 } from "react-aria-components";
 import { Icon } from "@/shared/icons";
-import type { NavSection } from "../../types/flow";
+import type { NavSection } from "../../hooks/use-menu-navigation";
 
 interface HeaderNavStrings {
   categories: string;

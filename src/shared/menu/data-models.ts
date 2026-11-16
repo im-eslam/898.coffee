@@ -1,26 +1,16 @@
 import type { Localized } from "@/shared/i18n";
-
-export type Availability = "in_stock" | "out_of_stock";
-
-export type BadgeKind = "new" | "top";
+import type {
+  Availability,
+  BadgeKind,
+  PairingPricing,
+  Popup,
+  Pricing,
+} from "./data-config";
 
 export interface AddOn {
   id: string;
   name: Localized<string>;
   price: number;
-}
-
-export interface PriceOption {
-  id: string;
-  name: Localized<string> | null;
-  price: number;
-  discount: number;
-  final: number;
-}
-
-export interface Pricing {
-  type: "single" | "sizes";
-  options: PriceOption[];
 }
 
 export interface ProductRef {
@@ -45,22 +35,10 @@ export interface Category {
   products: Product[];
 }
 
-export interface PairingPricing {
-  price: number;
-  discount: number;
-  final: number;
-}
-
 export interface Pairing {
   id: string;
   items: Product[];
   pricing: PairingPricing;
-}
-
-export interface Popup {
-  enabled: boolean;
-  image: string | null;
-  delaySeconds: number;
 }
 
 export interface Menu {

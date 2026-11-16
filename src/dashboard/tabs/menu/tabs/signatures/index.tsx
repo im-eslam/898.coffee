@@ -12,19 +12,31 @@ import {
 } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { useLoadedDraft } from "../../context";
+import { useLoadedDraft } from "../../hooks/use-draft-context";
 import { useReorder } from "../../hooks/use-reorder";
 import { localizedLabel } from "../../lib/labels";
 import { moveStrings } from "../../lib/reorder";
 import { productMap, referenceable } from "../../lib/selectors";
 import { strings } from "../../strings";
-import { ui } from "../../ui";
+
+const focusRing =
+  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
-  card: `${ui.card} flex flex-col gap-4`,
+  card: "flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6",
+  heading: "text-heading font-semibold text-slate-900",
+  label: "text-small font-medium text-slate-700",
+  input:
+    "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20",
+  popover:
+    "max-h-72 w-(--trigger-width) overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg",
+  option:
+    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10 data-[disabled]:opacity-50",
+  dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
   list: "flex flex-col gap-2 outline-none",
-  row: `flex min-h-14 items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 data-[dragging]:opacity-50 ${ui.focusRing}`,
+  row: `flex min-h-14 items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 data-[dragging]:opacity-50 ${focusRing}`,
   name: "min-w-0 flex-1 truncate text-body text-slate-900",
   broken: "text-error",
   empty: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
@@ -56,7 +68,7 @@ export function SignaturesTab() {
   return (
     <div className={styles.root}>
       <section className={styles.card} aria-labelledby="signatures-heading">
-        <h2 id="signatures-heading" className={ui.heading}>
+        <h2 id="signatures-heading" className={styles.heading}>
           {s.tabs.signatures}
         </h2>
 
@@ -77,15 +89,15 @@ export function SignaturesTab() {
             }
           }}
         >
-          <Label className={ui.label}>{s.signatures.add}</Label>
-          <Input className={ui.input} placeholder={s.signatures.addPlaceholder} />
-          <Popover className={ui.popover}>
+          <Label className={styles.label}>{s.signatures.add}</Label>
+          <Input className={styles.input} placeholder={s.signatures.addPlaceholder} />
+          <Popover className={styles.popover}>
             <ListBox className="outline-none">
               {(option: { id: string; label: string }) => (
                 <ListBoxItem
                   id={option.id}
                   textValue={option.label}
-                  className={ui.option}
+                  className={styles.option}
                 >
                   {option.label}
                 </ListBoxItem>
@@ -112,7 +124,7 @@ export function SignaturesTab() {
               <GridListItem id={item.id} textValue={label} className={styles.row}>
                 <Button
                   slot="drag"
-                  className={ui.dragHandle}
+                  className={styles.dragHandle}
                   aria-label={s.common.dragHandle}
                 >
                   <Icon name="menu" className="size-5" />
@@ -122,7 +134,7 @@ export function SignaturesTab() {
                   {entry ? "" : ` — ${s.common.willBeRemoved}`}
                 </span>
                 <Button
-                  className={ui.iconButton}
+                  className={styles.iconButton}
                   aria-label={`${s.signatures.remove}: ${label}`}
                   onPress={() =>
                     update((current) => ({

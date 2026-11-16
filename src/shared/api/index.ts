@@ -2,6 +2,11 @@ import { ApiError, API_CONFIG } from "./data";
 
 export { ApiError };
 
+export interface JsonResponse<T> {
+  data: T;
+  headers: Headers;
+}
+
 function createTimeoutError(cause: unknown): ApiError {
   return new ApiError(408, "TIMEOUT", "Request timed out", cause);
 }
@@ -13,9 +18,11 @@ async function parseErrorResponse(
   let code = "UNKNOWN_ERROR";
   let message = `HTTP Error ${response.status}`;
   let cause: unknown;
+  let body: unknown;
 
   try {
     const errorData: unknown = await response.json();
+    body = errorData;
 
     if (typeof errorData === "object" && errorData !== null) {
       const fields = errorData as Record<string, unknown>;
@@ -42,13 +49,13 @@ async function parseErrorResponse(
     else if (response.status >= 500) code = "INTERNAL_ERROR";
   }
 
-  return new ApiError(response.status, code, message, cause);
+  return new ApiError(response.status, code, message, cause, body);
 }
 
-async function requestJson<T>(
+export async function requestJsonWithHeaders<T>(
   endpoint: string,
   options: RequestInit
-): Promise<T> {
+): Promise<JsonResponse<T>> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeoutMs);
 
@@ -77,11 +84,12 @@ async function requestJson<T>(
     }
 
     if (response.status === 204 && options.method === "POST") {
-      return {} as T;
+      return { data: {} as T, headers: response.headers };
     }
 
     try {
-      return await response.json();
+      const data = (await response.json()) as T;
+      return { data, headers: response.headers };
     } catch (cause: unknown) {
       if (cause instanceof ApiError) {
         throw cause;
@@ -101,6 +109,14 @@ async function requestJson<T>(
   } finally {
     clearTimeout(timeoutId);
   }
+}
+
+async function requestJson<T>(
+  endpoint: string,
+  options: RequestInit
+): Promise<T> {
+  const { data } = await requestJsonWithHeaders<T>(endpoint, options);
+  return data;
 }
 
 export async function postJson<T = unknown>(

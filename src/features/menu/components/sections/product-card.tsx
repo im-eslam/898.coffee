@@ -1,6 +1,6 @@
 import { Button } from "react-aria-components";
 import type { Locale } from "@/shared/i18n";
-import type { Product } from "../../types/menu";
+import type { Product } from "@/shared/menu";
 import { resolveImageUrl } from "../../util/image";
 import { Badge } from "../ui/badge";
 import { Chevron } from "../ui/chevron";

@@ -1,4 +1,4 @@
-import type { DraftProduct, MenuDraft } from "../types";
+import type { DraftProduct, MenuDraft } from "../types/draft";
 
 export interface ProductEntry {
   product: DraftProduct;

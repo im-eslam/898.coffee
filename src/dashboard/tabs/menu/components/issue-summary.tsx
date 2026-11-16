@@ -1,5 +1,5 @@
 import { useStrings } from "@/shared/i18n";
-import { useDraft } from "../context";
+import { useDraft } from "../hooks/use-draft-context";
 import { strings } from "../strings";
 
 const styles = {

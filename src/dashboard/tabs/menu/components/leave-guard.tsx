@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStrings } from "@/shared/i18n";
-import { useDraft } from "../context";
+import { useDraft } from "../hooks/use-draft-context";
 import { strings } from "../strings";
 import { ConfirmModal } from "./confirm-modal";
 

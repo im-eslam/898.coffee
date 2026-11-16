@@ -1,11 +1,10 @@
 import { useMemo } from "react";
 import { setLocale, useLocale, useStrings } from "@/shared/i18n";
+import type { Menu } from "@/shared/menu";
 import { config } from "../strings";
-import type { Menu } from "../types/menu";
-import type { NavSection } from "../types/flow";
 import { getCategorySectionId } from "../util/section-ids";
 import { useMenuFlow } from "./use-menu-flow";
-import { useMenuNavigation } from "./use-menu-navigation";
+import { type NavSection, useMenuNavigation } from "./use-menu-navigation";
 
 export function useMenu(menu: Menu) {
   const locale = useLocale();

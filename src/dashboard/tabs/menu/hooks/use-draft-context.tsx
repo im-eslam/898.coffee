@@ -1,5 +1,5 @@
 import { createContext, use, type ReactNode } from "react";
-import { useMenu, type MenuApi } from "./hooks/use-menu";
+import { useMenu, type MenuApi } from "./use-menu";
 
 const MenuDraftContext = createContext<MenuApi | null>(null);
 
