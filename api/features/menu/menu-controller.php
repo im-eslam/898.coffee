@@ -86,6 +86,53 @@ class MenuController extends ControllerBase
         HttpContext::json(['ok' => true, 'warnings' => $result->warnings] + $result->menu);
     }
 
+    /**
+     * Stores a WebP popup image and returns its generated public filename.
+     *
+     * @Route("POST /admin/menu/popup-image")
+     * @Authorize
+     */
+    public function uploadPopupImage(): void
+    {
+        Guard::requireAdmin($this->config);
+
+        $upload = $_FILES['image'] ?? null;
+        $settings = $this->menuSettings();
+        $maxBytes = $settings['max_image_bytes'];
+
+        if (!is_array($upload) || ($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+            HttpContext::fail(422, 'Choose a WebP image to upload', 'INVALID_IMAGE');
+        }
+        if (!is_int($upload['size'] ?? null) || $upload['size'] < 1 || $upload['size'] > $maxBytes) {
+            HttpContext::fail(413, 'Image is too large', 'PAYLOAD_TOO_LARGE');
+        }
+        if (!is_string($upload['tmp_name'] ?? null) || !is_uploaded_file($upload['tmp_name'])) {
+            HttpContext::fail(422, 'Invalid image upload', 'INVALID_IMAGE');
+        }
+
+        $mime = (new finfo(FILEINFO_MIME_TYPE))->file($upload['tmp_name']);
+        if ($mime !== 'image/webp') {
+            HttpContext::fail(415, 'Only WebP images are supported', 'UNSUPPORTED_IMAGE_TYPE');
+        }
+
+        $directory = $settings['storage']['popup_dir'];
+        if (!is_dir($directory) && !mkdir($directory, 0755, true) && !is_dir($directory)) {
+            HttpContext::fail(500, 'Unable to prepare image storage', 'INTERNAL_ERROR');
+        }
+
+        try {
+            $filename = bin2hex(random_bytes(16)) . '.webp';
+        } catch (Throwable) {
+            HttpContext::fail(500, 'Unable to create image name', 'INTERNAL_ERROR');
+        }
+
+        if (!move_uploaded_file($upload['tmp_name'], $directory . DIRECTORY_SEPARATOR . $filename)) {
+            HttpContext::fail(500, 'Unable to store image', 'INTERNAL_ERROR');
+        }
+
+        HttpContext::json(['ok' => true, 'image' => $filename]);
+    }
+
     private function engine(): MenuEngine
     {
         return MenuEngine::fromConfig($this->menuSettings()['storage']);

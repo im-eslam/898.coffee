@@ -1,14 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import toast from "react-hot-toast";
-import { ApiError } from "@/shared/api";
+import { useCallback, useMemo, useState } from "react";
 import { useStrings } from "@/shared/i18n";
-import { getIssues, loadMenu, saveMenu, type MenuSnapshot } from "../api/api";
+import type { MenuSnapshot } from "../api/menu";
 import { MenuDraftParser } from "../api/menu-parser";
-import { fill, strings } from "../strings";
 import type { MenuDraft, MenuIssue } from "../types/draft";
-import type { SaveStatus } from "../types/ui";
-
-type LoadState = "loading" | "ready" | "error";
+import type { IssueScope, MenuRecipe, MenuStore } from "../types/store";
+import { useMenuData } from "./use-data";
+import { useMenuAddOns } from "./use-menu-addons";
+import { useMenuCategories } from "./use-menu-categories";
+import { useMenuPairings } from "./use-menu-pairings";
+import { useMenuPopup } from "./use-menu-popup";
+import { useMenuProducts } from "./use-menu-products";
+import { useMenuSignatures } from "./use-menu-signatures";
+import toast from "react-hot-toast";
+import { strings, fill } from "../strings";
 
 function serialize(draft: MenuDraft): string {
   return JSON.stringify(MenuDraftParser.toWire(draft));
@@ -16,71 +20,65 @@ function serialize(draft: MenuDraft): string {
 
 export function useMenu() {
   const s = useStrings(strings);
+
   const [draft, setDraft] = useState<MenuDraft | null>(null);
   const [baseline, setBaseline] = useState("");
-  const [etag, setEtag] = useState("");
-  const [loadState, setLoadState] = useState<LoadState>("loading");
-  const [reloading, setReloading] = useState(false);
-  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
-  const [savedAt, setSavedAt] = useState<Date | null>(null);
-  const [warnings, setWarnings] = useState<MenuIssue[]>([]);
   const [issues, setIssues] = useState<MenuIssue[]>([]);
-  const [conflict, setConflict] = useState(false);
-  const [sessionExpired, setSessionExpired] = useState(false);
   const [removedPairings, setRemovedPairings] = useState(0);
 
   const adopt = useCallback((snapshot: MenuSnapshot) => {
     setDraft(snapshot.menu);
     setBaseline(serialize(snapshot.menu));
-    setEtag(snapshot.etag);
     setIssues([]);
     setRemovedPairings(0);
   }, []);
 
-  useEffect(() => {
-    let cancelled = false;
-    loadMenu()
-      .then((snapshot) => {
-        if (cancelled) return;
-        adopt(snapshot);
-        setLoadState("ready");
-      })
-      .catch(() => {
-        if (!cancelled) setLoadState("error");
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [adopt]);
+  const data = useMenuData(adopt);
+  const { reload: reloadData, persist, markSaveError } = data;
 
   const isDirty = useMemo(
     () => draft !== null && serialize(draft) !== baseline,
     [draft, baseline]
   );
 
-  const retryLoad = useCallback(() => {
-    setLoadState("loading");
-    loadMenu()
-      .then((snapshot) => {
-        adopt(snapshot);
-        setLoadState("ready");
-      })
-      .catch(() => setLoadState("error"));
-  }, [adopt]);
+  const update = useCallback((recipe: MenuRecipe, scope?: IssueScope) => {
+    setDraft((current) => (current ? recipe(current) : current));
+    if (scope === true) {
+      setIssues([]);
+    } else if (scope) {
+      setIssues((current) =>
+        current.filter((issue) => !issue.path.startsWith(scope))
+      );
+    }
+  }, []);
+
+  const reportRemovedPairings = useCallback((count: number) => {
+    if (count > 0) setRemovedPairings((current) => current + count);
+  }, []);
+
+  const store: MenuStore = useMemo(
+    () => ({ draft, update, reportRemovedPairings }),
+    [draft, update, reportRemovedPairings]
+  );
+
+  const products = useMenuProducts(store);
+  const categories = useMenuCategories(store);
+  const addOns = useMenuAddOns(store);
+  const signatures = useMenuSignatures(store);
+  const pairings = useMenuPairings(store);
+  const popup = useMenuPopup(store);
+
+  const dismissPairingNotice = useCallback(() => setRemovedPairings(0), []);
+
+  const issuesAt = useCallback(
+    (path: string) => issues.filter((issue) => issue.path === path),
+    [issues]
+  );
 
   const reload = useCallback(async () => {
-    setReloading(true);
-    try {
-      const snapshot = await loadMenu();
-      adopt(snapshot);
-      setSaveStatus("idle");
-      setConflict(false);
-    } catch {
-      toast.error(s.toast.reloadFailed);
-    } finally {
-      setReloading(false);
-    }
-  }, [adopt, s.toast.reloadFailed]);
+    const ok = await reloadData();
+    if (!ok) toast.error(s.toast.reloadFailed);
+  }, [reloadData, s.toast.reloadFailed]);
 
   const keepMine = useCallback(async () => {
     if (!draft) return;
@@ -96,50 +94,8 @@ export function useMenu() {
     await reload();
   }, [draft, reload, s.toast.copied, s.toast.copyFailed]);
 
-  const dismissConflict = useCallback(() => setConflict(false), []);
-
-  const update = useCallback(
-    (recipe: (current: MenuDraft) => MenuDraft, clear?: string | true) => {
-      setDraft((current) => (current ? recipe(current) : current));
-      if (clear === true) {
-        setIssues([]);
-      } else if (clear) {
-        setIssues((current) =>
-          current.filter((issue) => !issue.path.startsWith(clear))
-        );
-      }
-    },
-    []
-  );
-
-  const removeProduct = useCallback((productUid: string) => {
-    setDraft((current) => {
-      if (!current) return current;
-      let productId = "";
-      const categories = current.categories.map((category) => ({
-        ...category,
-        products: category.products.filter((product) => {
-          if (product.uid !== productUid) return true;
-          productId = product.id;
-          return false;
-        }),
-      }));
-      const pairings = productId
-        ? current.pairings.filter(
-            (pairing) => !pairing.items.includes(productId)
-          )
-        : current.pairings;
-      const removed = current.pairings.length - pairings.length;
-      if (removed > 0) setRemovedPairings((count) => count + removed);
-      return { ...current, categories, pairings };
-    });
-    setIssues([]);
-  }, []);
-
-  const dismissPairingNotice = useCallback(() => setRemovedPairings(0), []);
-
   const save = useCallback(async () => {
-    if (!draft || saveStatus === "saving") return;
+    if (!draft) return;
 
     if (draft.popup.enabled && !draft.popup.image) {
       setIssues([
@@ -149,20 +105,21 @@ export function useMenu() {
           message: s.popup.imageRequired,
         },
       ]);
-      setSaveStatus("error");
+      markSaveError();
       toast.error(s.toast.popupImage);
       return;
     }
 
-    setSaveStatus("saving");
+    const sent = serialize(draft);
     setIssues([]);
-    try {
-      const snapshot = await saveMenu(draft, etag);
-      adopt(snapshot);
-      setWarnings(snapshot.warnings);
-      setSavedAt(new Date());
-      setSaveStatus("saved");
-      const count = snapshot.warnings.length;
+    const result = await persist(draft);
+
+    if (result.ok) {
+      setDraft((current) =>
+        current && serialize(current) === sent ? result.snapshot.menu : current
+      );
+      setBaseline(serialize(result.snapshot.menu));
+      const count = result.snapshot.warnings.length;
       toast.success(
         count === 0
           ? s.toast.saved
@@ -170,48 +127,59 @@ export function useMenu() {
             ? s.toast.savedWithWarning
             : fill(s.toast.savedWithWarnings, { count })
       );
-    } catch (cause) {
-      setSaveStatus("error");
-      if (cause instanceof ApiError && cause.status === 412) {
-        setConflict(true);
-      } else if (cause instanceof ApiError && cause.status === 401) {
-        setSessionExpired(true);
-      } else if (cause instanceof ApiError && cause.code === "INVALID_MENU") {
-        setIssues(getIssues(cause));
-        toast.error(s.toast.invalid);
-      } else {
-        toast.error(s.toast.saveFailed);
-      }
+      return;
     }
-  }, [adopt, draft, etag, s, saveStatus]);
 
-  const issuesAt = useCallback(
-    (path: string) => issues.filter((issue) => issue.path === path),
-    [issues]
-  );
+    switch (result.kind) {
+      case "invalid":
+        setIssues(result.issues);
+        toast.error(s.toast.invalid);
+        break;
+      case "network":
+        toast.error(s.toast.network);
+        break;
+      case "tooLarge":
+        toast.error(s.toast.tooLarge);
+        break;
+      case "rateLimited":
+        toast.error(s.toast.rateLimited);
+        break;
+      case "error":
+        toast.error(s.toast.saveFailed);
+        break;
+      default:
+        break;
+    }
+  }, [draft, persist, markSaveError, s]);
 
   return {
     draft,
-    loadState,
-    retryLoad,
-    isDirty,
-    isSaving: saveStatus === "saving",
-    isReloading: reloading,
-    saveStatus,
-    savedAt,
-    warnings,
-    issues,
+    status: {
+      loadState: data.loadState,
+      isDirty,
+      isSaving: data.isSaving,
+      isReloading: data.isReloading,
+      saveStatus: data.saveStatus,
+      savedAt: data.savedAt,
+      warnings: data.warnings,
+      conflict: data.conflict,
+      sessionExpired: data.sessionExpired,
+      issues,
+      removedPairings,
+    },
     issuesAt,
-    conflict,
-    sessionExpired,
-    removedPairings,
-    dismissPairingNotice,
-    update,
-    removeProduct,
+    retryLoad: data.retryLoad,
     save,
     reload,
     keepMine,
-    dismissConflict,
+    dismissConflict: data.dismissConflict,
+    dismissPairingNotice,
+    products,
+    categories,
+    addOns,
+    signatures,
+    pairings,
+    popup,
   };
 }
 

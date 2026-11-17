@@ -1,4 +1,4 @@
-import { ApiError, getJson } from "@/shared/api";
+import { ApiError, requestJsonWithHeaders } from "@/shared/api";
 import type { RawMenuResponse } from "@/shared/menu";
 
 const MENU_ENDPOINT = "/menu";
@@ -7,10 +7,26 @@ export type MenuError = "server" | "timeout" | "network" | "unknown";
 
 export async function fetchMenu(): Promise<RawMenuResponse> {
   try {
-    return await getJson<RawMenuResponse>(MENU_ENDPOINT);
+    const { data } = await requestJsonWithHeaders<RawMenuResponse>(
+      MENU_ENDPOINT,
+      {
+        method: "GET",
+        cache: "no-cache",
+        headers: { Accept: "application/json" },
+      }
+    );
+    return data;
   } catch (cause) {
     if (getMenuError(cause) === "unknown") throw cause;
-    return getJson<RawMenuResponse>(MENU_ENDPOINT);
+    const { data } = await requestJsonWithHeaders<RawMenuResponse>(
+      MENU_ENDPOINT,
+      {
+        method: "GET",
+        cache: "no-cache",
+        headers: { Accept: "application/json" },
+      }
+    );
+    return data;
   }
 }
 

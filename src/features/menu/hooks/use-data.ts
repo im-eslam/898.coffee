@@ -15,6 +15,15 @@ export type MenuResult = MenuState & {
 let pendingMenuRequest: Promise<Menu> | null = null;
 let cachedMenu: Menu | null = null;
 
+function clearMenuCache(): void {
+  cachedMenu = null;
+  pendingMenuRequest = null;
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("menu:changed", clearMenuCache);
+}
+
 export function loadMenu(): Promise<Menu> {
   if (cachedMenu) return Promise.resolve(cachedMenu);
   if (!pendingMenuRequest) {

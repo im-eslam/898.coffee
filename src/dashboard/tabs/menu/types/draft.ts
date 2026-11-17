@@ -1,69 +1,35 @@
-import type { Localized } from "@/shared/i18n";
-import type {
-  Availability,
-  BadgeKind,
-  PairingPricing,
-  Popup,
-} from "@/features/menu/types/menu";
+import type { AddOn, RawCategory, RawMenuResponse, RawPairing, RawPriceOption, RawPricing, RawProduct } from "@/shared/menu";
 
-export interface DraftAddOn {
-  uid: string;
-  id: string;
-  name: Localized<string>;
-  price: number;
-}
+export type WithUid<T> = T & { uid: string };
 
-export interface DraftOption {
-  uid: string;
-  id: string;
-  name: Localized<string> | null;
-  price: number;
-  discount: number;
-  final: number;
-}
+export type DraftAddOn = WithUid<AddOn>;
 
-export interface DraftPricing {
-  type: "single" | "sizes";
+export type DraftOption = WithUid<RawPriceOption>;
+
+export interface DraftPricing extends Omit<RawPricing, "options"> {
   options: DraftOption[];
 }
 
-export interface DraftProduct {
+export interface DraftProduct extends Omit<RawProduct, "pricing" | "baristaWay"> {
   uid: string;
-  id: string;
-  name: Localized<string>;
-  description: Localized<string>;
-  image: string | null;
-  availability: Availability;
-  badge: BadgeKind | null;
-  addOns: string[];
-  baristaWay: string[] | null;
-  oftenOrderedWith: string[];
+  baristaWay: string[];
   pricing: DraftPricing;
 }
 
-export interface DraftCategory {
+export interface DraftCategory extends Omit<RawCategory, "products"> {
   uid: string;
-  id: string;
-  name: Localized<string>;
   products: DraftProduct[];
 }
 
-export interface DraftPairing {
-  uid: string;
-  id: string;
-  items: string[];
-  pricing: PairingPricing;
-}
+export type DraftPairing = WithUid<RawPairing>;
 
-export interface MenuDraft {
-  updatedAt: string;
-  currency: string;
-  badges: BadgeKind[];
+export interface MenuDraft extends Omit<
+  RawMenuResponse,
+  "ok" | "addOns" | "categories" | "pairings"
+> {
   addOns: DraftAddOn[];
   categories: DraftCategory[];
-  signatures: string[];
   pairings: DraftPairing[];
-  popup: Popup;
 }
 
 export interface MenuIssue {
@@ -72,5 +38,5 @@ export interface MenuIssue {
   message: string;
 }
 
-export const MAX_SIZES = 10;
 export const MIN_SIZES = 2;
+export const MAX_SIZES = 10;

@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-11-16T21:39:47+02:00",
+    "updatedAt": "2026-11-17T20:16:02+02:00",
     "currency": "EGP",
     "badges": [
         "top",
@@ -158,7 +158,7 @@
                 {
                     "id": "p035",
                     "name": {
-                        "en": "Classic Matcha",
+                        "en": "Classic Matcha - edited",
                         "ar": "ماتشا كلاسيك"
                     },
                     "description": {
@@ -4923,7 +4923,7 @@
     ],
     "popup": {
         "enabled": true,
-        "image": "baner.webp",
+        "image": "50bc8f6f9a817b6492851ed4763b5d35.webp",
         "delaySeconds": 1
     }
 }

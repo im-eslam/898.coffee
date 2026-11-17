@@ -3,15 +3,24 @@ import {
   requestJsonWithHeaders,
   type JsonResponse,
 } from "@/shared/api";
-import { withSession } from "../../../api";
+import { isDict } from "@/shared/menu";
+import { ADMIN_API, withSession } from "../../../api";
 import type { MenuDraft, MenuIssue } from "../types/draft";
-import type { MenuSnapshot } from "./menu-definition";
 import { MenuDraftParser } from "./menu-parser";
 
-export type { MenuSnapshot };
+const PUBLIC_MENU_API = "/menu";
+const ADMIN_MENU_API = `${ADMIN_API}/menu`;
 
-const MENU_ENDPOINT = "/menu";
-const ADMIN_MENU_ENDPOINT = "/admin/menu";
+export interface MenuSnapshot {
+  menu: MenuDraft;
+  etag: string;
+  warnings: MenuIssue[];
+}
+
+interface PopupImageResponse {
+  ok: true;
+  image: string;
+}
 
 function toSnapshot({
   data,
@@ -20,7 +29,7 @@ function toSnapshot({
   const etag = headers.get("ETag");
   if (!etag) {
     throw new ApiError(
-      200,
+      502,
       "INVALID_RESPONSE",
       "The server did not send an ETag"
     );
@@ -35,7 +44,7 @@ function toSnapshot({
 
 export async function loadMenu(): Promise<MenuSnapshot> {
   const response = await requestJsonWithHeaders<Record<string, unknown>>(
-    MENU_ENDPOINT,
+    PUBLIC_MENU_API,
     {
       method: "GET",
       cache: "no-store",
@@ -51,7 +60,7 @@ export function saveMenu(
 ): Promise<MenuSnapshot> {
   return withSession(async () => {
     const response = await requestJsonWithHeaders<Record<string, unknown>>(
-      ADMIN_MENU_ENDPOINT,
+      ADMIN_MENU_API,
       {
         method: "PUT",
         cache: "no-store",
@@ -63,15 +72,29 @@ export function saveMenu(
         body: JSON.stringify(MenuDraftParser.toWire(draft)),
       }
     );
+    if (!response.headers.get("ETag")) return loadMenu();
     return toSnapshot(response);
   });
 }
 
+export function uploadPopupImage(file: File): Promise<string> {
+  return withSession(async () => {
+    const body = new FormData();
+    body.append("image", file);
+    const response = await requestJsonWithHeaders<PopupImageResponse>(
+      `${ADMIN_MENU_API}/popup-image`,
+      {
+        method: "POST",
+        cache: "no-store",
+        headers: { Accept: "application/json" },
+        body,
+      }
+    );
+    return response.data.image;
+  });
+}
+
 export function getMenuIssues(cause: unknown): MenuIssue[] {
-  if (!(cause instanceof ApiError)) return [];
-  const body = cause.body;
-  if (typeof body !== "object" || body === null || Array.isArray(body)) {
-    return [];
-  }
-  return MenuDraftParser.parseIssues((body as Record<string, unknown>).issues);
+  if (!(cause instanceof ApiError) || !isDict(cause.body)) return [];
+  return MenuDraftParser.parseIssues(cause.body.issues);
 }

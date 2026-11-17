@@ -7,9 +7,6 @@ export const MENU_TABS = [
   "signatures",
   "pairings",
   "popup",
-  "general",
 ] as const;
-
 export type MenuTabKey = (typeof MENU_TABS)[number];
-
 export const DEFAULT_MENU_TAB: MenuTabKey = "products";
