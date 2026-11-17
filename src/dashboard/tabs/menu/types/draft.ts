@@ -1,4 +1,12 @@
-import type { AddOn, RawCategory, RawMenuResponse, RawPairing, RawPriceOption, RawPricing, RawProduct } from "@/shared/menu";
+import type {
+  AddOn,
+  RawCategory,
+  RawMenuResponse,
+  RawPairing,
+  RawPriceOption,
+  RawPricing,
+  RawProduct,
+} from "@/shared/menu";
 
 export type WithUid<T> = T & { uid: string };
 
@@ -10,7 +18,10 @@ export interface DraftPricing extends Omit<RawPricing, "options"> {
   options: DraftOption[];
 }
 
-export interface DraftProduct extends Omit<RawProduct, "pricing" | "baristaWay"> {
+export interface DraftProduct extends Omit<
+  RawProduct,
+  "pricing" | "baristaWay"
+> {
   uid: string;
   baristaWay: string[];
   pricing: DraftPricing;
@@ -22,6 +33,12 @@ export interface DraftCategory extends Omit<RawCategory, "products"> {
 }
 
 export type DraftPairing = WithUid<RawPairing>;
+
+export interface NewPairingInput {
+  items: [string, string];
+  price: number;
+  discount: number;
+}
 
 export interface MenuDraft extends Omit<
   RawMenuResponse,

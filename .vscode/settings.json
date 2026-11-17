@@ -17,11 +17,7 @@
     "src/dashb[!o]*/**": true,
     "src/dashbo[!a]*/**": true,
     "src/dashboa[!r]*/**": true,
-    "src/dashboar[!d]*/**": true,
-    "src/dashboard/[!t]*/**": true,
-    "src/dashboard/t[!a]*/**": true,
-    "src/dashboard/ta[!b]*/**": true,
-    "src/dashboard/tab[!s]*/**": true
+    "src/dashboar[!d]*/**": true
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

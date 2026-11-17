@@ -1,4 +1,11 @@
-import { Button, Form, Radio, RadioGroup, Switch, Label } from "react-aria-components";
+import {
+  Button,
+  Form,
+  Radio,
+  RadioGroup,
+  Switch,
+  Label,
+} from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { ImagePicker } from "../../ui/image-picker";
@@ -22,7 +29,7 @@ const styles = {
   track:
     "relative h-6 w-11 shrink-0 rounded-full bg-slate-300 transition-colors group-data-[selected]:bg-brand",
   thumb:
-    "absolute top-0.5 left-0.5 size-5 rounded-full bg-white shadow transition-transform group-data-[selected]:translate-x-5 rtl:group-data-[selected]:-translate-x-5",
+    "absolute top-0.5 left-0.5 size-5 rounded-full bg-white shadow transition-transform group-data-[selected]:translate-x-5",
   group: "flex flex-col gap-3",
   radios: "flex flex-wrap gap-3",
   radio: `group flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-slate-300 px-4 text-body text-slate-800 data-[selected]:border-brand data-[selected]:bg-brand/5 ${focusRing}`,
@@ -55,8 +62,10 @@ export function ProductEditor({ product, onDeleted }: ProductEditorProps) {
   const messages = (path: string) =>
     issuesAt(path).map((issue) => issue.message);
 
-  const patch = (change: (current: DraftProduct) => DraftProduct, _field?: string) =>
-    menu.products.update(product.uid, change);
+  const patch = (
+    change: (current: DraftProduct) => DraftProduct,
+    _field?: string
+  ) => menu.products.update(product.uid, change);
 
   const addOnOptions: RefOption[] = draft.addOns
     .filter((addOn) => addOn.id !== "")

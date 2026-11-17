@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Button, Dialog, GridList, GridListItem, Heading, Modal, ModalOverlay } from "react-aria-components";
+import {
+  Button,
+  Dialog,
+  GridList,
+  GridListItem,
+  Heading,
+  Modal,
+  ModalOverlay,
+} from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { SelectField } from "../../ui/select-field";
@@ -51,8 +59,13 @@ export function CategoriesTab() {
     menu.categories.move(keys, target, position)
   );
 
-  const patch = (index: number, change: (category: DraftCategory) => DraftCategory) =>
-    menu.categories.update(draft.categories[index].uid, change);
+  const patch = (
+    index: number,
+    change: (category: DraftCategory) => DraftCategory
+  ) => {
+    const category = draft.categories[index];
+    if (category) menu.categories.update(category.uid, change);
+  };
 
   const removeWithoutProducts = (uid: string) => menu.categories.remove(uid);
 
@@ -93,7 +106,10 @@ export function CategoriesTab() {
       <GridList
         aria-label={s.categories.listLabel}
         className={styles.list}
-        items={draft.categories.map((category) => ({ ...category, id: category.uid }))}
+        items={draft.categories.map((category) => ({
+          ...category,
+          id: category.uid,
+        }))}
         dragAndDropHooks={dragAndDropHooks}
       >
         {(category) => {

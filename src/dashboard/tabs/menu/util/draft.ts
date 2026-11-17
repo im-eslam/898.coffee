@@ -1,5 +1,15 @@
 import type { Localized } from "@/shared/i18n";
-import type { DraftAddOn, DraftCategory, DraftOption, DraftPairing, DraftPricing, DraftProduct, MenuDraft } from "../types/draft";
+import type {
+  DraftAddOn,
+  DraftCategory,
+  DraftOption,
+  DraftPairing,
+  DraftPricing,
+  DraftProduct,
+  MenuDraft,
+  NewPairingInput,
+} from "../types/draft";
+import type { ProductOption } from "../types/ui";
 
 let sequence = 0;
 
@@ -48,15 +58,6 @@ export function emptyAddOn(): DraftAddOn {
   return { uid: newUid(), id: "", name: { en: "", ar: "" }, price: 0 };
 }
 
-export function emptyPairing(items: [string, string]): DraftPairing {
-  return {
-    uid: newUid(),
-    id: "",
-    items,
-    pricing: { price: 1, discount: 0, final: 1 },
-  };
-}
-
 export interface ProductEntry {
   product: DraftProduct;
   categoryUid: string;
@@ -66,7 +67,8 @@ export function productMap(draft: MenuDraft): Map<string, ProductEntry> {
   const map = new Map<string, ProductEntry>();
   for (const category of draft.categories) {
     for (const product of category.products) {
-      if (product.id) map.set(product.id, { product, categoryUid: category.uid });
+      if (product.id)
+        map.set(product.id, { product, categoryUid: category.uid });
     }
   }
   return map;
@@ -80,8 +82,7 @@ export function addOnUsage(draft: MenuDraft, addOnId: string): number {
   if (!addOnId) return 0;
   return allProducts(draft).filter(
     (product) =>
-      product.addOns.includes(addOnId) ||
-      product.baristaWay.includes(addOnId)
+      product.addOns.includes(addOnId) || product.baristaWay.includes(addOnId)
   ).length;
 }
 
@@ -106,6 +107,31 @@ export function referenceable(draft: MenuDraft) {
   return allProducts(draft).filter((product) => product.id !== "");
 }
 
+export function productOptions(
+  draft: MenuDraft,
+  fallback: string
+): ProductOption[] {
+  return referenceable(draft).map((product) => ({
+    id: product.id,
+    label: localizedLabel(product.name, fallback),
+    search: `${product.name.en} ${product.name.ar}`,
+    price:
+      product.pricing.options[0]?.final ??
+      product.pricing.options[0]?.price ??
+      0,
+  }));
+}
+
+export function pairingDefaultPrice(
+  draft: MenuDraft,
+  items: readonly string[]
+): number {
+  const byId = new Map(
+    productOptions(draft, "").map((product) => [product.id, product])
+  );
+  return items.reduce((total, id) => total + (byId.get(id)?.price ?? 0), 0);
+}
+
 export function localizedLabel(name: Localized<string>, fallback: string) {
   return name.en.trim() || name.ar.trim() || fallback;
 }
@@ -122,7 +148,9 @@ export function slugId(text: string, fallback = "size"): string {
 
 export function withSizeIds(pricing: DraftPricing): DraftPricing {
   if (pricing.type !== "sizes") return pricing;
-  const taken = new Set(pricing.options.map((o) => o.id).filter((id) => id !== ""));
+  const taken = new Set(
+    pricing.options.map((o) => o.id).filter((id) => id !== "")
+  );
   const options = pricing.options.map((option) => {
     if (option.id !== "") return option;
     const base = slugId(option.name?.en ?? "");
@@ -138,11 +166,14 @@ export function removeProductFrom(
   draft: MenuDraft,
   productUid: string
 ): { draft: MenuDraft; removedPairings: number } {
-  const target = allProducts(draft).find((product) => product.uid === productUid);
+  const target = allProducts(draft).find(
+    (product) => product.uid === productUid
+  );
   if (!target) return { draft, removedPairings: 0 };
 
   const id = target.id;
-  const without = (ids: string[]) => (id ? ids.filter((value) => value !== id) : ids);
+  const without = (ids: string[]) =>
+    id ? ids.filter((value) => value !== id) : ids;
   const pairings = id
     ? draft.pairings.filter((pairing) => !pairing.items.includes(id))
     : draft.pairings;
@@ -206,4 +237,54 @@ export function switchPricingType(
       emptyOption(true),
     ],
   });
+}
+
+export type PairingProblem =
+  | "unknownProduct"
+  | "sameProduct"
+  | "duplicatePair"
+  | "invalidPrice"
+  | "discountTooHigh";
+
+export function finalPrice(price: number, discount: number): number {
+  return price - discount;
+}
+
+export function createPairing({
+  items,
+  price,
+  discount,
+}: NewPairingInput): DraftPairing {
+  return {
+    uid: newUid(),
+    id: "",
+    items: [...items],
+    pricing: { price, discount, final: finalPrice(price, discount) },
+  };
+}
+
+function samePair(a: readonly string[], b: readonly string[]): boolean {
+  return a.length === 2 && b.length === 2 && a.every((id) => b.includes(id));
+}
+
+export function pairingProblems(
+  input: NewPairingInput,
+  knownIds: ReadonlySet<string>,
+  existing: readonly DraftPairing[]
+): PairingProblem[] {
+  const [first, second] = input.items;
+  const problems: PairingProblem[] = [];
+
+  if (!knownIds.has(first) || !knownIds.has(second)) {
+    problems.push("unknownProduct");
+  } else if (first === second) {
+    problems.push("sameProduct");
+  } else if (existing.some((pairing) => samePair(pairing.items, input.items))) {
+    problems.push("duplicatePair");
+  }
+
+  if (!(input.price > 0)) problems.push("invalidPrice");
+  if (input.discount > input.price) problems.push("discountTooHigh");
+
+  return problems;
 }

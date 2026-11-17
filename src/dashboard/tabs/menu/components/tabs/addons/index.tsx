@@ -17,8 +17,7 @@ const styles = {
   heading: "text-heading font-semibold text-slate-900",
   primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
   iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
-  scroll:
-    "overflow-x-auto rounded-2xl border border-slate-200 bg-white p-0",
+  scroll: "overflow-x-auto rounded-2xl border border-slate-200 bg-white p-0",
   table: "w-full min-w-176 border-collapse text-start",
   th: "px-4 py-3 text-start text-small font-medium text-slate-500",
   td: "px-4 py-3 align-top",
@@ -33,8 +32,10 @@ export function AddOnsTab() {
   const menu = useLoadedMenu();
   const { draft, issuesAt } = menu;
 
-  const patch = (index: number, change: (addOn: DraftAddOn) => DraftAddOn) =>
-    menu.addOns.update(draft.addOns[index].uid, change);
+  const patch = (index: number, change: (addOn: DraftAddOn) => DraftAddOn) => {
+    const addOn = draft.addOns[index];
+    if (addOn) menu.addOns.update(addOn.uid, change);
+  };
 
   const messages = (path: string) =>
     issuesAt(path).map((issue) => issue.message);
@@ -43,10 +44,7 @@ export function AddOnsTab() {
     <div className={styles.root}>
       <div className={styles.toolbar}>
         <h2 className={styles.heading}>{s.addons.tableLabel}</h2>
-        <Button
-          className={styles.primary}
-          onPress={() => menu.addOns.add()}
-        >
+        <Button className={styles.primary} onPress={() => menu.addOns.add()}>
           <Icon name="plus" className="size-4" />
           {s.addons.add}
         </Button>
@@ -59,10 +57,19 @@ export function AddOnsTab() {
           <table className={styles.table} aria-label={s.addons.tableLabel}>
             <thead>
               <tr>
-                <th scope="col" className={styles.th}>{s.addons.nameEn}</th>
-                <th scope="col" className={styles.th}>{s.addons.nameAr}</th>
-                <th scope="col" className={styles.th}>{`${s.addons.price} (${draft.currency})`}</th>
-                <th scope="col" className={styles.th}>{s.addons.usedBy}</th>
+                <th scope="col" className={styles.th}>
+                  {s.addons.nameEn}
+                </th>
+                <th scope="col" className={styles.th}>
+                  {s.addons.nameAr}
+                </th>
+                <th
+                  scope="col"
+                  className={styles.th}
+                >{`${s.addons.price} (${draft.currency})`}</th>
+                <th scope="col" className={styles.th}>
+                  {s.addons.usedBy}
+                </th>
                 <th scope="col" className={styles.th}>
                   <span className="sr-only">{s.addons.actions}</span>
                 </th>
@@ -128,9 +135,7 @@ export function AddOnsTab() {
                         className={styles.iconButton}
                         isDisabled={usage > 0}
                         aria-label={s.addons.remove}
-                        onPress={() =>
-                          menu.addOns.remove(addOn.uid)
-                        }
+                        onPress={() => menu.addOns.remove(addOn.uid)}
                       >
                         <Icon name="trash" className="size-5" />
                       </Button>

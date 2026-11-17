@@ -10,7 +10,7 @@ const styles = {
   track:
     "relative h-6 w-11 rounded-full bg-slate-300 transition-colors duration-200 group-data-[selected]:bg-brand group-data-[pressed]:opacity-90",
   thumb:
-    "absolute top-0.5 left-0.5 size-5 rounded-full bg-white transition-transform duration-200 group-data-[selected]:translate-x-5 rtl:group-data-[selected]:-translate-x-5",
+    "absolute top-0.5 left-0.5 size-5 rounded-full bg-white transition-transform duration-200 group-data-[selected]:translate-x-5",
 } as const;
 
 export interface PopupToggleHeaderProps {

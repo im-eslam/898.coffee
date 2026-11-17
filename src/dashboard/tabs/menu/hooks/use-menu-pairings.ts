@@ -1,6 +1,13 @@
 import { useCallback } from "react";
-import { emptyPairing, pairingPath, referenceable } from "../util/draft";
-import type { DraftPairing } from "../types/draft";
+import {
+  createPairing,
+  finalPrice,
+  pairingPath,
+  pairingDefaultPrice,
+  pairingProblems,
+  referenceable,
+} from "../util/draft";
+import type { DraftPairing, NewPairingInput } from "../types/draft";
 import type { MenuStore } from "../types/store";
 
 export function useMenuPairings({ draft, update }: MenuStore) {
@@ -18,26 +25,43 @@ export function useMenuPairings({ draft, update }: MenuStore) {
     [draft, update]
   );
 
-  const add = useCallback((): boolean => {
-    if (!draft) return false;
-    const [first, second] = referenceable(draft);
-    if (!first || !second) return false;
-    const pairing = emptyPairing([first.id, second.id]);
-    update((current) => ({
-      ...current,
-      pairings: [...current.pairings, pairing],
-    }));
-    return true;
-  }, [draft, update]);
+  const add = useCallback(
+    (input: NewPairingInput): boolean => {
+      if (!draft) return false;
+      const known = new Set(referenceable(draft).map((product) => product.id));
+      if (pairingProblems(input, known, draft.pairings).length > 0)
+        return false;
+      update((current) => ({
+        ...current,
+        pairings: [...current.pairings, createPairing(input)],
+      }));
+      return true;
+    },
+    [draft, update]
+  );
 
   const setItem = useCallback(
     (uid: string, slot: 0 | 1, productId: string): boolean => {
-      const target = draft?.pairings.find((item) => item.uid === uid);
+      if (!draft) return false;
+      const target = draft.pairings.find((item) => item.uid === uid);
       if (!target || target.items[1 - slot] === productId) return false;
       edit(uid, (pairing) => {
         const items = [...pairing.items];
         items[slot] = productId;
-        return { ...pairing, items };
+        const oldPrice = pairingDefaultPrice(draft, pairing.items);
+        const nextPrice =
+          pairing.pricing.price === oldPrice
+            ? pairingDefaultPrice(draft, items)
+            : pairing.pricing.price;
+        return {
+          ...pairing,
+          items,
+          pricing: {
+            price: nextPrice,
+            discount: pairing.pricing.discount,
+            final: finalPrice(nextPrice, pairing.pricing.discount),
+          },
+        };
       });
       return true;
     },
@@ -51,7 +75,7 @@ export function useMenuPairings({ draft, update }: MenuStore) {
         pricing: {
           price,
           discount: pairing.pricing.discount,
-          final: price - pairing.pricing.discount,
+          final: finalPrice(price, pairing.pricing.discount),
         },
       })),
     [edit]
@@ -64,7 +88,7 @@ export function useMenuPairings({ draft, update }: MenuStore) {
         pricing: {
           price: pairing.pricing.price,
           discount,
-          final: pairing.pricing.price - discount,
+          final: finalPrice(pairing.pricing.price, discount),
         },
       })),
     [edit]

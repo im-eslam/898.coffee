@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { Button } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { NumberInput } from "../../ui/number-input";
-import { SelectField, type SelectOption } from "../../ui/select-field";
+import { useIsDesktop } from "../../../hooks/components/use-is-desktop";
 import { useLoadedMenu } from "../../../hooks/use-menu-context";
-import { localizedLabel, productMap, referenceable } from "../../../util/draft";
-import type { DraftPairing } from "../../../types/draft";
-import { PairingNotice } from "./pairing-notice";
+import type { NewPairingInput } from "../../../types/draft";
+import { productOptions } from "../../../util/draft";
 import { strings, fill } from "../../../strings";
+import { ConfirmModal } from "../../ui/confirm-modal";
+import { PairingModal } from "./pairing-modal";
+import { PairingSheet } from "./pairing-sheet";
+import { PairingCard, type PairingCardErrors } from "./pairing-card";
+import { PairingNotice } from "./pairing-notice";
 
 const focusRing =
   "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
@@ -17,35 +21,72 @@ const styles = {
   toolbar: "flex items-center justify-between gap-3",
   heading: "text-heading font-semibold text-slate-900",
   primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
-  danger: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-error/40 bg-white px-4 text-small font-semibold text-error transition-colors data-[hovered]:bg-error/5 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
   list: "flex flex-col gap-4",
-  card: "flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6",
-  products: "grid gap-4 sm:grid-cols-2",
-  pricing: "grid items-end gap-4 sm:grid-cols-3",
-  final: "flex h-11 items-center text-body font-semibold text-slate-900",
-  footer: "flex justify-end",
-  empty: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
+  empty:
+    "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
 } as const;
 
 export function PairingsTab() {
   const s = useStrings(strings);
   const menu = useLoadedMenu();
   const { draft, issuesAt } = menu;
-  const map = productMap(draft);
-  const products = referenceable(draft);
+  const isDesktop = useIsDesktop();
+  const options = productOptions(draft, s.products.unnamed);
 
-  const baseOptions: SelectOption[] = products.map((product) => ({
-    id: product.id,
-    label: localizedLabel(product.name, s.products.unnamed),
-  }));
+  const [addOpen, setAddOpen] = useState(false);
+  // Bumped on every open so the add form starts blank.
+  const [addSession, setAddSession] = useState(0);
+  const [removingUid, setRemovingUid] = useState<string | null>(null);
 
-  const optionsFor = (current: string): SelectOption[] =>
-    map.has(current) || current === ""
-      ? baseOptions
-      : [...baseOptions, { id: current, label: s.pairings.missingProduct }];
+  const labelFor = (id: string) =>
+    options.find((option) => option.id === id)?.label ??
+    s.pairings.missingProduct;
+
+  const pairName = (items: readonly string[]) =>
+    fill(s.pairings.pairLabel, {
+      a: labelFor(items[0] ?? ""),
+      b: labelFor(items[1] ?? ""),
+    });
 
   const messages = (path: string) =>
     issuesAt(path).map((issue) => issue.message);
+
+  const errorsAt = (index: number): PairingCardErrors => {
+    const path = `pairings[${index}]`;
+    return {
+      items: messages(`${path}.items`),
+      price: messages(`${path}.pricing.price`),
+      discount: messages(`${path}.pricing.discount`),
+    };
+  };
+
+  const removing = draft.pairings.find(
+    (pairing) => pairing.uid === removingUid
+  );
+
+  const openAdd = () => {
+    setAddSession((count) => count + 1);
+    setAddOpen(true);
+  };
+
+  const submitAdd = (input: NewPairingInput) => {
+    if (menu.pairings.add(input)) setAddOpen(false);
+  };
+
+  const confirmRemove = () => {
+    if (removingUid !== null) menu.pairings.remove(removingUid);
+    setRemovingUid(null);
+  };
+
+  const addProps = {
+    isOpen: addOpen,
+    resetKey: addSession,
+    products: options,
+    existing: draft.pairings,
+    currency: draft.currency,
+    onClose: () => setAddOpen(false),
+    onSubmit: submitAdd,
+  };
 
   return (
     <div className={styles.root}>
@@ -54,8 +95,8 @@ export function PairingsTab() {
         <h2 className={styles.heading}>{s.pairings.listLabel}</h2>
         <Button
           className={styles.primary}
-          isDisabled={products.length < 2}
-          onPress={() => menu.pairings.add()}
+          isDisabled={options.length < 2}
+          onPress={openAdd}
         >
           <Icon name="plus" className="size-4" />
           {s.pairings.add}
@@ -66,68 +107,48 @@ export function PairingsTab() {
         <p className={styles.empty}>{s.pairings.empty}</p>
       ) : (
         <ul className={styles.list} aria-label={s.pairings.listLabel}>
-          {draft.pairings.map((pairing, index) => {
-            const path = `pairings[${index}]`;
-            const a = pairing.items[0] ?? "";
-            const b = pairing.items[1] ?? "";
-            const pairName = fill(s.pairings.pairLabel, {
-              a: map.get(a) ? localizedLabel(map.get(a)!.product.name, s.products.unnamed) : s.pairings.missingProduct,
-              b: map.get(b) ? localizedLabel(map.get(b)!.product.name, s.products.unnamed) : s.pairings.missingProduct,
-            });
-            return (
-              <li key={pairing.uid}>
-                <section className={styles.card} aria-label={pairName}>
-                  <div className={styles.products}>
-                    <SelectField
-                      label={s.pairings.productA}
-                      options={optionsFor(a)}
-                      value={a}
-                      errors={messages(`${path}.items`)}
-                      onChange={(id) => menu.pairings.setItem(pairing.uid, 0, id)}
-                    />
-                    <SelectField
-                      label={s.pairings.productB}
-                      options={optionsFor(b)}
-                      value={b}
-                      onChange={(id) => menu.pairings.setItem(pairing.uid, 1, id)}
-                    />
-                  </div>
-                  <div className={styles.pricing}>
-                    <NumberInput
-                      label={s.pairings.price}
-                      value={pairing.pricing.price}
-                      errors={messages(`${path}.pricing.price`)}
-                      onCommit={(value) => menu.pairings.setPrice(pairing.uid, value)}
-                    />
-                    <NumberInput
-                      label={s.pairings.discount}
-                      value={pairing.pricing.discount}
-                      errors={messages(`${path}.pricing.discount`)}
-                      onCommit={(value) => menu.pairings.setDiscount(pairing.uid, value)}
-                    />
-                    <p className={styles.final}>
-                      {fill(s.pairings.final, {
-                        value: `${pairing.pricing.final} ${draft.currency}`,
-                      })}
-                    </p>
-                  </div>
-                  <div className={styles.footer}>
-                    <Button
-                      className={styles.danger}
-                      onPress={() =>
-                        menu.pairings.remove(pairing.uid)
-                      }
-                    >
-                      <Icon name="trash" className="size-4" />
-                      {s.pairings.remove}
-                    </Button>
-                  </div>
-                </section>
-              </li>
-            );
-          })}
+          {draft.pairings.map((pairing, index) => (
+            <li key={pairing.uid}>
+              <PairingCard
+                pairing={pairing}
+                name={pairName(pairing.items)}
+                options={options}
+                currency={draft.currency}
+                errors={errorsAt(index)}
+                onSetItem={(slot, id) =>
+                  menu.pairings.setItem(pairing.uid, slot, id)
+                }
+                onSetPrice={(price) =>
+                  menu.pairings.setPrice(pairing.uid, price)
+                }
+                onSetDiscount={(discount) =>
+                  menu.pairings.setDiscount(pairing.uid, discount)
+                }
+                onRemove={() => setRemovingUid(pairing.uid)}
+              />
+            </li>
+          ))}
         </ul>
       )}
+
+      {isDesktop ? (
+        <PairingModal {...addProps} />
+      ) : (
+        <PairingSheet {...addProps} />
+      )}
+
+      <ConfirmModal
+        isOpen={removing !== undefined}
+        title={fill(s.pairings.removeTitle, {
+          name: removing ? pairName(removing.items) : "",
+        })}
+        text={s.pairings.removeText}
+        confirmLabel={s.pairings.removeConfirm}
+        cancelLabel={s.common.cancel}
+        destructive
+        onConfirm={confirmRemove}
+        onCancel={() => setRemovingUid(null)}
+      />
     </div>
   );
 }
