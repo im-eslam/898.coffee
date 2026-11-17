@@ -19,7 +19,7 @@ const styles = {
   layout:
     "flex min-h-dvh flex-col bg-slate-100 md:fixed md:inset-0 md:flex-row md:gap-3 md:p-3",
   main: "min-w-0 flex-1 md:overflow-y-auto",
-  content: "mx-auto w-full max-w-4xl px-4 pt-6 pb-28 md:px-6 md:pt-2 md:pb-8",
+  content: "mx-auto w-full max-w-7xl px-4 pt-6 pb-28 md:px-6 md:pt-2 md:pb-8",
   title: "mb-6 text-title font-bold text-slate-900",
 } as const;
 

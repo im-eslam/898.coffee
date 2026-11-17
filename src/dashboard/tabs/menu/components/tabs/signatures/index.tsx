@@ -1,135 +1,156 @@
 import { useState } from "react";
-import { Button, ComboBox, GridList, GridListItem, Input, Label, ListBox, ListBoxItem, Popover } from "react-aria-components";
+import { Button, GridList, GridListItem } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { useLoadedMenu } from "../../../hooks/use-menu-context";
 import { useReorder } from "../../../hooks/components/use-reorder";
-import { localizedLabel, productMap, referenceable } from "../../../util/draft";
+import { useLoadedMenu } from "../../../hooks/use-menu-context";
+import {
+  localizedLabel,
+  productMap,
+  productOptions,
+} from "../../../util/draft";
 import { strings } from "../../../strings";
+import { ConfirmModal } from "../../ui/confirm-modal";
+import { FormOverlay } from "../../ui/form-overlay";
+import { primaryButton } from "../../ui/styles";
+import { SignatureForm } from "./signature-form";
 
 const focusRing =
   "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
-  card: "flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6",
+  toolbar: "flex items-center justify-between gap-3",
   heading: "text-heading font-semibold text-slate-900",
-  label: "text-small font-medium text-slate-700",
-  input:
-    "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20",
-  popover:
-    "max-h-72 w-(--trigger-width) overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg",
-  option:
-    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10 data-[disabled]:opacity-50",
-  dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
-  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
   list: "flex flex-col gap-2 outline-none",
   row: `flex min-h-14 items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 data-[dragging]:opacity-50 ${focusRing}`,
+  dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
   name: "min-w-0 flex-1 truncate text-body text-slate-900",
   broken: "text-error",
-  empty: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
-  field: "flex flex-col gap-1.5",
+  empty:
+    "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
 } as const;
 
 export function SignaturesTab() {
   const s = useStrings(strings);
   const menu = useLoadedMenu();
   const { draft } = menu;
-  const [text, setText] = useState("");
   const map = productMap(draft);
+
+  const [addOpen, setAddOpen] = useState(false);
+  const [addSession, setAddSession] = useState(0);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   const { dragAndDropHooks } = useReorder((keys, target, position) =>
     menu.signatures.move(keys, target, position)
   );
 
-  const available = referenceable(draft)
-    .filter((product) => !draft.signatures.includes(product.id))
-    .map((product) => ({
-      id: product.id,
-      label: localizedLabel(product.name, s.products.unnamed),
-    }));
+  const labelFor = (id: string) => {
+    const entry = map.get(id);
+    return entry
+      ? localizedLabel(entry.product.name, s.products.unnamed)
+      : s.pairings.missingProduct;
+  };
+
+  const available = productOptions(draft, s.products.unnamed).filter(
+    (option) => !draft.signatures.includes(option.id)
+  );
 
   const items = draft.signatures.map((id) => ({ id }));
+  const removingLabel = removingId ? labelFor(removingId) : "";
+
+  const openAdd = () => {
+    setAddSession((count) => count + 1);
+    setAddOpen(true);
+  };
+
+  const submitAdd = (productId: string) => {
+    menu.signatures.add(productId);
+    setAddOpen(false);
+  };
+
+  const confirmRemove = () => {
+    if (removingId !== null) menu.signatures.remove(removingId);
+    setRemovingId(null);
+  };
 
   return (
     <div className={styles.root}>
-      <section className={styles.card} aria-labelledby="signatures-heading">
-        <h2 id="signatures-heading" className={styles.heading}>
-          {s.tabs.signatures}
-        </h2>
-
-        <ComboBox
-          className={styles.field}
-          items={available}
-          selectedKey={null}
-          inputValue={text}
-          onInputChange={setText}
-          menuTrigger="focus"
-          onSelectionChange={(key) => {
-            if (typeof key === "string") {
-              menu.signatures.add(key);
-              setText("");
-            }
-          }}
+      <div className={styles.toolbar}>
+        <h2 className={styles.heading}>{s.signatures.listLabel}</h2>
+        <Button
+          className={primaryButton}
+          isDisabled={available.length === 0}
+          onPress={openAdd}
         >
-          <Label className={styles.label}>{s.signatures.add}</Label>
-          <Input className={styles.input} placeholder={s.signatures.addPlaceholder} />
-          <Popover className={styles.popover}>
-            <ListBox className="outline-none">
-              {(option: { id: string; label: string }) => (
-                <ListBoxItem
-                  id={option.id}
-                  textValue={option.label}
-                  className={styles.option}
-                >
-                  {option.label}
-                </ListBoxItem>
-              )}
-            </ListBox>
-          </Popover>
-        </ComboBox>
+          <Icon name="plus" className="size-4" />
+          {s.signatures.add}
+        </Button>
+      </div>
 
-        <GridList
-          aria-label={s.signatures.listLabel}
-          className={styles.list}
-          items={items}
-          dragAndDropHooks={dragAndDropHooks}
-          renderEmptyState={() => (
-            <p className={styles.empty}>{s.signatures.empty}</p>
-          )}
-        >
-          {(item) => {
-            const entry = map.get(item.id);
-            const label = entry
-              ? localizedLabel(entry.product.name, s.products.unnamed)
-              : s.pairings.missingProduct;
-            return (
-              <GridListItem id={item.id} textValue={label} className={styles.row}>
-                <Button
-                  slot="drag"
-                  className={styles.dragHandle}
-                  aria-label={s.common.dragHandle}
-                >
-                  <Icon name="menu" className="size-5" />
-                </Button>
-                <span className={`${styles.name} ${entry ? "" : styles.broken}`}>
-                  {label}
-                  {entry ? "" : ` — ${s.common.willBeRemoved}`}
-                </span>
-                <Button
-                  className={styles.iconButton}
-                  aria-label={`${s.signatures.remove}: ${label}`}
-                  onPress={() =>
-                    menu.signatures.remove(item.id)
-                  }
-                >
-                  <Icon name="trash" className="size-5" />
-                </Button>
-              </GridListItem>
-            );
-          }}
-        </GridList>
-      </section>
+      <GridList
+        aria-label={s.signatures.listLabel}
+        className={styles.list}
+        items={items}
+        dragAndDropHooks={dragAndDropHooks}
+        renderEmptyState={() => (
+          <p className={styles.empty}>{s.signatures.empty}</p>
+        )}
+      >
+        {(item) => {
+          const entry = map.get(item.id);
+          const label = labelFor(item.id);
+          return (
+            <GridListItem id={item.id} textValue={label} className={styles.row}>
+              <Button
+                slot="drag"
+                className={styles.dragHandle}
+                aria-label={s.common.dragHandle}
+              >
+                <Icon name="menu" className="size-5" />
+              </Button>
+              <span className={`${styles.name} ${entry ? "" : styles.broken}`}>
+                {label}
+                {entry ? "" : ` — ${s.common.willBeRemoved}`}
+              </span>
+              <Button
+                className={styles.iconButton}
+                aria-label={`${s.signatures.remove}: ${label}`}
+                onPress={() => setRemovingId(item.id)}
+              >
+                <Icon name="trash" className="size-5" />
+              </Button>
+            </GridListItem>
+          );
+        }}
+      </GridList>
+
+      <FormOverlay
+        isOpen={addOpen}
+        onClose={() => setAddOpen(false)}
+        title={s.signatures.addTitle}
+        description={s.signatures.addText}
+        closeLabel={s.signatures.closeAdd}
+      >
+        <SignatureForm
+          key={addSession}
+          options={available}
+          onSubmit={submitAdd}
+          onCancel={() => setAddOpen(false)}
+        />
+      </FormOverlay>
+
+      <ConfirmModal
+        isOpen={removingId !== null}
+        title={s.signatures.removeTitle.replace("{name}", removingLabel)}
+        text={s.signatures.removeText}
+        confirmLabel={s.signatures.removeConfirm}
+        cancelLabel={s.common.cancel}
+        destructive
+        onConfirm={confirmRemove}
+        onCancel={() => setRemovingId(null)}
+      />
     </div>
   );
 }

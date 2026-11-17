@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import type { Key } from "react-aria-components";
+import type { Localized } from "@/shared/i18n";
 import { categoryPath, emptyCategory } from "../util/draft";
 import { moveItems } from "../util/reorder";
 import type { DraftCategory } from "../types/draft";
@@ -8,14 +9,21 @@ import type { MenuStore } from "../types/store";
 type Position = "before" | "after" | "on";
 
 export function useMenuCategories({ draft, update }: MenuStore) {
-  const add = useCallback((): string => {
-    const category = emptyCategory();
-    update((current) => ({
-      ...current,
-      categories: [...current.categories, category],
-    }));
-    return category.uid;
-  }, [update]);
+  const add = useCallback(
+    (name?: Localized<string>): boolean => {
+      const en = name?.en.trim() ?? "";
+      const ar = name?.ar.trim() ?? "";
+      update((current) => ({
+        ...current,
+        categories: [
+          ...current.categories,
+          { ...emptyCategory(), name: { en, ar } },
+        ],
+      }));
+      return true;
+    },
+    [update]
+  );
 
   const edit = useCallback(
     (uid: string, change: (category: DraftCategory) => DraftCategory) =>

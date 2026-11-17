@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-11-17T21:01:40+02:00",
+    "updatedAt": "2026-11-18T01:40:22+02:00",
     "currency": "EGP",
     "badges": [
         "top",
@@ -12,20 +12,6 @@
                 "ar": "شوت إسبريسو زيادة"
             },
             "price": 35
-        },
-        "a02": {
-            "name": {
-                "en": "Oat Milk",
-                "ar": "حليب شوفان"
-            },
-            "price": 30
-        },
-        "a03": {
-            "name": {
-                "en": "Almond Milk",
-                "ar": "حليب لوز"
-            },
-            "price": 30
         },
         "a04": {
             "name": {
@@ -151,7 +137,7 @@
         {
             "id": "c06",
             "name": {
-                "en": "Iced Matcha",
+                "en": "Iced Matcha 1",
                 "ar": "ماتشا مثلجة"
             },
             "products": [
@@ -171,12 +157,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -211,12 +194,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -251,12 +231,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -291,12 +268,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -331,12 +305,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -360,7 +331,7 @@
         {
             "id": "c04",
             "name": {
-                "en": "Specialty Coffee",
+                "en": "Specialty Coffee 1",
                 "ar": "القهوة المختصة"
             },
             "products": [
@@ -458,9 +429,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -497,9 +466,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a16",
@@ -539,9 +506,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -581,9 +546,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a15",
@@ -623,9 +586,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -674,9 +635,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -714,9 +673,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -757,9 +714,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -800,13 +755,9 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
-                    "baristaWay": [
-                        "a02"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -842,9 +793,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -882,9 +831,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -922,9 +869,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -961,9 +906,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -1001,9 +944,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1043,9 +984,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1086,9 +1025,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1138,9 +1075,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -1191,9 +1126,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -1244,9 +1177,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -1284,9 +1215,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [],
                     "oftenOrderedWith": [
@@ -1324,13 +1253,9 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
-                    "baristaWay": [
-                        "a02"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -1366,13 +1291,9 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
-                    "baristaWay": [
-                        "a02"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -1421,9 +1342,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1476,9 +1395,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1532,9 +1449,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1574,13 +1489,9 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
-                    "baristaWay": [
-                        "a02"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -1616,9 +1527,7 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
                     "baristaWay": [
                         "a01",
@@ -1659,13 +1568,9 @@
                         "a01",
                         "a15",
                         "a16",
-                        "a17",
-                        "a02",
-                        "a03"
+                        "a17"
                     ],
-                    "baristaWay": [
-                        "a02"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -2040,12 +1945,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -2363,8 +2265,6 @@
                     "availability": "in_stock",
                     "badge": null,
                     "addOns": [
-                        "a02",
-                        "a03",
                         "a08",
                         "a14"
                     ],
@@ -2403,12 +2303,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",
@@ -2877,12 +2774,9 @@
                     "addOns": [
                         "a09",
                         "a18",
-                        "a12",
-                        "a03"
+                        "a12"
                     ],
-                    "baristaWay": [
-                        "a03"
-                    ],
+                    "baristaWay": [],
                     "oftenOrderedWith": [
                         "p089",
                         "p113",

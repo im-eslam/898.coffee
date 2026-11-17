@@ -8,15 +8,19 @@ import {
   Modal,
   ModalOverlay,
 } from "react-aria-components";
-import { useStrings } from "@/shared/i18n";
+import { useStrings, type Localized } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { SelectField } from "../../ui/select-field";
-import { TextInput } from "../../ui/text-input";
 import { useLoadedMenu } from "../../../hooks/use-menu-context";
 import { useReorder } from "../../../hooks/components/use-reorder";
 import { localizedLabel } from "../../../util/draft";
 import type { DraftCategory } from "../../../types/draft";
 import { strings, fill } from "../../../strings";
+import { ConfirmModal } from "../../ui/confirm-modal";
+import { FormOverlay } from "../../ui/form-overlay";
+import { SelectField } from "../../ui/select-field";
+import { primaryButton } from "../../ui/styles";
+import { TextInput } from "../../ui/text-input";
+import { CategoryForm } from "./category-form";
 
 const focusRing =
   "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
@@ -27,19 +31,18 @@ const styles = {
   heading: "text-heading font-semibold text-slate-900",
   sub: "text-small text-slate-500",
   error: "text-small text-error",
-  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
   button: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-small font-semibold text-slate-700 transition-colors data-[hovered]:bg-slate-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
   danger: `inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-error/40 bg-white px-4 text-small font-semibold text-error transition-colors data-[hovered]:bg-error/5 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 ${focusRing}`,
-  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
   dragHandle: `inline-flex size-11 shrink-0 cursor-grab items-center justify-center rounded-lg text-slate-400 data-[hovered]:bg-slate-100 active:cursor-grabbing ${focusRing}`,
+  iconButton: `inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors data-[hovered]:bg-slate-100 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-40 ${focusRing}`,
   overlay:
     "fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 p-4 sm:items-center data-[entering]:animate-in data-[entering]:fade-in",
   modal:
     "w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-xl outline-none",
   list: "flex flex-col gap-3 outline-none",
-  row: `flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 data-[dragging]:opacity-50 sm:flex-row sm:items-start ${focusRing}`,
+  row: `flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 data-[dragging]:opacity-50 sm:flex-row sm:items-end ${focusRing}`,
   fields: "grid min-w-0 flex-1 gap-3 sm:grid-cols-2",
-  meta: "flex items-center justify-between gap-2 sm:h-11 sm:justify-end sm:pt-6",
+  meta: "flex h-11 items-center justify-between gap-2 sm:justify-end",
   count: "text-small text-slate-500",
   dialog: "flex flex-col gap-4 outline-none",
   actions: "flex justify-end gap-3",
@@ -49,54 +52,72 @@ export function CategoriesTab() {
   const s = useStrings(strings);
   const menu = useLoadedMenu();
   const { draft, issuesAt } = menu;
-  const [removingUid, setRemovingUid] = useState<string | null>(null);
+  const fallbackName = s.categories.unnamed;
+
+  const [addOpen, setAddOpen] = useState(false);
+  const [addSession, setAddSession] = useState(0);
+  const [emptyUid, setEmptyUid] = useState<string | null>(null);
+  const [moveUid, setMoveUid] = useState<string | null>(null);
   const [targetUid, setTargetUid] = useState<string | null>(null);
 
-  const removing = draft.categories.find((item) => item.uid === removingUid);
-  const others = draft.categories.filter((item) => item.uid !== removingUid);
+  const pendingEmpty = draft.categories.find((item) => item.uid === emptyUid);
+  const moving = draft.categories.find((item) => item.uid === moveUid);
+  const others = draft.categories.filter((item) => item.uid !== moveUid);
+  const emptyName = pendingEmpty
+    ? localizedLabel(pendingEmpty.name, fallbackName)
+    : "";
+  const movingName = moving ? localizedLabel(moving.name, fallbackName) : "";
 
   const { dragAndDropHooks } = useReorder((keys, target, position) =>
     menu.categories.move(keys, target, position)
   );
 
   const patch = (
-    index: number,
+    uid: string,
     change: (category: DraftCategory) => DraftCategory
-  ) => {
-    const category = draft.categories[index];
-    if (category) menu.categories.update(category.uid, change);
-  };
+  ) => menu.categories.update(uid, change);
 
-  const removeWithoutProducts = (uid: string) => menu.categories.remove(uid);
-
-  const requestRemove = (category: DraftCategory) => {
-    if (category.products.length === 0) {
-      removeWithoutProducts(category.uid);
+  const requestRemove = (uid: string) => {
+    const target = draft.categories.find((item) => item.uid === uid);
+    if (!target) return;
+    if (target.products.length === 0) {
+      setEmptyUid(uid);
       return;
     }
     setTargetUid(null);
-    setRemovingUid(category.uid);
+    setMoveUid(uid);
+  };
+
+  const confirmRemoveEmpty = () => {
+    if (emptyUid !== null) menu.categories.remove(emptyUid);
+    setEmptyUid(null);
+  };
+
+  const closeMove = () => {
+    setMoveUid(null);
+    setTargetUid(null);
   };
 
   const confirmMove = () => {
-    if (!removing || !targetUid) return;
-    menu.categories.removeAndMove(removing.uid, targetUid);
-    setRemovingUid(null);
+    if (!moving || !targetUid) return;
+    menu.categories.removeAndMove(moving.uid, targetUid);
+    closeMove();
   };
 
-  const closeModal = () => setRemovingUid(null);
-  const fallbackName = s.categories.unnamed;
-  const removingName = removing
-    ? localizedLabel(removing.name, fallbackName)
-    : "";
+  const submitAdd = (name: Localized<string>) => {
+    if (menu.categories.add(name)) setAddOpen(false);
+  };
 
   return (
     <div className={styles.root}>
       <div className={styles.toolbar}>
         <h2 className={styles.heading}>{s.categories.listLabel}</h2>
         <Button
-          className={styles.primary}
-          onPress={() => menu.categories.add()}
+          className={primaryButton}
+          onPress={() => {
+            setAddSession((count) => count + 1);
+            setAddOpen(true);
+          }}
         >
           <Icon name="plus" className="size-4" />
           {s.categories.add}
@@ -119,11 +140,12 @@ export function CategoriesTab() {
           const nameErrors = issuesAt(`categories[${index}].name`).map(
             (issue) => issue.message
           );
+          const name = localizedLabel(category.name, fallbackName);
           const count = category.products.length;
           return (
             <GridListItem
               id={category.uid}
-              textValue={localizedLabel(category.name, fallbackName)}
+              textValue={name}
               className={styles.row}
             >
               <Button
@@ -140,7 +162,7 @@ export function CategoriesTab() {
                   value={category.name.en}
                   errors={nameErrors}
                   onCommit={(en) =>
-                    patch(index, (item) => ({
+                    patch(category.uid, (item) => ({
                       ...item,
                       name: { ...item.name, en },
                     }))
@@ -152,7 +174,7 @@ export function CategoriesTab() {
                   label={s.categories.nameAr}
                   value={category.name.ar}
                   onCommit={(ar) =>
-                    patch(index, (item) => ({
+                    patch(category.uid, (item) => ({
                       ...item,
                       name: { ...item.name, ar },
                     }))
@@ -167,8 +189,8 @@ export function CategoriesTab() {
                 </span>
                 <Button
                   className={styles.iconButton}
-                  aria-label={`${s.categories.remove}: ${localizedLabel(category.name, fallbackName)}`}
-                  onPress={() => requestRemove(category)}
+                  aria-label={`${s.categories.remove}: ${name}`}
+                  onPress={() => requestRemove(category.uid)}
                 >
                   <Icon name="trash" className="size-5" />
                 </Button>
@@ -178,18 +200,43 @@ export function CategoriesTab() {
         }}
       </GridList>
 
+      <FormOverlay
+        isOpen={addOpen}
+        onClose={() => setAddOpen(false)}
+        title={s.categories.addTitle}
+        description={s.categories.addText}
+        closeLabel={s.categories.closeAdd}
+      >
+        <CategoryForm
+          key={addSession}
+          onSubmit={submitAdd}
+          onCancel={() => setAddOpen(false)}
+        />
+      </FormOverlay>
+
+      <ConfirmModal
+        isOpen={pendingEmpty !== undefined}
+        title={fill(s.categories.removeTitle, { name: emptyName })}
+        text={s.categories.removeEmptyText}
+        confirmLabel={s.categories.removeConfirm}
+        cancelLabel={s.common.cancel}
+        destructive
+        onConfirm={confirmRemoveEmpty}
+        onCancel={() => setEmptyUid(null)}
+      />
+
       <ModalOverlay
         className={styles.overlay}
-        isOpen={removing !== undefined}
+        isOpen={moving !== undefined}
         onOpenChange={(open) => {
-          if (!open) closeModal();
+          if (!open) closeMove();
         }}
         isDismissable
       >
         <Modal className={styles.modal}>
           <Dialog className={styles.dialog}>
             <Heading slot="title" className={styles.heading}>
-              {fill(s.categories.removeTitle, { name: removingName })}
+              {fill(s.categories.removeTitle, { name: movingName })}
             </Heading>
             <p className={styles.sub}>{s.categories.removeText}</p>
             {others.length === 0 ? (
@@ -206,12 +253,12 @@ export function CategoriesTab() {
               />
             )}
             <div className={styles.actions}>
-              <Button className={styles.button} onPress={closeModal}>
+              <Button className={styles.button} onPress={closeMove}>
                 {s.common.cancel}
               </Button>
               <Button
                 className={styles.danger}
-                isDisabled={!targetUid}
+                isDisabled={!targetUid || others.length === 0}
                 onPress={confirmMove}
               >
                 {s.categories.moveAndRemove}

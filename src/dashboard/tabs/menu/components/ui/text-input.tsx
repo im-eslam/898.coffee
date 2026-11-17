@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { FieldError, Input, Label, Text, TextArea, TextField } from "react-aria-components";
+import {
+  FieldError,
+  Input,
+  Label,
+  Text,
+  TextArea,
+  TextField,
+} from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { strings } from "../../strings";
 
@@ -18,7 +25,8 @@ const styles = {
 interface TextInputProps {
   label: string;
   value: string;
-  onCommit: (value: string) => void;
+  onCommit?: (value: string) => void;
+  onChange?: (value: string) => void;
   required?: boolean;
   multiline?: boolean;
   rtl?: boolean;
@@ -27,12 +35,14 @@ interface TextInputProps {
   errors?: string[];
   rows?: number;
   hideLabel?: boolean;
+  autoFocus?: boolean;
 }
 
 export function TextInput({
   label,
   value,
   onCommit,
+  onChange,
   required,
   multiline,
   rtl,
@@ -41,26 +51,39 @@ export function TextInput({
   errors = [],
   rows,
   hideLabel,
+  autoFocus,
 }: TextInputProps) {
   const s = useStrings(strings);
   const [touched, setTouched] = useState(false);
+  const controlled = onChange !== undefined;
+
   const missing = required && touched && value.trim() === "";
-  const messages = missing ? [s.common.required, ...errors] : errors;
+  const requiredMessage = s.common.required;
+  const messages =
+    missing && !errors.includes(requiredMessage)
+      ? [requiredMessage, ...errors]
+      : errors;
   const dir = rtl ? "rtl" : undefined;
 
   return (
     <TextField
-      key={value}
+      key={controlled ? undefined : value}
       className={styles.root}
-      defaultValue={value}
+      value={controlled ? value : undefined}
+      defaultValue={controlled ? undefined : value}
+      onChange={onChange}
       isInvalid={messages.length > 0}
       isRequired={required}
       validationBehavior="aria"
-      onBlur={(event) => {
-        setTouched(true);
-        const next = (event.target as HTMLInputElement).value;
-        if (next !== value) onCommit(next);
-      }}
+      onBlur={
+        controlled
+          ? undefined
+          : (event) => {
+              setTouched(true);
+              const next = (event.target as HTMLInputElement).value;
+              if (next !== value && onCommit) onCommit(next);
+            }
+      }
     >
       <Label className={hideLabel ? "sr-only" : styles.label}>{label}</Label>
       {multiline ? (
@@ -71,7 +94,12 @@ export function TextInput({
           rows={rows ?? 5}
         />
       ) : (
-        <Input className={styles.input} dir={dir} placeholder={placeholder} />
+        <Input
+          className={styles.input}
+          dir={dir}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+        />
       )}
       {hint ? (
         <Text slot="description" className={styles.hint}>

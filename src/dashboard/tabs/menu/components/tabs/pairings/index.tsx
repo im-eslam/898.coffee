@@ -2,25 +2,21 @@ import { useState } from "react";
 import { Button } from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
-import { useIsDesktop } from "../../../hooks/components/use-is-desktop";
 import { useLoadedMenu } from "../../../hooks/use-menu-context";
 import type { NewPairingInput } from "../../../types/draft";
 import { productOptions } from "../../../util/draft";
 import { strings, fill } from "../../../strings";
 import { ConfirmModal } from "../../ui/confirm-modal";
-import { PairingModal } from "./pairing-modal";
-import { PairingSheet } from "./pairing-sheet";
+import { FormOverlay } from "../../ui/form-overlay";
+import { primaryButton } from "../../ui/styles";
+import { PairingForm } from "./pairing-form";
 import { PairingCard, type PairingCardErrors } from "./pairing-card";
 import { PairingNotice } from "./pairing-notice";
-
-const focusRing =
-  "outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-brand";
 
 const styles = {
   root: "flex flex-col gap-6",
   toolbar: "flex items-center justify-between gap-3",
   heading: "text-heading font-semibold text-slate-900",
-  primary: `inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-small font-semibold text-white transition-colors data-[hovered]:bg-navy data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 ${focusRing}`,
   list: "flex flex-col gap-4",
   empty:
     "rounded-xl border border-dashed border-slate-300 p-6 text-center text-small text-slate-500",
@@ -30,7 +26,6 @@ export function PairingsTab() {
   const s = useStrings(strings);
   const menu = useLoadedMenu();
   const { draft, issuesAt } = menu;
-  const isDesktop = useIsDesktop();
   const options = productOptions(draft, s.products.unnamed);
 
   const [addOpen, setAddOpen] = useState(false);
@@ -78,23 +73,13 @@ export function PairingsTab() {
     setRemovingUid(null);
   };
 
-  const addProps = {
-    isOpen: addOpen,
-    resetKey: addSession,
-    products: options,
-    existing: draft.pairings,
-    currency: draft.currency,
-    onClose: () => setAddOpen(false),
-    onSubmit: submitAdd,
-  };
-
   return (
     <div className={styles.root}>
       <PairingNotice />
       <div className={styles.toolbar}>
         <h2 className={styles.heading}>{s.pairings.listLabel}</h2>
         <Button
-          className={styles.primary}
+          className={primaryButton}
           isDisabled={options.length < 2}
           onPress={openAdd}
         >
@@ -131,11 +116,22 @@ export function PairingsTab() {
         </ul>
       )}
 
-      {isDesktop ? (
-        <PairingModal {...addProps} />
-      ) : (
-        <PairingSheet {...addProps} />
-      )}
+      <FormOverlay
+        isOpen={addOpen}
+        onClose={() => setAddOpen(false)}
+        title={s.pairings.addTitle}
+        description={s.pairings.addText}
+        closeLabel={s.pairings.closeAdd}
+      >
+        <PairingForm
+          key={addSession}
+          products={options}
+          existing={draft.pairings}
+          currency={draft.currency}
+          onSubmit={submitAdd}
+          onCancel={() => setAddOpen(false)}
+        />
+      </FormOverlay>
 
       <ConfirmModal
         isOpen={removing !== undefined}
