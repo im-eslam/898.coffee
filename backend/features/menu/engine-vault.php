@@ -74,28 +74,7 @@ final class MenuFileStore implements MenuStore
 
     public function replace(string $ifMatch, string $json): void
     {
-        $current = $this->read();
-        $this->backup($current);
         $this->writeAtomic($json);
-    }
-
-    private function backup(string $current): void
-    {
-        if (!is_dir($this->backupDir) && !@mkdir($this->backupDir, 0700, true) && !is_dir($this->backupDir)) {
-            throw MenuEngineException::storage('cannot create the backup folder');
-        }
-
-        $stamp = (new DateTimeImmutable('now', new DateTimeZone('Africa/Cairo')))->format('Ymd-His');
-        $name  = $this->backupDir . '/menu-' . $stamp . '-' . bin2hex(random_bytes(3)) . '.json';
-        if (file_put_contents($name, $current) === false) {
-            throw MenuEngineException::storage('cannot write the menu backup');
-        }
-
-        $backups = glob($this->backupDir . '/menu-*.json') ?: [];
-        sort($backups);
-        foreach (array_slice($backups, 0, -$this->backupsKept) as $old) {
-            @unlink($old);
-        }
     }
 
     private function writeAtomic(string $json): void
