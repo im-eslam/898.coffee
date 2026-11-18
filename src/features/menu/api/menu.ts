@@ -11,7 +11,7 @@ export async function fetchMenu(): Promise<RawMenuResponse> {
       MENU_ENDPOINT,
       {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
         headers: { Accept: "application/json" },
       }
     );
@@ -22,7 +22,7 @@ export async function fetchMenu(): Promise<RawMenuResponse> {
       MENU_ENDPOINT,
       {
         method: "GET",
-        cache: "no-cache",
+        cache: "no-store",
         headers: { Accept: "application/json" },
       }
     );

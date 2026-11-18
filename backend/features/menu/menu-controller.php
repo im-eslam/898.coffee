@@ -33,6 +33,8 @@ class MenuController extends ControllerBase
             $this->sendError($error);
         }
 
+        header('Cache-Control: no-store');
+
         if ($this->requestEtag() === $snapshot->etag) {
             http_response_code(304);
             header('ETag: ' . $snapshot->etag);
@@ -42,7 +44,6 @@ class MenuController extends ControllerBase
         http_response_code(200);
         header('Content-Type: application/json; charset=utf-8');
         header('ETag: ' . $snapshot->etag);
-        header('Cache-Control: public, max-age=60, stale-while-revalidate=300');
         echo json_encode(['ok' => true] + $snapshot->document, JSON_UNESCAPED_UNICODE);
         exit;
     }

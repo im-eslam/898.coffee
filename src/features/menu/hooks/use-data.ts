@@ -55,6 +55,28 @@ export function useData(): MenuResult {
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
+    const refreshMenu = () => {
+      clearMenuCache();
+      setState({ status: "loading" });
+      setAttempt((current) => current + 1);
+    };
+
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === "visible") refreshMenu();
+    };
+
+    window.addEventListener("menu:changed", refreshMenu);
+    window.addEventListener("focus", refreshMenu);
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+
+    return () => {
+      window.removeEventListener("menu:changed", refreshMenu);
+      window.removeEventListener("focus", refreshMenu);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+    };
+  }, []);
+
+  useEffect(() => {
     if (cachedMenu) return;
 
     let isActive = true;
