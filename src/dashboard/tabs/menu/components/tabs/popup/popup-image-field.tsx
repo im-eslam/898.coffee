@@ -57,6 +57,13 @@ export function PopupImageField({
     if (file) onUpload(file);
   }
 
+  const previewUrl =
+    image && (image.startsWith("/") || /^(https?:)?\/\//.test(image))
+      ? image
+      : image
+        ? `${import.meta.env.BASE_URL}menu/popup/${image}`
+        : null;
+
   const handleDrop: NonNullable<DropZoneProps["onDrop"]> = async (e) => {
     const fileItem = e.items.find(
       (item) => item.kind === "file" && item.type === "image/webp"
@@ -86,7 +93,7 @@ export function PopupImageField({
         <div className={styles.previewCard}>
           <div className={styles.previewMedia}>
             <img
-              src={image}
+              src={previewUrl ?? image}
               alt=""
               className={styles.thumbnail}
               loading="lazy"

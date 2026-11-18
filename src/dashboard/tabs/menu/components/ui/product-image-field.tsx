@@ -68,9 +68,13 @@ export interface ProductImageFieldProps {
   onRemove: () => void;
 }
 
-/** Only absolute URLs and root paths can be previewed. Bare filenames show a placeholder. */
 function isPreviewable(value: string): boolean {
   return /^(https?:)?\/\//.test(value) || value.startsWith("/");
+}
+
+function previewUrl(value: string): string {
+  if (isPreviewable(value)) return value;
+  return `${import.meta.env.BASE_URL}menu/products-full/${value}`;
 }
 
 export function ProductImageField({
@@ -121,16 +125,12 @@ export function ProductImageField({
         <div className={styles.previewCard}>
           <div className={styles.previewMedia}>
             <div className={styles.thumb}>
-              {isPreviewable(value) ? (
-                <img
-                  src={value}
-                  alt=""
-                  className={styles.thumbImg}
-                  loading="lazy"
-                />
-              ) : (
-                <span className={styles.thumbPlaceholder}>WEBP</span>
-              )}
+              <img
+                src={previewUrl(value)}
+                alt=""
+                className={styles.thumbImg}
+                loading="lazy"
+              />
             </div>
             <div className={styles.fileMeta}>
               <span className={styles.fileName} dir="ltr">

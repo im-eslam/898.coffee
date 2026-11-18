@@ -1,0 +1,2479 @@
+{
+  "updatedAt": "2026-11-18T14:57:27+02:00",
+  "currency": "EGP",
+  "badges": ["top", "new"],
+  "addOns": {
+    "a01": {
+      "name": {
+        "en": "Espresso",
+        "ar": "إسبريسو"
+      },
+      "price": 35
+    },
+    "a04": {
+      "name": {
+        "en": "Milk",
+        "ar": "حليب"
+      },
+      "price": 30
+    },
+    "a06": {
+      "name": {
+        "en": "Flavor",
+        "ar": "نكهة"
+      },
+      "price": 30
+    },
+    "a07": {
+      "name": {
+        "en": "Sauce",
+        "ar": "صوص"
+      },
+      "price": 30
+    },
+    "a18": {
+      "name": {
+        "en": "Boba",
+        "ar": "بوبا"
+      },
+      "price": 30
+    }
+  },
+  "categories": [
+    {
+      "id": "c01",
+      "name": {
+        "en": "Hot Coffee",
+        "ar": "قهوة ساخنة"
+      },
+      "products": [
+        {
+          "id": "p010",
+          "name": {
+            "en": "Flat White",
+            "ar": "فلات وايت"
+          },
+          "description": {
+            "en": "Double espresso under a thin layer of micro-foam - strong, silky, smooth.\n\nA double espresso is extracted into a cup and topped with steamed milk textured into fine, glossy micro-foam. The milk is integrated rather than layered, keeping the finish strong and silky.",
+            "ar": "دبل إسبريسو تحت طبقة رغوة رفيعة، قوي وحرير.\n\nبنستخلص دبل إسبريسو ونضيف له لبن مبخّر برغوة دقيقة ولامعة. اللبن بيمتزج مع القهوة من غير طبقات تقيلة عشان يفضل الطعم قوي وناعم."
+          },
+          "image": "hot-coffee-flat-white.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 105,
+                "discount": 0,
+                "final": 105
+              }
+            ]
+          }
+        },
+        {
+          "id": "p001",
+          "name": {
+            "en": "Espresso",
+            "ar": "إسبريسو"
+          },
+          "description": {
+            "en": "Concentrated, syrupy shot with a caramel crema and a clean, lingering finish.\n\nA measured dose of finely ground coffee is tamped into the portafilter and extracted under pressure into a pre-warmed cup. The shot is served on its own, with its natural crema intact.",
+            "ar": "شوت مركّز بكريما دهبية وطعم نضيف بيفضل معاك.\n\nبتتطحن حبوب القهوة ناعم وتتضغط في البورتافلتر، وبعدها بتتستخلص تحت ضغط في فنجان متسخّن. بيتقدم الشوت لوحده مع طبقة الكريما الطبيعية."
+          },
+          "image": "hot-coffee-espresso.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 75,
+                "discount": 0,
+                "final": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "p003",
+          "name": {
+            "en": "Americano",
+            "ar": "أمريكانو"
+          },
+          "description": {
+            "en": "Rich espresso lengthened with hot water for a smooth, clean cup.\n\nFresh espresso is extracted first, then lengthened with hot water to the preferred strength. It is served without milk so the coffee’s aroma and clean finish remain clear.",
+            "ar": "إسبريسو غني متخفف بمية سخنة، كوباية ناعمة ونضيفة.\n\nبنستخلص شوت إسبريسو طازة، وبعدها بنضيف له مية سخنة لحد القوة المناسبة. بيتقدم من غير لبن عشان نكهة القهوة تفضل واضحة."
+          },
+          "image": "hot-coffee-americano.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 80,
+                "discount": 0,
+                "final": 80
+              }
+            ]
+          }
+        },
+        {
+          "id": "p002",
+          "name": {
+            "en": "Macchiato",
+            "ar": "ماكياتو"
+          },
+          "description": {
+            "en": "Bold espresso marked with a spoonful of silky milk foam.\n\nA fresh espresso shot is pulled into a small cup and marked with a spoonful of finely textured milk foam. The milk softens the surface without hiding the coffee’s bold character.",
+            "ar": "إسبريسو قوي بملعقة رغوة لبن حرير فوقه.\n\nبيتعمل شوت إسبريسو طازة، وفوقه معلقة من رغوة اللبن الناعمة. الرغوة بتطرّي طعم القهوة من غير ما تخفي قوته."
+          },
+          "image": "hot-coffee-macchiato.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 85,
+                "discount": 0,
+                "final": 85
+              }
+            ]
+          }
+        },
+        {
+          "id": "p012",
+          "name": {
+            "en": "Cortado",
+            "ar": "كورتادو"
+          },
+          "description": {
+            "en": "Equal parts espresso and warm milk - short, balanced and punchy.\n\nA fresh espresso shot is combined with an equal amount of warm, lightly textured milk. The small drink is served without a thick foam cap so the coffee and milk stay in balance.",
+            "ar": "إسبريسو ولبن سخن بالتساوي، صغير ومتوازن وقوي.\n\nبنمزج شوت إسبريسو مع كمية مساوية تقريباً من اللبن الدافي الخفيف. بيتقدم في فنجان صغير من غير طبقة رغوة سميكة."
+          },
+          "image": "hot-coffee-cortado.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 95,
+                "discount": 0,
+                "final": 95
+              }
+            ]
+          }
+        },
+        {
+          "id": "p006",
+          "name": {
+            "en": "Cappuccino",
+            "ar": "كابتشينو"
+          },
+          "description": {
+            "en": "Espresso, steamed milk and a thick, cloud-like foam in perfect balance.\n\nA shot of espresso is combined with steamed milk and a generous cap of airy milk foam. The three layers are balanced to give the cup its classic coffee-forward taste.",
+            "ar": "إسبريسو ولبن مبخّر ورغوة تخينة زي السحاب بنسب مظبوطة.\n\nشوت إسبريسو بيتخلط مع لبن مبخّر وفوقه طبقة سخية من الرغوة الهوائية. التوازن بين القهوة واللبن والرغوة هو سر الكابتشينو الكلاسيك."
+          },
+          "image": "hot-coffee-cappuccino.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 105,
+                "discount": 0,
+                "final": 105
+              }
+            ]
+          }
+        },
+        {
+          "id": "p005",
+          "name": {
+            "en": "Latte",
+            "ar": "لاتيه"
+          },
+          "description": {
+            "en": "Velvety steamed milk poured over smooth, mellow espresso.\n\nEspresso is poured into a cup and combined with steamed milk. A thin layer of fine milk foam finishes the drink while keeping the coffee smooth and balanced.",
+            "ar": "لبن مبخّر حرير على إسبريسو سلس وهادي.\n\nبنحضر شوت إسبريسو ونضيف له لبن مبخّر. طبقة رفيعة من رغوة اللبن الناعمة بتكمل المشروب وتخليه متوازن."
+          },
+          "image": "hot-coffee-latte.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p011",
+          "name": {
+            "en": "Spanish Latte",
+            "ar": "سبانيش لاتيه"
+          },
+          "description": {
+            "en": "Espresso and steamed milk sweetened with luscious condensed milk.\n\nEspresso is mixed with steamed milk and sweetened condensed milk. The condensed milk gives the drink its signature rounded sweetness and creamy body.",
+            "ar": "إسبريسو ولبن مبخّر متحلّي بلبن مكثّف غني.\n\nبنخلط الإسبريسو مع اللبن المبخّر واللبن المكثف المحلّى. اللبن المكثف بيدي المشروب قوام كريمي وحلاوة مميزة."
+          },
+          "image": "hot-coffee-spanish-latte.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p121",
+          "name": {
+            "en": "Salted Caramel Latte",
+            "ar": "لاتيه كراميل مملح"
+          },
+          "description": {
+            "en": "Velvety espresso and steamed milk swirled with sweet-and-savoury salted caramel.\n\nFresh espresso is combined with salted caramel sauce and steamed milk. A thin cap of fine micro-foam finishes the cup with a balanced sweet-salty caramel note.",
+            "ar": "إسبريسو ناعم ولبن مبخّر متقلّب مع كراميل مملح يجمع بين الحلاوة والملوحة الخفيفة.\n\nبنمزج الإسبريسو الطازة مع صوص الكراميل المملح واللبن المبخّر. طبقة رفيعة من الرغوة الناعمة بتكمل الكوباية بطعم متوازن."
+          },
+          "image": "hot-coffee-salted-caramel-latte.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p007",
+          "name": {
+            "en": "Mocha",
+            "ar": "موكا"
+          },
+          "description": {
+            "en": "Espresso and dark chocolate melted into steamed milk - dessert in a cup.\n\nEspresso is blended with chocolate sauce before steamed milk is added. The cup is finished with a light chocolate accent for a rich coffee-and-cocoa flavour.",
+            "ar": "إسبريسو وشوكولاتة داكنة دايبين في لبن سخن، حلو في كوباية.\n\nبنمزج الإسبريسو مع صوص الشوكولاتة، وبعدها بنضيف اللبن المبخّر. لمسة شوكولاتة أخيرة بتكمل طعم القهوة الغني."
+          },
+          "image": "hot-coffee-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p114"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p008",
+          "name": {
+            "en": "White Mocha",
+            "ar": "وايت موكا"
+          },
+          "description": {
+            "en": "Smooth espresso folded into sweet, creamy white chocolate and steamed milk.\n\nEspresso is combined with melted white-chocolate sauce and steamed milk. The ingredients are stirred until smooth, then finished with a soft layer of milk foam.",
+            "ar": "إسبريسو ناعم مع وايت شوكليت كريمي ولبن مبخّر.\n\nبنمزج الإسبريسو مع صوص الوايت شوكليت واللبن المبخّر لحد ما الخليط يبقى ناعم. بيتقدم بطبقة خفيفة من رغوة اللبن."
+          },
+          "image": "hot-coffee-white-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p114"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "name": {
+        "en": "Iced Coffee",
+        "ar": "قهوة مثلجة"
+      },
+      "products": [
+        {
+          "id": "p013",
+          "name": {
+            "en": "Iced Americano",
+            "ar": "آيس أمريكانو"
+          },
+          "description": {
+            "en": "Espresso poured over ice and cold water - crisp, bold and refreshing.\n\nEspresso is poured over fresh ice and topped with cold water. It is stirred briefly and served immediately for a crisp, clean coffee taste.",
+            "ar": "إسبريسو على تلج ومية ساقعة، منعش وقوي.\n\nبنصب الإسبريسو الطازة على التلج ونكمله بمية ساقعة. بيتقلب تقليبة خفيفة ويتقدم فوراً بطعم قهوة صافي ومنعش."
+          },
+          "image": "cold-coffee-iced-americano.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 85,
+                "discount": 0,
+                "final": 85
+              }
+            ]
+          }
+        },
+        {
+          "id": "p015",
+          "name": {
+            "en": "Iced Latte",
+            "ar": "آيس لاتيه"
+          },
+          "description": {
+            "en": "Smooth espresso stretched over cold milk and ice.\n\nA fresh espresso shot is poured over ice, then topped with chilled milk. The drink is stirred to combine the coffee and milk just before serving.",
+            "ar": "إسبريسو سلس على لبن ساقع وتلج.\n\nبنصب شوت الإسبريسو على التلج ونكمله بلبن ساقع. بيتقلب قبل التقديم عشان القهوة واللبن يمتزجوا."
+          },
+          "image": "cold-coffee-iced-latte.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p022",
+          "name": {
+            "en": "Iced Spanish Latte",
+            "ar": "آيس سبانيش لاتيه"
+          },
+          "description": {
+            "en": "Espresso and cold milk swirled with creamy sweetened condensed milk.\n\nEspresso is combined with chilled milk and sweetened condensed milk. The mixture is poured over ice and stirred until creamy and evenly blended.",
+            "ar": "إسبريسو ولبن ساقع مع لبن مكثّف كريمي حلو.\n\nبنمزج الإسبريسو مع اللبن الساقع واللبن المكثف المحلّى. بيتصب على التلج ويتقلب لحد ما يبقى كريمي ومتجانس."
+          },
+          "image": "cold-coffee-iced-spanish-latte.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p116"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p122",
+          "name": {
+            "en": "Iced Salted Caramel",
+            "ar": "آيس كراميل مملح"
+          },
+          "description": {
+            "en": "Chilled espresso and cold milk over ice, finished with rich salted caramel.\n\nSalted caramel sauce is swirled with chilled milk over ice before fresh espresso is poured in. The drink is lightly stirred for a crisp, sweet-and-salty coffee finish.",
+            "ar": "إسبريسو ساقع ولبن على التلج بلمسة كراميل مملح غني.\n\nبنقلب صوص الكراميل المملح مع اللبن الساقع والتلج، وبعدها نضيف شوت الإسبريسو الطازة. بيتقدم منعش بطعم قهوة وكراميل متوازن."
+          },
+          "image": "cold-coffee-iced-caramel-macchiato.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p021",
+          "name": {
+            "en": "Iced Caramel Macchiato",
+            "ar": "آيس كراميل ميكاتو"
+          },
+          "description": {
+            "en": "Smooth espresso stretched over ice, layered with rich, buttery caramel.\n\nCold milk is poured over ice with a touch of vanilla flavour, then topped with espresso. Caramel sauce is drizzled over the finished layers.",
+            "ar": "إسبريسو سلس على التلج مع طبقات من الكراميل الغني.\n\nبنصب اللبن الساقع بنكهة فانيليا على التلج، ونضيف شوت الإسبريسو فوقه. بنزين الوش بخطوط من صوص الكراميل."
+          },
+          "image": "cold-coffee-iced-caramel-macchiato.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p019",
+          "name": {
+            "en": "Iced Mocha",
+            "ar": "آيس موكا"
+          },
+          "description": {
+            "en": "Espresso and dark chocolate over milk and ice, finished with a velvety swirl.\n\nEspresso and chocolate sauce are stirred together, then poured over cold milk and ice. A soft cream finish rounds out the chocolate flavour.",
+            "ar": "إسبريسو وشوكولاتة داكنة على لبن وتلج بلمسة كريمة ناعمة.\n\nبنقلب الإسبريسو مع صوص الشوكولاتة، وبعدها بنضيف اللبن الساقع والتلج. لمسة كريمة ناعمة بتكمل الطعم."
+          },
+          "image": "cold-coffee-iced-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p114", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p020",
+          "name": {
+            "en": "Iced White Mocha",
+            "ar": "آيس وايت موكا"
+          },
+          "description": {
+            "en": "Sweet white chocolate melted into chilled espresso and cold milk.\n\nWhite-chocolate sauce is blended with espresso until smooth, then combined with chilled milk. The drink is poured over ice for a creamy, sweet finish.",
+            "ar": "وايت شوكليت دايب في إسبريسو ولبن ساقع، حلو وناعم.\n\nبنمزج صوص الوايت شوكليت مع الإسبريسو لحد ما يدوب، وبعدها نضيف اللبن الساقع. بيتقدم على التلج بقوام كريمي وحلاوة واضحة."
+          },
+          "image": "cold-coffee-iced-white-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p114", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p017",
+          "name": {
+            "en": "Iced Chocolate",
+            "ar": "آيس شوكولاتة"
+          },
+          "description": {
+            "en": "Rich dark chocolate whisked into ice-cold milk.\n\nChocolate sauce or cocoa is blended into cold milk until fully dissolved. The mixture is poured over ice and finished with a smooth chocolate taste.",
+            "ar": "شوكولاتة داكنة غنية متخفوقة في لبن ساقع.\n\nبندوب صوص الشوكولاتة أو الكاكاو في اللبن الساقع لحد ما يبقى ناعم. بيتصب الخليط على التلج بطعم شوكولاتة غني."
+          },
+          "image": "cold-coffee-iced-chocolate.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p114"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 85,
+                "discount": 0,
+                "final": 85
+              }
+            ]
+          }
+        },
+        {
+          "id": "p023",
+          "name": {
+            "en": "Special 898",
+            "ar": "سبيشيال 898"
+          },
+          "description": {
+            "en": "Our house signature: espresso, velvety milk and a secret sweet finish.\n\nA fresh espresso shot is combined with chilled milk and the café’s proprietary 898 sweet finish. The house recipe is served over ice; its signature flavour blend is intentionally kept in-house.",
+            "ar": "مشروب البيت المميز: إسبريسو ولبن حرير ولمسة حلوة سرّية.\n\nبنمزج شوت إسبريسو مع اللبن الساقع ولمسة 898 الحلوة الخاصة بالكافيه. بيتقدم على التلج، وتفاصيل الخلطة المميزة سر من أسرار البيت."
+          },
+          "image": "cold-coffee-special-898.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "name": {
+        "en": "Frappe",
+        "ar": "فرابيه"
+      },
+      "products": [
+        {
+          "id": "p030",
+          "name": {
+            "en": "Espresso Frappe",
+            "ar": "إسبريسو فرابيه"
+          },
+          "description": {
+            "en": "Icy blended espresso, bold, frosty and lightly sweet.\n\nEspresso or concentrated coffee is combined with milk, ice and a little sweetness in a blender. It is blended until frosty and smooth, then served immediately.",
+            "ar": "إسبريسو متخلوط بالتلج، قوي وساقع وحلاوته خفيفة.\n\nبنمزج الإسبريسو أو القهوة المركزة مع اللبن والتلج ولمسة حلاوة في الخلاط. بنضرب الخليط لحد ما يبقى ساقع وناعم وكثيف."
+          },
+          "image": "frappe-espresso.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 110,
+                "discount": 0,
+                "final": 110
+              }
+            ]
+          }
+        },
+        {
+          "id": "p031",
+          "name": {
+            "en": "Caramel Frappe",
+            "ar": "كراميل فرابيه"
+          },
+          "description": {
+            "en": "Icy blended coffee frappé swirled with buttery caramel, topped with cream.\n\nCoffee, chilled milk, ice and caramel sauce are blended until thick and frosty. A little extra caramel is used as a finishing swirl.",
+            "ar": "فرابيه قهوة ساقع ومتخلوط مع كراميل بالزبدة وكريمة فوقه.\n\nبنضرب القهوة مع اللبن الساقع والتلج وصوص الكراميل في الخلاط لحد ما القوام يبقى كثيف ومثلج. بنضيف لمسة كراميل على الوش."
+          },
+          "image": "frappe-caramel.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p123",
+          "name": {
+            "en": "Spanish Frappe",
+            "ar": "سبانيش فرابيه"
+          },
+          "description": {
+            "en": "Icy blended espresso frappé swirled with rich sweetened condensed milk.\n\nEspresso, chilled milk, ice, and sweetened condensed milk are blended until thick and frosty. The condensed milk gives the frozen blend a smooth, caramel-like sweetness.",
+            "ar": "فرابيه إسبريسو ساقع ومتخلوط مع لبن مكثّف محلّى غني.\n\nبنضرب الإسبريسو مع اللبن الساقع والتلج واللبن المكثّف المحلّى في الخلاط لحد ما القوام يبقى كثيف ومثلج. اللبن المكثّف بيدي الفرابيه قوام كريمي وحلاوة مميزة."
+          },
+          "image": "frappe-espresso.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 125,
+                "discount": 0,
+                "final": 125
+              }
+            ]
+          }
+        },
+        {
+          "id": "p032",
+          "name": {
+            "en": "Mocha Frappe",
+            "ar": "موكا فرابيه"
+          },
+          "description": {
+            "en": "Icy blended coffee frappé swirled with espresso and dark chocolate, topped with cream.\n\nCoffee is blended with chilled milk, ice and dark-chocolate sauce until smooth. The frappé is served cold with a chocolate finish.",
+            "ar": "فرابيه قهوة ساقع ومتخلوط مع إسبريسو وشوكولاتة داكنة وكريمة فوقه.\n\nبنخلط القهوة مع اللبن الساقع والتلج وصوص الشوكولاتة الداكنة لحد ما يبقى ناعم. بيتقدم الفرابيه بلمسة شوكولاتة."
+          },
+          "image": "frappe-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p114", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 125,
+                "discount": 0,
+                "final": 125
+              }
+            ]
+          }
+        },
+        {
+          "id": "p033",
+          "name": {
+            "en": "White Mocha Frappe",
+            "ar": "وايت موكا فرابيه"
+          },
+          "description": {
+            "en": "Icy blended coffee frappé swirled with espresso and white chocolate, topped with cream.\n\nCoffee, chilled milk, ice and white-chocolate sauce are blended into a smooth frozen drink. A white-chocolate finish completes the creamy flavour.",
+            "ar": "فرابيه قهوة ساقع ومتخلوط مع إسبريسو ووايت شوكليت وكريمة فوقه.\n\nبنضرب القهوة مع اللبن الساقع والتلج وصوص الوايت شوكليت لحد ما الخليط يبقى ناعم ومثلج. لمسة وايت شوكليت بتكمل الطعم الكريمي."
+          },
+          "image": "frappe-white-mocha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p114", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 125,
+                "discount": 0,
+                "final": 125
+              }
+            ]
+          }
+        },
+        {
+          "id": "p124",
+          "name": {
+            "en": "Salted Caramel Frappe",
+            "ar": "كراميل مملح فرابيه"
+          },
+          "description": {
+            "en": "Frosty blended coffee frappé swirled with sweet-and-savoury salted caramel.\n\nCoffee, chilled milk, ice, and salted caramel sauce are blended until thick and smooth. A drizzle of salted caramel finishes the icy drink.",
+            "ar": "فرابيه قهوة مثلج ومتخلوط مع كراميل مملح يجمع بين الحلاوة والملوحة الخفيفة.\n\nبنضرب القهوة مع اللبن الساقع والتلج وصوص الكراميل المملح لحد ما القوام يبقى كثيف وناعم. بنزين الوش بلمسة كراميل مملح."
+          },
+          "image": "frappe-salted-caramel.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 125,
+                "discount": 0,
+                "final": 125
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "name": {
+        "en": "Smoothie",
+        "ar": "سموذي"
+      },
+      "products": [
+        {
+          "id": "p064",
+          "name": {
+            "en": "Lemon",
+            "ar": "ليمون"
+          },
+          "description": {
+            "en": "Blended zesty lemon with ice - thick, bright and refreshing.\n\nFresh lemon juice is blended with ice and a chilled liquid base. The smoothie is served cold with a lively citrus tang.",
+            "ar": "سموذي ليمون منعش متخلوط بالتلج، تقيل ومنعش.\n\nبنمزج عصير الليمون الطازة مع التلج وقاعدة سائلة ساقعة. بيتقدم ساقع بطعم حمضيات منعش."
+          },
+          "image": "smoothie-lemon.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p125",
+          "name": {
+            "en": "Watermelon",
+            "ar": "بطيخ"
+          },
+          "description": {
+            "en": "Blended sweet, juicy watermelon with ice - crisp, light and ultra-refreshing.\n\nFresh watermelon is blended with ice and a chilled liquid base until smooth. The smoothie is served immediately to keep its bright, cooling summer flavour.",
+            "ar": "سموذي بطيخ طازة وعصيري متخلوط بالتلج، خفيف ومنعش جداً.\n\nبنضرب البطيخ الطازة مع التلج وقاعدة سائلة ساقعة لحد ما الخليط يبقى ناعم. بيتقدم فوراً عشان يحتفظ بطعمه الصيفي المنعش."
+          },
+          "image": "smoothie-watermelon.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p062",
+          "name": {
+            "en": "Strawberry",
+            "ar": "فراولة"
+          },
+          "description": {
+            "en": "Blended juicy strawberries with ice - thick, bright and refreshing.\n\nStrawberries are blended with ice and a chilled liquid base until smooth. The smoothie is served cold with a naturally sweet, lightly tangy finish.",
+            "ar": "سموذي فراولة طازجة وعصيرية متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب الفراولة مع التلج وقاعدة سائلة ساقعة لحد ما الخليط يبقى ناعم. بيتقدم بارد بطعم حلو مع حموضة خفيفة."
+          },
+          "image": "smoothie-strawberry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p126",
+          "name": {
+            "en": "Blueberry",
+            "ar": "توت أزرق"
+          },
+          "description": {
+            "en": "Blended sweet-tart blueberries with ice - thick, vibrant and refreshing.\n\nBlueberries are blended with ice and a chilled liquid base until smooth and pourable. The smoothie is served cold with a rich, tangy berry finish.",
+            "ar": "سموذي توت أزرق حلو وحامض متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب التوت الأزرق مع التلج وقاعدة سائلة ساقعة لحد ما القوام يبقى ناعم وسهل الشرب. بيتقدم بارد بنكهة توت غنية ومنعشة."
+          },
+          "image": "smoothie-blueberry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p066",
+          "name": {
+            "en": "Peach",
+            "ar": "خوخ"
+          },
+          "description": {
+            "en": "Blended soft, sweet peach with ice - thick, bright and refreshing.\n\nPeach is blended with ice and a chilled liquid base until smooth. The finished smoothie is served cold with a soft, fragrant peach flavour.",
+            "ar": "سموذي خوخ حلو وطري متخلوط بالتلج، تقيل ومنعش.\n\nبنمزج الخوخ مع التلج وقاعدة سائلة ساقعة لحد ما يبقى ناعم. بيتقدم ساقع بنكهة خوخ خفيفة وعطرية."
+          },
+          "image": "smoothie-peach.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p063",
+          "name": {
+            "en": "Kiwi",
+            "ar": "كيوي"
+          },
+          "description": {
+            "en": "Blended tangy kiwi with ice - thick, bright and refreshing.\n\nPeeled kiwi is blended with ice and a chilled liquid base until smooth. The drink is served cold to preserve its bright, tangy fruit character.",
+            "ar": "سموذي كيوي حادق ومنعش متخلوط بالتلج، تقيل ومنعش.\n\nبنقشر الكيوي ونضربه مع التلج وقاعدة سائلة ساقعة لحد ما يبقى ناعم. بيتقدم ساقع عشان نكهته الحمضية تفضل واضحة."
+          },
+          "image": "smoothie-kiwi.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p111"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p061",
+          "name": {
+            "en": "Mango",
+            "ar": "مانجو"
+          },
+          "description": {
+            "en": "Blended ripe, golden mango with ice - thick, bright and refreshing.\n\nRipe mango is blended with ice and a chilled liquid base until smooth and pourable. The smoothie is served immediately to keep its fresh tropical flavour.",
+            "ar": "سموذي مانجو ناضجة ومنعشة متخلوط بالتلج، تقيل ومنعش.\n\nبنضرب المانجو الناضجة مع التلج وقاعدة سائلة ساقعة لحد ما القوام يبقى ناعم وسهل الشرب. بيتقدم فوراً عشان يحتفظ بطعم الفاكهة."
+          },
+          "image": "smoothie-mango.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p068",
+          "name": {
+            "en": "Hibiscus",
+            "ar": "كركديه"
+          },
+          "description": {
+            "en": "Blended ruby-red hibiscus with ice - thick, bright and refreshing.\n\nHibiscus infusion is chilled and blended with ice until refreshing. The smoothie is served cold with the floral, gently tart character of hibiscus.",
+            "ar": "سموذي كركديه أحمر منعش متخلوط بالتلج، تقيل ومنعش.\n\nبنحضر منقوع الكركديه ونبرده، وبعدها نضربه مع التلج لحد ما يبقى منعش. بيتقدم ساقع بنكهة زهرية وحموضة خفيفة."
+          },
+          "image": "smoothie-hibiscus.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p111"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p069",
+          "name": {
+            "en": "Mix",
+            "ar": "ميكس"
+          },
+          "description": {
+            "en": "A fruit-lover's blend of our best flavours, icy and vibrant.\n\nA selection of fruit flavours is blended together with ice and a chilled liquid base. The smoothie is served immediately as a balanced mixed-fruit drink.",
+            "ar": "ميكس من أحلى الفواكه عندنا، ساقع ومنعش.\n\nبنمزج مجموعة من نكهات الفاكهة مع التلج وقاعدة سائلة ساقعة. بيتقدم فوراً كسموذي فواكه ميكس متوازن."
+          },
+          "image": "smoothie-mix.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p120"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "name": {
+        "en": "Milkshake",
+        "ar": "ميلك شيك"
+      },
+      "products": [
+        {
+          "id": "p050",
+          "name": {
+            "en": "Vanilla",
+            "ar": "فانيليا"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with real vanilla ice cream.\n\nVanilla ice cream is blended with cold milk until thick and drinkable. The shake is poured chilled, with a light vanilla finish.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـآيس كريم فانيليا أصلي.\n\nبنضرب آيس كريم الفانيليا مع اللبن الساقع لحد ما القوام يبقى كثيف وسهل الشرب. بيتصب ساقع بلمسة فانيليا خفيفة."
+          },
+          "image": "milkshake-vanilla.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 95,
+                "discount": 0,
+                "final": 95
+              }
+            ]
+          }
+        },
+        {
+          "id": "p051",
+          "name": {
+            "en": "Chocolate",
+            "ar": "شوكولاتة"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with dark, fudgy chocolate.\n\nChocolate ice cream or chocolate sauce is blended with cold milk until smooth and creamy. It is served cold with a rich cocoa flavour.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـشوكولاتة داكنة غنية.\n\nبنمزج آيس كريم الشوكولاتة أو صوص الشوكولاتة مع اللبن الساقع لحد ما يبقى كريمي وناعم. بيتقدم ساقع بطعم كاكاو غني."
+          },
+          "image": "milkshake-chocolate.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 95,
+                "discount": 0,
+                "final": 95
+              }
+            ]
+          }
+        },
+        {
+          "id": "p052",
+          "name": {
+            "en": "Oreo",
+            "ar": "أوريو"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with crushed Oreo cookies.\n\nOreo biscuits are crushed and blended with vanilla ice cream and cold milk. A little cookie crumble can be used as a finishing touch.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـأوريو مجروش.\n\nبنكسر بسكويت أوريو ونضربه مع آيس كريم الفانيليا واللبن الساقع. ممكن نضيف فتافيت بسكويت على الوش."
+          },
+          "image": "milkshake-orio.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p053",
+          "name": {
+            "en": "Berry",
+            "ar": "بيري"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with sweet-tart mixed berries.\n\nMixed berries are blended with ice cream and cold milk until smooth. The shake is served chilled with a sweet-tart berry flavour.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـتوت مشكّل حلو وحامض.\n\nبنضرب التوت المشكل مع الآيس كريم واللبن الساقع لحد ما الخليط يبقى ناعم. بيتقدم ساقع بطعم فاكهة حلو وحامض."
+          },
+          "image": "milkshake-berry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p054",
+          "name": {
+            "en": "Mango",
+            "ar": "مانجو"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with ripe, golden mango.\n\nRipe mango is blended with ice cream and cold milk until thick and creamy. The shake is served cold with a fresh mango finish.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـمانجو ناضجة ومنعشة.\n\nبنمزج المانجو الناضجة مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وكريمي. بيتقدم ساقع بلمسة مانجو طازة."
+          },
+          "image": "milkshake-mango.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p055",
+          "name": {
+            "en": "Strawberry",
+            "ar": "فراولة"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with juicy strawberries.\n\nStrawberries are blended with ice cream and cold milk until smooth. The finished shake is poured chilled with a bright strawberry taste.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـفراولة طازجة وعصيرية.\n\nبنضرب الفراولة مع الآيس كريم واللبن الساقع لحد ما الخليط يبقى ناعم. بيتصب ساقع بطعم فراولة واضح ومنعش."
+          },
+          "image": "milkshake-strawberry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p056",
+          "name": {
+            "en": "Lotus",
+            "ar": "لوتس"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with caramelised Lotus biscuit spread.\n\nLotus biscuit spread is blended with ice cream and cold milk until creamy. A little biscuit crumb may be added on top for texture.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـكريمة اللوتس المكرمل.\n\nبنمزج سبريد لوتس مع الآيس كريم واللبن الساقع لحد ما يبقى كريمي. ممكن نزينه بفتافيت بسكويت لوتس."
+          },
+          "image": "milkshake-lotus.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p120"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 105,
+                "discount": 0,
+                "final": 105
+              }
+            ]
+          }
+        },
+        {
+          "id": "p058",
+          "name": {
+            "en": "Kinder",
+            "ar": "كيندر"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with Kinder chocolate and milky hazelnut.\n\nKinder chocolate is blended with ice cream and cold milk until the shake is smooth and creamy. A chocolate finish completes the flavour.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـشوكولاتة كيندر باللبن والبندق.\n\nبنمزج شوكولاتة كيندر مع الآيس كريم واللبن الساقع لحد ما الميلك شيك يبقى كريمي. لمسة شوكولاتة بتكمل الطعم."
+          },
+          "image": "milkshake-kinder.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p116", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 110,
+                "discount": 0,
+                "final": 110
+              }
+            ]
+          }
+        },
+        {
+          "id": "p059",
+          "name": {
+            "en": "Matcha",
+            "ar": "ماتشا"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with earthy green matcha.\n\nMatcha powder is whisked smooth, then blended with ice cream and cold milk. The shake is served chilled with a gentle earthy-green-tea finish.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـماتشا خضراء ترابية.\n\nبنخفق الماتشا لحد ما تبقى ناعمة، وبعدها نضربها مع الآيس كريم واللبن الساقع. بيتقدم ساقع بلمسة شاي أخضر مميزة."
+          },
+          "image": "milkshake-matcha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 110,
+                "discount": 0,
+                "final": 110
+              }
+            ]
+          }
+        },
+        {
+          "id": "p057",
+          "name": {
+            "en": "Pistachio",
+            "ar": "فستق"
+          },
+          "description": {
+            "en": "Thick, ice-cold milkshake blended with roasted pistachio cream.\n\nPistachio cream is blended with ice cream and cold milk until thick and smooth. The shake is finished with a pistachio accent.",
+            "ar": "ميلك شيك تقيل وساقع متخلوط بـكريمة الفستق المحمص.\n\nبنضرب كريمة الفستق مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وناعم. بنختمه بلمسة فستق."
+          },
+          "image": "milkshake-pistachio.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p060",
+          "name": {
+            "en": "898",
+            "ar": "898"
+          },
+          "description": {
+            "en": "Our signature shake: thick, creamy and loaded with house-made indulgence.\n\nThe café’s 898 milkshake base is blended with ice cream and cold milk until thick and creamy. Its signature flavouring and finishing touch remain exclusive to the house recipe.",
+            "ar": "ميلك شيك البيت المميز: تقيل وكريمي ومليان دلع.\n\nبنضرب قاعدة 898 الخاصة مع الآيس كريم واللبن الساقع لحد ما القوام يبقى كثيف وكريمي. نكهة البيت واللمسة النهائية جزء من الوصفة السرية."
+          },
+          "image": "milkshake-898.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p120"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "name": {
+        "en": "Mojito & Mixed Soda",
+        "ar": "موهيتو وميكس صودا"
+      },
+      "products": [
+        {
+          "id": "p074",
+          "name": {
+            "en": "Classic",
+            "ar": "كلاسيك"
+          },
+          "description": {
+            "en": "Lime, mint and sparkling soda - crisp, zingy and cold.\n\nFresh mint leaves and lime are lightly muddled to release their oils and juice. Sugar, soda water and ice are added, then the drink is stirred and served cold.",
+            "ar": "ليمون ونعناع وصودا فوّارة، منعش وحادق وساقع.\n\nبندعك ورق النعناع الطازة مع الليمون برفق عشان نطلع الزيوت والعصير. بنضيف السكر والصودا والتلج ونقلب المشروب قبل التقديم."
+          },
+          "image": "mixed-soda-boba-mojito-classic.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 95,
+                "discount": 0,
+                "final": 95
+              }
+            ]
+          }
+        },
+        {
+          "id": "p075",
+          "name": {
+            "en": "Flavored",
+            "ar": "بنكهة"
+          },
+          "description": {
+            "en": "Our mojito with a fruity flavour burst, fizzy and cooling.\n\nMint and lime are lightly muddled, then combined with the selected fruit flavour and ice. Soda water is added last to keep the drink lively and sparkling.",
+            "ar": "الموهيتو بنكهة فواكه، فوّار ومنعش.\n\nبندعك النعناع والليمون برفق، وبعدها نضيف نكهة الفاكهة المختارة والتلج. بنصب الصودا في الآخر عشان تفضل الفقاقيع منعشة."
+          },
+          "image": "mixed-soda-boba-mojito-flavour.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p111", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p077",
+          "name": {
+            "en": "Red Bull",
+            "ar": "ريد بول"
+          },
+          "description": {
+            "en": "Mojito freshness with a Red Bull kick.\n\nFresh mint and lime are lightly muddled with ice. Red Bull is poured over the mixture and stirred gently for a crisp, sparkling mojito-style drink.",
+            "ar": "انتعاش الموهيتو مع شحنة ريد بول.\n\nبندعك النعناع الطازة والليمون برفق مع التلج. بنضيف ريد بول ونقلب بهدوء لمشروب موهيتو غازي ومنعش."
+          },
+          "image": "mixed-soda-boba-mojito-redbull.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p120"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 115,
+                "discount": 0,
+                "final": 115
+              }
+            ]
+          }
+        },
+        {
+          "id": "p080",
+          "name": {
+            "en": "Soda Boba",
+            "ar": "صودا بوبا"
+          },
+          "description": {
+            "en": "Sparkling soda with popping, chewy boba.\n\nA chilled sparkling soda base is poured over ice and combined with chewy boba pearls. The drink is served immediately so the pearls keep their texture.",
+            "ar": "صودا فوّارة مع بوبا.\n\nبنصب قاعدة صودا ساقعة على التلج ونضيف لآلئ البوبا المطاطية. بيتقدم فوراً عشان اللآلئ تحتفظ بقوامها."
+          },
+          "image": "mixed-soda-boba-classic-boba-soda.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 110,
+                "discount": 0,
+                "final": 110
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "name": {
+        "en": "Fresh Juice",
+        "ar": "عصائر طازة"
+      },
+      "products": [
+        {
+          "id": "p071",
+          "name": {
+            "en": "Lemon Mint",
+            "ar": "ليمون نعناع"
+          },
+          "description": {
+            "en": "Fresh lemon blitzed with cool mint leaves.\n\nFresh lemon juice is combined with mint and cold water, then stirred or lightly blended. It is served chilled for a bright, cooling citrus drink.",
+            "ar": "ليمون طازة مضروب مع نعناع بارد.\n\nبنمزج عصير الليمون الطازة مع النعناع والمية الساقعة، وبعدها نقلب أو نضرب الخليط ضربة خفيفة. بيتقدم ساقع ومنعش."
+          },
+          "image": "juice-lemon-mint.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 75,
+                "discount": 0,
+                "final": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "p134",
+          "name": {
+            "en": "Strawberry",
+            "ar": "فراولة"
+          },
+          "description": {
+            "en": "Pure, sweet-tart strawberry juice blended fresh to order.\n\nRipe strawberries are blended with chilled water until smooth and vibrant. The juice is served cold to highlight the fruit's natural aroma and sweetness.",
+            "ar": "عصير فراولة طازة وحلو مضروب على الطلب.\n\nبنضرب الفراولة الناضجة مع مية ساقعة لحد ما العصير يبقى ناعم ولونه زاهي. بيتقدم بارد عشان يحتفظ بريحة وطعم الفراولة الطبيعي."
+          },
+          "image": "juice-strawberry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 75,
+                "discount": 0,
+                "final": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "p073",
+          "name": {
+            "en": "Mango",
+            "ar": "مانجو"
+          },
+          "description": {
+            "en": "Thick, golden mango juice, naturally sweet.\n\nRipe mango flesh is blended and strained as needed to create a smooth fresh juice. It is served chilled with its natural tropical sweetness.",
+            "ar": "عصير مانجو دهبي وتقيل وحلاوته طبيعية.\n\nبنضرب لب المانجو الناضجة، وممكن نصفيه حسب القوام المطلوب. بيتقدم ساقع بحلاوة المانجو الطبيعية."
+          },
+          "image": "juice-mango.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 75,
+                "discount": 0,
+                "final": 75
+              }
+            ]
+          }
+        },
+        {
+          "id": "p072",
+          "name": {
+            "en": "Orange",
+            "ar": "برتقال"
+          },
+          "description": {
+            "en": "Pure, sun-sweet orange juice squeezed to order.\n\nFresh oranges are squeezed to extract their juice. The juice is served chilled to preserve its natural citrus aroma and sweetness.",
+            "ar": "برتقال حلو معصور على الطلب.\n\nبنعصر البرتقال الطازة لاستخراج العصير. بيتقدم ساقع عشان يحتفظ بريحة البرتقال وحلاوته الطبيعية."
+          },
+          "image": "juice-orange.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 75,
+                "discount": 0,
+                "final": 75
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08",
+      "name": {
+        "en": "Tea & Coffee",
+        "ar": "شاي وقهوة"
+      },
+      "products": [
+        {
+          "id": "p026",
+          "name": {
+            "en": "Turkish Coffee",
+            "ar": "قهوة تركي"
+          },
+          "description": {
+            "en": "Traditional Turkish coffee, slowly brewed with a thick, aromatic foam.\n\nFinely ground Turkish coffee and water are combined in a small cezve and heated slowly. The coffee is poured carefully into a cup with its traditional fine grounds and foam.",
+            "ar": "قهوة تركي على أصولها، متحضرة على نار هادية ووشها كتير.\n\nبنخلط القهوة التركي المطحونة ناعم مع المية في كنكة صغيرة ونسخنها على نار هادية. بنصبها بهدوء في الفنجان مع الوش والرواسب التقليدية."
+          },
+          "image": "regular-coffee-turkish.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 60,
+                "discount": 0,
+                "final": 60
+              }
+            ]
+          }
+        },
+        {
+          "id": "p028",
+          "name": {
+            "en": "French Coffee",
+            "ar": "قهوة فرنساوي"
+          },
+          "description": {
+            "en": "Full-bodied, creamy French-style coffee, rich and comforting.\n\nFrench-style ground coffee is brewed with milk for a rounded, creamy cup. It is heated gently and served hot once the coffee flavour has infused the milk.",
+            "ar": "قهوة فرنساوي تقيلة وكريمي، غنية ومريّحة.\n\nبنحضر القهوة الفرنساوي مع اللبن عشان تطلع غنية وكريمية. بنسخنها على نار هادية لحد ما نكهة القهوة تمتزج باللبن."
+          },
+          "image": "regular-coffee-french.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 65,
+                "discount": 0,
+                "final": 65
+              }
+            ]
+          }
+        },
+        {
+          "id": "p040",
+          "name": {
+            "en": "Tea",
+            "ar": "شاي"
+          },
+          "description": {
+            "en": "Strong, fragrant black tea brewed the traditional way.\n\nBlack tea leaves are steeped in freshly boiled water until the desired strength and aroma develop. The tea is strained and served hot.",
+            "ar": "شاي أسود تقيل وريحته حلوة متحضر على أصوله.\n\nبننقع ورق الشاي الأسود في مية مغلية لحد ما يوصل للقوة والريحة المطلوبة. بنصفيه ونتقدمه سخن."
+          },
+          "image": "hot-drinks-tea.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p112", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 50,
+                "discount": 0,
+                "final": 50
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "name": {
+        "en": "Matcha",
+        "ar": "ماتشا"
+      },
+      "products": [
+        {
+          "id": "p047",
+          "name": {
+            "en": "Hot Matcha",
+            "ar": "ماتشا ساخن"
+          },
+          "description": {
+            "en": "Earthy matcha whisked into velvety steamed milk.\n\nMatcha powder is sifted and whisked with a small amount of warm water to remove lumps. Steamed milk is added gradually, creating a smooth, earthy hot matcha.",
+            "ar": "ماتشا ترابية متخفوقة في لبن مبخّر حرير.\n\nبننخل الماتشا ونخفقها مع كمية صغيرة من المية الدافية عشان تختفي أي تكتلات. بنضيف اللبن المبخّر تدريجياً لحد ما يبقى المشروب ناعم."
+          },
+          "image": "hot-drinks-matcha.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p117"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 110,
+                "discount": 0,
+                "final": 110
+              }
+            ]
+          }
+        },
+        {
+          "id": "p037",
+          "name": {
+            "en": "Iced Mango Matcha",
+            "ar": "آيس ماتشا مانجو"
+          },
+          "description": {
+            "en": "Earthy green matcha layered over sweet, tropical mango and chilled milk.\n\nSweet mango purée is spooned into the glass over ice and topped with cold milk. Whisked ceremonial-grade matcha is poured gently over the top to create distinct, vibrant layers.",
+            "ar": "ماتشا خضراء ترابية على طبقات من المانجو الاستوائية الحلوة واللبن الساقع.\n\nبنحط بيوريه المانجو الحلو في الكوباية مع التلج ونضيف اللبن الساقع. بنصب الماتشا المخفوقة بهدوء على الوش عشان تعمل طبقات ألوان مميزة ومنعشة."
+          },
+          "image": "iced-matcha-mango.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p038",
+          "name": {
+            "en": "Iced Strawberry Matcha",
+            "ar": "آيس ماتشا فراولة"
+          },
+          "description": {
+            "en": "Vibrant green matcha poured over juicy strawberry purée and cold milk.\n\nFresh strawberry purée is layered at the base of the glass with ice and chilled milk. Whisked matcha is floated on top, balancing sweet berry notes with an earthy green-tea finish.",
+            "ar": "ماتشا خضراء منعشة فوق بيوريه الفراولة العصيرية واللبن الساقع.\n\nبنرص طبقة من بيوريه الفراولة في الكوباية مع التلج واللبن الساقع. بنصب الماتشا المخفوقة على الوش عشان توازن حلاوة الفراولة مع طعم الشاي الأخضر."
+          },
+          "image": "iced-matcha-strawberry.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p039",
+          "name": {
+            "en": "Iced Spanish Matcha",
+            "ar": "آيس ماتشا سبانيش"
+          },
+          "description": {
+            "en": "Smooth matcha whisked with chilled milk and rich sweetened condensed milk.\n\nSifted matcha powder is whisked until smooth, then poured over ice, cold milk, and sweetened condensed milk. The condensed milk rounds out the earthy matcha with a creamy, velvety sweetness.",
+            "ar": "ماتشا ناعمة متخفوقة مع لبن ساقع ولبن مكثّف محلّى غني.\n\nبنخفق بودرة الماتشا المنخولة لحد ما تبقى ناعمة، وبعدها نصبها على التلج واللبن الساقع واللبن المكثّف المحلّى. اللبن المكثّف بيدي الماتشا قوام كريمي وحلاوة متوازنة."
+          },
+          "image": "iced-matcha-spanish.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p118"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p135",
+          "name": {
+            "en": "Iced Coconut Matcha",
+            "ar": "آيس ماتشا جوز هند"
+          },
+          "description": {
+            "en": "Earthy matcha whisked with chilled milk and creamy tropical coconut over ice.\n\nCoconut flavour and cold milk are poured over ice before freshly whisked matcha is floated on top. The subtle coconut sweetness softens the earthy green-tea notes.",
+            "ar": "ماتشا ترابية متخفوقة مع لبن ساقع وجوز هند كريمي على التلج.\n\nبنصب نكهة جوز الهند واللبن الساقع على التلج، ونضيف فوقهم الماتشا المخفوقة طازة. حلاوة جوز الهند بتنعّم طعم الشاي الأخضر وتخليه منعش."
+          },
+          "image": "iced-matcha-coconut.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p112"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p136",
+          "name": {
+            "en": "Iced Peach Matcha",
+            "ar": "آيس ماتشا خوخ"
+          },
+          "description": {
+            "en": "Vibrant green matcha layered over fragrant, sweet peach and cold milk.\n\nSweet peach purée is poured over ice with chilled milk, then topped with freshly whisked matcha. The fragrant fruit notes pair cleanly with the smooth green-tea finish.",
+            "ar": "ماتشا خضراء منعشة فوق خوخ حلو وعطري مع لبن ساقع.\n\nبنضيف بيوريه الخوخ الحلو على التلج مع اللبن الساقع، ونصب الماتشا المخفوقة على الوش. نكهة الخوخ العطرية بتندمج بنعومة مع طعم الماتشا."
+          },
+          "image": "iced-matcha-peach.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p110", "p112"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "name": {
+        "en": "V60",
+        "ar": "V60"
+      },
+      "products": [
+        {
+          "id": "p024",
+          "name": {
+            "en": "Hot V60",
+            "ar": "V60 ساخن"
+          },
+          "description": {
+            "en": "Hand-poured filter coffee, bright and clean with delicate fruity notes.\n\nFreshly ground coffee is placed in a paper filter, rinsed, and brewed with hot water poured slowly in controlled circles. The brewed coffee is served black to highlight its aroma and natural tasting notes.",
+            "ar": "قهوة فلتر بتتصب بإيد الباريستا، نضيفة وفيها نوتات فواكه خفيفة.\n\nبنحط القهوة المطحونة الطازة في فلتر ورقي ونشطفه، وبعدها نصب المية السخنة تدريجياً بحركة دائرية. القهوة بتتقدم سادة عشان نكهتها الطبيعية تبان."
+          },
+          "image": "speciality-coffee-hot-v60.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        },
+        {
+          "id": "p025",
+          "name": {
+            "en": "Iced V60",
+            "ar": "V60 مثلج"
+          },
+          "description": {
+            "en": "The same hand-poured V60, chilled over ice for a crisp, aromatic sip.\n\nFreshly ground coffee is brewed by hand through a V60 paper filter with hot water. The brew is served over ice so it chills quickly while retaining its clean, aromatic profile.",
+            "ar": "نفس الـV60 على التلج، ساقعة ومنعشة وريحتها حلوة.\n\nبنحضر القهوة المطحونة الطازة يدويّاً باستخدام فلتر V60 ومية سخنة. بنقدمها على التلج عشان تبرد بسرعة وتحتفظ بريحتها وطعمها النضيف."
+          },
+          "image": "speciality-coffee-iced-v60.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p118", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 120,
+                "discount": 0,
+                "final": 120
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "name": {
+        "en": "Hot Drinks",
+        "ar": "مشروبات ساخنة"
+      },
+      "products": [
+        {
+          "id": "p048",
+          "name": {
+            "en": "Hot Chocolate",
+            "ar": "هوت شوكلت"
+          },
+          "description": {
+            "en": "Thick, dark chocolate melted into steaming milk.\n\nChocolate or cocoa is whisked into hot milk until fully melted and smooth. The drink is heated gently and served with a rich chocolate finish.",
+            "ar": "شوكولاتة داكنة تقيلة دايبة في لبن سخن.\n\nبنخفق الشوكولاتة أو الكاكاو في اللبن السخن لحد ما يدوب ويبقى ناعم. بنسخنه برفق ونتقدمه بطعم شوكولاتة غني."
+          },
+          "image": "hot-drinks-chocolate.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p114"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p127",
+          "name": {
+            "en": "Hot Chocolate Coconut",
+            "ar": "هوت شوكلت جوز هند"
+          },
+          "description": {
+            "en": "Thick, dark chocolate melted into steaming milk with a warm coconut aroma.\n\nChocolate and cocoa are whisked into hot milk with a touch of coconut until smooth and glossy. The drink is served warm with a rich cocoa-and-coconut finish.",
+            "ar": "شوكولاتة داكنة تقيلة دايبة في لبن سخن بلمسة جوز هند دافية.\n\nبنخفق الشوكولاتة والكاكاو في اللبن السخن مع نكهة جوز الهند لحد ما الخليط يبقى ناعم ولامع. بيتقدم دافي بطعم غني يجمع الشوكولاتة وجوز الهند."
+          },
+          "image": "hot-drinks-chocolate.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p110"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p128",
+          "name": {
+            "en": "Hot Chocolate Oreo",
+            "ar": "هوت شوكلت أوريو"
+          },
+          "description": {
+            "en": "Rich, velvety hot chocolate blended with crushed Oreo cookies.\n\nDark chocolate is whisked into steaming milk and combined with crushed Oreo biscuits. A light cookie crumble finishes the cup for extra texture and sweetness.",
+            "ar": "هوت شوكلت غني وحرير متخلوط بقطع أوريو مجروش.\n\nبنخفق الشوكولاتة الداكنة في اللبن السخن ونضيف بسكويت أوريو مجروش. بنزين الوش بفتافيت أوريو لمزيد من القرمشة والطعم الغني."
+          },
+          "image": "hot-drinks-chocolate-oreo.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p120", "p113"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        },
+        {
+          "id": "p129",
+          "name": {
+            "en": "Hot Chocolate Hazelnut",
+            "ar": "هوت شوكلت بندق"
+          },
+          "description": {
+            "en": "Silky dark hot chocolate infused with roasted hazelnut flavour.\n\nChocolate and cocoa are melted into steaming milk alongside rich hazelnut flavouring. The drink is whisked until smooth and served warm with a nutty cocoa aroma.",
+            "ar": "هوت شوكلت داكن وحرير بنكهة البندق المحمص.\n\nبندوّب الشوكولاتة والكاكاو في اللبن السخن مع نكهة البندق الغنية. بنخفق الخليط لحد ما يبقى ناعم ويتقدم دافي بريحة البندق والكاكاو."
+          },
+          "image": "hot-drinks-chocolate-hazelnut.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p113", "p116"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 100,
+                "discount": 0,
+                "final": 100
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "name": {
+        "en": "Desserts",
+        "ar": "حلويات"
+      },
+      "products": [
+        {
+          "id": "p110",
+          "name": {
+            "en": "Classic Cheesecake",
+            "ar": "تشيز كيك كلاسيك"
+          },
+          "description": {
+            "en": "Creamy, silky cheesecake on a buttery biscuit base.\n\nA buttery biscuit base is pressed into a cake tin and covered with a smooth cream-cheese filling. The cheesecake is baked or chilled according to the house method, then set before slicing.",
+            "ar": "تشيز كيك كريمي وحرير على قاعدة بسكوت بالزبدة.\n\nبنضغط قاعدة من البسكويت بالزبدة في القالب ونغطيها بخليط ناعم من الجبنة الكريمية. بنخبز التشيز كيك أو نبرده حسب طريقة البيت، وبعدها نسيبه يتماسك قبل التقطيع."
+          },
+          "image": "dessert-classic-cheesecake.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p005", "p003"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 90,
+                "discount": 0,
+                "final": 90
+              }
+            ]
+          }
+        },
+        {
+          "id": "p111",
+          "name": {
+            "en": "Flavored Cheesecake",
+            "ar": "تشيز كيك بنكهة"
+          },
+          "description": {
+            "en": "Our creamy cheesecake with a sweet fruity or chocolatey topping.\n\nA biscuit base is topped with the café’s classic cheesecake filling and a selected flavour layer. The cheesecake is chilled until set and sliced to order.",
+            "ar": "التشيز كيك الكريمي بتوبينج حلو بنكهة.\n\nبنحط خليط التشيز كيك الكلاسيك فوق قاعدة بسكويت ونضيف طبقة بالنكهة المختارة. بنبردها لحد ما تتماسك ونقطعها وقت الطلب."
+          },
+          "image": "dessert-flavored-cheesecake.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p005", "p015"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p112",
+          "name": {
+            "en": "Red Velvet",
+            "ar": "ريد فيلفت"
+          },
+          "description": {
+            "en": "Soft crimson sponge layered with tangy cream cheese frosting.\n\nRed velvet sponge is baked until soft, then layered with a smooth cream-cheese-style frosting. The cake is finished with red velvet crumbs for a classic look.",
+            "ar": "كيك أحمر طري بطبقات كريمة جبنة.\n\nبنخبز طبقات كيك ريد فيلفت لحد ما تبقى طرية، وبعدها نحشيها بكريمة ناعمة بطعم الجبنة الكريمية. بنزينها بفتات الريد فيلفت."
+          },
+          "image": "dessert-red-velvet.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p040", "p005"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p113",
+          "name": {
+            "en": "Brownies",
+            "ar": "براونيز"
+          },
+          "description": {
+            "en": "Dense, fudgy chocolate brownie with a crackly top.\n\nButter, sugar, chocolate and cocoa are combined with flour and baked into a dense, fudgy slab. The brownies are cooled before being cut into rich squares.",
+            "ar": "براونيز شوكولاتة تقيلة وغنية وسطحها مقرمش.\n\nبنخلط الزبدة والسكر والشوكولاتة والكاكاو مع الدقيق ونخبز الخليط لحد ما يبقى كثيف وفادجي. بنسيب البراونيز تبرد قبل ما نقطعها مربعات."
+          },
+          "image": "dessert-brownies.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p005"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 88,
+                "discount": 0,
+                "final": 88
+              }
+            ]
+          }
+        },
+        {
+          "id": "p114",
+          "name": {
+            "en": "Chocolate Cake",
+            "ar": "كيكة شوكولاتة"
+          },
+          "description": {
+            "en": "Moist, deep chocolate cake layered with silky ganache.\n\nChocolate sponge is baked, cooled and layered with chocolate cream or frosting. The cake is finished with a smooth chocolate coating before slicing.",
+            "ar": "كيكة شوكولاتة طرية بطبقات جاناش حرير.\n\nبنخبز كيك شوكولاتة ونسيبه يبرد، وبعدها نعمل طبقات من الكيك وكريمة أو فروستنج الشوكولاتة. بنغطيه بلمسة شوكولاتة قبل التقطيع."
+          },
+          "image": "dessert-chocolate-cake.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p007"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p115",
+          "name": {
+            "en": "Volcano",
+            "ar": "فولكانو"
+          },
+          "description": {
+            "en": "Warm chocolate cake with a molten centre that flows on the first cut.\n\nChocolate cake batter is portioned around a soft chocolate centre and baked just until the outer cake sets. It is served warm so the molten middle flows when cut.",
+            "ar": "كيكة شوكولاتة سخنة وقلبها سايل أول ما تقطعها.\n\nبنقسم خليط كيك الشوكولاتة حوالين قلب شوكولاتة طري ونخبزه لحد ما الطبقة الخارجية تمسك. بيتقدم دافي عشان القلب السايح ينزل مع أول قطمة."
+          },
+          "image": "dessert-volcano-cake.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p007"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p116",
+          "name": {
+            "en": "Kinder",
+            "ar": "كيندر"
+          },
+          "description": {
+            "en": "Creamy Kinder chocolate and hazelnut dessert.\n\nA creamy dessert base is layered or topped with Kinder chocolate pieces and sauce. It is chilled or set before serving so the chocolate finish holds its shape.",
+            "ar": "حلو كيندر بالشوكولاتة والبندق الكريمي.\n\nبنجهز قاعدة حلو كريمية ونضيف طبقات أو قطع من شوكولاتة كيندر والصوص. بنسيب الحلو يبرد أو يتماسك قبل التقديم."
+          },
+          "image": "dessert-kinder.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p048", "p005"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p117",
+          "name": {
+            "en": "Tiramisu",
+            "ar": "تيراميسو"
+          },
+          "description": {
+            "en": "Coffee-soaked sponge, mascarpone cream and a dusting of cocoa.\n\nCoffee is brewed and used to lightly soak layers of ladyfingers or sponge. The layers are stacked with mascarpone-style cream, chilled, then dusted with cocoa.",
+            "ar": "إسفنج مبلول بالقهوة وكريمة ماسكاربوني وكاكاو فوقها.\n\nبنحضر القهوة ونستخدمها لترطيب طبقات البسكويت أو الكيك الإسفنجي. بنرص الطبقات مع كريمة ماسكاربوني، ونبردها ونرش كاكاو على الوش."
+          },
+          "image": "dessert-tiramisu.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p003"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p118",
+          "name": {
+            "en": "San Sebastian",
+            "ar": "سان سيباستيان"
+          },
+          "description": {
+            "en": "Burnt Basque cheesecake, caramelised outside and creamy inside.\n\nA rich mixture of cream cheese, eggs, sugar and cream is baked at high heat until the top becomes deeply caramelised. The centre is left soft and creamy, then the cake is rested before slicing.",
+            "ar": "تشيز كيك محروق من برة وكريمي من جوه.\n\nبنخلط الجبنة الكريمية مع البيض والسكر والكريمة، وبعدها نخبزها على حرارة عالية لحد ما الوش يتكرمل. بنسيب القلب طري وكريمي ونريح الكيكة قبل التقطيع."
+          },
+          "image": "dessert-san-sebastian.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p024"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p119",
+          "name": {
+            "en": "Molten Cake",
+            "ar": "مولتن كيك"
+          },
+          "description": {
+            "en": "Warm chocolate cake with a rich, flowing centre.\n\nChocolate cake batter is baked in a portion that keeps the centre soft and flowing. It is served warm so the molten chocolate interior contrasts with the set outer cake.",
+            "ar": "كيكة شوكولاتة سخنة بقلب سايل غني.\n\nبنخبز خليط كيك الشوكولاتة في قوالب صغيرة مع الحفاظ على القلب طري وسايح. بيتقدم دافي عشان قلب الشوكولاتة يقابل طبقة الكيك المتماسكة."
+          },
+          "image": "dessert-molten-cake.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p001", "p007"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        },
+        {
+          "id": "p120",
+          "name": {
+            "en": "Cookie Slice",
+            "ar": "كوكيز سلايس"
+          },
+          "description": {
+            "en": "Giant, gooey cookie slice with a crisp edge and soft centre.\n\nCookie dough is mixed, shaped and baked until the edges turn golden while the centre remains tender. The baked cookie is cooled slightly and cut into a generous slice.",
+            "ar": "سلايس كوكيز كبير وطري وحوافه مقرمشة.\n\nبنخلط عجينة الكوكيز ونشكلها ونخبزها لحد ما الأطراف تبقى دهبية والقلب يفضل طري. بنسيبها تهدى شوية وبعدها نقدمها كسلايس كبيرة."
+          },
+          "image": "dessert-cookie-slice.webp",
+          "availability": "in_stock",
+          "badge": null,
+          "addOns": [],
+          "baristaWay": [],
+          "oftenOrderedWith": ["p005", "p048"],
+          "pricing": {
+            "type": "single",
+            "options": [
+              {
+                "id": "default",
+                "name": null,
+                "price": 98,
+                "discount": 0,
+                "final": 98
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "signatures": [],
+  "pairings": [],
+  "popup": {
+    "enabled": false,
+    "image": null,
+    "delaySeconds": 1
+  }
+}

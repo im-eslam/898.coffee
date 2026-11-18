@@ -96,10 +96,39 @@ class MenuController extends ControllerBase
     {
         Guard::requireAdmin($this->config);
 
-        $upload = $_FILES['image'] ?? null;
         $settings = $this->menuSettings();
-        $maxBytes = $settings['max_image_bytes'];
+        $this->storeUploadedImage(
+            $settings['storage']['popup_dir'],
+            null,
+            $settings['max_image_bytes']
+        );
+    }
 
+    /**
+     * Stores a WebP product image in the full and thumbnail folders and
+     * returns the full-image filename used by menu records.
+     *
+     * @Route("POST /admin/menu/product-image")
+     * @Authorize
+     */
+    public function uploadProductImage(): void
+    {
+        Guard::requireAdmin($this->config);
+
+        $settings = $this->menuSettings();
+        $this->storeUploadedImage(
+            $settings['storage']['product_full_dir'],
+            $settings['storage']['product_thumb_dir'],
+            $settings['max_image_bytes']
+        );
+    }
+
+    private function storeUploadedImage(
+        string $directory,
+        ?string $thumbnailDirectory,
+        int $maxBytes
+    ): void {
+        $upload = $_FILES['image'] ?? null;
         if (!is_array($upload) || ($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
             HttpContext::fail(422, 'Choose a WebP image to upload', 'INVALID_IMAGE');
         }
@@ -115,8 +144,13 @@ class MenuController extends ControllerBase
             HttpContext::fail(415, 'Only WebP images are supported', 'UNSUPPORTED_IMAGE_TYPE');
         }
 
-        $directory = $settings['storage']['popup_dir'];
         if (!is_dir($directory) && !mkdir($directory, 0755, true) && !is_dir($directory)) {
+            HttpContext::fail(500, 'Unable to prepare image storage', 'INTERNAL_ERROR');
+        }
+        if ($thumbnailDirectory !== null &&
+            !is_dir($thumbnailDirectory) &&
+            !mkdir($thumbnailDirectory, 0755, true) &&
+            !is_dir($thumbnailDirectory)) {
             HttpContext::fail(500, 'Unable to prepare image storage', 'INTERNAL_ERROR');
         }
 
@@ -126,8 +160,18 @@ class MenuController extends ControllerBase
             HttpContext::fail(500, 'Unable to create image name', 'INTERNAL_ERROR');
         }
 
-        if (!move_uploaded_file($upload['tmp_name'], $directory . DIRECTORY_SEPARATOR . $filename)) {
+        $fullPath = $directory . DIRECTORY_SEPARATOR . $filename;
+        if (!move_uploaded_file($upload['tmp_name'], $fullPath)) {
             HttpContext::fail(500, 'Unable to store image', 'INTERNAL_ERROR');
+        }
+
+        if ($thumbnailDirectory !== null) {
+            $thumbnailName = preg_replace('/\.webp$/', '@400w.webp', $filename);
+            if (!is_string($thumbnailName) ||
+                !copy($fullPath, $thumbnailDirectory . DIRECTORY_SEPARATOR . $thumbnailName)) {
+                @unlink($fullPath);
+                HttpContext::fail(500, 'Unable to store thumbnail image', 'INTERNAL_ERROR');
+            }
         }
 
         HttpContext::json(['ok' => true, 'image' => $filename]);
