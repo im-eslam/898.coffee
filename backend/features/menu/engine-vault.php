@@ -71,12 +71,21 @@ final class MenuFileStore implements MenuStore
         if ($handle === false) {
             throw MenuEngineException::storage('cannot create the temp file');
         }
-        $ok = fwrite($handle, $json) === strlen($json) && fflush($handle) && fsync($handle);
+        $ok = fwrite($handle, $json) === strlen($json) && fflush($handle);
+        if ($ok && function_exists('fsync')) {
+            $ok = fsync($handle);
+        }
         fclose($handle);
 
-        if (!$ok || !@rename($tmp, $this->file)) {
+        if (!$ok) {
             @unlink($tmp);
             throw MenuEngineException::storage('cannot replace the menu file');
+        }
+        if (!@rename($tmp, $this->file)) {
+            @unlink($tmp);
+            if (@file_put_contents($this->file, $json, LOCK_EX) !== strlen($json)) {
+                throw MenuEngineException::storage('cannot replace the menu file');
+            }
         }
     }
 }
