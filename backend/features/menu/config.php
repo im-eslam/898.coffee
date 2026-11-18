@@ -1,21 +1,5 @@
 <?php
 
-// On Vercel the project folder is read-only; only /tmp is writable.
-$bundled = __DIR__ . '/../../storage';
-$writable = is_dir($bundled) && is_writable($bundled)
-    ? $bundled
-    : sys_get_temp_dir() . '/kuji-storage';
-
-if (!is_dir($writable)) {
-    @mkdir($writable, 0755, true);
-}
-
-// First use on a fresh instance: copy the menu that ships with the code.
-$menuFile = $writable . '/menu.json';
-if (!file_exists($menuFile) && file_exists($bundled . '/menu.json')) {
-    @copy($bundled . '/menu.json', $menuFile);
-}
-
 return [
     'name' => 'menu',
 
