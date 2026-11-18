@@ -5,8 +5,8 @@ return [
 
     'settings' => [
         'storage' => [
-            'menu_file'         => $menuFile,
-            'backup_dir'        => $writable . '/backups',
+            'menu_file'         => __DIR__ . '/../../storage/menu.json',
+            'backup_dir'        => __DIR__ . '/../../storage/backups',
             'popup_dir'         => __DIR__ . '/../../../public/menu/popup',
             'product_full_dir'  => __DIR__ . '/../../../public/menu/products-full',
             'product_thumb_dir' => __DIR__ . '/../../../public/menu/products-thumb',
