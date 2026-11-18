@@ -10,7 +10,6 @@ export type SaveStatus = "idle" | "saving" | "saved" | "error";
 
 export type SaveFailure =
   | { kind: "invalid"; issues: MenuIssue[] }
-  | { kind: "conflict" } 
   | { kind: "session" }
   | { kind: "busy" } 
   | { kind: "network" }
@@ -28,14 +27,12 @@ const FEATURE = "dashboard";
 
 const EXPECTED: ReadonlySet<SaveFailure["kind"]> = new Set([
   "invalid",
-  "conflict",
   "session",
   "busy",
 ]);
 
 function classify(cause: unknown): SaveFailure {
   if (cause instanceof ApiError) {
-    if (cause.status === 412) return { kind: "conflict" };
     if (cause.status === 401) return { kind: "session" };
     const issues = getMenuIssues(cause);
     if (cause.code === "INVALID_MENU" || issues.length > 0) {
@@ -131,7 +128,6 @@ export function useMenuData(onLoaded: (snapshot: MenuSnapshot) => void) {
       } catch (cause: unknown) {
         setSaveStatus("error");
         const failure = classify(cause);
-        if (failure.kind === "conflict") setConflict(true);
         if (!EXPECTED.has(failure.kind)) {
           reportError(cause, { feature: FEATURE, operation: "menu save" });
         }

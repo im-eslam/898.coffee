@@ -20,7 +20,6 @@ import { SignaturesTab } from "../tabs/signatures";
 import { MenuLoadError, MenuLoading } from "../states/menu-states";
 import { StateCard } from "../states/state-card";
 import { focusRing, heading, primaryButton, stateText } from "../ui/styles";
-import { ConflictModal } from "./conflict-modal";
 import { IssueSummary } from "./issue-summary";
 import { LeaveGuard } from "./leave-guard";
 import { SaveBar } from "./save-bar";
@@ -121,7 +120,6 @@ export function MenuShell() {
           </TabPanel>
         ))}
       </Tabs>
-      <ConflictModal />
       <SessionModal />
       <LeaveGuard />
     </>

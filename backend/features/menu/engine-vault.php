@@ -26,9 +26,6 @@ final class MenuFileStore implements MenuStore
     public function replace(string $ifMatch, string $json): void
     {
         $current = $this->read();
-        if ($ifMatch !== MenuEtag::of($current)) {
-            throw MenuEngineException::preconditionFailed();
-        }
         $this->backup($current);
         $this->writeAtomic($json);
     }
