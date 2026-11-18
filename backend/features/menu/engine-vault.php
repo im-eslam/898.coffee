@@ -77,6 +77,8 @@ final class MenuFileStore implements MenuStore
         }
         fclose($handle);
 
+
+        
         if (!$ok) {
             @unlink($tmp);
             throw MenuEngineException::storage('cannot replace the menu file');
