@@ -88,7 +88,7 @@
           },
           "image": "hot-coffee-espresso.webp",
           "availability": "in_stock",
-          "badge": "new",
+          "badge": null,
           "addOns": [],
           "baristaWay": null,
           "oftenOrderedWith": ["p113", "p118"],
@@ -289,7 +289,7 @@
             "en": "Espresso and steamed milk finished with salted caramel.",
             "ar": "إسبريسو ولبن مبخّر بلمسة كراميل مملح."
           },
-          "image": "hot-coffee-caramel-macchiato.webp",
+          "image": "hot-coffee-salted-caramel-latte.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -800,7 +800,7 @@
             "en": "Blended frappé with coffee and salted caramel.",
             "ar": "فرابيه متخلوط بالقهوة والكراميل المملح."
           },
-          "image": "frappe-caramel.webp",
+          "image": "frappe-salted-caramel.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -867,7 +867,7 @@
             "en": "Blended fresh watermelon with ice.",
             "ar": "بطيخ طازة متخلوط بالتلج."
           },
-          "image": "smoothie-mix.webp",
+          "image": "smoothie-watermelon.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -925,7 +925,7 @@
             "en": "Blended fresh blueberries with ice.",
             "ar": "توت أزرق طازة متخلوط بالتلج."
           },
-          "image": "smoothie-berry.webp",
+          "image": "smoothie-blueberry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1590,7 +1590,7 @@
             "en": "Fresh strawberry juice served chilled.",
             "ar": "عصير فراولة طازة يتقدم ساقع."
           },
-          "image": "smoothie-strawberry.webp",
+          "image": "juice-strawberry.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1898,7 +1898,7 @@
             "en": "Earthy matcha whisked with cold milk and coconut over ice.",
             "ar": "ماتشا ترابية متخفوقة مع لبن ساقع وجوز هند على التلج."
           },
-          "image": "iced-matcha-classic.webp",
+          "image": "iced-matcha-coconut.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -1927,7 +1927,7 @@
             "en": "Earthy matcha whisked with cold milk and sweet peach over ice.",
             "ar": "ماتشا ترابية متخفوقة مع لبن ساقع وخوخ حلو على التلج."
           },
-          "image": "iced-matcha-mango.webp",
+          "image": "iced-matcha-peach.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2090,7 +2090,7 @@
             "en": "Hot chocolate blended with crushed Oreo.",
             "ar": "هوت شوكلت بأوريو مجروش."
           },
-          "image": "hot-drinks-chocolate.webp",
+          "image": "hot-drinks-chocolate-oreo.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
@@ -2119,7 +2119,7 @@
             "en": "Hot chocolate with a rich hazelnut flavour.",
             "ar": "هوت شوكلت بنكهة البندق."
           },
-          "image": "hot-drinks-chocolate.webp",
+          "image": "hot-drinks-chocolate-hazelnut.webp",
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
