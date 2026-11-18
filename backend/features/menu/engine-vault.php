@@ -59,8 +59,6 @@ final class MenuFileStore implements MenuStore
 {
     public function __construct(
         private readonly string $file,
-        private readonly string $backupDir,
-        private readonly int $backupsKept,
     ) {}
 
     public function read(): string

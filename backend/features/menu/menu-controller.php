@@ -50,7 +50,7 @@ class MenuController extends ControllerBase
     /**
      * Replaces the whole menu. The engine validates the document, fills defaults,
      * assigns ids, drops broken references (reported as warnings), computes prices,
-     * and writes the file atomically after keeping a backup.
+     * and writes the file atomically.
      *
      * @Route("PUT /admin/menu")
      * @Authorize

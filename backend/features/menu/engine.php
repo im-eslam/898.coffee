@@ -28,8 +28,6 @@ final class MenuEngine
         }
         return new self(new MenuFileStore(
             $storage['menu_file'],
-            $storage['backup_dir'],
-            $storage['backups_kept'],
         ));
     }
 
