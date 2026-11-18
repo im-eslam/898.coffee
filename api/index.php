@@ -12,6 +12,9 @@ Autoloader::register($backend);
 Env::load($backend . '/.env');
 $config = require $backend . '/appsettings.php';
 
+require $backend . '/core/logger.php';
+Log::register();
+
 HttpContext::applySecurityHeaders();
 CorsMiddleware::handle($config);
 
