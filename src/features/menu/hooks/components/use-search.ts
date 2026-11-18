@@ -30,7 +30,8 @@ const ALEF_VARIANTS = /[\u0622\u0623\u0625]/g;
 const PLAIN_ALEF = "\u0627";
 const WHITESPACE = /\s+/g;
 
-function normalize(value: string, locale: Locale): string {
+function normalize(value: string | null | undefined, locale: Locale): string {
+  if (!value) return "";
   return value
     .toLocaleLowerCase(locale)
     .replace(ARABIC_MARKS, "")
