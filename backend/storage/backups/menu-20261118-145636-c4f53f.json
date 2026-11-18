@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T12:00:00+02:00",
+  "updatedAt": "2026-11-18T14:57:27+02:00",
   "currency": "EGP",
   "badges": ["top", "new"],
   "addOns": {
@@ -61,7 +61,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118"],
           "pricing": {
             "type": "single",
@@ -90,7 +90,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118"],
           "pricing": {
             "type": "single",
@@ -119,7 +119,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -148,7 +148,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p113"],
           "pricing": {
             "type": "single",
@@ -177,7 +177,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -206,7 +206,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -235,7 +235,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118", "p110"],
           "pricing": {
             "type": "single",
@@ -264,7 +264,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p113"],
           "pricing": {
             "type": "single",
@@ -293,7 +293,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p113"],
           "pricing": {
             "type": "single",
@@ -322,7 +322,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p114"],
           "pricing": {
             "type": "single",
@@ -351,7 +351,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p114"],
           "pricing": {
             "type": "single",
@@ -389,7 +389,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p118"],
           "pricing": {
             "type": "single",
@@ -418,7 +418,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -447,7 +447,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p116"],
           "pricing": {
             "type": "single",
@@ -476,7 +476,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p110"],
           "pricing": {
             "type": "single",
@@ -505,7 +505,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p113"],
           "pricing": {
             "type": "single",
@@ -534,7 +534,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p114", "p113"],
           "pricing": {
             "type": "single",
@@ -563,7 +563,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p114", "p113"],
           "pricing": {
             "type": "single",
@@ -592,7 +592,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p114"],
           "pricing": {
             "type": "single",
@@ -621,7 +621,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p118"],
           "pricing": {
             "type": "single",
@@ -659,7 +659,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -688,7 +688,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p118"],
           "pricing": {
             "type": "single",
@@ -717,7 +717,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p113"],
           "pricing": {
             "type": "single",
@@ -746,7 +746,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p114", "p113"],
           "pricing": {
             "type": "single",
@@ -775,7 +775,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p114", "p113"],
           "pricing": {
             "type": "single",
@@ -804,7 +804,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p110"],
           "pricing": {
             "type": "single",
@@ -842,7 +842,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -871,7 +871,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -900,7 +900,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -929,7 +929,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -958,7 +958,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -987,7 +987,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p111"],
           "pricing": {
             "type": "single",
@@ -1016,7 +1016,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -1045,7 +1045,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p111"],
           "pricing": {
             "type": "single",
@@ -1074,7 +1074,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p120"],
           "pricing": {
             "type": "single",
@@ -1112,7 +1112,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p113"],
           "pricing": {
             "type": "single",
@@ -1141,7 +1141,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p113"],
           "pricing": {
             "type": "single",
@@ -1170,7 +1170,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p113"],
           "pricing": {
             "type": "single",
@@ -1199,7 +1199,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -1228,7 +1228,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -1257,7 +1257,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -1286,7 +1286,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p120"],
           "pricing": {
             "type": "single",
@@ -1315,7 +1315,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p116", "p113"],
           "pricing": {
             "type": "single",
@@ -1344,7 +1344,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -1373,7 +1373,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p113"],
           "pricing": {
             "type": "single",
@@ -1402,7 +1402,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p120"],
           "pricing": {
             "type": "single",
@@ -1440,7 +1440,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -1469,7 +1469,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p111", "p110"],
           "pricing": {
             "type": "single",
@@ -1498,7 +1498,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p120"],
           "pricing": {
             "type": "single",
@@ -1527,7 +1527,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p113"],
           "pricing": {
             "type": "single",
@@ -1565,7 +1565,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p110"],
           "pricing": {
             "type": "single",
@@ -1594,7 +1594,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p110"],
           "pricing": {
             "type": "single",
@@ -1623,7 +1623,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p110"],
           "pricing": {
             "type": "single",
@@ -1652,7 +1652,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p110"],
           "pricing": {
             "type": "single",
@@ -1690,7 +1690,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -1719,7 +1719,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p117"],
           "pricing": {
             "type": "single",
@@ -1748,7 +1748,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p112", "p110"],
           "pricing": {
             "type": "single",
@@ -1786,7 +1786,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p117"],
           "pricing": {
             "type": "single",
@@ -1815,7 +1815,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118"],
           "pricing": {
             "type": "single",
@@ -1844,7 +1844,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118"],
           "pricing": {
             "type": "single",
@@ -1873,7 +1873,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p118"],
           "pricing": {
             "type": "single",
@@ -1902,7 +1902,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p112"],
           "pricing": {
             "type": "single",
@@ -1931,7 +1931,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p110", "p112"],
           "pricing": {
             "type": "single",
@@ -1969,7 +1969,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p110"],
           "pricing": {
             "type": "single",
@@ -1998,7 +1998,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p118", "p110"],
           "pricing": {
             "type": "single",
@@ -2036,7 +2036,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p114"],
           "pricing": {
             "type": "single",
@@ -2065,7 +2065,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p110"],
           "pricing": {
             "type": "single",
@@ -2094,7 +2094,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p120", "p113"],
           "pricing": {
             "type": "single",
@@ -2123,7 +2123,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p113", "p116"],
           "pricing": {
             "type": "single",
@@ -2161,7 +2161,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p005", "p003"],
           "pricing": {
             "type": "single",
@@ -2190,7 +2190,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p005", "p015"],
           "pricing": {
             "type": "single",
@@ -2219,7 +2219,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p040", "p005"],
           "pricing": {
             "type": "single",
@@ -2248,7 +2248,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p005"],
           "pricing": {
             "type": "single",
@@ -2277,7 +2277,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p007"],
           "pricing": {
             "type": "single",
@@ -2306,7 +2306,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p007"],
           "pricing": {
             "type": "single",
@@ -2335,7 +2335,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p048", "p005"],
           "pricing": {
             "type": "single",
@@ -2364,7 +2364,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p003"],
           "pricing": {
             "type": "single",
@@ -2393,7 +2393,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p024"],
           "pricing": {
             "type": "single",
@@ -2422,7 +2422,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p001", "p007"],
           "pricing": {
             "type": "single",
@@ -2451,7 +2451,7 @@
           "availability": "in_stock",
           "badge": null,
           "addOns": [],
-          "baristaWay": null,
+          "baristaWay": [],
           "oftenOrderedWith": ["p005", "p048"],
           "pricing": {
             "type": "single",
