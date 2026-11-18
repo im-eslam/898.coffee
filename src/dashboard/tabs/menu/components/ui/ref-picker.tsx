@@ -1,8 +1,21 @@
 import { useState } from "react";
-import { Button, ComboBox, Input, Label, ListBox, ListBoxItem, Popover, Tag, TagGroup, TagList, Text } from "react-aria-components";
+import {
+  Button,
+  ComboBox,
+  Input,
+  Label,
+  ListBox,
+  ListBoxItem,
+  Popover,
+  Tag,
+  TagGroup,
+  TagList,
+  Text,
+} from "react-aria-components";
 import { Icon } from "@/shared/icons";
 import { useStrings } from "@/shared/i18n";
 import { strings, fill } from "../../strings";
+import type { Searchable } from "../../util/search";
 
 const styles = {
   root: "flex flex-col gap-2",
@@ -21,17 +34,19 @@ const styles = {
   popover:
     "max-h-72 w-(--trigger-width) overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg",
   option:
-    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10 data-[disabled]:opacity-50",
+    "flex cursor-pointer items-center rounded-md px-3 py-2 text-body text-slate-900 outline-none data-[focused]:bg-brand/10",
+  noMatches: "px-3 py-2 text-small text-slate-500",
 } as const;
 
-export interface RefOption {
+export interface PickOption extends Searchable {
   id: string;
-  label: string;
 }
+
+export type RefOption = PickOption;
 
 interface RefPickerProps {
   label: string;
-  options: RefOption[];
+  options: PickOption[];
   value: string[];
   onChange: (ids: string[]) => void;
   hint?: string;
@@ -50,6 +65,12 @@ export function RefPicker({
   const [text, setText] = useState("");
   const labelById = new Map(options.map((option) => [option.id, option.label]));
   const available = options.filter((option) => !value.includes(option.id));
+  const needle = text.trim().toLowerCase();
+  const filtered = needle
+    ? available.filter((option) =>
+        `${option.label} ${option.search}`.toLowerCase().includes(needle)
+      )
+    : available;
 
   const items = value.map((id) => ({
     id,
@@ -79,7 +100,9 @@ export function RefPicker({
             >
               <span>
                 {item.label}
-                {item.broken ? ` — ${brokenLabel ?? s.common.willBeRemoved}` : ""}
+                {item.broken
+                  ? ` — ${brokenLabel ?? s.common.willBeRemoved}`
+                  : ""}
               </span>
               <Button
                 slot="remove"
@@ -94,9 +117,9 @@ export function RefPicker({
       </TagGroup>
 
       <ComboBox
-        aria-label={fill(s.common.add, {})}
+        aria-label={s.common.add}
         className={styles.field}
-        items={available}
+        items={filtered}
         selectedKey={null}
         inputValue={text}
         onInputChange={setText}
@@ -109,7 +132,10 @@ export function RefPicker({
         }}
       >
         <div className={styles.inputWrap}>
-          <Input className={styles.input} placeholder={s.editor.pickerPlaceholder} />
+          <Input
+            className={styles.input}
+            placeholder={s.editor.pickerPlaceholder}
+          />
         </div>
         {hint ? (
           <Text slot="description" className={styles.sub}>
@@ -117,8 +143,13 @@ export function RefPicker({
           </Text>
         ) : null}
         <Popover className={styles.popover}>
-          <ListBox className="outline-none">
-            {(option: RefOption) => (
+          <ListBox
+            className="outline-none"
+            renderEmptyState={() => (
+              <p className={styles.noMatches}>{s.products.noMatches}</p>
+            )}
+          >
+            {(option: PickOption) => (
               <ListBoxItem
                 id={option.id}
                 textValue={option.label}

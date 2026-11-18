@@ -46,7 +46,7 @@ export function ProductCombobox({
   errors = [],
 }: ProductComboboxProps) {
   const s = useStrings(strings);
-  const [query, setQuery] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
   const selected = options.find((option) => option.id === value);
   const needle = (query ?? "").trim().toLowerCase();
   const items =
@@ -61,10 +61,10 @@ export function ProductCombobox({
       className={styles.root}
       items={items}
       selectedKey={selected ? selected.id : null}
-      inputValue={query ?? selected?.label ?? ""}
+      inputValue={query || selected?.label || ""}
       onInputChange={setQuery}
       onOpenChange={(open) => {
-        if (open) setQuery(null);
+        if (open) setQuery("");
       }}
       menuTrigger="focus"
       isInvalid={errors.length > 0}
@@ -72,7 +72,8 @@ export function ProductCombobox({
       onSelectionChange={(key) => {
         if (key === null) return;
         onChange(String(key));
-        setQuery(null);
+        const option = options.find((item) => item.id === String(key));
+        setQuery(option?.label ?? "");
       }}
     >
       <Label className={hideLabel ? "sr-only" : styles.label}>{label}</Label>

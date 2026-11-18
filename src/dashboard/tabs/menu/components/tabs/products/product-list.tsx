@@ -1,4 +1,11 @@
-import { Button, GridList, GridListItem, SearchField, Input, Label } from "react-aria-components";
+import {
+  Button,
+  GridList,
+  GridListItem,
+  SearchField,
+  Input,
+  Label,
+} from "react-aria-components";
 import { useStrings } from "@/shared/i18n";
 import { Icon } from "@/shared/icons";
 import { useLoadedMenu } from "../../../hooks/use-menu-context";
@@ -16,7 +23,8 @@ const styles = {
   input:
     "h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-body text-slate-900 outline-none placeholder:text-slate-400 data-[focused]:border-brand data-[focused]:ring-2 data-[focused]:ring-brand/20",
   searchWrap: "relative",
-  clear: "absolute inset-y-0 end-0 flex w-11 items-center justify-center text-slate-500 outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-brand [[data-empty]_&]:hidden",
+  clear:
+    "absolute inset-y-0 end-0 flex w-11 items-center justify-center text-slate-500 outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-brand [[data-empty]_&]:hidden",
   section: "flex flex-col gap-2",
   sectionHead: "flex items-center justify-between gap-2",
   sectionTitle: "text-body font-semibold text-slate-900",
@@ -31,7 +39,8 @@ const styles = {
   chip: "rounded-full bg-slate-100 px-2 py-0.5 text-small font-medium text-slate-700",
   chipOut: "bg-error/10 text-error",
   chipBadge: "bg-brand/10 text-brand",
-  empty: "rounded-xl border border-dashed border-slate-300 p-4 text-center text-small text-slate-500",
+  empty:
+    "rounded-xl border border-dashed border-slate-300 p-4 text-center text-small text-slate-500",
 } as const;
 
 interface ProductListProps {
@@ -39,6 +48,7 @@ interface ProductListProps {
   onSearch: (value: string) => void;
   selectedUid: string | null;
   onSelect: (uid: string) => void;
+  onAdd: (categoryUid: string) => void;
 }
 
 export function ProductList({
@@ -46,6 +56,7 @@ export function ProductList({
   onSearch,
   selectedUid,
   onSelect,
+  onAdd,
 }: ProductListProps) {
   const s = useStrings(strings);
   const { draft } = useLoadedMenu();
@@ -62,14 +73,13 @@ export function ProductList({
 
   return (
     <div className={styles.root}>
-      <SearchField
-        className={styles.search}
-        value={search}
-        onChange={onSearch}
-      >
+      <SearchField className={styles.search} value={search} onChange={onSearch}>
         <Label className="sr-only">{s.products.searchLabel}</Label>
         <div className={styles.searchWrap}>
-          <Input className={styles.input} placeholder={s.products.searchPlaceholder} />
+          <Input
+            className={styles.input}
+            placeholder={s.products.searchPlaceholder}
+          />
           <Button className={styles.clear} aria-label={s.products.clearSearch}>
             <Icon name="close" className="size-4" />
           </Button>
@@ -86,6 +96,7 @@ export function ProductList({
             filter={matches}
             selectedUid={selectedUid}
             onSelect={onSelect}
+            onAdd={onAdd}
           />
         ))
       )}
@@ -98,6 +109,7 @@ interface CategorySectionProps {
   filter: (product: DraftProduct) => boolean;
   selectedUid: string | null;
   onSelect: (uid: string) => void;
+  onAdd: (categoryUid: string) => void;
 }
 
 function CategorySection({
@@ -105,6 +117,7 @@ function CategorySection({
   filter,
   selectedUid,
   onSelect,
+  onAdd,
 }: CategorySectionProps) {
   const s = useStrings(strings);
   const menu = useLoadedMenu();
@@ -118,15 +131,13 @@ function CategorySection({
   const headingId = `products-${category.uid}`;
   const products = category.products.filter(filter);
 
-  const addProduct = () => onSelect(menu.products.add(category.uid));
-
   return (
     <section className={styles.section} aria-labelledby={headingId}>
       <div className={styles.sectionHead}>
         <h3 id={headingId} className={styles.sectionTitle}>
           {title}
         </h3>
-        <Button className={styles.button} onPress={addProduct}>
+        <Button className={styles.button} onPress={() => onAdd(category.uid)}>
           <Icon name="plus" className="size-4" />
           {s.products.addProduct}
         </Button>

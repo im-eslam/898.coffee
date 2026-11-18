@@ -17,7 +17,7 @@ export interface MenuSnapshot {
   warnings: MenuIssue[];
 }
 
-interface PopupImageResponse {
+interface ImageResponse {
   ok: true;
   image: string;
 }
@@ -77,12 +77,13 @@ export function saveMenu(
   });
 }
 
-export function uploadPopupImage(file: File): Promise<string> {
+/** Uploads one WebP image to a menu image endpoint and returns the stored image path. */
+function uploadMenuImage(endpoint: string, file: File): Promise<string> {
   return withSession(async () => {
     const body = new FormData();
     body.append("image", file);
-    const response = await requestJsonWithHeaders<PopupImageResponse>(
-      `${ADMIN_MENU_API}/popup-image`,
+    const response = await requestJsonWithHeaders<ImageResponse>(
+      `${ADMIN_MENU_API}/${endpoint}`,
       {
         method: "POST",
         cache: "no-store",
@@ -92,6 +93,15 @@ export function uploadPopupImage(file: File): Promise<string> {
     );
     return response.data.image;
   });
+}
+
+export function uploadPopupImage(file: File): Promise<string> {
+  return uploadMenuImage("popup-image", file);
+}
+
+/** Requires the server endpoint POST /menu/product-image, with the same contract as popup-image. */
+export function uploadProductImage(file: File): Promise<string> {
+  return uploadMenuImage("product-image", file);
 }
 
 export function getMenuIssues(cause: unknown): MenuIssue[] {

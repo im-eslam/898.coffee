@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-11-18T01:40:22+02:00",
+    "updatedAt": "2026-11-18T02:01:50+02:00",
     "currency": "EGP",
     "badges": [
         "top",
@@ -1092,9 +1092,9 @@
                                     "en": "Single",
                                     "ar": "سينجل"
                                 },
-                                "price": 60,
-                                "discount": 0,
-                                "final": 60
+                                "price": 600,
+                                "discount": 50,
+                                "final": 550
                             },
                             {
                                 "id": "m",
@@ -1105,6 +1105,16 @@
                                 "price": 70,
                                 "discount": 0,
                                 "final": 70
+                            },
+                            {
+                                "id": "triple",
+                                "name": {
+                                    "en": "Triple",
+                                    "ar": "تربل"
+                                },
+                                "price": 3,
+                                "discount": 0,
+                                "final": 3
                             }
                         ]
                     }
@@ -4757,13 +4767,13 @@
         {
             "id": "pr01",
             "items": [
-                "p015",
+                "p030",
                 "p038"
             ],
             "pricing": {
-                "price": 191,
+                "price": 193,
                 "discount": 40,
-                "final": 151
+                "final": 153
             }
         }
     ],
