@@ -9,6 +9,13 @@ class HttpContext {
     }
 
     public static function json(array $data, int $status = 200): never {
+        $detail = $data['code'] ?? $data['error'] ?? '';
+        if ($status >= 500) {
+            Log::error("HTTP $status $detail");
+        } elseif ($status >= 400) {
+            Log::warning("HTTP $status $detail");
+        }
+
         http_response_code($status);
         header('Content-Type: application/json; charset=utf-8');
         header('Cache-Control: no-store');

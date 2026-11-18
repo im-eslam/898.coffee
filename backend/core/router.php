@@ -29,7 +29,7 @@ class Router {
         try {
             (new $class($config))->$action();
         } catch (Throwable $error) {
-            error_log($error);
+            Log::exception($error); 
             HttpContext::fail(500, 'Server error', 'INTERNAL_ERROR');
         }
     }

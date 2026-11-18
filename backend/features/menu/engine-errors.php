@@ -33,13 +33,13 @@ final class MenuEngineException extends RuntimeException
 
     public static function storage(string $reason): self
     {
-        error_log('MenuEngine storage: ' . $reason);
+        Log::error('MenuEngine storage: ' . $reason);
         return new self(500, 'INTERNAL_ERROR', 'Server error');
     }
 
     public static function engineBug(array $issues): self
     {
-        error_log('MenuEngine bug: ' . json_encode($issues));
+        Log::error('MenuEngine bug: ' . json_encode($issues, JSON_UNESCAPED_UNICODE));
         return new self(500, 'INTERNAL_ERROR', 'Server error');
     }
 }

@@ -10,6 +10,9 @@ Autoloader::register(__DIR__);
 Env::load(__DIR__ . '/.env');
 $config = require __DIR__ . '/appsettings.php';
 
+require __DIR__ . '/core/logger.php';
+Log::register();
+
 HttpContext::applySecurityHeaders();
 CorsMiddleware::handle($config);
 
