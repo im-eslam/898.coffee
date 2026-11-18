@@ -25,23 +25,12 @@ final class MenuFileStore implements MenuStore
 
     public function replace(string $ifMatch, string $json): void
     {
-        $lock = @fopen($this->file . '.lock', 'c');
-        if ($lock === false) {
-            throw MenuEngineException::storage('cannot open the menu lock');
+        $current = $this->read();
+        if ($ifMatch !== MenuEtag::of($current)) {
+            throw MenuEngineException::preconditionFailed();
         }
-
-        flock($lock, LOCK_EX);
-        try {
-            $current = $this->read();
-            if ($ifMatch !== MenuEtag::of($current)) {
-                throw MenuEngineException::preconditionFailed();
-            }
-            $this->backup($current);
-            $this->writeAtomic($json);
-        } finally {
-            flock($lock, LOCK_UN);
-            fclose($lock);
-        }
+        $this->backup($current);
+        $this->writeAtomic($json);
     }
 
     private function backup(string $current): void
@@ -52,7 +41,7 @@ final class MenuFileStore implements MenuStore
 
         $stamp = (new DateTimeImmutable('now', new DateTimeZone('Africa/Cairo')))->format('Ymd-His');
         $name  = $this->backupDir . '/menu-' . $stamp . '-' . bin2hex(random_bytes(3)) . '.json';
-        if (file_put_contents($name, $current, LOCK_EX) === false) {
+        if (file_put_contents($name, $current) === false) {
             throw MenuEngineException::storage('cannot write the menu backup');
         }
 
@@ -85,7 +74,7 @@ final class MenuFileStore implements MenuStore
         }
         if (!@rename($tmp, $this->file)) {
             @unlink($tmp);
-            if (@file_put_contents($this->file, $json, LOCK_EX) !== strlen($json)) {
+            if (@file_put_contents($this->file, $json) !== strlen($json)) {
                 throw MenuEngineException::storage('cannot replace the menu file');
             }
         }
