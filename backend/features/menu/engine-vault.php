@@ -6,6 +6,55 @@ interface MenuStore
     public function replace(string $ifMatch, string $json): void;
 }
 
+final class MenuDbStore implements MenuStore
+{
+    public function __construct(
+        private readonly PDO $db,
+        private readonly string $seedFile,
+    ) {}
+
+    public function read(): string
+    {
+        try {
+            $this->db->exec(
+                'CREATE TABLE IF NOT EXISTS menu_document (
+                    id SMALLINT PRIMARY KEY,
+                    document TEXT NOT NULL,
+                    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                )'
+            );
+            $statement = $this->db->prepare('SELECT document FROM menu_document WHERE id = 1');
+            $statement->execute();
+            $document = $statement->fetchColumn();
+            if (is_string($document)) return $document;
+
+            $seed = @file_get_contents($this->seedFile);
+            if ($seed === false) {
+                throw MenuEngineException::storage('cannot read the seeded menu');
+            }
+            $this->replace('', $seed);
+            return $seed;
+        } catch (PDOException $error) {
+            throw MenuEngineException::storage('cannot read the menu database');
+        }
+    }
+
+    public function replace(string $ifMatch, string $json): void
+    {
+        try {
+            $statement = $this->db->prepare(
+                'INSERT INTO menu_document (id, document, updated_at)
+                 VALUES (1, :document, NOW())
+                 ON CONFLICT (id) DO UPDATE
+                 SET document = EXCLUDED.document, updated_at = NOW()'
+            );
+            $statement->execute(['document' => $json]);
+        } catch (PDOException $error) {
+            throw MenuEngineException::storage('cannot write the menu database');
+        }
+    }
+}
+
 final class MenuFileStore implements MenuStore
 {
     public function __construct(

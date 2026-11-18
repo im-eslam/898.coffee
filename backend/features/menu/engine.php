@@ -20,6 +20,12 @@ final class MenuEngine
 
     public static function fromConfig(array $storage): self
     {
+        if (($storage['use_database'] ?? false) && isset($storage['db'])) {
+            return new self(new MenuDbStore(
+                DbContext::connect($storage['db']),
+                $storage['seed_file'] ?? $storage['menu_file'],
+            ));
+        }
         return new self(new MenuFileStore(
             $storage['menu_file'],
             $storage['backup_dir'],

@@ -35,4 +35,8 @@ foreach (glob(__DIR__ . '/features/*/config.php') as $file) {
     }
 }
 
+if (isset($config['features']['menu']['storage'])) {
+    $config['features']['menu']['storage']['db'] = $config['db'];
+}
+
 return $config;

@@ -22,6 +22,8 @@ return [
         'storage' => [
             'menu_file'         => $menuFile,
             'backup_dir'        => $writable . '/backups',
+            'seed_file'         => $menuSource,
+            'use_database'      => $isServerless,
             'popup_dir'         => __DIR__ . '/../../../public/menu/popup',
             'product_full_dir'  => __DIR__ . '/../../../public/menu/products-full',
             'product_thumb_dir' => __DIR__ . '/../../../public/menu/products-thumb',
